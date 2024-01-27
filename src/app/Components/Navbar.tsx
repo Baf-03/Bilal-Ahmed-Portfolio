@@ -9,28 +9,23 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
-// import { DialogWithForm } from '../../Pages/SigninModal';
-// import { Link } from 'react-router-dom';
-import "./Navbar.css";
-// import { Link as ScrollLink, Element } from 'react-scroll';
-
 import Link from "next/link";
+import "./Navbar.css";
 
-const pages = ["About me", "Projects", "My Skills", "Let's Connect"];
-const settings = ["<DialogWithForm/>"];
+const pages = ["About Me", "Projects", "My Skills", "Let's Connect"];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const handleOpenNavMenu = (event) => {
+  const handleOpenNavMenu = (event:any) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
+
+  const handleOpenUserMenu = (event:any) => {
     setAnchorElUser(event.currentTarget);
   };
 
@@ -40,10 +35,6 @@ function ResponsiveAppBar() {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
-  };
-
-  const handleLogin = () => {
-    // return <DialogWithForm/>
   };
 
   return (
@@ -164,7 +155,7 @@ function ResponsiveAppBar() {
                     {/* <Link href="/"> */}
                     <a href="#" className="navbar__link">
                       <i data-feather="settings"></i>
-                      <span>Lets'connect</span>
+                      <span>Letsconnect</span>
                     </a>
 
                     {/* </Link> */}
@@ -209,13 +200,13 @@ function ResponsiveAppBar() {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
+              {/* {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center" onClick={handleLogin}>
                     <Link href={"/login"}>{setting}</Link>
                   </Typography>
                 </MenuItem>
-              ))}
+              ))} */}
             </Menu>
           </Box>
         </Toolbar>
