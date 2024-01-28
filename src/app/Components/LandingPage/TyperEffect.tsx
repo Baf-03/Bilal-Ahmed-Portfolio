@@ -4,13 +4,14 @@ import { TypewriterClass } from 'typewriter-effect';
 
 
 const TyperEffect = () => {
-    let qualities = ["Developer.", "Professional Coder", "Problem Solver"];
     let [word, setWord] = useState("");
     let [wordIndex, setWordIndex] = useState(0);
     let [letterIndex, setLetterIndex] = useState(0);
     let [isRemoving, setIsRemoving] = useState(false);
   
     useEffect(() => {
+    const qualities = ["Developer.", "Professional Coder", "Problem Solver"];
+
       const interval = setInterval(() => {
         if (!isRemoving) {
           if (letterIndex < qualities[wordIndex].length) {

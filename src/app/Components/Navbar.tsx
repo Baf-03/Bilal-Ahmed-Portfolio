@@ -27,10 +27,10 @@ function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const handleOpenNavMenu = (event) => {
+  const handleOpenNavMenu = (event:any) => {
     setAnchorElNav(event.currentTarget);
   };
-  const handleOpenUserMenu = (event) => {
+  const handleOpenUserMenu = (event:any) => {
     setAnchorElUser(event.currentTarget);
   };
 
@@ -164,7 +164,7 @@ function ResponsiveAppBar() {
                     {/* <Link href="/"> */}
                     <a href="#" className="navbar__link">
                       <i data-feather="settings"></i>
-                      <span>Lets'connect</span>
+                      <span>Lets connect</span>
                     </a>
 
                     {/* </Link> */}
