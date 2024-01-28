@@ -17,7 +17,7 @@ function LandingPage() {
         data-aos-easing="ease-in-sine"
       >
         <h3 className="">WELCOME TO MY WORLD</h3>
-        <h1 className="font-bold mt-3  text-[1.8rem] lg:mt-0 lg:text-[4rem] xl:text-[3.5rem]">
+        <h1 className="font-bold mt-3  text-[1.8rem] lg:text-[4rem] xl:text-[3.5rem]">
           <div className="flex text-[1.8rem] md:text-[2.5rem]">Hi,</div>{" "}
           <span className="imintro">I’m </span>
           <span className="backgroundimage">
@@ -56,7 +56,6 @@ function LandingPage() {
           layout="responsive"
           width={300}
           height={300}
-
         />
       </div>
     </div>
