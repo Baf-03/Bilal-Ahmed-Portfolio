@@ -7,7 +7,7 @@ const NeedofSp = () => {
         <div className='w-[25%] sm:w-[20%] md:w-[20%] lg:w-[10%] mt-4 sm:mt-0'>
         <Image
                     src="https://eiharold.com/wp-content/uploads/2022/02/icon-lancamento.png"
-                    alt="My image description"
+                    alt="bilal portfolio"
                     layout="responsive"
                     width={200}
                     height={200}
