@@ -52,19 +52,12 @@ function LandingPage() {
       <div className="imageside w-[70%] mt-5 flex justify-center relative rounded-lg ml-[5%] lg:mt-0 sm:w-[50%] md:w-[40%] lg:w-[35%] ">
         <Image
           src={"https://grademiners.com/wp-content/themes/grademiners.com/page-money-back/images/hero.png"}
-          alt="My image description"
+          alt="bilal portfolio"
           layout="responsive"
           width={300}
           height={300}
+
         />
-        {/* <img
-          src="https://grademiners.com/wp-content/themes/grademiners.com/page-money-back/images/hero.png"
-          className="  bottom-0 left-1 w-fit"
-          data-aos="flip-left"
-          data-aos-easing="ease-out-cubic"
-          data-aos-duration="2000"
-        
-        /> */}
       </div>
     </div>
   );
