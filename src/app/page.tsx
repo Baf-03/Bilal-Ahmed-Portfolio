@@ -4,6 +4,7 @@ import Image from "next/image";
 import ResponsiveAppBar from "./Components/Navbar";
 import CreativeProcess from "./Components/CreativeProcess/CreativeProcess";
 import NeedofSp from "./Components/NeedOfSalesPage.tsx/NeedofSp";
+import TechUsed from "./Components/TechnologiesUsed";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
           <Introduction/>
           <CreativeProcess/>
           <NeedofSp/>
+          <TechUsed/>
           </div>
     </main>
 
