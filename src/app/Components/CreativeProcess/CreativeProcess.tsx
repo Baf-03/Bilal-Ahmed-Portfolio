@@ -35,11 +35,11 @@ const CreativeProcess = () => {
     },
   ];
   return (
-    <div className="relative p-5 w-[85%] ">
-      <h2 className="backgroundimage text-[2rem] text-center md:text-[3rem] font-bold">
+    <div className="relative p-2 w-[100%] md:w-[85%] ">
+      <h2 className="backgroundimage text-[2rem] text-center  md:text-[3rem] font-bold">
         Creative Process
       </h2>
-      <p className="w-[85%] mt-9 border-l border-dotted border-red-500 ps-2">
+      <p className="w-[90%] md:w-[85%] mt-9 border-l border-dotted border-red-500 ps-2">
         Creating a digital solution{" "}
         <span className="text-red-500 font-bold ">
           is not as simple as it seems
@@ -48,31 +48,34 @@ const CreativeProcess = () => {
         highlight some of these steps, in summary, so that you can visualize the
         process.
       </p>
-      <div className="flex flex-wrap w-full mt-9 justify-center">
-        {process?.map((element, index) => (
-          <div
-            key={index}
-            className={`relative w-full md:w-[48%] lg:w-[22vw] flex items-center text-center p-4  border-dotted border-blue-500 ${
-              index % 2 === 1 ? "border-t border-dotted border-red-500 md:border-t-0" : ""
-            } ${
-              "border-l border-dotted border-red-500 md:border-l-0" 
-            }`}
-          >
-            <div className="flex flex-col items-center ">
-              <div className="w-[40%] sm:w-[30%] md:w-[50%] lg:w-[30%] m-auto">
-                <Image
-                  src={element.img}
-                  alt="My image description"
-                  layout="responsive"
-                  width={0}
-                  height={0}
-                />
+      <div className="flex flex-wrap w-[100%]   mt-9 justify-center">
+        {process?.map((element, index) => {
+          return (
+            // border-l
+            <div key={index} className="relative md:w-[22vw] flex items-center text-center p-4   ">
+              <div className="flex flex-col items-center ">
+                <div className="w-[40%] sm:w-[30%] md:w-[50%] lg:w-[30%] m-auto">
+                  <Image
+                    src={element.img}
+                    alt="My image description"
+                    layout="responsive"
+                    width={0}
+                    height={0}
+                  />
+                </div>
+
+                <h2 className="font-bold">{element.name}</h2>
+                <p className="lg:w-[65%] ">{element.para}</p>
+              <div className="absolute top-0 left-[0px] transform -translate-y-1/2 w-full border-b border-dotted border-red-500"></div>
+
               </div>
-              <h2 className="font-bold">{element.name}</h2>
-              <p className="lg:w-[65%] ">{element.para}</p>
+            <div className="absolute top-0 left-[0] transform -translate-x-1/2 h-full border-dotted border-r border-red-500"></div>
+             
+             
+             
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
