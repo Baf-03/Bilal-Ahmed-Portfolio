@@ -49,7 +49,7 @@ function LandingPage() {
         </div>
       </div>
 
-      <div className="imageside w-[100%] mt-5 flex justify-center relative rounded-lg ml-[5%] lg:mt-0 lg:w-[30%] lg:h-[40vh]">
+      <div className="imageside w-[70%] mt-5 flex justify-center relative rounded-lg ml-[5%] lg:mt-0 sm:w-[50%] md:w-[40%] lg:w-[30%] lg:h-[40vh]">
         <Image
           src={"https://grademiners.com/wp-content/themes/grademiners.com/page-money-back/images/hero.png"}
           alt="My image description"

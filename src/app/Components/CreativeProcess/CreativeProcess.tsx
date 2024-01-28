@@ -45,7 +45,7 @@ const CreativeProcess = () => {
           is not as simple as it seems
         </span>{" "}
         . There are several steps, from conception to product launch. Below I
-        highlight some of these steps, in summary, so that you can visualize the
+        highlight some of these steps in summary so that you can visualize the
         process.
       </p>
       <div className="flex flex-wrap w-[100%]   mt-9 justify-center">
@@ -53,8 +53,8 @@ const CreativeProcess = () => {
           return (
             // border-l
             <div key={index} className="relative md:w-[22vw] flex items-center text-center p-4   ">
-              <div className="flex flex-col items-center ">
-                <div className="w-[40%] sm:w-[30%] md:w-[50%] lg:w-[30%] m-auto">
+              <div className="flex flex-col items-center gap-2">
+                <div className="w-[30%] sm:w-[20%] md:w-[50%] lg:w-[30%] m-auto">
                   <Image
                     src={element.img}
                     alt="My image description"
