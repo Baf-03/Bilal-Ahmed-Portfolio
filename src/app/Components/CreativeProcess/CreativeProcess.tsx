@@ -52,7 +52,7 @@ const CreativeProcess = () => {
         {process?.map((element, index) => {
           return (
             // border-l
-            <div className="relative md:w-[22vw] flex items-center text-center p-4   ">
+            <div key={index} className="relative md:w-[22vw] flex items-center text-center p-4   ">
               <div className="flex flex-col items-center ">
                 <div className="w-[40%] sm:w-[30%] md:w-[50%] lg:w-[30%] m-auto">
                   <Image
