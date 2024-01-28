@@ -1,5 +1,5 @@
 module.exports = {
     images: {
-      domains: ['eiharold.com'], // Add the domain you need
+      domains: ['eiharold.com',"grademiners.com"], // Add the domain you need
     },
   };

@@ -5,12 +5,13 @@ import { FiLinkedin } from "react-icons/fi";
 import { BiLogoUpwork } from "react-icons/bi";
 import { SiFiverr } from "react-icons/si";
 import TyperEffect from "./TyperEffect";
+import Image from "next/image";
 
 function LandingPage() {
   return (
     <div className="w-[100%] flex flex-wrap justify-center mt-[15%] sm:mt-[8%] md:mt-[5%] items-center border-gray-900 border-b-[1px] pb-[100px] min-h-[80vh]">
       <div
-        className="textside w-[100%] md:text-start lg:w-[60%]"
+        className="ps-2 textside w-[100%] md:text-start lg:w-[60%]"
         data-aos="fade-right"
         data-aos-offset="300"
         data-aos-easing="ease-in-sine"
@@ -26,12 +27,12 @@ function LandingPage() {
         <div className="flex font-bold text-[3rem] ">
           {/* <TyperEffect/> */}
         </div>
-        <div className="w-[100%] text-[0.85rem] font-light pt-5 text-start md:pe-5 m-auto md:m-0  md:break-normal md:text-[1.3rem] md:w-[90%] ">
+        <div className="w-[90%] text-[0.85rem] font-light pt-5 text-start md:pe-5  md:m-0  md:break-normal md:text-[1.3rem] md:w-[90%] ">
           I am <strong>Bilal Ahmed</strong> a persistent Computer Science
-          undergraduate in a wellrecognized institute University of Karachi 
-          UBIT having knowledge of Web Development I am Skilled in designing
-          creative Web Pages and Patterns. A technology enthusiast who believes
-          in the technology revolution. I keep myself updated on the upcoming
+          undergraduate in a wellrecognized institute University of Karachi UBIT
+          having knowledge of Web Development I am Skilled in designing creative
+          Web Pages and Patterns. A technology enthusiast who believes in the
+          technology revolution. I keep myself updated on the upcoming
           technologies which will revolutionize the digital world in the future
           and will solve modernday life problems.
           <div className="flex gap-6 mt-[15%] items-center text-[2rem] md:text-[3rem] lg:gap-11">
@@ -49,6 +50,13 @@ function LandingPage() {
       </div>
 
       <div className="imageside w-[100%] mt-5 flex justify-center relative rounded-lg ml-[5%] lg:mt-0 lg:w-[30%] lg:h-[40vh]">
+        <Image
+          src={"https://grademiners.com/wp-content/themes/grademiners.com/page-money-back/images/hero.png"}
+          alt="My image description"
+          layout="responsive"
+          width={0}
+          height={0}
+        />
         {/* <img
           src="https://grademiners.com/wp-content/themes/grademiners.com/page-money-back/images/hero.png"
           className="  bottom-0 left-1 w-fit"
