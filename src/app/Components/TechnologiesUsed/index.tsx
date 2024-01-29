@@ -49,7 +49,7 @@ const TechUsed = () => {
                   {element.para}
                 </p>
               </div>
-              <div className="p-2 text-[0.8rem] sm:text-[1.1rem] flex flex-col gap-3 font-bold mt-2">
+              <div className="p-2 text-[0.8rem] sm:text-[0.9rem] flex flex-col gap-3 font-bold mt-2">
                 {element?.option?.map((feature, index)=> {
                   return (
                     <div key={index}>
