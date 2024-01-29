@@ -5,6 +5,7 @@ import ResponsiveAppBar from "./Components/Navbar";
 import CreativeProcess from "./Components/CreativeProcess/CreativeProcess";
 import NeedofSp from "./Components/NeedOfSalesPage.tsx/NeedofSp";
 import TechUsed from "./Components/TechnologiesUsed";
+import Skills from "./Components/Skills/Skills";
 
 export default function Home() {
   return (
@@ -15,6 +16,7 @@ export default function Home() {
           <CreativeProcess/>
           <NeedofSp/>
           <TechUsed/>
+          <Skills/>
           </div>
     </main>
 
