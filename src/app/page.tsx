@@ -9,6 +9,7 @@ import Skills from "./Components/Skills/Skills";
 
 export default function Home() {
   return (
+    
     <main className="">
           <ResponsiveAppBar/>
           <div className="w-[98%] md:w-[85%] m-auto flex flex-col gap-12 justify-center items-center  mt-2 ">
