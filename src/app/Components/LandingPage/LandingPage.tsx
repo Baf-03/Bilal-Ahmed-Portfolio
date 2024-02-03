@@ -17,17 +17,17 @@ function LandingPage() {
         data-aos-easing="ease-in-sine"
       >
         <h3 className="">WELCOME TO MY WORLD</h3>
-        <h1 className="font-bold mt-3  text-[1.8rem] lg:text-[4rem] xl:text-[3.5rem]">
-          <div className="flex text-[1.8rem] md:text-[2.5rem]">Hi,</div>{" "}
+        <h1 className="font-bold mt-3  text-[1.8rem] lg:text-[2.5rem] xl:text-[3rem]">
+          <div className="flex text-[1.8rem] md:text-[2.5rem] lg:text-[2rem] xl:text-[2.5rem]">Hi,</div>{" "}
           <span className="imintro">I’m </span>
           <span className="backgroundimage">
             <strong className="font-bold">Bilal Ahmed</strong>
           </span>
         </h1>
         <div className="flex font-bold text-[3rem] ">
-          {/* <TyperEffect/> */}
+          <TyperEffect/>
         </div>
-        <div className="w-[90%] text-[0.85rem] font-light pt-5 text-start md:pe-5  md:m-0  md:break-normal md:text-[1.3rem] md:w-[90%] ">
+        <div className="w-[90%] text-[0.85rem] font-light pt-5 text-start md:pe-5  md:m-0  md:break-normal xl:text-[1rem] md:w-[90%] ">
           I am <strong>Bilal Ahmed</strong> a persistent Computer Science
           undergraduate in a wellrecognized institute University of Karachi UBIT
           having knowledge of Web Development I am Skilled in designing creative

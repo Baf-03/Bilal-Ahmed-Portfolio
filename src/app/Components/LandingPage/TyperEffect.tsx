@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import { TypewriterClass } from 'typewriter-effect';
+import Typewriter from "typewriter-effect";
+import "./LandingPage.css";
 
 
 const TyperEffect = () => {
@@ -10,7 +11,9 @@ const TyperEffect = () => {
     let [isRemoving, setIsRemoving] = useState(false);
   
     useEffect(() => {
-    const qualities = ["Developer.", "Professional Coder", "Problem Solver"];
+    // const qualities = ["Developer.", "Professional Coder", "Problem Solver"];
+    const qualities = ["beautiful.", "Optimized", "that convert"];
+
 
       const interval = setInterval(() => {
         if (!isRemoving) {
@@ -33,10 +36,16 @@ const TyperEffect = () => {
   
       return () => clearInterval(interval);
     }, [wordIndex, letterIndex, isRemoving]);
+    
+  
+
   return (
-    <div>
-         I am <span className="text-red-500 ps-2"> {word}</span>{" "}
-             {/* <TypewriterClass text="" delay={1000} /> */}
+    <div className=' text-[1.8rem] lg:text-[2.5rem] xl:text-[3rem] h-[5rem] lg:h-[7rem] xl:h-[9rem]'>
+         I like creating websites<div className="text-red-500 flex smooth">{word}
+         <Typewriter   />{" "}
+         </div>
+         
+             
     </div>
   )
 }
