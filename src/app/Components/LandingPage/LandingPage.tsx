@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import "./LandingPage.css";
-import Typewriter from "typewriter-effect";
 import { FiLinkedin } from "react-icons/fi";
 import { BiLogoUpwork } from "react-icons/bi";
 import { SiFiverr } from "react-icons/si";
 import TyperEffect from "./TyperEffect";
 import Image from "next/image";
+import { FaLocationDot } from "react-icons/fa6";
+import { FaCheck } from "react-icons/fa6";
+
+
 
 function LandingPage() {
   return (
@@ -28,13 +31,18 @@ function LandingPage() {
           <TyperEffect/>
         </div>
         <div className="w-[90%] text-[0.85rem] font-light pt-5 text-start md:pe-5  md:m-0  md:break-normal xl:text-[1rem] md:w-[90%] ">
-          I am <strong>Bilal Ahmed</strong> a persistent Computer Science
+          I am <strong className="text-red-500">Bilal Ahmed</strong> a persistent Computer Science
           undergraduate in a wellrecognized institute University of Karachi UBIT
           having knowledge of Web Development I am Skilled in designing creative
-          Web Pages and Patterns. A technology enthusiast who believes in the
+          <strong className="text-red-500"> Web Pages</strong> and <strong className="text-red-500">Patterns.</strong> A technology enthusiast who believes in the
           technology revolution. I keep myself updated on the upcoming
           technologies which will revolutionize the digital world in the future
-          and will solve modernday life problems.
+          and will solve modern day life problems.
+          <div className="mt-5 flex gap-5">
+            <div className="flex gap-2 items-center text-red-500" ><FaLocationDot /><strong className="font-bold text-black">Karachi,PK</strong></div>
+            <div className="flex gap-2 items-center text-red-500" ><FaCheck /><strong className="font-bold text-black">Available for jobs</strong></div>
+          </div>
+            
           <div className="flex gap-6 mt-[15%] items-center text-[2rem] md:text-[3rem] lg:gap-11">
             <div className="cursor-pointer">
               <FiLinkedin />

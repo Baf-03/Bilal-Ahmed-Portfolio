@@ -39,6 +39,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           {children}
+          
         </AppRouterCacheProvider>
       </body>
     </html>
