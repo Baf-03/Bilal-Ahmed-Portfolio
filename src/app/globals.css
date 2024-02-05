@@ -5,3 +5,8 @@
 body{
     background-color: rgb(243 244 246);
 }
+.list-disc-red::before {
+    content: '•'; /* Unicode character for a bullet point */
+    color: red;   /* Set the color to red or any other color you prefer */
+    margin-right: 0.5em; /* Adjust the spacing between the marker and the text */
+  }

@@ -6,6 +6,7 @@ import CreativeProcess from "./Components/CreativeProcess/CreativeProcess";
 import NeedofSp from "./Components/NeedOfSalesPage.tsx/NeedofSp";
 import TechUsed from "./Components/TechnologiesUsed";
 import Skills from "./Components/Skills/Skills";
+import ActivitiesTimeline from "./Components/TimeLine";
 
 export default function Home() {
   return (
@@ -18,7 +19,7 @@ export default function Home() {
           <NeedofSp/>
           <TechUsed/>
           <Skills/>
-  
+  <ActivitiesTimeline/>
           </div>
     </main>
 
