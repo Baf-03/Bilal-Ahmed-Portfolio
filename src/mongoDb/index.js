@@ -4,6 +4,6 @@ const connect = async () => {
       console.log("MongoDB connected");
   } catch (err) {
       console.error("MongoDB connection error:", err);
-      throw err; // Throw the error to propagate it
+      throw err; 
   }
 };
