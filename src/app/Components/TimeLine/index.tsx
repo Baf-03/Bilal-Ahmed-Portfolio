@@ -77,7 +77,7 @@ export default function ActivitiesTimeline() {
   };
 
   return (
-    <div className="w-[100%] my-[5%]">
+    <div className="w-[100%] my-[5%] text-black">
       <h1 className="text-center backgroundimage text-[2rem] md:text-[3rem] font-bold mb-5">04. Experience </h1>
       <div className="flex flex-col items-center gap-10">
         {experience.map((exp: expInt, index) => (
