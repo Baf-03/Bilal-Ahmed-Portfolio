@@ -37,7 +37,7 @@ const TechUsed = () => {
         listed below the main stacks that I usually use in each type of project.
       </p>
 
-      <div className="mt-9 flex flex-wrap gap-12 justify-center md:justify-between border">
+      <div className="mt-9 flex flex-wrap gap-12 justify-center md:justify-between ">
         {cardsData?.map((element, index) => {
           return (
             <div key={index} className="Card w-[95%] sm:w-[60%] md:w-[45%] lg:w-[45%] xl:w-[25%] border-t-black border-t-4 border-l-4 border-l-black p-2">
