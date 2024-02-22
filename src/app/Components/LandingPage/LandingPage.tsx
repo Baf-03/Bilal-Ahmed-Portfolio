@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from "react";
 import "./LandingPage.css";
-import { FiLinkedin } from "react-icons/fi";
-import { BiLogoUpwork } from "react-icons/bi";
-import { SiFiverr } from "react-icons/si";
 import TyperEffect from "./TyperEffect";
 import Image from "next/image";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa6";
+import SocialLinks from "./SocialLinks";
 
 
 
 function LandingPage() {
   return (
-    <div className="w-[100%] flex flex-wrap justify-center mt-[15%] sm:mt-[8%] md:mt-[5%] items-center border-gray-900 border-b-[1px] pb-[100px] min-h-[80vh]">
+    <div id="landingPage" className="w-[100%] flex flex-wrap justify-center mt-[15%] sm:mt-[8%] md:mt-[5%] items-center border-gray-900 border-b-[1px] pb-[100px] min-h-[80vh]">
       <div
         className="ps-2 textside w-[100%] md:text-start lg:w-[60%]"
         data-aos="fade-right"
@@ -44,15 +42,7 @@ function LandingPage() {
           </div>
             
           <div className="flex gap-6 mt-[15%] items-center text-[2rem] md:text-[3rem] lg:gap-11">
-            <div className="cursor-pointer">
-              <FiLinkedin />
-            </div>
-            <div className=" cursor-pointer">
-              <BiLogoUpwork />
-            </div>
-            <div className=" cursor-pointer">
-              <SiFiverr />
-            </div>
+            <SocialLinks/>
           </div>
         </div>
       </div>

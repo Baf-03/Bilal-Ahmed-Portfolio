@@ -3,7 +3,7 @@ import React from 'react'
 
 const NeedofSp = () => {
   return (
-    <div className='text-black w-[95vw] p-2 sm:p-8 sm:w-[80vw] md:w-[65vw] flex flex-wrap justify-center gap-[3%] items-center bg-red-100 mb-12 rounded-md '>
+    <div  className='text-black w-[95vw] p-2 sm:p-8 sm:w-[80vw] md:w-[65vw] flex flex-wrap justify-center gap-[3%] items-center bg-red-100 mb-12 rounded-md '>
         <div className='w-[25%] sm:w-[20%] md:w-[20%] lg:w-[10%] mt-4 sm:mt-0'>
         <Image
                     src="https://eiharold.com/wp-content/uploads/2022/02/icon-lancamento.png"
