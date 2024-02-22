@@ -1,3 +1,4 @@
+"use client";
 import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -11,24 +12,24 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness4Icon from "@mui/icons-material/Brightness4";
 import { MdModeNight } from "react-icons/md";
 
 import "./Navbar.css";
-import Link from "next/link";
+import { Link, animateScroll as scroll } from "react-scroll";
 
 const pages = ["About me", "Projects", "My Skills", "Let's Connect"];
-interface Props{
-  s_dm:Function,
-  dm:boolean,
+interface Props {
+  s_dm: Function;
+  dm: boolean;
 }
-function ResponsiveAppBar({dm,s_dm}:Props) {
+function ResponsiveAppBar({ dm, s_dm }: Props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [darkMode, setDarkMode] = React.useState(dm); // State for dark mode
-  React.useEffect(()=>{
-  setDarkMode(dm)
-  },[dm])
-  const handleOpenNavMenu = (event:any) => {
+  React.useEffect(() => {
+    setDarkMode(dm);
+  }, [dm]);
+  const handleOpenNavMenu = (event: any) => {
     setAnchorElNav(event.currentTarget);
   };
 
@@ -37,16 +38,17 @@ function ResponsiveAppBar({dm,s_dm}:Props) {
   };
 
   const toggleDarkMode = () => {
-    s_dm(!dm)
+    s_dm(!dm);
     setDarkMode(!darkMode);
-    localStorage.setItem('darkmode', JSON.stringify(!dm));
+    localStorage.setItem("darkmode", JSON.stringify(!dm));
   };
-React.useEffect(()=>{
-  console.log(darkMode)
-},[darkMode])
+  React.useEffect(() => {
+    console.log(darkMode);
+  }, [darkMode]);
+
   return (
     <AppBar
-    className={darkMode ? "bg-gray-800" : "white"}
+      className={darkMode ? "bg-gray-800" : "white"}
       position="static"
       sx={{ background: "transparent", color: darkMode ? "#fff" : "black" }}
     >
@@ -63,7 +65,7 @@ React.useEffect(()=>{
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".0rem",
-              color: darkMode ? "#fff" : "inherit", 
+              color: darkMode ? "#fff" : "inherit",
               textDecoration: "none",
             }}
           >
@@ -141,36 +143,50 @@ React.useEffect(()=>{
           >
             <div className="header">
               <nav className="navbar">
-                <ul className="navbar__menu" style={{ color: darkMode ? "#fff" : "inherit" }}>
+                <ul
+                  className="navbar__menu"
+                  style={{ color: darkMode ? "#fff" : "inherit" }}
+                >
                   <li className="navbar__item">
-                    <a href="#" className="navbar__link">
-                      <i data-feather="home"></i>
-                      <span>About Me</span>{" "}
-                    </a>
+                    <Link
+                      activeClass="active"
+                      to="landingPage"
+                      spy={true}
+                      smooth={true}
+                      offset={-70}
+                      duration={500}
+                    >
+                      <div className="linktag navbar__link">
+                        <i data-feather="home"></i>
+                        <span>About Me</span>{" "}
+                      </div>
+                    </Link>
                   </li>
                   <li className="navbar__item">
-                    <a href="#" className="navbar__link">
+                    <div className="linktag navbar__link">
                       <i data-feather="folder"></i>
                       <span>Projects</span>
-                    </a>
+                    </div>
                   </li>
                   <li className="navbar__item">
-                    <a href="#" className="navbar__link">
+                    <div className="linktag navbar__link">
                       <i data-feather="help-circle"></i>
                       <span>My Skills</span>
-                    </a>
+                    </div>
                   </li>
                   <li className="navbar__item">
-                    <a href="#" className="navbar__link">
+                    <div className="linktag navbar__link">
                       <i data-feather="settings"></i>
                       <span>Lets connect</span>
-                    </a>
+                    </div>
                   </li>
                 </ul>
               </nav>
             </div>
           </Box>
-          <IconButton color="inherit" onClick={toggleDarkMode}> {/* Add IconButton for toggling dark mode */}
+          <IconButton color="inherit" onClick={toggleDarkMode}>
+            {" "}
+            {/* Add IconButton for toggling dark mode */}
             <Brightness4Icon />
           </IconButton>
         </Toolbar>
