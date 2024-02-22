@@ -9,6 +9,7 @@ import Skills from "./Components/Skills/Skills";
 import ActivitiesTimeline from "./Components/TimeLine";
 import { useEffect, useState } from "react";
 import ContactForm from "./Components/ContactForm";
+import WhatsAppButton from "./Components/WhatsAppbtn";
 
 export default function Home() {
   const [darkmode, setDarkMode] = useState(false);
@@ -33,6 +34,7 @@ export default function Home() {
         <Skills />
         <ActivitiesTimeline />
         <ContactForm/>
+        <WhatsAppButton/>
       </div>
     </main>
   );
