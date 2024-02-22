@@ -8,23 +8,20 @@ import TechUsed from "./Components/TechnologiesUsed";
 import Skills from "./Components/Skills/Skills";
 import ActivitiesTimeline from "./Components/TimeLine";
 import { useEffect, useState } from "react";
+import ContactForm from "./Components/ContactForm";
 
 export default function Home() {
   const [darkmode, setDarkMode] = useState(false);
- // Function to toggle dark mode
  
 
-  // Load dark mode preference from local storage on component mount
   useEffect(() => {
-    const storedDarkMode = localStorage.getItem('darkmode');
+    const storedDarkMode = localStorage.getItem("darkmode");
     if (storedDarkMode !== null) {
-      console.log("chala")
       setDarkMode(JSON.parse(storedDarkMode));
     }
   }, []);
-  useEffect(()=>{
-    console.log("dark",darkmode)
-  },[darkmode])
+
+  
   return (
     <main className={darkmode ? "bg-gray-800 text-white" : ""}>
       <ResponsiveAppBar s_dm={setDarkMode} dm={darkmode} />
@@ -35,6 +32,7 @@ export default function Home() {
         <TechUsed />
         <Skills />
         <ActivitiesTimeline />
+        <ContactForm/>
       </div>
     </main>
   );
