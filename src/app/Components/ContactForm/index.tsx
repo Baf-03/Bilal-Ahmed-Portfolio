@@ -13,7 +13,7 @@ const ContactForm = () => {
         }
         setLoading("Loading");
         e.preventDefault();
-        await fetch(`https://formsubmit.co/ajax/${process.env.email}`, {
+        await fetch(`https://formsubmit.co/ajax/bilalahmedfarooqi03@gmail.com`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -79,7 +79,7 @@ const ContactForm = () => {
     </div>
 
     <button
-      className="text-black border bg-blue-gray-100 cursor-not-allowed"
+      className="text-black border bg-blue-gray-100"
       onClick={submitHandler}
       disabled={
         loading === "Loading" ||
