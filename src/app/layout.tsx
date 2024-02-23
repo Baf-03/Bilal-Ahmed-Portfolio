@@ -7,7 +7,7 @@ import Script from 'next/script'
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Bilal Ahmed",
+  title: "Hey,Bilal! - Mern Stack Developer",
   description: "Bilal Ahmed || Mern Stack Developer || University Of Karachi || Baf-03",
 };
 

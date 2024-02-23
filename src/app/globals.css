@@ -23,7 +23,7 @@ body{
     transform: translate(-50%, -50%) rotate(45deg);
     height: 100%;
     width: 4px;
-    background: rgb(164, 164, 164);
+    background: white;
     left: 50%;
     top: 50%;
   }
