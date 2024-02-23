@@ -19,7 +19,7 @@ const NeedofSp = () => {
             <p className='mt-4'>Youre in the right place! My <span className='font-bold'>specialty</span> is creating <span className='text-red-500 font-bold'>attractive</span> landing pages with <span className='text-red-500 font-bold'>a high conversion rate </span>, using the main and most current technologies on the market.</p>
         </div>
 
-        <div className='w-[200px] border  bg-red-500 border-black flex justify-center items-center  text-white p-2 rounded-lg cursor-pointer lg:text-[1.5rem] my-5 sm:my-0'>lets talk</div>
+        <a href='https://wa.link/zlze49' target='_blank' className='w-[200px] border  bg-red-500 border-black flex justify-center items-center  text-white p-2 rounded-lg cursor-pointer lg:text-[1.5rem] my-5 sm:my-0'>lets talk</a>
     </div>
   )
 }
