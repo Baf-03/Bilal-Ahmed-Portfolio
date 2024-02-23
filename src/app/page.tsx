@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <>
       {loading ? (
-        <div className="w-100 h-[100vh] bg-gray-800 flex justify-center items-center">
+        <div className="w-100 h-[100vh] flex justify-center items-center">
           <div className="loader"></div>
         </div>
       ) : (
