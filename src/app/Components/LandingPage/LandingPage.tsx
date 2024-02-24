@@ -5,11 +5,24 @@ import Image from "next/image";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa6";
 import SocialLinks from "./SocialLinks";
-
+import Head from "next/head";
 
 
 function LandingPage() {
   return (
+    <>
+     <Head>
+        <title>Bilal Ahmed - Web Developer | Karachi, PK</title>
+        <meta
+          name="description"
+          content="Bilal Ahmed is a skilled web developer based in Karachi, Pakistan. Explore his portfolio and services. Available for jobs."
+        />
+        <meta
+          name="keywords"
+          content="Bilal Ahmed, web developer, Karachi, Pakistan, portfolio, services, jobs"
+        />
+      </Head>
+   
     <div id="about" className="w-[100%] flex flex-wrap justify-center mt-[15%] sm:mt-[8%] md:mt-[5%] items-center border-gray-900 border-b-[1px] pb-[100px] min-h-[80vh]">
       <div
         className="ps-2 textside w-[100%] md:text-start lg:w-[60%]"
@@ -57,6 +70,7 @@ function LandingPage() {
         />
       </div>
     </div>
+    </>
   );
 }
 

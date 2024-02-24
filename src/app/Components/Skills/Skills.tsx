@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import { RiReactjsLine } from "react-icons/ri";
 import { SiExpress } from "react-icons/si";
 import { FaNode } from "react-icons/fa";
@@ -21,23 +22,23 @@ import { SiAmazons3 } from "react-icons/si";
 const Skills = () => {
   let skills = [
     {
-        icon: TbBrandNextjs,
-        name: "Nextjs",
-        color: "text-cyan-400",
-      },
+      icon: TbBrandNextjs,
+      name: "Next.js",
+      color: "text-cyan-400",
+    },
     {
       icon: RiReactjsLine,
-      name: "Reactjs",
+      name: "React.js",
       color: "text-cyan-400",
     },
     {
       icon: SiExpress,
-      name: "Expressjs",
+      name: "Express.js",
       color: "text-cyan-400",
     },
     {
       icon: FaNode,
-      name: "Node js",
+      name: "Node.js",
       color: "text-green-400",
     },
     {
@@ -62,7 +63,7 @@ const Skills = () => {
     },
     {
       icon: SiBootstrap,
-      name: "BootStrap",
+      name: "Bootstrap",
       color: "text-purple-800",
     },
     {
@@ -77,7 +78,7 @@ const Skills = () => {
     },
     {
       icon: TbBrandJavascript,
-      name: "Javascript",
+      name: "JavaScript",
       color: "text-amber-800",
     },
     {
@@ -102,40 +103,54 @@ const Skills = () => {
     },
     {
       icon: BsGithub,
-      name: "Github",
+      name: "GitHub",
       color: "text-white",
     },
     {
-        icon: SiAmazons3,
-        name: "Amazon S3",
-        color: "text-white",
-      },
+      icon: SiAmazons3,
+      name: "Amazon S3",
+      color: "text-white",
+    },
   ];
 
   return (
-    <div id="skills" className="flex flex-col items-center  w-[100%] gap-9">
-      <h1 className="backgroundimage text-center text-[2rem] md:text-[3rem] font-bold  pt-9">
-        Skills & Abilities
-      </h1>
-      <div className=" flex flex-wrap justify-center gap-10 sm:w-[85%]  p-5">
-        {skills.map((element, index) => {
-          return (
-            <div
-              className={`flex flex-col gap-3 items-center bg-gray-900 p-5 rounded-md w-[8rem] sm:w-[15rem] md:w-[15vw] lg:w-[12vw]  ${element.color} `}
-              key={index}
-              data-aos="fade-right"
-              data-aos-offset="300"
-              data-aos-easing="ease-in-sine"
-            >
-              <div className="text-[2.2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[4rem]">
-                <element.icon />
+    <>
+      <Head>
+        <title>Skills & Abilities - Web Developer | Bilal Ahmed</title>
+        <meta
+          name="description"
+          content="Explore the skills and abilities of Bilal Ahmed, a talented web developer. Learn about technologies like Next.js, React.js, Express.js, and more."
+        />
+        <meta
+          name="keywords"
+          content="skills, abilities, web developer skills, web development technologies, Next.js, React.js, Express.js, Redux, Firebase, Material UI, Tailwind CSS, Bootstrap, HTML5, CSS3, JavaScript, Java, Python, MongoDB, Netlify, GitHub, Amazon S3"
+        />
+      </Head>
+
+      <div id="skills" className="flex flex-col items-center  w-[100%] gap-9">
+        <h1 className="backgroundimage text-center text-[2rem] md:text-[3rem] font-bold  pt-9">
+          Skills & Abilities
+        </h1>
+        <div className="flex flex-wrap justify-center gap-10 sm:w-[85%]  p-5">
+          {skills.map((element, index) => {
+            return (
+              <div
+                className={`flex flex-col gap-3 items-center bg-gray-900 p-5 rounded-md w-[8rem] sm:w-[15rem] md:w-[15vw] lg:w-[12vw]  ${element.color} `}
+                key={index}
+                data-aos="fade-right"
+                data-aos-offset="300"
+                data-aos-easing="ease-in-sine"
+              >
+                <div className="text-[2.2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[4rem]">
+                  <element.icon />
+                </div>
+                <div className="text-center">{element.name}</div>
               </div>
-              <div className="text-center">{element.name}</div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
