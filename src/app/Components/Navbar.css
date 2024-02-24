@@ -10,11 +10,9 @@
 	 top: 0;
 	 left: 0;
 	 right: 0;
-       
-	 color: black;
-	 padding: 0 2rem;
+	 padding: 0 1rem;
 	 box-shadow: 0 0 40px rgba(0, 0, 0, 0.03);
-	 height: 6rem;
+	 height: 5rem;
 	 display: flex;
 	 align-items: center;
 	 gap: 3rem;
@@ -37,9 +35,8 @@
 	 gap: 0.6rem;
 	 align-items: center;
 	 justify-content: center;
-	 height: 3.5rem;
+	 height: 1.5rem;
 	 width: 10rem;
-	 color: black;
 	 transition: 250ms ease all;
 	 text-decoration: none;
 	 width: 10rem;
@@ -268,3 +265,13 @@
 	 left: 90.9090909091%;
 }
  
+
+.my_element {
+	color: red;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(5px);
+	background: transparent;
+  }
+  .transparent-menu .MuiMenu-paper {
+	background: transparent !important;
+  }

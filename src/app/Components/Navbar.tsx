@@ -30,9 +30,11 @@ interface Props {
 function ResponsiveAppBar({ dm, s_dm }: Props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [darkMode, setDarkMode] = React.useState(dm);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const handleOpenNavMenu = (event: any) => {
     setAnchorElNav(event.currentTarget);
+    setIsMenuOpen(!isMenuOpen); // Set menu open state to true
   };
 
   const handleCloseNavMenu = (page: string) => {
@@ -44,6 +46,7 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
         targetElement.scrollIntoView({ behavior: "smooth" });
       }
     }
+    setIsMenuOpen(false); // Set menu open state to false
   };
 
   const toggleDarkMode = () => {
@@ -51,11 +54,11 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
     setDarkMode(!darkMode);
     localStorage.setItem("darkmode", JSON.stringify(!dm));
   };
-
+ 
   return (
     <AppBar
-      className={darkMode ? "bg-gray-800" : "white"}
-      position="static"
+      className={`sticky top-0 ${darkMode ? "bg-gray-800" : "white"}`}
+      position="sticky"
       sx={{ background: "transparent", color: darkMode ? "#fff" : "black" }}
     >
       <Container maxWidth="xl">
@@ -107,7 +110,7 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
                         duration={500}
                         onClick={() => handleCloseNavMenu(page?.name)}
                       >
-                        <div className="linktag navbar__link">{page?.name}</div>
+                        <div className={`linktag navbar__link ${darkMode?("text-white"):("text-black")}`}>{page?.name}</div>
                       </ScrollLink>
                     </li>
                   ))}
@@ -139,7 +142,7 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
               &lt; <strong>Mern Stack dev</strong> /&gt;{" "}
             </span>
           </Typography>
-          <Box sx={{ display: { xs: "block", md: "none" } }}>
+          <Box sx={{ display: { xs: "block", md: "none" } }}  >
             
             <IconButton
               size="large"
@@ -148,10 +151,13 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
+              className="z-10"
             >
               <MenuIcon />
             </IconButton>
+            
             <Menu
+            
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -163,11 +169,18 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
                 vertical: "top",
                 horizontal: "right",
               }}
+              
               open={Boolean(anchorElNav)}
-              onClose={() => handleCloseNavMenu("")}
+              onClose={() => {
+                handleCloseNavMenu("");
+                setIsMenuOpen(false); 
+              }}
+              style={{background: isMenuOpen ? 'rgba(0, 0, 0, 0.4)' : 'transparent' }}
+              className={`${isMenuOpen ? "transparent-menu" : "opacity-0"} `}
             >
+              <div className="bg-transperent border mt-3 w-[80vw]">
               {pages.map((page, index) => (
-                <MenuItem key={index} onClick={() => handleCloseNavMenu(page?.name)}>
+                <MenuItem key={index} onClick={() => handleCloseNavMenu(page?.name)}  className={` ${isMenuOpen ? "my_element" : ""}`}>
                   <ScrollLink
                         activeClass="active"
                         to={page?.nav_id}
@@ -181,6 +194,8 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
                   </ScrollLink>
                 </MenuItem>
               ))}
+              </div>
+
             </Menu>
           </Box>
         </Toolbar>
