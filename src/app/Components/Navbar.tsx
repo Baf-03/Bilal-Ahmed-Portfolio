@@ -57,7 +57,7 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
  
   return (
     <AppBar
-      className={`sticky top-0 ${darkMode ? "bg-gray-800" : "white"}`}
+      className={`sticky top-0 ${darkMode ? "bg-gray-800" : "bg-white"}`}
       position="sticky"
       sx={{ background: "transparent", color: darkMode ? "#fff" : "black" }}
     >
@@ -180,7 +180,7 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
             >
               <div className="bg-transperent border mt-3 w-[80vw]">
               {pages.map((page, index) => (
-                <MenuItem key={index} onClick={() => handleCloseNavMenu(page?.name)}  className={` ${isMenuOpen ? "my_element" : ""}`}>
+                <MenuItem key={index}   className={` ${isMenuOpen ? "my_element" : ""}`}>
                   <ScrollLink
                         activeClass="active"
                         to={page?.nav_id}
@@ -189,6 +189,7 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
                         offset={-70}
                         duration={500}
                         onClick={() => handleCloseNavMenu(page?.name)}
+                        className="w-[100%]"
                       >
                   {page?.name}
                   </ScrollLink>
