@@ -45,6 +45,7 @@
 	 width: 10rem;
 	 text-transform: uppercase;
 	 transition: 500ms ease all;
+	 cursor: pointer;
 }
  .navbar__link svg {
 	 transition: 500ms ease all;

@@ -113,7 +113,7 @@ const Skills = () => {
   ];
 
   return (
-    <div className="flex flex-col items-center  w-[100%] gap-9">
+    <div id="skills" className="flex flex-col items-center  w-[100%] gap-9">
       <h1 className="backgroundimage text-center text-[2rem] md:text-[3rem] font-bold  pt-9">
         Skills & Abilities
       </h1>

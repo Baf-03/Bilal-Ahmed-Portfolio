@@ -8,33 +8,42 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
-import { MdModeNight } from "react-icons/md";
+import { Link as ScrollLink } from "react-scroll";
 
 import "./Navbar.css";
-import { Link, animateScroll as scroll } from "react-scroll";
 
-const pages = ["About me", "Projects", "My Skills", "Let's Connect"];
+const pages = [
+  { name: "About me", nav_id: "about" },
+  { name: "Projects", nav_id: "Projects" },
+  { name: "My Skills", nav_id: "skills" },
+  { name: "Let's Connect", nav_id: "connect" },
+];
+
 interface Props {
   s_dm: Function;
   dm: boolean;
 }
+
 function ResponsiveAppBar({ dm, s_dm }: Props) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [darkMode, setDarkMode] = React.useState(dm); // State for dark mode
-  React.useEffect(() => {
-    setDarkMode(dm);
-  }, [dm]);
+  const [darkMode, setDarkMode] = React.useState(dm);
+
   const handleOpenNavMenu = (event: any) => {
     setAnchorElNav(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (page: string) => {
     setAnchorElNav(null);
+    if (page) {
+      const targetId = page.replace(/\s+/g, "");
+      const targetElement = document.getElementById(targetId);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   const toggleDarkMode = () => {
@@ -42,9 +51,6 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
     setDarkMode(!darkMode);
     localStorage.setItem("darkmode", JSON.stringify(!dm));
   };
-  React.useEffect(() => {
-    console.log(darkMode);
-  }, [darkMode]);
 
   return (
     <AppBar
@@ -54,11 +60,11 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
+        <Typography
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            // href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -73,8 +79,68 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
               &lt; <strong>Mern Stack developer</strong> /&gt;
             </span>
           </Typography>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: {
+                xs: "none",
+                md: "flex",
+                justifyContent: "center",
+              },
+            }}
+          >
+            <div className="header">
+              <nav className="navbar">
+                
+                <ul
+                  className="navbar__menu"
+                  style={{ color: darkMode ? "#fff" : "inherit" }}
+                >
+                  {pages.map((page, index) => (
+                    <li key={index} className="navbar__item">
+                      <ScrollLink
+                        activeClass="active"
+                        to={page?.nav_id}
+                        spy={true}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                        onClick={() => handleCloseNavMenu(page?.name)}
+                      >
+                        <div className="linktag navbar__link">{page?.name}</div>
+                      </ScrollLink>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </div>
+          </Box>
+          <IconButton color="inherit" onClick={toggleDarkMode}>
+            <Brightness4Icon />
+          </IconButton>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            // href="#app-bar-with-responsive-menu"
+            sx={{
+              mr: 2,
+              display: { xs: "flex", md: "none" },
+              flexGrow: 1,
+              fontFamily: "monospace",
+              fontWeight: 700,
+              letterSpacing: ".0rem",
+              color: darkMode ? "#fff" : "inherit", // Adjust text color based on dark mode state
+              textDecoration: "none",
+            }}
+          >
+            <span className="text-[0.8rem] text-center m-auto">
+              &lt; <strong>Mern Stack dev</strong> /&gt;{" "}
+            </span>
+          </Typography>
+          <Box sx={{ display: { xs: "block", md: "none" } }}>
+            
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -89,109 +155,38 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
+                vertical: "top",
+                horizontal: "right",
               }}
               keepMounted
               transformOrigin={{
                 vertical: "top",
-                horizontal: "left",
+                horizontal: "right",
               }}
               open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
+              onClose={() => handleCloseNavMenu("")}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {pages.map((page, index) => (
+                <MenuItem key={index} onClick={() => handleCloseNavMenu(page?.name)}>
+                  <ScrollLink
+                        activeClass="active"
+                        to={page?.nav_id}
+                        spy={true}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                        onClick={() => handleCloseNavMenu(page?.name)}
+                      >
+                  {page?.name}
+                  </ScrollLink>
                 </MenuItem>
               ))}
             </Menu>
           </Box>
-
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="#app-bar-with-responsive-menu"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".0rem",
-              color: darkMode ? "#fff" : "inherit", // Adjust text color based on dark mode state
-              textDecoration: "none",
-            }}
-          >
-            <span className="text-[0.8rem]">
-              &lt; <strong>Mern Stack dev</strong> /&gt;{" "}
-            </span>
-          </Typography>
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: {
-                xs: "none",
-                md: "flex",
-                justifyContent: "center",
-              },
-            }}
-          >
-            <div className="header">
-              <nav className="navbar">
-                <ul
-                  className="navbar__menu"
-                  style={{ color: darkMode ? "#fff" : "inherit" }}
-                >
-                  <li className="navbar__item">
-                    <Link
-                      activeClass="active"
-                      to="landingPage"
-                      spy={true}
-                      smooth={true}
-                      offset={-70}
-                      duration={500}
-                    >
-                      <div className="linktag navbar__link">
-                        <i data-feather="home"></i>
-                        <span>About Me</span>{" "}
-                      </div>
-                    </Link>
-                  </li>
-                  <li className="navbar__item">
-                    <div className="linktag navbar__link">
-                      <i data-feather="folder"></i>
-                      <span>Projects</span>
-                    </div>
-                  </li>
-                  <li className="navbar__item">
-                    <div className="linktag navbar__link">
-                      <i data-feather="help-circle"></i>
-                      <span>My Skills</span>
-                    </div>
-                  </li>
-                  <li className="navbar__item">
-                    <div className="linktag navbar__link">
-                      <i data-feather="settings"></i>
-                      <span>Lets connect</span>
-                    </div>
-                  </li>
-                </ul>
-              </nav>
-            </div>
-          </Box>
-          <IconButton color="inherit" onClick={toggleDarkMode}>
-            {" "}
-            {/* Add IconButton for toggling dark mode */}
-            <Brightness4Icon />
-          </IconButton>
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
+
 export default ResponsiveAppBar;
