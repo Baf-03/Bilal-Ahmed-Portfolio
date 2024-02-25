@@ -29,7 +29,7 @@ export default function Home() {
           <div className="loader"></div>
         </div>
       ) : (
-        <main className={darkmode ? "bg-gray-800 text-white" : ""}>
+        <main className={`transition-colors duration-500 ${darkmode ? "bg-gray-800 text-white" : ""}`}>
           <ResponsiveAppBar s_dm={setDarkMode} dm={darkmode} />
           <div className="w-[98%] md:w-[85%] m-auto flex flex-col gap-12 justify-center items-center  mt-2 ">
             <Introduction />
