@@ -5,6 +5,7 @@
 body{
     background-color: rgb(243 244 246);
 }
+
 .list-disc-red::before {
     content: '•'; /* Unicode character for a bullet point */
     color: red;   /* Set the color to red or any other color you prefer */
@@ -100,4 +101,12 @@ body{
 ::-webkit-scrollbar-thumb {
     background-color: rgb(244, 73, 79); /* color of the scroll thumb */
     border-radius: 6px; /* roundness of the thumb */
+}
+
+.typereff {
+  animation: typing 2s linear forwards;
+}
+
+@keyframes typing {
+  from { width: 0; }
 }
