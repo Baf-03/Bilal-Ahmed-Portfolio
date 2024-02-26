@@ -38,7 +38,7 @@ const ContactForm = () => {
       <h2 className="backgroundimage text-[2rem] text-center  md:text-[3rem] font-bold">
         05. Contact Us
       </h2>
-      <div className="w-[90%] md:w-[80%] flex flex-col sm:flex-row gap-3 text-black mb-[200px] border border-dotted border-red-500 p-5 m-auto mt-3 rounded-lg">
+      <div className="w-[90%] md:w-[80%] flex flex-col sm:flex-row gap-3 text-black mb-[50px] border border-dotted border-red-500 p-5 m-auto mt-3 rounded-lg">
         <section className=" flex flex-col items-center w-[100%] sm:w-[50%] gap-3">
           <div className="w-[20%] ">
             <Image

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Head from "next/head";
 import "./tech.css";
 
@@ -27,7 +27,34 @@ const TechUsed = () => {
       option: ["ExpressJs", "MongoDb"],
     },
   ];
+  const titleRef = useRef<HTMLHeadingElement>(null);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          document.title = "Technologies Used - Web Developer | Bilal Ahmed";
+        } else {
+          document.title = "Hey,Bilal! - Mern Stack Developer";
+        }
+      },
+      {
+        root: null, // Use the viewport as the root
+        rootMargin: "0px", // No margin
+        threshold: 0, // Trigger when at least half of the component is in view
+      }
+    );
+
+    if (titleRef.current) {
+      observer.observe(titleRef.current);
+    }
+
+    return () => {
+      if (titleRef.current) {
+        observer.unobserve(titleRef.current);
+      }
+    };
+  }, []);
   return (
     <>
       <Head>
@@ -42,7 +69,7 @@ const TechUsed = () => {
         />
       </Head>
 
-      <div className="flex flex-col justify-center w-[96%] lg:w-[85%] m-auto mb-9 gap-5">
+      <div  className="flex flex-col justify-center w-[96%] lg:w-[85%] m-auto mb-9 gap-5">
         <h2 className="backgroundimage text-[2rem] text-center  md:text-[3rem] font-bold">
           03. Technologies used
         </h2>
@@ -54,7 +81,7 @@ const TechUsed = () => {
           project.
         </p>
 
-        <div className="mt-9 flex flex-wrap gap-12 justify-center md:justify-between">
+        <div ref={titleRef} className="mt-9 flex flex-wrap gap-12 justify-center md:justify-between">
           {cardsData?.map((element, index) => {
             return (
               <div
