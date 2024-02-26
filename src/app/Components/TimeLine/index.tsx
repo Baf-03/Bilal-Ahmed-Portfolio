@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Head from "next/head";
 import Image from "next/image";
 
@@ -70,6 +70,50 @@ export default function ActivitiesTimeline() {
     return durationString;
   };
 
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        document.title = "Come back! We miss you!";
+      } else {
+        document.title = "Hey,Bilal! - Mern Stack Developer";
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+  
+  const titleRef = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          document.title = "Experience Timeline - Web Developer | Bilal Ahmed";
+        } else {
+          document.title = "Hey,Bilal! - Mern Stack Developer";
+        }
+      },
+      {
+        root: null, // Use the viewport as the root
+        rootMargin: "0px", // No margin
+        threshold: 0.2, // Trigger when at least half of the component is in view
+      }
+    );
+
+    if (titleRef.current) {
+      observer.observe(titleRef.current);
+    }
+
+    return () => {
+      if (titleRef.current) {
+        observer.unobserve(titleRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div className="w-[100%] my-[5%] text-black">
       <Head>
@@ -83,9 +127,7 @@ export default function ActivitiesTimeline() {
           content="experience timeline, professional experience, web developer, React, Next.js, Tailwind CSS, MUI, Express.js, MongoDB"
         />
       </Head>
-
-      <h1 className="text-center backgroundimage text-[2rem] md:text-[3rem] font-bold mb-5">04. Experience </h1>
-      <div className="flex flex-col items-center gap-10">
+      <h1 ref={titleRef} className="text-center backgroundimage text-[2rem] md:text-[3rem] font-bold mb-5">04. Experience </h1>      <div className="flex flex-col items-center gap-10">
         {experience.map((exp: expInt, index) => (
           <div key={index} className="h-[100%] w-[100%]">
             <div className=" w-[90%] flex flex-col md:flex-row gap-5 md:items-center  px-3 py-10 sm:p-10 md:p-[30px] lg:p-[50px] rounded-xl border border-blue-gray-50 bg-white mx-auto">

@@ -10,6 +10,7 @@ import ActivitiesTimeline from "./Components/TimeLine";
 import { useEffect, useState } from "react";
 import ContactForm from "./Components/ContactForm";
 import WhatsAppButton from "./Components/WhatsAppbtn";
+import Dropzone from "./Components/FileUpload/FileUpload";
 
 export default function Home() {
   const [darkmode, setDarkMode] = useState(false);
@@ -40,6 +41,7 @@ export default function Home() {
             <ActivitiesTimeline />
             <ContactForm />
             <WhatsAppButton />
+            <div className="bg-red-500 w-[100%] text-center">Portfolio is currently in development phase<br/>Projects,Education Sections and Blogs page <br/>and many more features are coming soon</div>
           </div>
         </main>
       )}
