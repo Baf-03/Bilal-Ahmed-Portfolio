@@ -10,7 +10,6 @@ import ActivitiesTimeline from "./Components/TimeLine";
 import { useEffect, useState } from "react";
 import ContactForm from "./Components/ContactForm";
 import WhatsAppButton from "./Components/WhatsAppbtn";
-import Dropzone from "./Components/FileUpload/FileUpload";
 
 export default function Home() {
   const [darkmode, setDarkMode] = useState(false);
