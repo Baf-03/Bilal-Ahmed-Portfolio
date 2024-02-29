@@ -14,6 +14,7 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import { Link as ScrollLink } from "react-scroll";
 
 import "./Navbar.css";
+import Link from "next/link";
 
 const pages = [
   { name: "About me", nav_id: "about" },
@@ -101,17 +102,12 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
                 >
                   {pages.map((page, index) => (
                     <li key={index} className="navbar__item">
-                      <ScrollLink
-                        activeClass="active"
-                        to={page?.nav_id}
-                        spy={true}
-                        smooth={true}
-                        offset={-70}
-                        duration={500}
-                        onClick={() => handleCloseNavMenu(page?.name)}
+                      <Link
+                        href={`/?element=${page?.nav_id}`}
+                       
                       >
                         <div className={`linktag navbar__link ${darkMode?("text-white"):("text-black")}`}>{page?.name}</div>
-                      </ScrollLink>
+                      </Link>
                     </li>
                   ))}
                 </ul>
@@ -126,7 +122,6 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
             variant="h5"
             noWrap
             component="a"
-            // href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },

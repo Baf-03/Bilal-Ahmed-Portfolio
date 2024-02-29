@@ -10,6 +10,7 @@ import ActivitiesTimeline from "./Components/TimeLine";
 import { useEffect, useState } from "react";
 import ContactForm from "./Components/ContactForm";
 import WhatsAppButton from "./Components/WhatsAppbtn";
+import { useSearchParams } from 'next/navigation'
 
 export default function Home() {
   const [darkmode, setDarkMode] = useState(false);
@@ -22,6 +23,17 @@ export default function Home() {
     }
     setLoading(false);
   }, []);
+  
+  const searchParams = useSearchParams()
+  const search = searchParams.get('element')
+  useEffect(()=>{
+    if(search){
+      const targetElement = document.getElementById(search);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  },[search])
   return (
     <>
       {loading ? (
@@ -29,8 +41,8 @@ export default function Home() {
           <div className="loader"></div>
         </div>
       ) : (
-        <main className={`transition-colors duration-500 ${darkmode ? "bg-gray-800 text-white" : ""}`}>
-          <ResponsiveAppBar s_dm={setDarkMode} dm={darkmode} />
+        <main className={`transition-colors duration-500 }`}>
+          {/* <ResponsiveAppBar s_dm={setDarkMode} dm={darkmode} /> */}
           <div className="w-[98%] md:w-[85%] m-auto flex flex-col gap-12 justify-center items-center  mt-2 ">
             <Introduction />
             <CreativeProcess />

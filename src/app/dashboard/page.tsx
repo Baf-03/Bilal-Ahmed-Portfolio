@@ -23,6 +23,7 @@ const Dashboard = () => {
         {},
         { headers }
       );
+      
       if (!authUser?.data?.status) {
         localStorage.removeItem("token");
         router.push("/Login", { scroll: false });

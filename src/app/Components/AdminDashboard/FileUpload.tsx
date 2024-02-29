@@ -61,8 +61,9 @@ const Dropzone: React.FC = () => {
       );
       setImgPr(response?.data?.data?.secure_url);
       setprojectImages(response?.data?.data);
+      console.log(response?.data?.data);
       return true;
-    } catch (error:any) {
+    } catch (error: any) {
       console.error("Error uploading images:", error.message);
     }
   };
@@ -73,6 +74,10 @@ const Dropzone: React.FC = () => {
       "image/*": ["jpeg", "jpg", "png", "gif", "bmp", "tiff", "svg"],
     },
   });
+
+  useEffect(() => {
+    console.log(projectImages);
+  }, [projectImages]);
 
   const handleProjectSubmit = async () => {
     try {
@@ -89,18 +94,38 @@ const Dropzone: React.FC = () => {
         setLoading(false);
         return;
       }
-      const upimages = await uploadImages();
-      if (!upimages) {
-        alert("images are missing");
-        setLoading(false);
+
+      //----------------------sending-image---------------------------------
+      const formData = new FormData();
+      if (!uploadedFiles?.length) {
         return;
       }
+      uploadedFiles.forEach((file) => formData.append("image", file));
+      const response = await axios.post(
+        "http://localhost:5000/api/uploadimage",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      setImgPr(response?.data?.data?.secure_url);
+      setprojectImages(response?.data?.data);
+      console.log(response?.data?.data);
+      
+      if (!response?.data?.data) {
+        alert("something went wrong From Ourside!");
+        return;
+      }
+      //-----------------------using data got from sended image--------------
+
       const objToSend = {
         name,
         shortDetail,
         liveLink,
         projectLink,
-        projectImages,
+        projectImages: response?.data?.data,
       };
       const headers = {
         "Content-Type": "application/json",
@@ -111,6 +136,12 @@ const Dropzone: React.FC = () => {
         objToSend,
         { headers }
       );
+      if (!authUser?.data?.status) {
+        alert("try again");
+        setLoading(false);
+        return;
+      }
+      console.log("aya data", authUser);
       handleClick();
       setLoading(false);
       setName("");
