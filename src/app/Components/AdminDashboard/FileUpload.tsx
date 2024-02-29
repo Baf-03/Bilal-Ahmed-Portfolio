@@ -51,7 +51,7 @@ const Dropzone: React.FC = () => {
       }
       uploadedFiles.forEach((file) => formData.append("image", file));
       const response = await axios.post(
-        "https://cyan-tough-sheep.cyclic.app/api/uploadimage",
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/uploadimage`,
         formData,
         {
           headers: {
@@ -102,7 +102,7 @@ const Dropzone: React.FC = () => {
       }
       uploadedFiles.forEach((file) => formData.append("image", file));
       const response = await axios.post(
-        "http://localhost:5000/api/uploadimage",
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/uploadimage`,
         formData,
         {
           headers: {
@@ -132,7 +132,7 @@ const Dropzone: React.FC = () => {
         Authorization: `Bearer ${token_local_storage}`,
       };
       const authUser = await axios.post(
-        "http://localhost:5000/api/createproject",
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/createproject`,
         objToSend,
         { headers }
       );
@@ -163,8 +163,8 @@ const Dropzone: React.FC = () => {
         <div {...getRootProps()} className="border border-red-500">
           <input {...getInputProps()} className="border text-red-400 " />
 
-          <div className="relative p-5  h-[20rem] flex flex-col items-center m-auto w-[100%]">
-            <div className="text-[2rem] text-red-500 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
+          <div className="relative p-5  h-[15rem] sm:h-[20rem] flex flex-col items-center m-auto w-[90vw]">
+            <div className="text-[5rem] text-red-500 absolute bottom-3 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
               <FaUpload />
             </div>
             <div className="relative z-50">
@@ -200,17 +200,16 @@ const Dropzone: React.FC = () => {
           </div>
         )}
       </div>
-      <div className="mt-5 flex flex-col gap-3 text-black">
+      <div className="mt-6 flex flex-col gap-3 text-black w-[90%]">
         <input
           onChange={(e) => setName(e.target.value)}
           type="text"
           name="name"
           value={name}
           placeholder="Enter Name"
-          // disabled={
-          //   loading === "Loading" ||
-          //   loading == "You submitted your record successfully"
-          // }
+          disabled={
+            loading==true
+          }
           className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-red-500"
         />
         <input
@@ -219,10 +218,9 @@ const Dropzone: React.FC = () => {
           name="name"
           value={projectLink}
           placeholder="Enter Github Link"
-          // disabled={
-          //   loading === "Loading" ||
-          //   loading == "You submitted your record successfully"
-          // }
+          disabled={
+            loading==true
+          }
           className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-red-500"
         />
         <input
@@ -231,10 +229,9 @@ const Dropzone: React.FC = () => {
           name="live link"
           value={liveLink}
           placeholder="Enter Live url"
-          // disabled={
-          //   loading === "Loading" ||
-          //   loading == "You submitted your record successfully"
-          // }
+          disabled={
+            loading==true
+          }
           className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-red-500"
         />
         <div className="w-[100%]">
@@ -245,10 +242,9 @@ const Dropzone: React.FC = () => {
             placeholder="Enter Short detail about your project..."
             className="w-[100%] h-24 px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-red-500 bg-gray-100 resize-none"
             required
-            //   disabled={
-            //     loading === "Loading" ||
-            //     loading == "You submitted your record successfully"
-            //   }
+            disabled={
+              loading==true
+            }
           ></textarea>
         </div>
         <button

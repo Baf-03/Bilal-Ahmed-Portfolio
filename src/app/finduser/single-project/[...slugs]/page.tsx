@@ -25,7 +25,7 @@ const DynamicRoutePage = () => {
       };
 
       const getUser = await axios.post(
-        "https://cyan-tough-sheep.cyclic.app/api/dashboard",
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/dashboard`,
         {},
         { headers }
       );
@@ -54,13 +54,11 @@ const DynamicRoutePage = () => {
       Authorization: `Bearer ${token_local_storage}`,
     };
     const getUser = await axios.post(
-      "https://cyan-tough-sheep.cyclic.app/api/findprojectbyid",
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/findprojectbyid`,
       { id: slugs[0] },
       { headers }
     );
-    console.log("what is", getUser?.data?.data);
     setData(getUser?.data?.data);
-    console.log("hemlo", getUser?.data?.data);
     setName(getUser?.data?.data?.name);
     setprojectImages(getUser?.data?.data?.project_images);
     setprojectLink(getUser?.data?.data?.live_link);
@@ -117,9 +115,7 @@ const DynamicRoutePage = () => {
     },
   });
 
-  useEffect(() => {
-    console.log(projectImages);
-  }, [projectImages]);
+
 
   const handleProjectSubmit = async () => {
     try {
@@ -144,26 +140,27 @@ const DynamicRoutePage = () => {
       }
       uploadedFiles.forEach((file) => {
         // (file?.slice(0, 4) == "http")? <></> : (<>{console.log("howa",file)}formData.append("image", file)</>);
-        formData.append("image", file)
+        formData.append("image", file);
       });
       const response = await axios.post(
-        "https://cyan-tough-sheep.cyclic.app/api/uploadimage",
-        formData ,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/uploadimage`,
+        formData,
         {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         }
       );
-      console.log("cool",response?.data)
-      setImgPr(prevImages => [...prevImages, response?.data?.data]);
-      setprojectImages(prevImages => [...prevImages, response?.data?.data]);
-      console.log(response?.data?.data);
-
-      if (!response?.data?.data) {
-        alert("something went wrong From Ourside!");
-        return;
+      if(response?.data?.data?.projectImages){
+        setImgPr((prevImages) => [...prevImages, response?.data?.data]);
+        setprojectImages((prevImages) => [...prevImages, response?.data?.data]);
       }
+   
+
+      // if (!response?.data?.data) {
+      //   alert("something went wrong From Ourside!");
+      //   return;
+      // }
       //-----------------------using data got from sended image--------------
 
       const objToSend = {
@@ -171,15 +168,15 @@ const DynamicRoutePage = () => {
         shortDetail,
         liveLink,
         projectLink,
-        projectImages: response?.data?.data,
-        id:slugs[0]
+        projectImages: response?.data?.data || projectImages,
+        id: slugs[0],
       };
       const headers = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token_local_storage}`,
       };
       const authUser = await axios.post(
-        "https://cyan-tough-sheep.cyclic.app/api/findprojectbyidandupdate",
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/findprojectbyidandupdate`,
         objToSend,
         { headers }
       );
@@ -188,7 +185,6 @@ const DynamicRoutePage = () => {
         setLoading(false);
         return;
       }
-      console.log("aya data", authUser);
       handleClick();
       setLoading(false);
       setName("");
@@ -198,6 +194,7 @@ const DynamicRoutePage = () => {
       setImgPr([]);
       setshortDetail("");
       setUploadedFiles([]);
+      LoadProject()
     } catch (err: any) {
       console.log(err.message);
       setLoading(false);
@@ -225,10 +222,9 @@ const DynamicRoutePage = () => {
               <div className="flex w-[20vw] overflow-scroll gap-2 m-auto">
                 <>
                   {uploadedFiles.map((file, index) => {
-                    console.log("whatis", file);
                     return (
                       <div key={file.name + index} className="w-fit">
-                      {file && (file as any).slice(0, 4) == "http" ? (
+                        {file && (file as any).slice(0, 4) == "http" ? (
                           <img
                             src={`${file}`}
                             alt={`Preview ${file.name}`}
@@ -252,8 +248,6 @@ const DynamicRoutePage = () => {
                 </>
               </div>
             </div>
-
-            
           </div>
           <div className="mt-5 flex flex-col gap-3 text-black">
             <input
