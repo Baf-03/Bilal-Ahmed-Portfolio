@@ -19,7 +19,7 @@ const Dashboard = () => {
         Authorization: `Bearer ${token_local_storage}`,
       };
       const authUser = await axios.post(
-        "http://localhost:5000/api/dashboard",
+        "https://cyan-tough-sheep.cyclic.app/api/dashboard",
         {},
         { headers }
       );

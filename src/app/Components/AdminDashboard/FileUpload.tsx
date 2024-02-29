@@ -51,7 +51,7 @@ const Dropzone: React.FC = () => {
       }
       uploadedFiles.forEach((file) => formData.append("image", file));
       const response = await axios.post(
-        "http://localhost:5000/api/uploadimage",
+        "https://cyan-tough-sheep.cyclic.app/api/uploadimage",
         formData,
         {
           headers: {
