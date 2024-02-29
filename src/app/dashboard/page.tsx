@@ -19,7 +19,7 @@ const Dashboard = () => {
         Authorization: `Bearer ${token_local_storage}`,
       };
       const authUser = await axios.post(
-        "https://cyan-tough-sheep.cyclic.app/api/dashboard",
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/dashboard`,
         {},
         { headers }
       );
@@ -43,8 +43,8 @@ const Dashboard = () => {
       {loading ? (
         <div>Loading</div>
       ) : (
-        <div className="w-[100%] border border-black flex flex-col items-center bg-gray-800 min-h-[100vh] text-white">
-          <h1 className="font-bold text-[2rem] capitalize">DashBoard</h1>
+        <div className="w-[100%] border border-black flex flex-col items-center  min-h-[100vh] ">
+          <h1 className="font-bold text-[2rem] capitalize my-4">Add Project</h1>
             <Dropzone/>
         </div>
       )}

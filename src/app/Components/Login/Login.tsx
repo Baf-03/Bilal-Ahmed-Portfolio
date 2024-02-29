@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import React, { useState } from "react";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -17,17 +17,18 @@ const Login = () => {
     setFields(false);
     const objToSend = {
       email,
-      password
+      password,
     };
-    let loginResponse = await axios.post("https://cyan-tough-sheep.cyclic.app/api/login",objToSend);
-    if(!loginResponse?.data?.status){
-        alert("try again")
-        return
-
+    let loginResponse = await axios.post(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/login`,
+      objToSend
+    );
+    if (!loginResponse?.data?.status) {
+      alert("try again");
+      return;
     }
-    localStorage.setItem("token",loginResponse?.data?.token)
-    router.push('/dashboard', { scroll: false })
-    
+    localStorage.setItem("token", loginResponse?.data?.token);
+    router.push("/dashboard", { scroll: false });
   };
   return (
     <div className="bg-gray-800 h-[100vh] flex flex-col gap-3 justify-center items-center">
