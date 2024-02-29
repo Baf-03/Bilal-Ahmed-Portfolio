@@ -25,7 +25,7 @@ const DynamicRoutePage = () => {
       };
 
       const getUser = await axios.post(
-        "http://localhost:5000/api/dashboard",
+        "https://cyan-tough-sheep.cyclic.app/api/dashboard",
         {},
         { headers }
       );
@@ -54,7 +54,7 @@ const DynamicRoutePage = () => {
       Authorization: `Bearer ${token_local_storage}`,
     };
     const getUser = await axios.post(
-      "http://localhost:5000/api/findprojectbyid",
+      "https://cyan-tough-sheep.cyclic.app/api/findprojectbyid",
       { id: slugs[0] },
       { headers }
     );
@@ -147,7 +147,7 @@ const DynamicRoutePage = () => {
         formData.append("image", file)
       });
       const response = await axios.post(
-        "http://localhost:5000/api/uploadimage",
+        "https://cyan-tough-sheep.cyclic.app/api/uploadimage",
         formData ,
         {
           headers: {
@@ -179,7 +179,7 @@ const DynamicRoutePage = () => {
         Authorization: `Bearer ${token_local_storage}`,
       };
       const authUser = await axios.post(
-        "http://localhost:5000/api/findprojectbyidandupdate",
+        "https://cyan-tough-sheep.cyclic.app/api/findprojectbyidandupdate",
         objToSend,
         { headers }
       );

@@ -21,7 +21,7 @@ const FindUserAdmin = () => {
       };
 
       const getUser = await axios.post(
-        "http://localhost:5000/api/dashboard",
+        "https://cyan-tough-sheep.cyclic.app/api/dashboard",
         {},
         { headers }
       );
@@ -54,12 +54,12 @@ const FindUserAdmin = () => {
         Authorization: `Bearer ${token_local_storage}`,
       };
       const getUser = await axios.post(
-        "http://localhost:5000/api/finduser",
+        "https://cyan-tough-sheep.cyclic.app/api/finduser",
         { projectName: findUser },
         { headers }
       );
       setRespData(getUser?.data?.data);
-      console.log(getUser?.data?.data)
+      console.log(getUser?.data?.data);
     } catch (err: any) {
       console.log(err.message);
     }
@@ -94,7 +94,10 @@ const FindUserAdmin = () => {
         <div className="flex flex-col gap-3 mt-3">
           {respData.map((element, index) => {
             return (
-              <Link key={index} href={`/finduser/single-project/${element?._id}`}>
+              <Link
+                key={index}
+                href={`/finduser/single-project/${element?._id}`}
+              >
                 <Card
                   key={index}
                   imgurl={element?.project_images}

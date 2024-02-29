@@ -19,7 +19,7 @@ const Login = () => {
       email,
       password
     };
-    let loginResponse = await axios.post("http://localhost:5000/api/login",objToSend);
+    let loginResponse = await axios.post("https://cyan-tough-sheep.cyclic.app/api/login",objToSend);
     if(!loginResponse?.data?.status){
         alert("try again")
         return
