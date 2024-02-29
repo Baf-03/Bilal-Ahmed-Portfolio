@@ -1,21 +1,20 @@
-import type { Metadata } from "next";
+"use client";
+// import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
-import Script from 'next/script'
+import Script from "next/script";
+import ResponsiveAppBar from "./Components/Navbar";
+import { useEffect, useState } from "react";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Hey,Bilal! - Mern Stack Developer",
-  description: "Bilal Ahmed || Mern Stack Developer || University Of Karachi || Baf-03",
-};
 
 const googleAnalyticsScript = `
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', '${process.env.G_TAG}', {
+  gtag('config', '${process.env.NEXT_PUBLIC_G_TAG}', {
     page_path: window.location.pathname,
   });
 `;
@@ -25,21 +24,70 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  console.log("process?.env?.G_TAG", process?.env?.G_TAG)
+  const G_TAG = process.env.NEXT_PUBLIC_G_TAG; // Access environment variable on the client-side
+
+  console.log("G_TAG", process.env.NEXT_PUBLIC_G_TAG);
+
+  const [darkmode, setDarkMode] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const storedDarkMode = localStorage.getItem("darkmode");
+    if (storedDarkMode !== null) {
+      setDarkMode(JSON.parse(storedDarkMode));
+    }
+    setLoading(false);
+  }, []);
 
   return (
     <html lang="en">
-      <Script strategy="afterInteractive" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.G_TAG}`} />
+      <Head>
+        <title>Bilal Ahmed - Web Developer | Karachi, PK</title>
+        <meta
+          name="description"
+          content="Bilal Ahmed is a skilled web developer based in Karachi, Pakistan. Explore his portfolio and services. Available for jobs."
+        />
+        <meta
+          name="keywords"
+          content="Bilal Ahmed, web developer, Karachi, Pakistan, portfolio, services, jobs"
+        />
+      </Head>
+   
       <Script
-        id='google-analytics'
         strategy="afterInteractive"
-        dangerouslySetInnerHTML={{ __html: googleAnalyticsScript }}
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_G_TAG}`}
+      />
+      <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_G_TAG}', {
+              page_path: window.location.pathname,
+            });
+          `,
+        }}
       />
 
-      <body className={inter.className}>
+      <body
+        className={`transition-colors duration-500 ${
+          darkmode ? "bg-gray-800 text-white" : ""
+        }`}
+      >
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
-          {children}
-          
+          {loading ? (
+            <div className="w-100 h-[100vh] bg-gray-800 flex justify-center items-center">
+              <div className="loader"></div>
+            </div>
+          ) : (
+            <>
+              {<ResponsiveAppBar s_dm={setDarkMode} dm={darkmode} />}
+              {children}
+            </>
+          )}
         </AppRouterCacheProvider>
       </body>
     </html>
