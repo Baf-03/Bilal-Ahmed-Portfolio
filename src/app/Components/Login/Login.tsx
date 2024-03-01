@@ -31,7 +31,7 @@ const Login = () => {
     router.push("/dashboard", { scroll: false });
   };
   return (
-    <div className="bg-gray-800 h-[100vh] flex flex-col gap-3 justify-center items-center">
+    <div className="h-[100vh] flex flex-col gap-3 justify-center items-center">
       <h1 className="text-[2rem] font-bold ">Login page</h1>
       <div className=" border border-dotted border-red-500 w-[90%] sm:w-[50%] md:w-[30%] flex flex-col items-center py-7 gap-3">
         <div className="w-[80%]">
