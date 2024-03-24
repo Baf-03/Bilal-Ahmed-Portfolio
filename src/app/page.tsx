@@ -11,6 +11,7 @@ import { useEffect, useState } from "react";
 import ContactForm from "./Components/ContactForm";
 import WhatsAppButton from "./Components/WhatsAppbtn";
 import { useSearchParams } from 'next/navigation'
+import Projects from "./Components/Projects/Projects";
 
 export default function Home() {
   const [darkmode, setDarkMode] = useState(false);
@@ -49,6 +50,7 @@ export default function Home() {
             <NeedofSp />
             <TechUsed />
             <Skills />
+            <Projects/>
             <ActivitiesTimeline />
             <ContactForm />
             <WhatsAppButton />

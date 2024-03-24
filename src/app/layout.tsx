@@ -43,6 +43,7 @@ export default function RootLayout({
     <html lang="en">
       <Head>
         <title>Bilal Ahmed - Web Developer | Karachi, PK</title>
+        <meta name="google-site-verification" content="zRMU4cUsJk5Ltp6zoO6Ms3VngYPKOr1Tf0LZzYL5JSY" />
         <meta
           name="description"
           content="Bilal Ahmed is a skilled web developer based in Karachi, Pakistan. Explore his portfolio and services. Available for jobs."

@@ -6,6 +6,7 @@ import { FaUpload } from "react-icons/fa6";
 import { useRouter } from "next/navigation";
 import { CircularProgress } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
+import Image from "next/image";
 type OnDropFunction = (acceptedFiles: File[]) => void;
 
 const Dropzone: React.FC = () => {
@@ -113,7 +114,7 @@ const Dropzone: React.FC = () => {
       setImgPr(response?.data?.data?.secure_url);
       setprojectImages(response?.data?.data);
       console.log(response?.data?.data);
-      
+
       if (!response?.data?.data) {
         alert("something went wrong From Ourside!");
         return;
@@ -177,11 +178,18 @@ const Dropzone: React.FC = () => {
           <div className="flex w-[20vw] overflow-scroll gap-2 m-auto">
             {uploadedFiles.map((file, index) => (
               <div key={file.name + index} className="w-fit">
-                <img
+                <Image
+                  src={URL.createObjectURL(file)}
+                  alt={`Preview ${file.name}`}
+                  width={400}
+                  height={300}
+                  className="rounded-lg object-cover"
+                />
+                {/* <img
                   src={URL.createObjectURL(file)}
                   alt={`Preview ${file.name}`}
                   className="w-[100%]"
-                />
+                /> */}
                 <p>{index + 1}</p>
                 <button onClick={() => removeFile(index)}>Remove</button>
               </div>
@@ -192,11 +200,11 @@ const Dropzone: React.FC = () => {
         {imgPr && (
           <div>
             Uploaded image preview:{" "}
-            <img
+            {/* <img
               src={imgPr}
               alt="Uploaded"
               style={{ width: "100px", height: "100px", objectFit: "cover" }}
-            />
+            /> */}
           </div>
         )}
       </div>
@@ -207,9 +215,7 @@ const Dropzone: React.FC = () => {
           name="name"
           value={name}
           placeholder="Enter Name"
-          disabled={
-            loading==true
-          }
+          disabled={loading == true}
           className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-red-500"
         />
         <input
@@ -218,9 +224,7 @@ const Dropzone: React.FC = () => {
           name="name"
           value={projectLink}
           placeholder="Enter Github Link"
-          disabled={
-            loading==true
-          }
+          disabled={loading == true}
           className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-red-500"
         />
         <input
@@ -229,9 +233,7 @@ const Dropzone: React.FC = () => {
           name="live link"
           value={liveLink}
           placeholder="Enter Live url"
-          disabled={
-            loading==true
-          }
+          disabled={loading == true}
           className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-red-500"
         />
         <div className="w-[100%]">
@@ -242,9 +244,7 @@ const Dropzone: React.FC = () => {
             placeholder="Enter Short detail about your project..."
             className="w-[100%] h-24 px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-red-500 bg-gray-100 resize-none"
             required
-            disabled={
-              loading==true
-            }
+            disabled={loading == true}
           ></textarea>
         </div>
         <button

@@ -8,6 +8,7 @@ import { useDropzone } from "react-dropzone";
 import { FaUpload } from "react-icons/fa6";
 import { CircularProgress } from "@mui/material";
 import Snackbar from "@mui/material/Snackbar";
+import Image from "next/image";
 
 type OnDropFunction = (acceptedFiles: File[]) => void;
 const DynamicRoutePage = () => {
@@ -25,7 +26,7 @@ const DynamicRoutePage = () => {
       };
 
       const getUser = await axios.post(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/dashboard`,
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/dashboard`,
         {},
         { headers }
       );
@@ -115,8 +116,6 @@ const DynamicRoutePage = () => {
     },
   });
 
-
-
   const handleProjectSubmit = async () => {
     try {
       setLoading(true);
@@ -151,11 +150,10 @@ const DynamicRoutePage = () => {
           },
         }
       );
-      if(response?.data?.data?.projectImages){
+      if (response?.data?.data?.projectImages) {
         setImgPr((prevImages) => [...prevImages, response?.data?.data]);
         setprojectImages((prevImages) => [...prevImages, response?.data?.data]);
       }
-   
 
       // if (!response?.data?.data) {
       //   alert("something went wrong From Ourside!");
@@ -194,7 +192,7 @@ const DynamicRoutePage = () => {
       setImgPr([]);
       setshortDetail("");
       setUploadedFiles([]);
-      LoadProject()
+      LoadProject();
     } catch (err: any) {
       console.log(err.message);
       setLoading(false);
@@ -225,17 +223,27 @@ const DynamicRoutePage = () => {
                     return (
                       <div key={file.name + index} className="w-fit">
                         {file && (file as any).slice(0, 4) == "http" ? (
-                          <img
+                          <Image
                             src={`${file}`}
                             alt={`Preview ${file.name}`}
-                            className="w-[100%]"
+                            className="w-[100%] h-[100%]"
                           />
                         ) : (
-                          <img
+                          // <img
+                          //   src={`${file}`}
+                          //   alt={`Preview ${file.name}`}
+                          //   className="w-[100%]"
+                          // />
+                          <Image
                             src={URL?.createObjectURL(file)}
                             alt={`Preview ${file.name}`}
-                            className="w-[100%]"
+                            className="w-[100%] h-[100%]"
                           />
+                          // <img
+                          //   src={URL?.createObjectURL(file)}
+                          //   alt={`Preview ${file.name}`}
+                          //   className="w-[100%]"
+                          // />
                         )}
 
                         <p>{index + 1}</p>
