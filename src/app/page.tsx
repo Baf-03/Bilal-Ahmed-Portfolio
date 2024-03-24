@@ -50,7 +50,7 @@ export default function Home() {
             <NeedofSp />
             <TechUsed />
             <Skills />
-            <Projects/>
+            {/* <Projects/> */}
             <ActivitiesTimeline />
             <ContactForm />
             <WhatsAppButton />
