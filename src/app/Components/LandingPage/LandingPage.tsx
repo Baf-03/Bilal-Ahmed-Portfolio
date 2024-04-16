@@ -41,14 +41,8 @@ function LandingPage() {
         <div className="flex font-bold text-[3rem] ">
           <TyperEffect/>
         </div>
-        <div className="w-[90%] text-[0.85rem] font-light pt-5 text-start md:pe-5  md:m-0  md:break-normal xl:text-[1rem] md:w-[90%] ">
-          I am <strong className="text-red-500">Bilal Ahmed</strong> a persistent Computer Science
-          undergraduate in a wellrecognized institute University of Karachi UBIT
-          having knowledge of Web Development I am Skilled in designing creative
-          <strong className="text-red-500"> Web Pages</strong> and <strong className="text-red-500">Patterns.</strong> A technology enthusiast who believes in the
-          technology revolution. I keep myself updated on the upcoming
-          technologies which will revolutionize the digital world in the future
-          and will solve modern day life problems.
+        <div className="w-[90%] text-[0.85rem] font-[20] pt-5 text-start md:pe-5  md:m-0  md:break-normal xl:text-[0.9rem] md:w-[90%] leading-6 ">
+        Hello! Im Bilal, a certified Web Developer with over a year of experience and currently enhancing my skills at UBIT, Karachi University. My expertise includes ReactJS, Next.js, SQL, and MongoDB, enabling me to build responsive and efficient web applications. With a passion for coding and excellence, Im committed to surpassing client expectations. Whether its creating interactive sites with ReactJS, server-rendered pages with Next.js, managing data with SQL, or utilizing MongoDB for flexible databases, Im ready to turn your web development visions into reality with cutting-edge solutions
           <div className="mt-5 flex gap-5">
             <div className="flex gap-2 items-center text-red-500" ><FaLocationDot /><strong className="font-bold text-black">Karachi,PK</strong></div>
             <div className="flex gap-2 items-center text-red-500" ><FaCheck /><strong className="font-bold text-black">Available for jobs</strong></div>

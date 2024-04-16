@@ -58,7 +58,7 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
  
   return (
     <AppBar
-      className={`transition-colors duration-500 sticky top-0 ${darkMode ? "bg-gray-800" : "bg-white"}`}
+      className={`transition-colors duration-500 sticky top-0 ${darkMode ? "bg-gray-800" : "bg-[#e7e5e4]"}`}
       position="sticky"
       sx={{ background: "transparent", color: darkMode ? "#fff" : "black" }}
     >
