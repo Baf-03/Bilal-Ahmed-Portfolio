@@ -1,4 +1,9 @@
-.Card{
-    box-shadow: rgb(255, 116, 116) 5.4px 5.4px 10.2px;
-    border-radius: 20px;
+.Card {
+    transition: box-shadow 2s ease-in;  /* Apply transition to box-shadow */
+    border-radius: 20px;  /* Uncommented and will apply a rounded border */
+}
+
+.Card:hover {
+    box-shadow: 0px 10px 20px rgba(255, 0, 0, 0.621);
+      /* Proper shadow with horizontal offset, vertical offset, blur radius, and color */
 }

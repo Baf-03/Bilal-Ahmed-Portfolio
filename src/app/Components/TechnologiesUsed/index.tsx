@@ -24,7 +24,7 @@ const TechUsed = () => {
     {
       name: "BackEnd",
       para: "dark side XD",
-      option: ["ExpressJs", "MongoDb"],
+      option: ["ExpressJs", "MongoDb","My Sql","JWT"],
     },
   ];
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -81,14 +81,14 @@ const TechUsed = () => {
           project.
         </p>
 
-        <div ref={titleRef} className="mt-9 flex flex-wrap gap-12 justify-center md:justify-between">
+        <div ref={titleRef} className="mt-9 flex flex-wrap gap-12 justify-center md:justify-center">
           {cardsData?.map((element, index) => {
             return (
               <div
                 key={index}
-                className="Card w-[95%] sm:w-[60%] md:w-[45%] lg:w-[45%] xl:w-[25%] border-t-black border-t-4 border-l-4 border-l-black p-2"
+                className="Card w-[95%] sm:w-[60%] md:w-[45%] lg:w-[45%] xl:w-[25%]  p-2 shadow-lg"
               >
-                <div className="flex flex-col items-center w-[100%] py-5 border-b border-dotted border-red-500">
+                <div className="flex flex-col items-center w-[100%] py-5 ">
                   <h2 className="font-bold text-[1.5rem] text-red-500">
                     {element.name}
                   </h2>

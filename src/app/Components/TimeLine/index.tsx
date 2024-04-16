@@ -15,10 +15,27 @@ interface expInt {
 export default function ActivitiesTimeline() {
   const experience = [
     {
+      comp_name: "Jarvis Technologies",
+      designation: "Mern Stack Developer",
+      startDate: new Date("March 2024"),
+      present: true,
+      imgurl:
+        "https://media.licdn.com/dms/image/C4E0BAQGwp-6SYqgdmQ/company-logo_200_200/0/1676910205768/jarvis_tech_global_logo?e=2147483647&v=beta&t=9hfUf8yhUyoVVs1yrxojd-uaWU7Gw3bENdyDXVIegWY",
+      skills: [
+        "Reactjs",
+        "TypeScript",
+        "styled-components",
+        "Tailwind CSS",
+        "Amazon S3",
+        "Express.js",
+        "SQL",
+      ],
+    },
+    {
       comp_name: "Rawts",
       designation: "Mern Stack Developer",
-      startDate: new Date("Nov 2023"),
-      present: true,
+      startDate: "Nov 2023 - March 2024 4mos",
+      present: false,
       imgurl:
         "https://www.rawts.com.pk/static/RAWTS-LOGO-2242aab9f87e5e3e8e46cb0666e0ae17.svg",
       skills: [

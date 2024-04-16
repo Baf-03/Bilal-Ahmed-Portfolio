@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 
 import { Link as ScrollLink, Element } from "react-scroll";
 import { Button, ButtonBase, CircularProgress } from "@mui/material";
+import Image from "next/image";
 
 interface Project {
   ProjectName: string;
@@ -15,38 +16,27 @@ interface Project {
 }
 
 const Projects: React.FC = () => {
-
-
   const [projects, setProjects] = useState<Project[]>([
     {
-        ProjectName: "Food Recipe Sharing App",
-        Description: `This project harmonizes React/Redux with Express.js/MongoDB, following MVC
+      ProjectName: "Food Recipe Sharing App",
+      Description: `This project harmonizes React/Redux with Express.js/MongoDB, following MVC
         architecture on the backend. It integrates JWT for authentication, Cloudinary for
         image uploads, and MongoDB for data storage, including a search query`,
-        img: "/MemoryGame.png",
-        linkCode: "https://github.com/Baf-03/Memory-Game",
-        linkSite: "https://memory-game-baf.netlify.app/",
-        id: "1",
-        isshow: "false",
-      },
-      {
-        ProjectName: "Attendance App",
-        Description: `This Project is made by using MERN STACK`,
-        img: "/MemoryGame.png",
-        linkCode: "https://github.com/Baf-03/Memory-Game",
-        linkSite: "https://memory-game-baf.netlify.app/",
-        id: "1",
-        isshow: "false",
-      },
-      {
-        ProjectName: "Memory Game",
-        Description: "This project is made by using Reactjs and TailwindCss.",
-        img: "/MemoryGame.png",
-        linkCode: "https://github.com/Baf-03/Memory-Game",
-        linkSite: "https://memory-game-baf.netlify.app/",
-        id: "1",
-        isshow: "false",
-      },
+      img: "/recipe-sharing.png",
+      linkCode: "",
+      linkSite: "https://foodrecipesharing.netlify.app/login",
+      id: "1",
+      isshow: "false",
+    },
+    {
+      ProjectName: "Attendance App",
+      Description: `This Project is made by using MERN STACK`,
+      img: "/attendanceapp.png",
+      linkCode: "",
+      linkSite: "",
+      id: "1",
+      isshow: "false",
+    },
     {
       ProjectName: "Memory Game",
       Description: "This project is made by using Reactjs and TailwindCss.",
@@ -89,16 +79,24 @@ const Projects: React.FC = () => {
     {
       ProjectName: "Facebook Clone",
       Description: "This project is made by using Reactjs and Bootstrap",
-      img: "/MemoryGame.png",
+      img: "/facebook.png",
       linkCode: "https://github.com/Baf-03/Facebook-Clone",
-      linkSite: "lol",
+      linkSite: "",
       id: "1",
       isshow: "hidden",
+    },{
+      ProjectName: "Tic Tac Toe",
+      Description: "it is what is ",
+      img: "/tictactoe.png",
+      linkCode: "https://github.com/Baf-03/tic-tac-toe-using-html-css-js",
+      linkSite: "https://baf-03.github.io/tic-tac-toe-using-html-css-js/",
+      id: "2",
+      isshow: "",
     },
     {
       ProjectName: "Olx Clone",
       Description: "This project is made by using Reactjs and Bootstrap",
-      img: "/MemoryGame.png",
+      img: "/olxclone.png",
       linkCode: "https://github.com/Baf-03/OLX-Clone-using-reactjs",
       linkSite: "https://olx-clone-baf03.netlify.app/",
       id: "2",
@@ -106,92 +104,21 @@ const Projects: React.FC = () => {
     },
     {
       ProjectName: "Ecommerce Website",
-      Description: "it is what is ",
-      img: "/MemoryGame.png",
-      linkCode: "http",
-      linkSite: "lol",
+      Description: "it is what is Ecommerce Website",
+      img: "/ecom.png",
+      linkCode: "https://github.com/Baf-03/-Ecommerce-Website",
+      linkSite: "https://baf-03.github.io/-Ecommerce-Website/",
       id: "1",
       isshow: "",
     },
+    
     {
-      ProjectName: "Nice ",
-      Description: "it is what is ",
-      img: "/MemoryGame.png",
-      linkCode: "http",
-      linkSite: "lol",
-      id: "2",
-      isshow: "",
-    },
-    {
-      ProjectName: "hello world",
-      Description: "it is what is ",
-      img: "/MemoryGame.png",
-      linkCode: "http",
-      linkSite: "lol",
+      ProjectName: "Upwork Clone",
+      Description: "it is what is....Upwork Clone ",
+      img: "/upwork-clone.png",
+      linkCode: "https://github.com/Baf-03/upwork-clone",
+      linkSite: "",
       id: "1",
-      isshow: "",
-    },
-    {
-      ProjectName: "Nice ",
-      Description: "it is what is ",
-      img: "/MemoryGame.png",
-      linkCode: "http",
-      linkSite: "lol",
-      id: "2",
-      isshow: "",
-    },
-    {
-      ProjectName: "hello world",
-      Description: "it is what is ",
-      img: "/MemoryGame.png",
-      linkCode: "http",
-      linkSite: "lol",
-      id: "1",
-      isshow: "",
-    },
-    {
-      ProjectName: "Nice ",
-      Description: "it is what is ",
-      img: "/MemoryGame.png",
-      linkCode: "http",
-      linkSite: "lol",
-      id: "2",
-      isshow: "",
-    },
-    {
-      ProjectName: "hello world",
-      Description: "it is what is ",
-      img: "/MemoryGame.png",
-      linkCode: "http",
-      linkSite: "lol",
-      id: "1",
-      isshow: "",
-    },
-    {
-      ProjectName: "Nice ",
-      Description: "it is what is ",
-      img: "/MemoryGame.png",
-      linkCode: "http",
-      linkSite: "lol",
-      id: "2",
-      isshow: "",
-    },
-    {
-      ProjectName: "Nice ",
-      Description: "it is what is ",
-      img: "/MemoryGame.png",
-      linkCode: "http",
-      linkSite: "lol",
-      id: "2",
-      isshow: "",
-    },
-    {
-      ProjectName: "Nice ",
-      Description: "it is what is ",
-      img: "/MemoryGame.png",
-      linkCode: "http",
-      linkSite: "lol",
-      id: "2",
       isshow: "",
     },
   ]);
@@ -208,7 +135,7 @@ const Projects: React.FC = () => {
       setProjectLimit(projects.slice());
       return;
     }
-    setProjectLimit(projects.slice(0, 10));
+    setProjectLimit(projects.slice(0, 5));
   }, [viewMore, projects]);
 
   const [loading, setLoading] = useState(false);
@@ -228,39 +155,66 @@ const Projects: React.FC = () => {
             className="projects flex flex-col w-[100%] lg:gap-5 flex-wrap items-center bg-fixed  lg:p-8 bg-cover"
             // style={{ backgroundImage: `url(${"/bgg.png"})` }}
           >
-            <div
-              className="text-center"
-            
-            >
+            <div className="text-center">
               <h2 className="backgroundimage text-[2rem] text-center  md:text-[3rem] font-bold">
-                My Portfolio
+              Development Showcase
               </h2>
             </div>
             <div className="  flex  w-[100%] gap-5 lg:gap-[3rem] flex-wrap justify-center bg-fixed  p-5 mt-5">
               {projectLimit.map((product: Project, index: number) => (
-                <div key={index} className="w-[350px] md:w-[300px] lg:w-[300px] xl:w-[400px] rounded-lg  border border-red-500">
+                <div
+                  key={index}
+                  className="w-[350px] md:w-[300px] lg:w-[300px] xl:w-[400px] rounded-lg  "
+                >
                   <div>
                     <div className="relative">
-                      <img src={product.img} className="h-[15rem] rounded-lg object-cover" />
+                      <Image
+                        src={product.img}
+                        alt={product.img}
+                        layout="fill"
+                        objectFit="cover"
+                        objectPosition="center"
+                        // This is optional, used for preloading the image if it's important for the initial loading
+                      />
+                      <Image
+                        alt={product.img}
+                        src={product.img}
+                        className="h-[15rem] rounded-lg object-cover"
+                        width={200}
+                        height={200}
+                        objectFit="cover"
+                        objectPosition="center"
+                      />
                       <div className="cardprojects absolute bottom-0 bg-gray-500 bg-opacity-80 p-4 w-[100%] text-center text-black-900 text-bold capitalize text-[1.5rem]  ">
                         {product.ProjectName}
                       </div>
                     </div>
                   </div>
                   <div className="">
-                    <div className="m-2 line-clamp-2"> {product.Description}</div>
+                    <div className="min-h-[7vh]">
+                    <div className="m-2 line-clamp-2">
+                      {" "}
+                      {product.Description}
+                    </div>
+                    </div>
+                    
                     <div className="flex gap-2 justify-center pb-3">
                       {" "}
-                      <a href={product.linkCode} target="_blank">
+                      {product.linkCode&&<a href={product.linkCode} target="_blank">
                         <Button variant="contained" className="bg-red-500 p-3">
                           View Code
                         </Button>
-                      </a>{" "}
-                      <a href={product.linkSite} target="_blank">
+                      </a>}
+                      <>
+                      {product.linkSite?(<a href={product.linkSite} target="_blank">
                         <Button variant="contained" className="bg-red-500 p-3">
-                          View Site
+                         View Site
                         </Button>
-                      </a>
+                      </a>):(<Button variant="contained" className="bg-red-500 p-3 cursor-not-allowed " disabled>
+                         Site Not Available
+                         </Button>)}</>
+                     
+                      
                     </div>
                   </div>
                 </div>
