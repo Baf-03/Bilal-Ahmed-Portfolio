@@ -51,20 +51,23 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
   };
 
   const toggleDarkMode = () => {
+    console.log("chakla");
     s_dm(!dm);
     setDarkMode(!darkMode);
     localStorage.setItem("darkmode", JSON.stringify(!dm));
   };
- 
+
   return (
     <AppBar
-      className={`transition-colors duration-500 sticky top-0 ${darkMode ? "bg-gray-800" : "bg-[#e7e5e4]"}`}
+      className={`transition-colors duration-500 sticky top-0 ${
+        darkMode ? "bg-gray-800" : "bg-[#e7e5e4]"
+      }`}
       position="sticky"
       sx={{ background: "transparent", color: darkMode ? "#fff" : "black" }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-        <Typography
+          <Typography
             variant="h6"
             noWrap
             component="a"
@@ -95,18 +98,20 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
           >
             <div className="header">
               <nav className="navbar">
-                
                 <ul
                   className="navbar__menu"
                   style={{ color: darkMode ? "#fff" : "inherit" }}
                 >
                   {pages.map((page, index) => (
                     <li key={index} className="navbar__item">
-                      <Link
-                        href={`/?element=${page?.nav_id}`}
-                       
-                      >
-                        <div className={`linktag navbar__link ${darkMode?("text-white"):("text-black")}`}>{page?.name}</div>
+                      <Link href={`/?element=${page?.nav_id}`}>
+                        <div
+                          className={`linktag navbar__link ${
+                            darkMode ? "text-white" : "text-black"
+                          }`}
+                        >
+                          {page?.name}
+                        </div>
                       </Link>
                     </li>
                   ))}
@@ -114,10 +119,19 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
               </nav>
             </div>
           </Box>
-          <IconButton color="inherit" onClick={toggleDarkMode}>
-            <Brightness4Icon />
-          </IconButton>
 
+          <div className="toggle">
+            <input
+              type="checkbox"
+              id="btn"
+              checked={darkMode}
+              onChange={toggleDarkMode}
+            />
+            <label htmlFor="btn">
+              <span className="thumb"></span>
+            </label>
+            <div className="light"></div>
+          </div>
           <Typography
             variant="h5"
             noWrap
@@ -137,8 +151,7 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
               &lt; <strong>Mern Stack dev</strong> /&gt;{" "}
             </span>
           </Typography>
-          <Box sx={{ display: { xs: "block", md: "none" } }}  >
-            
+          <Box sx={{ display: { xs: "block", md: "none" } }}>
             <IconButton
               size="large"
               aria-label="account of current user"
@@ -150,9 +163,8 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
             >
               <MenuIcon />
             </IconButton>
-            
+
             <Menu
-            
               id="menu-appbar"
               anchorEl={anchorElNav}
               anchorOrigin={{
@@ -164,34 +176,37 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
                 vertical: "top",
                 horizontal: "right",
               }}
-              
               open={Boolean(anchorElNav)}
               onClose={() => {
                 handleCloseNavMenu("");
-                setIsMenuOpen(false); 
+                setIsMenuOpen(false);
               }}
-              style={{background: isMenuOpen ? 'rgba(0, 0, 0, 0.4)' : 'transparent' }}
+              style={{
+                background: isMenuOpen ? "rgba(0, 0, 0, 0.4)" : "transparent",
+              }}
               className={`${isMenuOpen ? "transparent-menu" : "opacity-0"} `}
             >
               <div className="bg-transperent border mt-3 w-[80vw]">
-              {pages.map((page, index) => (
-                <MenuItem key={index}   className={` ${isMenuOpen ? "my_element" : ""}`}>
-                  <ScrollLink
-                        activeClass="active"
-                        to={page?.nav_id}
-                        spy={true}
-                        smooth={true}
-                        offset={-70}
-                        duration={500}
-                        onClick={() => handleCloseNavMenu(page?.name)}
-                        className="w-[100%]"
-                      >
-                  {page?.name}
-                  </ScrollLink>
-                </MenuItem>
-              ))}
+                {pages.map((page, index) => (
+                  <MenuItem
+                    key={index}
+                    className={` ${isMenuOpen ? "my_element" : ""}`}
+                  >
+                    <ScrollLink
+                      activeClass="active"
+                      to={page?.nav_id}
+                      spy={true}
+                      smooth={true}
+                      offset={-70}
+                      duration={500}
+                      onClick={() => handleCloseNavMenu(page?.name)}
+                      className="w-[100%]"
+                    >
+                      {page?.name}
+                    </ScrollLink>
+                  </MenuItem>
+                ))}
               </div>
-
             </Menu>
           </Box>
         </Toolbar>
