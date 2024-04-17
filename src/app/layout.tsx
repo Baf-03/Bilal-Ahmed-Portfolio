@@ -81,7 +81,7 @@ export default function RootLayout({
                   transform: 'translate(-50%, -50%)',
                   
                 }}
-                className="bg-red-500 opacity-[0.8]"
+                className="bg-red-500 opacity-[0.8]  hidden md:block"
               />
             </>
           )}
