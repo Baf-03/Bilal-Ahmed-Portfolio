@@ -281,10 +281,9 @@
 
 
 
-
   
 :root {
-	--sz: 15px;
+	--sz: 12px;
 	--on: #03A9F4;
 	--of: #fff0;
 	--gr: #666666;
@@ -406,4 +405,18 @@
 	  0 0 calc(var(--sz) / 3) calc(var(--sz) / 20) var(--lg) inset, 
 	  0 calc(var(--sz) / -20) calc(var(--sz) / 10) calc(var(--sz) / 10) #000c inset;
 	background: radial-gradient(circle at 50% 32%, #fff 0 calc(var(--sz) / 20), var(--lg) calc(var(--sz) / 3) calc(var(--sz) / 3));
+  }
+
+
+  
+  @media screen and (max-width: 580px) {
+	:root {
+		--sz: 10px;
+		--on: #03A9F4;
+		--of: #fff0;
+		--gr: #666666;
+		--tr: all 0.5s ease 0s;
+		--lg: var(--of);
+	  }
+
   }

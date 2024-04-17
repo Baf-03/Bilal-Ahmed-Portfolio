@@ -142,6 +142,7 @@ const Projects: React.FC = () => {
 
   return (
     <>
+    
       {loading ? (
         <div className="w-[100%] flex justify-center items-center h-[80vh] text-[3rem] font-bold">
           Loading
@@ -150,10 +151,11 @@ const Projects: React.FC = () => {
           </div>
         </div>
       ) : (
-        <>
+        <div className="w-[98vw] bgimg bg-fixed"  style={{ backgroundImage: `url(${"https://muhammad-ausaf-jamal.vercel.app/assets/h2_project_shape-RQDOSgKC.png"})` }}>
+       
           <div
-            className="projects flex flex-col w-[100%] lg:gap-5 flex-wrap items-center bg-fixed  lg:p-8 bg-cover"
-            // style={{ backgroundImage: `url(${"/bgg.png"})` }}
+            className="projects flex flex-col w-[90%] lg:gap-5 flex-wrap items-center  lg:p-8 m-auto"
+           
           >
             <div className="text-center">
               <h2 className="backgroundimage text-[2rem] text-center  md:text-[3rem] font-bold">
@@ -244,7 +246,7 @@ const Projects: React.FC = () => {
               </div>
             )}
           </div>
-        </>
+        </div>
       )}
     </>
   );

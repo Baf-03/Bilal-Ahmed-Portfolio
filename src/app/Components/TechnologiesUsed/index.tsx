@@ -71,7 +71,7 @@ const TechUsed = () => {
 
       <div  className="flex flex-col justify-center w-[96%] lg:w-[85%] m-auto mb-9 gap-5">
         <h2 className="backgroundimage text-[2rem] text-center  md:text-[3rem] font-bold">
-          03. Technologies used
+          Technologies used
         </h2>
         <p className="border-l border-dotted border-red-500 ps-2">
           Each project has its needs and{" "}
