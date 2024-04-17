@@ -167,7 +167,7 @@ const Projects: React.FC = () => {
                   className="w-[350px] md:w-[300px] lg:w-[300px] xl:w-[400px] rounded-lg  "
                 >
                   <div>
-                    <div className="relative">
+                    <div className="relative  rounded-2xl overflow-hidden">
                       <Image
                         src={product.img}
                         alt={product.img}
@@ -179,13 +179,13 @@ const Projects: React.FC = () => {
                       <Image
                         alt={product.img}
                         src={product.img}
-                        className="h-[15rem] rounded-lg object-cover"
+                        className="h-[15rem] rounded-lg object-cover hover:opacity-[0.6]"
                         width={200}
                         height={200}
                         objectFit="cover"
                         objectPosition="center"
                       />
-                      <div className="cardprojects absolute bottom-0 bg-gray-500 bg-opacity-80 p-4 w-[100%] text-center text-black-900 text-bold capitalize text-[1.5rem]  ">
+                      <div className="glass-effect cardprojects absolute bottom-0 bg-red-500 bg-opacity-80 p-4 w-[100%] text-center text-black-900 text-bold capitalize text-[1.5rem] text-red-500 ">
                         {product.ProjectName}
                       </div>
                     </div>
@@ -201,16 +201,16 @@ const Projects: React.FC = () => {
                     <div className="flex gap-2 justify-center pb-3">
                       {" "}
                       {product.linkCode&&<a href={product.linkCode} target="_blank">
-                        <Button variant="contained" className="bg-red-500 p-3">
+                        <Button variant="contained" className="bg-red-500 p-3 rounded-2xl  hover:text-black hover:opacity-[0.8]">
                           View Code
                         </Button>
                       </a>}
                       <>
                       {product.linkSite?(<a href={product.linkSite} target="_blank">
-                        <Button variant="contained" className="bg-red-500 p-3">
+                        <Button variant="contained" className="bg-red-500 p-3 rounded-2xl hover:text-black hover:opacity-[0.8]">
                          View Site
                         </Button>
-                      </a>):(<Button variant="contained" className="bg-red-500 p-3 cursor-not-allowed " disabled>
+                      </a>):(<Button variant="contained" className="bg-red-500 p-3 cursor-not-allowed opacity-[0.5] rounded-2xl" disabled>
                          Site Not Available
                          </Button>)}</>
                      
