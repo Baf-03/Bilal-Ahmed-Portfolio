@@ -3,18 +3,40 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { TextField } from "@mui/material";
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
 const ContactForm = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [textarea, setTextarea] = useState("");
   const [loading, setLoading] = useState("Submit");
+  const [emailError, setEmailError] = useState('');
+
+
+  const validateEmail = (email: string): boolean => {
+    if (emailRegex.test(email)) {
+      setEmailError('');
+      return true;
+    } else {
+      setEmailError('Please enter a valid email address.');
+      return false;
+    }
+  };
+
+
+
   const submitHandler = async (e: any) => {
     if (!name || !email || !textarea) {
       alert("enter all fields");
       return;
     }
-    setLoading("Loading");
     e.preventDefault();
+
+    if (!validateEmail(email)) {
+      return;
+    }
+    setLoading("Loading");
+    
     await fetch(`https://formsubmit.co/ajax/bilalahmedfarooqi03@gmail.com`, {
       method: "POST",
       headers: {
@@ -35,7 +57,7 @@ const ContactForm = () => {
   };
   // &apos;
   return (
-    <div id="connect">
+    <div id="connect" className="z-[10000]">
       <h2 className="backgroundimage text-[2rem] text-center  md:text-[3rem] font-bold">
       Contact Us
       </h2>
@@ -112,7 +134,7 @@ const ContactForm = () => {
               }
             ></textarea>
           </div>
-          
+           {emailError && <div className="text-red-500">{emailError}</div>}
           <button
             onClick={submitHandler}
             className="w-[200px] border  bg-red-500 border-black flex justify-center items-center  text-white p-2 rounded-lg cursor-pointer lg:text-[1rem] my-5 sm:my-0"

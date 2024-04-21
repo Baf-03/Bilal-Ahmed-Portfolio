@@ -151,7 +151,7 @@ const Projects: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div className="w-[98vw] bgimg bg-fixed"  style={{ backgroundImage: `url(${"https://muhammad-ausaf-jamal.vercel.app/assets/h2_project_shape-RQDOSgKC.png"})` }}>
+        <div id="Projects" className="w-[98vw] bgimg bg-fixed"  style={{ backgroundImage: `url(${"https://muhammad-ausaf-jamal.vercel.app/assets/h2_project_shape-RQDOSgKC.png"})` }}>
        
           <div
             className="projects flex flex-col w-[90%] lg:gap-5 flex-wrap items-center  lg:p-8 m-auto"
