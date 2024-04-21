@@ -104,7 +104,14 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
                 >
                   {pages.map((page, index) => (
                     <li key={index} className="navbar__item">
-                      <Link href={`/?element=${page?.nav_id}`}>
+                      <ScrollLink
+                        activeClass="active"
+                        to={page.nav_id}
+                        spy={true}
+                        smooth={true}
+                        offset={-70}
+                        duration={500}
+                      >
                         <div
                           className={`linktag navbar__link ${
                             darkMode ? "text-white" : "text-black"
@@ -112,7 +119,7 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
                         >
                           {page?.name}
                         </div>
-                      </Link>
+                      </ScrollLink>
                     </li>
                   ))}
                 </ul>
@@ -143,7 +150,7 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".0rem",
-              color: darkMode ? "#fff" : "inherit", // Adjust text color based on dark mode state
+              color: darkMode ? "#fff" : "inherit",
               textDecoration: "none",
             }}
           >

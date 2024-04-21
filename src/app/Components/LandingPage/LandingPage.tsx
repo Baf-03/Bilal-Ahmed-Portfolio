@@ -24,7 +24,7 @@ function LandingPage() {
       </Head>
    
     <div id="about" className="w-[100%] flex flex-wrap justify-center mt-[15%] sm:mt-[8%] md:mt-[5%] items-center border-gray-900 border-b-[1px] pb-[100px] min-h-[80vh] relative">
-    <div className="text-[10rem] fixed opacity-[0.1] text-gray-500">&#60;/&#62;</div>
+    <div className="text-[10rem] fixed opacity-[0.1] text-gray-500 z-0">&#60;/&#62;</div>
 
       <div
         className="ps-2 textside w-[100%] md:text-start lg:w-[60%]"
