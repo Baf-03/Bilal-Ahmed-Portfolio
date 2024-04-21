@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import { TextField } from "@mui/material";
 
 const ContactForm = () => {
   const [name, setName] = useState("");
@@ -36,7 +37,7 @@ const ContactForm = () => {
   return (
     <div id="connect">
       <h2 className="backgroundimage text-[2rem] text-center  md:text-[3rem] font-bold">
-        05. Contact Us
+      Contact Us
       </h2>
       <div className="w-[90%] md:w-[80%] flex flex-col sm:flex-row gap-3 text-black mb-[50px] border border-dotted border-red-500 p-5 m-auto mt-3 rounded-lg">
         <section className=" flex flex-col items-center w-[100%] sm:w-[50%] gap-3">
@@ -64,10 +65,12 @@ const ContactForm = () => {
           >
             Discuss on Whatsapp
           </a>
+          <TextField id="standard-basic" label="Standard" variant="standard" />
         </section>
         <section className="flex gap-3 flex-col w-[100%] sm:w-[50%] p-3 items-center justify-center">
           <h2 className="text-[1.5rem] font-bold text-center sm:text-start">Contact Form</h2>
           <div className="w-[100%]">
+            
             <input
               onChange={(e) => setName(e.target.value)}
               type="text"
@@ -77,21 +80,22 @@ const ContactForm = () => {
                 loading === "Loading" ||
                 loading == "You submitted your record successfully"
               }
-              className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-red-500"
+              className="block bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-red-500"
             />
           </div>
-          <div className="w-[100%]">
+          
+          <div className="w-[100%]" >
             {" "}
             <input
               onChange={(e) => setEmail(e.target.value)}
-              type="email"
+              // type="email"
               name="email"
               placeholder="Enter Email"
               disabled={
                 loading === "Loading" ||
                 loading == "You submitted your record successfully"
               }
-              className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-red-500"
+              className="block bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-red-500"
             />
           </div>
 

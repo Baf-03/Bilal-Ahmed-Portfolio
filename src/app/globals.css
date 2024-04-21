@@ -125,6 +125,9 @@ body{
   from { width: 0; }
 }
 
+/* .icons{
+  animation: pulse 2s infinite;
+} */
 .whatsapp-button {
   position: fixed;
   bottom: 1rem;
@@ -144,6 +147,7 @@ body{
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right;
+  background-size: 15%;
 }
 /* Responsive adjustments */
 @media (min-width: 768px) {

@@ -5,6 +5,7 @@ import ResponsiveAppBar from "./Components/Navbar";
 import CreativeProcess from "./Components/CreativeProcess/CreativeProcess";
 import NeedofSp from "./Components/NeedOfSalesPage.tsx/NeedofSp";
 import TechUsed from "./Components/TechnologiesUsed";
+import Education from "./Components/Education";
 import Skills from "./Components/Skills/Skills";
 import ActivitiesTimeline from "./Components/TimeLine";
 import { useEffect, useState } from "react";
@@ -52,6 +53,7 @@ export default function Home() {
             <Skills />
             <Projects/>
             <ActivitiesTimeline />
+           <Education/>
             <ContactForm />
             <WhatsAppButton />
             <div className="bg-red-500 w-[100%] text-center">Portfolio is currently in development phase<br/>Projects,Education Sections and Blogs page <br/>and many more features are coming soon</div>

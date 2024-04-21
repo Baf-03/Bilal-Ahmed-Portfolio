@@ -42,6 +42,8 @@ export default function RootLayout({
         <title>Bilal Ahmed - Web Developer | Karachi, PK</title>
         <meta name="description" content="Explore Bilal Ahmed's portfolio and services. Available for jobs in Karachi, Pakistan." />
         <meta name="keywords" content="Bilal Ahmed, web developer, Karachi, Pakistan, portfolio, services, jobs" />
+        <meta name="google-site-verification" content="zRMU4cUsJk5Ltp6zoO6Ms3VngYPKOr1Tf0LZzYL5JSY" />
+        
       </Head>
       <Script src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_G_TAG}`} strategy="afterInteractive" />
       <Script
