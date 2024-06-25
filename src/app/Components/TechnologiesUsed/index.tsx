@@ -15,7 +15,7 @@ const TechUsed = () => {
       option: [
         "HTML5",
         "CSS3",
-        "JavaScript ES5",
+        "JavaScript ES6",
         "TypeScript",
         "React",
         "Redux-Toolkit",
