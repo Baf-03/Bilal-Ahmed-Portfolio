@@ -17,15 +17,24 @@ const TechUsed = () => {
         "CSS3",
         "JavaScript ES5",
         "TypeScript",
-        "React+Redux",
+        "React",
+        "Redux-Toolkit"
         "NextJs",
+        "Tailwind CSS",
+        "Material UI",
+        "Bootstrap"
       ],
     },
     {
       name: "BackEnd",
       para: "dark side XD",
-      option: ["ExpressJs", "MongoDb","My Sql","JWT"],
+      option: ["Nodejs","ExpressJs", "MongoDb","My Sql","JWT","Cloudinary","aws","FireBase"],
     },
+    {
+      name:"Tools",
+    para:"Essential tools for development and collaboration.",
+     option: ["Git and Github","PostMan","VsCode","ChatGpt"]
+    }
   ];
   const titleRef = useRef<HTMLHeadingElement>(null);
 
