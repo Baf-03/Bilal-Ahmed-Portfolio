@@ -23,8 +23,35 @@ const Projects: React.FC = () => {
         architecture on the backend. It integrates JWT for authentication, Cloudinary for
         image uploads, and MongoDB for data storage, including a search query`,
       img: "/recipe-sharing.png",
-      linkCode: "",
+      linkCode: "https://github.com/Baf-03/FrontEnd-FoodRecipe",
       linkSite: "https://foodrecipesharing.netlify.app/login",
+      id: "1",
+      isshow: "false",
+    }, {
+      ProjectName: "Memory Game",
+      Description: "This project is made by using Reactjs and TailwindCss.",
+      img: "/MemoryGame.png",
+      linkCode: "https://github.com/Baf-03/Memory-Game",
+      linkSite: "https://memory-game-baf.netlify.app/",
+      id: "1",
+      isshow: "false",
+    },
+    {
+      ProjectName: "My Course Hero WebApp",
+      Description: `This project, developed using the MERN stack, features comprehensive CRUD operations, robust user authentication with JWT tokens, and well-defined public and private routing.`,
+      img: "/mycoursehero.png",
+      linkCode: "https://github.com/Baf-03/MyCourses-clientSide",
+      linkSite: "https://mycoursehero.netlify.app/auth/login",
+      id: "1",
+      isshow: "false",
+    },
+   
+    {
+      ProjectName: "Encrypted Todo",
+      Description: `This project is built on the MERN stack, featuring secure user authentication with JWT tokens and encrypted storage of todos to ensure data privacy.`,
+      img: "/encryptodo.png",
+      linkCode: "",
+      linkSite: "https://encryptodo.netlify.app/auth/login",
       id: "1",
       isshow: "false",
     },
@@ -37,15 +64,7 @@ const Projects: React.FC = () => {
       id: "1",
       isshow: "false",
     },
-    {
-      ProjectName: "Memory Game",
-      Description: "This project is made by using Reactjs and TailwindCss.",
-      img: "/MemoryGame.png",
-      linkCode: "https://github.com/Baf-03/Memory-Game",
-      linkSite: "https://memory-game-baf.netlify.app/",
-      id: "1",
-      isshow: "false",
-    },
+    
     {
       ProjectName: "Github User Finder",
       Description:
@@ -193,8 +212,8 @@ const Projects: React.FC = () => {
                     </div>
                   </div>
                   <div className="">
-                    <div className="min-h-[7vh]">
-                    <div className="m-2 line-clamp-2">
+                    <div className="min-h-[12vh]">
+                    <div className="m-2 line-clamp-5 text-[0.9rem]">
                       {" "}
                       {product.Description}
                     </div>
