@@ -18,7 +18,7 @@ const TechUsed = () => {
         "JavaScript ES5",
         "TypeScript",
         "React",
-        "Redux-Toolkit"
+        "Redux-Toolkit",
         "NextJs",
         "Tailwind CSS",
         "Material UI",
