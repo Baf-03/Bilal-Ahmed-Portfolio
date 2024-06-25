@@ -15,8 +15,8 @@ interface expInt {
 export default function ActivitiesTimeline() {
   const experience = [
     {
-      comp_name: "Jarvis Technologies",
-      designation: "Mern Stack Developer",
+      comp_name: "Solar Citizen",
+      designation: "Full Stack Developer",
       startDate: new Date("March 2024"),
       present: true,
       imgurl:
