@@ -33,7 +33,7 @@ const TechUsed = () => {
     {
       name:"Tools",
     para:"Essential tools for development and collaboration.",
-     option: ["Git and Github","PostMan","VsCode","ChatGpt"]
+     option: ["Git and Github","Google Analytics","Google Tag Manager","PostMan","VsCode","ChatGpt"]
     }
   ];
   const titleRef = useRef<HTMLHeadingElement>(null);
