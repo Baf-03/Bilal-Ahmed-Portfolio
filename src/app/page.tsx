@@ -56,7 +56,7 @@ export default function Home() {
            <Education/>
             <ContactForm />
             <WhatsAppButton />
-            <div className="bg-red-500 w-[100%] text-center">Portfolio is currently in development phase<br/>Projects,Education Sections and Blogs page <br/>and many more features are coming soon</div>
+            <div className="bg-[#3b82f6] w-[100%] text-center">Portfolio is currently in development phase<br/>Projects,Education Sections and Blogs page <br/>and many more features are coming soon</div>
           </div>
         </main>
       )}

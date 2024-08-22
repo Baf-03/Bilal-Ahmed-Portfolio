@@ -135,7 +135,7 @@ const Skills = () => {
           {skills.map((element, index) => {
             return (
               <div
-                className={`flex flex-col gap-3 items-center bg-gray-900 p-5 rounded-md w-[8rem] sm:w-[15rem] md:w-[15vw] lg:w-[12vw]  ${element.color} hover:text-red-500 `}
+                className={`flex flex-col gap-3 items-center bg-gray-900 p-5 rounded-md w-[8rem] sm:w-[15rem] md:w-[15vw] lg:w-[12vw]  ${element.color} hover:text-[#3b82f6] `}
                 key={index}
                 data-aos="fade-right"
                 data-aos-offset="300"

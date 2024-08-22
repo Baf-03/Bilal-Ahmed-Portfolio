@@ -41,7 +41,7 @@ const TyperEffect = () => {
 
   return (
     <div className=' text-[1.8rem] lg:text-[2.5rem] xl:text-[3rem] h-[5rem] lg:h-[7rem] xl:h-[9rem]'>
-         I like creating websites<div className="text-red-500 flex smooth">{word}
+         I like creating websites<div className="text-[#3b82f6] flex smooth">{word}
          <Typewriter   />{" "}
          </div>
          

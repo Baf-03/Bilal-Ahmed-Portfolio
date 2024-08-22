@@ -33,7 +33,7 @@ const Login = () => {
   return (
     <div className="h-[100vh] flex flex-col gap-3 justify-center items-center">
       <h1 className="text-[2rem] font-bold ">Login page</h1>
-      <div className=" border border-dotted border-red-500 w-[90%] sm:w-[50%] md:w-[30%] flex flex-col items-center py-7 gap-3">
+      <div className=" border border-dotted border-[#3b82f6] w-[90%] sm:w-[50%] md:w-[30%] flex flex-col items-center py-7 gap-3">
         <div className="w-[80%]">
           <input
             onChange={(e) => setEmail(e.target.value)}
@@ -44,7 +44,7 @@ const Login = () => {
               loading === "Loading" ||
               loading == "You submitted your record successfully"
             }
-            className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-red-500"
+            className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-[#3b82f6]"
           />
         </div>
         <div className="w-[60%]">
@@ -57,16 +57,16 @@ const Login = () => {
               loading === "Loading" ||
               loading == "You submitted your record successfully"
             }
-            className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-red-500"
+            className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-[#3b82f6]"
           />
           {reqfields ? (
-            <div className="text-red-500 mt-3">all fields are required</div>
+            <div className="text-[#3b82f6] mt-3">all fields are required</div>
           ) : (
             <></>
           )}
         </div>
         <div className="w-[60%] flex justify-center">
-          <button className="border border-red-500 p-3" onClick={submitHandler}>
+          <button className="border border-[#3b82f6] p-3" onClick={submitHandler}>
             Submit
           </button>
         </div>

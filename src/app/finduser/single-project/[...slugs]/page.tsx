@@ -203,11 +203,11 @@ const DynamicRoutePage = () => {
       {data ? (
         <div className="w-[90%] m-auto">
           <div className=" cursor-pointer ">
-            <div {...getRootProps()} className="border border-red-500">
+            <div {...getRootProps()} className="border border-[#3b82f6]">
               <input {...getInputProps()} className="border text-red-400 " />
 
               <div className="relative p-5  h-[20rem] flex flex-col items-center m-auto w-[100%]">
-                <div className="text-[2rem] text-red-500 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
+                <div className="text-[2rem] text-[#3b82f6] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 ">
                   <FaUpload />
                 </div>
                 <div className="relative z-50">
@@ -268,7 +268,7 @@ const DynamicRoutePage = () => {
               //   loading === "Loading" ||
               //   loading == "You submitted your record successfully"
               // }
-              className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-red-500"
+              className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-[#3b82f6]"
             />
             <input
               onChange={(e) => setprojectLink(e.target.value)}
@@ -280,7 +280,7 @@ const DynamicRoutePage = () => {
               //   loading === "Loading" ||
               //   loading == "You submitted your record successfully"
               // }
-              className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-red-500"
+              className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-[#3b82f6]"
             />
             <input
               onChange={(e) => setLiveLink(e.target.value)}
@@ -292,7 +292,7 @@ const DynamicRoutePage = () => {
               //   loading === "Loading" ||
               //   loading == "You submitted your record successfully"
               // }
-              className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-red-500"
+              className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-[#3b82f6]"
             />
             <div className="w-[100%]">
               <textarea
@@ -300,7 +300,7 @@ const DynamicRoutePage = () => {
                 name="message"
                 value={shortDetail}
                 placeholder="Enter Short detail about your project..."
-                className="w-[100%] h-24 px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-red-500 bg-gray-100 resize-none"
+                className="w-[100%] h-24 px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-[#3b82f6] bg-gray-100 resize-none"
                 required
                 //   disabled={
                 //     loading === "Loading" ||
@@ -310,7 +310,7 @@ const DynamicRoutePage = () => {
             </div>
             <button
               onClick={handleProjectSubmit}
-              className="border border-red-500 p-3 mt-3 rounded-lg text-red-500"
+              className="border border-[#3b82f6] p-3 mt-3 rounded-lg text-[#3b82f6]"
             >
               <Snackbar
                 open={open}

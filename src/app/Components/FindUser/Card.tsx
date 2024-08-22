@@ -9,7 +9,7 @@ interface props {
 const Card = ({ imgurl, title }: props) => {
   return (
     <div className="border w-[90vw] sm:w-[60vw] md:w-[40vw] lg:w-[20vw] flex flex-col justify-center items-center m-auto">
-      <div className="w-[100%] h-[15rem] border-2 border-red-500 relative">
+      <div className="w-[100%] h-[15rem] border-2 border-[#3b82f6] relative">
         <Image
           src={imgurl[0]}
           alt="bilal portfolio"

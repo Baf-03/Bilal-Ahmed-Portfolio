@@ -82,9 +82,9 @@ const TechUsed = () => {
         <h2 className="backgroundimage text-[2rem] text-center  md:text-[3rem] font-bold">
           Technologies used
         </h2>
-        <p className="border-l border-dotted border-red-500 ps-2">
+        <p className="border-l border-dotted border-[#3b82f6] ps-2">
           Each project has its needs and{" "}
-          <span className="text-red-500">choosing the right tools</span> makes
+          <span className="text-[#3b82f6]">choosing the right tools</span> makes
           all the difference. As a communicator, web developer and designer, I
           have listed below the main stacks that I usually use in each type of
           project.
@@ -98,7 +98,7 @@ const TechUsed = () => {
                 className="Card w-[95%] sm:w-[60%] md:w-[45%] lg:w-[45%] xl:w-[25%]  p-2 shadow-lg"
               >
                 <div className="flex flex-col items-center w-[100%] py-5 ">
-                  <h2 className="font-bold text-[1.5rem] text-red-500">
+                  <h2 className="font-bold text-[1.5rem] text-[#3b82f6]">
                     {element.name}
                   </h2>
                   <p className="w-[85%] mx-auto text-center">
@@ -109,7 +109,7 @@ const TechUsed = () => {
                   {element?.option?.map((feature, index) => {
                     return (
                       <div key={index}>
-                        <span className="text-red-500 font-bold">&gt;</span>{" "}
+                        <span className="text-[#3b82f6] font-bold">&gt;</span>{" "}
                         {feature}
                       </div>
                     );

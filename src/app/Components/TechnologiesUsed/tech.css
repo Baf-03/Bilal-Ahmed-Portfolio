@@ -4,6 +4,5 @@
 }
 
 .Card:hover {
-    box-shadow: 0px 10px 20px rgba(255, 0, 0, 0.621);
-      /* Proper shadow with horizontal offset, vertical offset, blur radius, and color */
+    box-shadow: 0px 10px 20px #3b82f6;
 }
