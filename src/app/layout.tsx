@@ -59,7 +59,7 @@ export default function RootLayout({
           `,
         }}
       />
-      <body className={`transition-colors duration-500 ${darkmode ? "bg-gray-800 text-white" : "bg-[#e7e5e4]"}`}>
+      <body className={`transition-colors duration-500 ${darkmode ? "bg-[#1c1e21] text-white" : "bg-[#e7e5e4]"}`}>
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           {loading ? (
             <div className="w-100 h-[100vh] bg-gray-800 flex justify-center items-center">
@@ -82,7 +82,7 @@ export default function RootLayout({
                   transform: 'translate(-50%, -50%)',
                   
                 }}
-                className="bg-red-500 opacity-[0.8]  hidden md:block"
+                className="bg-[#3b82f6] opacity-[0.8]  hidden md:block"
               />
             </>
           )}

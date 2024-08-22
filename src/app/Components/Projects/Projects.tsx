@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-
 import { Link as ScrollLink, Element } from "react-scroll";
 import { Button, ButtonBase, CircularProgress } from "@mui/material";
 import Image from "next/image";
@@ -27,7 +26,8 @@ const Projects: React.FC = () => {
       linkSite: "https://foodrecipesharing.netlify.app/login",
       id: "1",
       isshow: "false",
-    }, {
+    },
+    {
       ProjectName: "Memory Game",
       Description: "This project is made by using Reactjs and TailwindCss.",
       img: "/MemoryGame.png",
@@ -45,7 +45,6 @@ const Projects: React.FC = () => {
       id: "1",
       isshow: "false",
     },
-   
     {
       ProjectName: "Encrypted Todo",
       Description: `This project is built on the MERN stack, featuring secure user authentication with JWT tokens and encrypted storage of todos to ensure data privacy.`,
@@ -64,7 +63,6 @@ const Projects: React.FC = () => {
       id: "1",
       isshow: "false",
     },
-    
     {
       ProjectName: "Github User Finder",
       Description:
@@ -103,7 +101,8 @@ const Projects: React.FC = () => {
       linkSite: "",
       id: "1",
       isshow: "hidden",
-    },{
+    },
+    {
       ProjectName: "Tic Tac Toe",
       Description: "it is what is ",
       img: "/tictactoe.png",
@@ -130,7 +129,6 @@ const Projects: React.FC = () => {
       id: "1",
       isshow: "",
     },
-    
     {
       ProjectName: "Upwork Clone",
       Description: "it is what is....Upwork Clone ",
@@ -161,7 +159,6 @@ const Projects: React.FC = () => {
 
   return (
     <>
-    
       {loading ? (
         <div className="w-[100%] flex justify-center items-center h-[80vh] text-[3rem] font-bold">
           Loading
@@ -170,26 +167,27 @@ const Projects: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div id="Projects" className="w-[98vw] bgimg bg-fixed"  style={{ backgroundImage: `url(${"https://muhammad-ausaf-jamal.vercel.app/assets/h2_project_shape-RQDOSgKC.png"})` }}>
-       
-          <div
-            className="projects flex flex-col w-[90%] lg:gap-5 flex-wrap items-center  lg:p-8 m-auto"
-           
-          >
+        <div
+          id="Projects"
+          className="w-[98vw] bgimg bg-fixed"
+          style={{
+            backgroundImage: `url(${"https://muhammad-ausaf-jamal.vercel.app/assets/h2_project_shape-RQDOSgKC.png"})`,
+          }}
+        >
+          <div className="projects flex flex-col w-[90%] lg:gap-5 flex-wrap items-center lg:p-8 m-auto">
             <div className="text-center">
-              <h2 className="backgroundimage text-[2rem] text-center  md:text-[3rem] font-bold">
-              Development Showcase
+              <h2 className="backgroundimage text-[2rem] text-center md:text-[3rem] font-bold">
+                Development Showcase
               </h2>
             </div>
-            <div className="  flex  w-[100%] gap-5 lg:gap-[3rem] flex-wrap justify-center bg-fixed  p-5 mt-5">
+            <div className="flex w-[100%] gap-5 lg:gap-[3rem] flex-wrap justify-center bg-fixed p-5 mt-5">
               {projectLimit.map((product: Project, index: number) => (
                 <div
                   key={index}
-                  className="w-[350px] md:w-[300px] lg:w-[300px] xl:w-[400px] rounded-lg  "
+                  className="w-[350px] md:w-[300px] lg:w-[300px] xl:w-[400px] rounded-lg transform hover:scale-105 transition-transform duration-300"
                 >
-                  <div>
-                    <div className="relative  rounded-2xl overflow-hidden">
-                      <Image
+                  <div className="relative rounded-2xl overflow-hidden shadow-lg">
+                  <Image
                         src={product.img}
                         alt={product.img}
                         layout="fill"
@@ -206,64 +204,55 @@ const Projects: React.FC = () => {
                         objectFit="cover"
                         objectPosition="center"
                       />
-                      <div className="glass-effect cardprojects absolute bottom-0 bg-red-500 bg-opacity-80 p-4 w-[100%] text-center text-black-900 text-bold capitalize text-[1.5rem] text-red-500 ">
-                        {product.ProjectName}
-                      </div>
+                    <div className="glass-effect cardprojects absolute bottom-0 bg-[#3b82f6] bg-opacity-80 p-4 w-[100%] text-center text-white font-bold capitalize text-[1.5rem]">
+                      {product.ProjectName}
                     </div>
                   </div>
-                  <div className="">
-                    <div className="min-h-[12vh]">
-                    <div className="m-2 line-clamp-5 text-[0.9rem]">
-                      {" "}
-                      {product.Description}
-                    </div>
-                    </div>
-                    
-                    <div className="flex gap-2 justify-center pb-3">
-                      {" "}
-                      {product.linkCode&&<a href={product.linkCode} target="_blank">
-                        <Button variant="contained" className="bg-red-500 p-3 rounded-2xl  hover:text-black hover:opacity-[0.8]">
+                  <div className="min-h-[12vh] m-2 text-[0.9rem] text-center">
+                    {product.Description}
+                  </div>
+                  <div className="flex gap-2 justify-center pb-3">
+                    {product.linkCode && (
+                      <a href={product.linkCode} target="_blank">
+                        <Button
+                          variant="contained"
+                          className="bg-[#3b82f6] p-3 rounded-2xl hover:bg-[#285fbf] transition-colors duration-300"
+                        >
                           View Code
                         </Button>
-                      </a>}
-                      <>
-                      {product.linkSite?(<a href={product.linkSite} target="_blank">
-                        <Button variant="contained" className="bg-red-500 p-3 rounded-2xl hover:text-black hover:opacity-[0.8]">
-                         View Site
+                      </a>
+                    )}
+                    {product.linkSite ? (
+                      <a href={product.linkSite} target="_blank">
+                        <Button
+                          variant="contained"
+                          className="bg-[#3b82f6] p-3 rounded-2xl hover:bg-[#285fbf] transition-colors duration-300"
+                        >
+                          View Site
                         </Button>
-                      </a>):(<Button variant="contained" className="bg-red-500 p-3 cursor-not-allowed opacity-[0.5] rounded-2xl" disabled>
-                         Site Not Available
-                         </Button>)}</>
-                     
-                      
-                    </div>
+                      </a>
+                    ) : (
+                      <Button
+                        variant="contained"
+                        className="bg-gray-300 p-3 cursor-not-allowed rounded-2xl"
+                        disabled
+                      >
+                        Site Not Available
+                      </Button>
+                    )}
                   </div>
                 </div>
               ))}
             </div>
-            {viewMore ? (
-              <ScrollLink to="projects" spy={true} smooth={true} duration={500}>
-                <div onClick={handleViewMore}>
-                  <Button>
-                    {viewMore ? (
-                      <div>View less</div>
-                    ) : (
-                      <div>view more projects</div>
-                    )}
-                  </Button>
-                </div>
-              </ScrollLink>
-            ) : (
-              <div onClick={handleViewMore}>
-                <ButtonBase>
-                  {viewMore ? (
-                    <div>View less</div>
-                  ) : (
-                    <div>view more projects</div>
-                  )}
-                </ButtonBase>
-              </div>
-            )}
+            <div onClick={handleViewMore}>
+              <ButtonBase>
+                {viewMore ? (
+                  <div>View less</div>
+                ) : (
+                  <div>View more projects</div>
+                )}
+              </ButtonBase>
+            </div>
           </div>
         </div>
       )}

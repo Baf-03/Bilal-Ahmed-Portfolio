@@ -8,7 +8,7 @@ body{
 
 .list-disc-red::before {
     content: '•'; /* Unicode character for a bullet point */
-    color: red;   /* Set the color to red or any other color you prefer */
+    color: #3b82f6;   /* Set the color to red or any other color you prefer */
     margin-right: 0.5em; /* Adjust the spacing between the marker and the text */
   }
   .loader {
@@ -36,7 +36,7 @@ body{
     bottom: 0.18em;
     width: 1em;
     height: 1em;
-    background-color: orange;
+    background-color: #3b82f6;
     border-radius: 15%;
     animation: rollingRock 2.5s cubic-bezier(.79, 0, .47, .97) infinite;
   }
@@ -108,7 +108,7 @@ body{
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: rgb(244, 73, 79); /* color of the scroll thumb */
+    background-color: #3b82f6; /* color of the scroll thumb */
     border-radius: 6px; /* roundness of the thumb */
 }
 

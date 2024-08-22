@@ -93,12 +93,12 @@ const FindUserAdmin = () => {
               //   loading === "Loading" ||
               //   loading == "You submitted your record successfully"
               // }
-              className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-red-500"
+              className="bg-gray-300 w-full px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:border-[#3b82f6]"
             />
           </div>
           <div className="flex justify-center">
             <button
-              className="border p-3 mt-3 border-red-500 "
+              className="border p-3 mt-3 border-[#3b82f6] "
               onClick={submitHandler}
             >
               Submit
@@ -124,7 +124,7 @@ const FindUserAdmin = () => {
               })}
             </div>
           ) : (
-            <div className="text-red-500 text-center">
+            <div className="text-[#3b82f6] text-center">
               {" "}
               {cardloading ? (
                 <div className="w-[100vw] h-[80vh] flex justify-center items-center ">
