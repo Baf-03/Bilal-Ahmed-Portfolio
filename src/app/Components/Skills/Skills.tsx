@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Head from "next/head";
 import { RiReactjsLine } from "react-icons/ri";
 import { SiExpress } from "react-icons/si";
@@ -23,113 +23,138 @@ import { SiTypescript } from "react-icons/si";
 import { SiJsonwebtokens } from "react-icons/si";
 
 const Skills = () => {
-  let skills = [
-    {
-      icon: TbBrandNextjs,
-      name: "Next.js",
-      color: "text-cyan-400",
-    },
-    {
-      icon: RiReactjsLine,
-      name: "React.js",
-      color: "text-cyan-400",
-    },
-    {
-      icon: SiExpress,
-      name: "Express.js",
-      color: "text-cyan-400",
-    },
-    {
-      icon: FaNode,
-      name: "Node.js",
-      color: "text-green-400",
-    },
-    {
-      icon: TbBrandRedux,
-      name: "Redux",
-      color: "text-purple-600",
-    },
-    {
-      icon: TbBrandFirebase,
-      name: "Firebase",
-      color: "text-yellow-800",
-    },
-    {
-      icon: SiMui,
-      name: "Material UI",
-      color: "text-blue-600",
-    },
-    {
-      icon: SiTailwindcss,
-      name: "Tailwind CSS",
-      color: "text-blue-400",
-    },
-    {
-      icon: SiBootstrap,
-      name: "Bootstrap",
-      color: "text-purple-800",
-    },
-    {
-      icon: TfiHtml5,
-      name: "HTML5",
-      color: "text-orange-700",
-    },
-    {
-      icon: TiCss3,
-      name: "CSS3",
-      color: "text-blue-700",
-    },
-    {
-      icon: TbBrandJavascript,
-      name: "JavaScript",
-      color: "text-amber-800",
-    },
-    {
-      icon: SiTypescript,
-      name: "TypeScript",
-      color: "text-blue-800",
-    },
-    {
-      icon: BiLogoJava,
-      name: "Java",
-      color: "text-blue-800",
-    },
-    {
-      icon: TbBrandPython,
-      name: "Python",
-      color: "text-yellow-500",
-    },
-    {
-      icon: SiMongodb,
-      name: "MongoDB",
-      color: "text-green-500",
-    },
-    {
-      icon: GrMysql,
-      name: "Sql",
-      color: "text-blue-800",
-    },
-    {
-      icon: SiNetlify,
-      name: "Netlify",
-      color: "text-blue-500",
-    },
-    {
-      icon: BsGithub,
-      name: "GitHub",
-      color: "text-white",
-    },
-    {
-      icon: SiAmazons3,
-      name: "Amazon S3",
-      color: "text-white",
-    },
-    {
-      icon: SiJsonwebtokens ,
-      name: "Json Web Token",
-      color: "text-red-400",
-    },
+  const skills = [
+    { icon: TbBrandNextjs, name: "Next.js", color: "text-cyan-400" },
+    { icon: RiReactjsLine, name: "React.js", color: "text-cyan-400" },
+    { icon: SiExpress, name: "Express.js", color: "text-cyan-400" },
+    { icon: FaNode, name: "Node.js", color: "text-green-400" },
+    { icon: TbBrandRedux, name: "Redux", color: "text-purple-600" },
+    { icon: TbBrandFirebase, name: "Firebase", color: "text-yellow-800" },
+    { icon: SiMui, name: "Material UI", color: "text-blue-600" },
+    { icon: SiTailwindcss, name: "Tailwind CSS", color: "text-blue-400" },
+    { icon: SiBootstrap, name: "Bootstrap", color: "text-purple-800" },
+    { icon: TfiHtml5, name: "HTML5", color: "text-orange-700" },
+    { icon: TiCss3, name: "CSS3", color: "text-blue-700" },
+    { icon: TbBrandJavascript, name: "JavaScript", color: "text-amber-800" },
+    { icon: SiTypescript, name: "TypeScript", color: "text-blue-800" },
+    { icon: BiLogoJava, name: "Java", color: "text-blue-800" },
+    { icon: TbBrandPython, name: "Python", color: "text-yellow-500" },
+    { icon: SiMongodb, name: "MongoDB", color: "text-green-500" },
+    { icon: GrMysql, name: "SQL", color: "text-blue-800" },
+    { icon: SiNetlify, name: "Netlify", color: "text-blue-500" },
+    { icon: BsGithub, name: "GitHub", color: "text-white" },
+    { icon: SiAmazons3, name: "Amazon S3", color: "text-white" },
+    { icon: SiJsonwebtokens, name: "Json Web Token", color: "text-red-400" },
   ];
+
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const scrollAnimationRef = useRef<number | null>(null);
+  const isInteractingRef = useRef(false);
+
+  const startScrolling = () => {
+    if (scrollContainerRef.current && !isInteractingRef.current) {
+      const scrollContainer = scrollContainerRef.current;
+      scrollContainer.scrollLeft += 1;
+      if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+        scrollContainer.scrollLeft = 0;
+      }
+      scrollAnimationRef.current = requestAnimationFrame(startScrolling);
+    }
+  };
+
+  const stopScrolling = () => {
+    if (scrollAnimationRef.current) {
+      cancelAnimationFrame(scrollAnimationRef.current);
+      scrollAnimationRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth <= 640) {
+        startScrolling();
+        const scrollContainer = scrollContainerRef.current;
+
+        if (scrollContainer) {
+          let isDown = false;
+          let startX: number;
+          let scrollLeft: number;
+
+          const handleMouseDown = (e: MouseEvent) => {
+            isDown = true;
+            isInteractingRef.current = true;
+            stopScrolling();
+            startX = e.pageX - scrollContainer.offsetLeft;
+            scrollLeft = scrollContainer.scrollLeft;
+          };
+
+          const handleMouseMove = (e: MouseEvent) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - scrollContainer.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll-fast
+            scrollContainer.scrollLeft = scrollLeft - walk;
+          };
+
+          const handleMouseUp = () => {
+            isDown = false;
+            isInteractingRef.current = false;
+            startScrolling();
+          };
+
+          const handleTouchStart = (e: TouchEvent) => {
+            isDown = true;
+            isInteractingRef.current = true;
+            stopScrolling();
+            startX = e.touches[0].pageX - scrollContainer.offsetLeft;
+            scrollLeft = scrollContainer.scrollLeft;
+          };
+
+          const handleTouchMove = (e: TouchEvent) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.touches[0].pageX - scrollContainer.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll-fast
+            scrollContainer.scrollLeft = scrollLeft - walk;
+          };
+
+          const handleTouchEnd = () => {
+            isDown = false;
+            isInteractingRef.current = false;
+            startScrolling();
+          };
+
+          scrollContainer.addEventListener("mousedown", handleMouseDown);
+          scrollContainer.addEventListener("mousemove", handleMouseMove);
+          scrollContainer.addEventListener("mouseup", handleMouseUp);
+          scrollContainer.addEventListener("mouseleave", handleMouseUp);
+          scrollContainer.addEventListener("touchstart", handleTouchStart);
+          scrollContainer.addEventListener("touchmove", handleTouchMove);
+          scrollContainer.addEventListener("touchend", handleTouchEnd);
+
+          return () => {
+            scrollContainer.removeEventListener("mousedown", handleMouseDown);
+            scrollContainer.removeEventListener("mousemove", handleMouseMove);
+            scrollContainer.removeEventListener("mouseup", handleMouseUp);
+            scrollContainer.removeEventListener("mouseleave", handleMouseUp);
+            scrollContainer.removeEventListener("touchstart", handleTouchStart);
+            scrollContainer.removeEventListener("touchmove", handleTouchMove);
+            scrollContainer.removeEventListener("touchend", handleTouchEnd);
+          };
+        }
+      } else {
+        stopScrolling();
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Call once on mount
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      stopScrolling();
+    };
+  }, []);
 
   return (
     <>
@@ -145,25 +170,39 @@ const Skills = () => {
         />
       </Head>
 
-      <div id="skills" className=" flex flex-col items-center  w-[100%] gap-9">
-        <h1 className="backgroundimage text-center text-[2rem] md:text-[3rem] font-bold  pt-9">
+      <div id="skills" className="flex flex-col items-center w-full gap-9">
+        <h1 className="backgroundimage text-center text-2xl md:text-3xl font-bold pt-9">
           Skills & Abilities
         </h1>
-        <div className="flex flex-wrap justify-center gap-10 sm:w-[85%]  lg:w-[85%] xl:w-[85%] p-5">
-          {skills.map((element, index) => {
-            return (
+
+        <div className="block lg:hidden overflow-hidden whitespace-nowrap w-full" ref={scrollContainerRef}>
+          <div className="flex gap-10 w-max">
+            {skills.concat(skills).map((element, index) => (
               <div
-                className={`flex flex-wrap flex-col gap-3 items-center bg-gray-900 p-10 sm:p-9 md:p-8 lg:p-7 xl:p-5 rounded-md w-[12rem]  sm:w-[11rem] md:w-[20vw] lg:w-[15vw] m-auto justify-center  ${element.color} hover:text-[#3b82f6] `}
                 key={index}
-               
+                className={`flex-shrink-0 flex flex-col gap-3 items-center bg-gray-900 p-5 rounded-md w-48 ${element.color}`}
               >
-                <div className="hover:-translate-y-2 transition-transform duration-200 text-[2.2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[4rem]">
+                <div className="text-4xl">
                   <element.icon />
                 </div>
                 <div className="text-center">{element.name}</div>
               </div>
-            );
-          })}
+            ))}
+          </div>
+        </div>
+
+        <div className="hidden lg:flex flex-wrap justify-center gap-10 sm:w-[85%] lg:w-[85%] xl:w-[85%] p-5">
+          {skills.map((element, index) => (
+            <div
+              className={`flex flex-wrap flex-col gap-3 items-center bg-gray-900 p-10 sm:p-9 md:p-8 lg:p-7 xl:p-5 rounded-md w-[12rem] sm:w-[11rem] md:w-[20vw] lg:w-[15vw] m-auto justify-center ${element.color} hover:text-[#3b82f6]`}
+              key={index}
+            >
+              <div className="hover:-translate-y-2 transition-transform duration-200 text-[2.2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[4rem]">
+                <element.icon />
+              </div>
+              <div className="text-center">{element.name}</div>
+            </div>
+          ))}
         </div>
       </div>
     </>
