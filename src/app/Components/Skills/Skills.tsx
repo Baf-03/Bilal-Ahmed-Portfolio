@@ -50,14 +50,21 @@ const Skills = () => {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const scrollAnimationRef = useRef<number | null>(null);
   const isInteractingRef = useRef(false);
-
   const startScrolling = () => {
     if (scrollContainerRef.current && !isInteractingRef.current) {
+      if (scrollAnimationRef.current) {
+        cancelAnimationFrame(scrollAnimationRef.current); // Cancel any existing animation
+      }
+  
       const scrollContainer = scrollContainerRef.current;
-      scrollContainer.scrollLeft += 1;
+      const scrollIncrement = 1; // Set a constant increment
+  
+      scrollContainer.scrollLeft += scrollIncrement;
+  
       if (scrollContainer.scrollLeft >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
         scrollContainer.scrollLeft = 0;
       }
+  
       scrollAnimationRef.current = requestAnimationFrame(startScrolling);
     }
   };
@@ -72,14 +79,15 @@ const Skills = () => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 640) {
-        startScrolling();
+        stopScrolling(); // Stop any existing scrolling
+        startScrolling(); // Start scrolling with the correct speed
+  
         const scrollContainer = scrollContainerRef.current;
-
         if (scrollContainer) {
           let isDown = false;
           let startX: number;
           let scrollLeft: number;
-
+  
           const handleMouseDown = (e: MouseEvent) => {
             isDown = true;
             isInteractingRef.current = true;
@@ -87,21 +95,21 @@ const Skills = () => {
             startX = e.pageX - scrollContainer.offsetLeft;
             scrollLeft = scrollContainer.scrollLeft;
           };
-
+  
           const handleMouseMove = (e: MouseEvent) => {
             if (!isDown) return;
             e.preventDefault();
             const x = e.pageX - scrollContainer.offsetLeft;
-            const walk = (x - startX) * 1.2; // Scroll-fast
+            const walk = (x - startX) * 1; // Scroll-fast
             scrollContainer.scrollLeft = scrollLeft - walk;
           };
-
+  
           const handleMouseUp = () => {
             isDown = false;
             isInteractingRef.current = false;
             startScrolling();
           };
-
+  
           const handleTouchStart = (e: TouchEvent) => {
             isDown = true;
             isInteractingRef.current = true;
@@ -109,21 +117,21 @@ const Skills = () => {
             startX = e.touches[0].pageX - scrollContainer.offsetLeft;
             scrollLeft = scrollContainer.scrollLeft;
           };
-
+  
           const handleTouchMove = (e: TouchEvent) => {
             if (!isDown) return;
             e.preventDefault();
             const x = e.touches[0].pageX - scrollContainer.offsetLeft;
-            const walk = (x - startX) * 1.2; // Scroll-fast
+            const walk = (x - startX) * 1; // Scroll-fast
             scrollContainer.scrollLeft = scrollLeft - walk;
           };
-
+  
           const handleTouchEnd = () => {
             isDown = false;
             isInteractingRef.current = false;
             startScrolling();
           };
-
+  
           scrollContainer.addEventListener("mousedown", handleMouseDown);
           scrollContainer.addEventListener("mousemove", handleMouseMove);
           scrollContainer.addEventListener("mouseup", handleMouseUp);
@@ -131,7 +139,7 @@ const Skills = () => {
           scrollContainer.addEventListener("touchstart", handleTouchStart);
           scrollContainer.addEventListener("touchmove", handleTouchMove);
           scrollContainer.addEventListener("touchend", handleTouchEnd);
-
+  
           return () => {
             scrollContainer.removeEventListener("mousedown", handleMouseDown);
             scrollContainer.removeEventListener("mousemove", handleMouseMove);
@@ -143,19 +151,19 @@ const Skills = () => {
           };
         }
       } else {
-        stopScrolling();
+        stopScrolling(); // Stop scrolling on larger screens
       }
     };
-
+  
     window.addEventListener("resize", handleResize);
     handleResize(); // Call once on mount
-
+  
     return () => {
       window.removeEventListener("resize", handleResize);
       stopScrolling();
     };
   }, []);
-
+  
   return (
     <>
       <Head>
@@ -170,7 +178,7 @@ const Skills = () => {
         />
       </Head>
 
-      <div id="skills" className="flex flex-col items-center w-full gap-9">
+      <div id="skills" className="flex flex-col items-center w-full gap-9 z-10">
         <h1 className="backgroundimage text-center text-2xl md:text-3xl font-bold pt-9">
           Skills & Abilities
         </h1>
