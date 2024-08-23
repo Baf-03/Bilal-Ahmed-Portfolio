@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Brightness4Icon from "@mui/icons-material/Brightness4";
 import { Link as ScrollLink } from "react-scroll";
+import CloseIcon from "@mui/icons-material/Close";
 
 import "./Navbar.css";
 import Link from "next/link";
@@ -29,16 +30,16 @@ interface Props {
 }
 
 function ResponsiveAppBar({ dm, s_dm }: Props) {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
   const [darkMode, setDarkMode] = React.useState(dm);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  const handleOpenNavMenu = (event: any) => {
+  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
-    setIsMenuOpen(!isMenuOpen); // Set menu open state to true
+    setIsMenuOpen(true);
   };
 
-  const handleCloseNavMenu = (page: string) => {
+  const handleCloseNavMenu = (page?: string) => {
     setAnchorElNav(null);
     if (page) {
       const targetId = page.replace(/\s+/g, "");
@@ -47,11 +48,10 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
         targetElement.scrollIntoView({ behavior: "smooth" });
       }
     }
-    setIsMenuOpen(false); // Set menu open state to false
+    setIsMenuOpen(false);
   };
 
   const toggleDarkMode = () => {
-    console.log("chakla");
     s_dm(!dm);
     setDarkMode(!darkMode);
     localStorage.setItem("darkmode", JSON.stringify(!dm));
@@ -71,7 +71,6 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
             variant="h6"
             noWrap
             component="a"
-            // href="#app-bar-with-responsive-menu"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -155,20 +154,20 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
             }}
           >
             <span className="text-[0.8rem] text-center m-auto">
-              &lt; <strong>Mern Stack dev</strong> /&gt;{" "}
+              &lt; <strong>Mern Stack dev</strong> /&gt;
             </span>
           </Typography>
           <Box sx={{ display: { xs: "block", md: "none" } }}>
             <IconButton
               size="large"
-              aria-label="account of current user"
+              aria-label="menu"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
               color="inherit"
-              className="z-10"
+              className="menu-icon"
             >
-              <MenuIcon />
+              <MenuIcon style={{ color: darkMode ? "#fff" : "#3b82f6" }} />
             </IconButton>
 
             <Menu
@@ -184,15 +183,15 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
                 horizontal: "right",
               }}
               open={Boolean(anchorElNav)}
-              onClose={() => {
-                handleCloseNavMenu("");
-                setIsMenuOpen(false);
-              }}
-              style={{
-                background: isMenuOpen ? "rgba(0, 0, 0, 0.4)" : "transparent",
-              }}
+              onClose={() => handleCloseNavMenu()}
               className={`${isMenuOpen ? "transparent-menu" : "opacity-0"} `}
             >
+              <IconButton
+                onClick={() => handleCloseNavMenu()}
+                className="absolute top-3 right-3 text-white"
+              >
+                <CloseIcon />
+              </IconButton>
               <div className="bg-transperent border mt-3 w-[80vw]">
                 {pages.map((page, index) => (
                   <MenuItem
@@ -207,7 +206,7 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
                       offset={-70}
                       duration={500}
                       onClick={() => handleCloseNavMenu(page?.name)}
-                      className="w-[100%]"
+                      className="w-[100%] flex items-center justify-center gap-2"
                     >
                       {page?.name}
                     </ScrollLink>

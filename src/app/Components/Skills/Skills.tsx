@@ -18,6 +18,9 @@ import { SiNetlify } from "react-icons/si";
 import { BsGithub } from "react-icons/bs";
 import { TbBrandNextjs } from "react-icons/tb";
 import { SiAmazons3 } from "react-icons/si";
+import { GrMysql } from "react-icons/gr";
+import { SiTypescript } from "react-icons/si";
+import { SiJsonwebtokens } from "react-icons/si";
 
 const Skills = () => {
   let skills = [
@@ -82,6 +85,11 @@ const Skills = () => {
       color: "text-amber-800",
     },
     {
+      icon: SiTypescript,
+      name: "TypeScript",
+      color: "text-blue-800",
+    },
+    {
       icon: BiLogoJava,
       name: "Java",
       color: "text-blue-800",
@@ -97,6 +105,11 @@ const Skills = () => {
       color: "text-green-500",
     },
     {
+      icon: GrMysql,
+      name: "Sql",
+      color: "text-blue-800",
+    },
+    {
       icon: SiNetlify,
       name: "Netlify",
       color: "text-blue-500",
@@ -110,6 +123,11 @@ const Skills = () => {
       icon: SiAmazons3,
       name: "Amazon S3",
       color: "text-white",
+    },
+    {
+      icon: SiJsonwebtokens ,
+      name: "Json Web Token",
+      color: "text-red-400",
     },
   ];
 
@@ -141,7 +159,7 @@ const Skills = () => {
                 data-aos-offset="300"
                 data-aos-easing="ease-in-sine"
               >
-                <div className="text-[2.2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[4rem]">
+                <div className="hover:-translate-y-2 transition-transform duration-200 text-[2.2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[4rem]">
                   <element.icon />
                 </div>
                 <div className="text-center">{element.name}</div>

@@ -407,6 +407,53 @@
 	background: radial-gradient(circle at 50% 32%, #fff 0 calc(var(--sz) / 20), var(--lg) calc(var(--sz) / 3) calc(var(--sz) / 3));
   }
 
+  .transparent-menu .MuiMenu-paper {
+    background: rgba(0, 0, 0, 0.7) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px;
+}
+
+.my_element {
+    color: #3b82f6;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    background: transparent;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.my_element:hover {
+    background-color: rgba(59, 130, 246, 0.2);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.MuiMenuItem-root {
+    margin: 5px 0;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+}
+
+.menu-icon {
+    border-radius: 50%;
+    padding: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.menu-icon:hover {
+    background-color: rgba(59, 130, 246, 0.2);
+}
+
+.menu-icon svg {
+    transition: color 0.3s ease;
+}
+
+.menu-icon:hover svg {
+    color: #fff;
+}
 
   
   @media screen and (max-width: 580px) {

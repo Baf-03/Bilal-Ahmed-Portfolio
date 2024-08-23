@@ -54,11 +54,11 @@ const ContactForm = () => {
   };
 
   return (
-    <div id="connect" className="z-[10000]">
+    <div id="connect" className="z-[2]">
       <h2 className="backgroundimage text-[2rem] text-center  md:text-[3rem] font-bold">
         Contact Us
       </h2>
-      <div className="w-[90%] md:w-[80%] flex flex-col sm:flex-row gap-3 text-black mb-[50px] border border-dotted border-[#3b82f6] p-8 m-auto mt-3 rounded-lg shadow-lg bg-gradient-to-r from-gray-800 via-gray-900 to-black">
+      <div className="w-[90%] md:w-[80%] flex flex-col sm:flex-row gap-3 text-black mb-[50px] border border-dotted border-[#3b82f6] p-8 m-auto mt-3 rounded-lg shadow-lg ">
         <section className="flex flex-col items-center w-[100%] sm:w-[50%] gap-5">
           <div className="w-[20%] animate-pulse">
             <Image
