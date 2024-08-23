@@ -160,7 +160,7 @@ const Projects: React.FC = () => {
   return (
     <>
       {loading ? (
-        <div className="w-[100%] flex justify-center items-center h-[80vh] text-[3rem] font-bold">
+        <div className="border w-[100%] flex justify-center items-center h-[80vh] text-[3rem] font-bold">
           Loading
           <div className="w-[5vw] ">
             <CircularProgress color="inherit" />
@@ -208,7 +208,7 @@ const Projects: React.FC = () => {
                       {product.ProjectName}
                     </div>
                   </div>
-                  <div className="min-h-[12vh] m-2 text-[0.9rem] text-center">
+                  <div className="md:min-h-[12vh] m-2 text-[0.9rem] text-center">
                     {product.Description}
                   </div>
                   <div className="flex gap-2 justify-center pb-3">

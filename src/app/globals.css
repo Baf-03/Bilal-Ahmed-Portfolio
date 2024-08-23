@@ -148,6 +148,17 @@ body{
   background-position: right;
   background-size: 15%;
 }
+footer a {
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: #ffffff;
+}
+
+footer .fab {
+  font-size: 1.25rem;
+}
 /* Responsive adjustments */
 @media (min-width: 768px) {
   .whatsapp-button {
