@@ -16,20 +16,20 @@ const TyperEffect = () => {
                 if (letterIndex < qualities[wordIndex].length) {
                     setWord((prevWord) => prevWord + qualities[wordIndex][letterIndex]);
                     setLetterIndex((prevIndex) => prevIndex + 1);
-                    setTypingSpeed(150); // Adjust for typing speed
+                    setTypingSpeed(100); // Adjust for typing speed
                 } else {
                     setIsRemoving(true);
-                    setTypingSpeed(800); // Pause before deleting
+                    setTypingSpeed(500); // Pause before deleting
                 }
             } else {
                 if (letterIndex > 0) {
                     setWord((prevWord) => prevWord.slice(0, -1));
                     setLetterIndex((prevIndex) => prevIndex - 1);
-                    setTypingSpeed(100); // Adjust for deleting speed
+                    setTypingSpeed(20); // Adjust for deleting speed
                 } else {
                     setIsRemoving(false);
                     setWordIndex((prevIndex) => (prevIndex + 1) % qualities.length);
-                    setTypingSpeed(500); // Pause before typing the next word
+                    setTypingSpeed(100); // Pause before typing the next word
                 }
             }
         };

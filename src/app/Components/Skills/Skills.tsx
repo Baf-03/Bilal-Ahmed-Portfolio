@@ -92,7 +92,7 @@ const Skills = () => {
             if (!isDown) return;
             e.preventDefault();
             const x = e.pageX - scrollContainer.offsetLeft;
-            const walk = (x - startX) * 2; // Scroll-fast
+            const walk = (x - startX) * 1.2; // Scroll-fast
             scrollContainer.scrollLeft = scrollLeft - walk;
           };
 
@@ -114,7 +114,7 @@ const Skills = () => {
             if (!isDown) return;
             e.preventDefault();
             const x = e.touches[0].pageX - scrollContainer.offsetLeft;
-            const walk = (x - startX) * 2; // Scroll-fast
+            const walk = (x - startX) * 1.2; // Scroll-fast
             scrollContainer.scrollLeft = scrollLeft - walk;
           };
 
