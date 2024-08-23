@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://bilalahmedbaf-03.netlify.app
+
+# Sitemaps
+Sitemap: https://bilalahmedbaf-03.netlify.app/sitemap.xml
