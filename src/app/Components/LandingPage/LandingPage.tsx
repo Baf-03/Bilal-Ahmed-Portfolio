@@ -25,14 +25,14 @@ function LandingPage() {
 
       <div
         id="about"
-        className="w-[100%] flex flex-wrap justify-center mt-[15%] sm:mt-[8%] md:mt-[5%] items-center border-gray-900 border-b-[1px] pb-[100px] min-h-[80vh] relative dark-theme-bg"
+        className=" flex flex-wrap justify-center mt-[15%] sm:mt-[8%] md:mt-[5%] items-center border-gray-900 border-b-[1px] pb-[100px] min-h-[80vh] relative dark-theme-bg "
       >
         <div className="userSelect text-[10rem] fixed opacity-[0.1] text-gray-500 z-0">
           &#60;/&#62;
         </div>
 
         <div
-          className="ps-2 textside w-[100%] md:text-start lg:w-[60%]"
+          className="ps-2 textside w-[100%] md:text-start md:w-[100vw] lg:w-[50%] xl:w-[60%] "
           data-aos="fade-right"
           data-aos-offset="300"
           data-aos-easing="ease-in-sine"
@@ -85,7 +85,7 @@ function LandingPage() {
           </div>
         </div>
 
-        <div className="imageside w-[70%] mt-5 flex justify-center relative rounded-lg ml-[5%] lg:mt-0 sm:w-[50%] md:w-[40%] lg:w-[35%] lg:min-h-[25rem]">
+        <div className="imageside mt-10 w-[70%]  flex justify-center relative rounded-lg ml-[5%] lg:mt-0 sm:w-[50%] md:w-[40%] lg:w-[45%] xl:w-[35%] lg:min-h-[25rem]">
           <div className="w-full h-[16rem]  rounded-lg overflow-hidden">
             <Image
               src={coverimg}

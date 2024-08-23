@@ -145,19 +145,17 @@ const Skills = () => {
         />
       </Head>
 
-      <div id="skills" className="flex flex-col items-center  w-[100%] gap-9">
+      <div id="skills" className=" flex flex-col items-center  w-[100%] gap-9">
         <h1 className="backgroundimage text-center text-[2rem] md:text-[3rem] font-bold  pt-9">
           Skills & Abilities
         </h1>
-        <div className="flex flex-wrap justify-center gap-10 sm:w-[85%]  p-5">
+        <div className="flex flex-wrap justify-center gap-10 sm:w-[85%]  lg:w-[85%] xl:w-[85%] p-5">
           {skills.map((element, index) => {
             return (
               <div
-                className={`flex flex-col gap-3 items-center bg-gray-900 p-5 rounded-md w-[8rem] sm:w-[15rem] md:w-[15vw] lg:w-[12vw]  ${element.color} hover:text-[#3b82f6] `}
+                className={`flex flex-wrap flex-col gap-3 items-center bg-gray-900 p-10 sm:p-9 md:p-8 lg:p-7 xl:p-5 rounded-md w-[12rem]  sm:w-[11rem] md:w-[20vw] lg:w-[15vw] m-auto justify-center  ${element.color} hover:text-[#3b82f6] `}
                 key={index}
-                data-aos="fade-right"
-                data-aos-offset="300"
-                data-aos-easing="ease-in-sine"
+               
               >
                 <div className="hover:-translate-y-2 transition-transform duration-200 text-[2.2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[4rem]">
                   <element.icon />

@@ -13,6 +13,7 @@ import ContactForm from "./Components/ContactForm";
 import WhatsAppButton from "./Components/WhatsAppbtn";
 import { useSearchParams } from 'next/navigation'
 import Projects from "./Components/Projects/Projects";
+import Footer from "./Components/Footer/Footer";
 
 export default function Home() {
   const [darkmode, setDarkMode] = useState(false);
@@ -45,7 +46,7 @@ export default function Home() {
       ) : (
         <main className={`transition-colors duration-500 }`}>
           {/* <ResponsiveAppBar s_dm={setDarkMode} dm={darkmode} /> */}
-          <div className="w-[98%] md:w-[85%] m-auto flex flex-col gap-12 justify-center items-center  mt-2 ">
+          <div className="w-[98%] lg:w-[94%] xl:w-[85%] m-auto flex flex-col gap-12 justify-center items-center  mt-2 ">
             <Introduction />
             <CreativeProcess />
             <NeedofSp />
@@ -56,8 +57,11 @@ export default function Home() {
            <Education/>
             <ContactForm />
             <WhatsAppButton />
-            <div className="bg-[#3b82f6] w-[100%] text-center">Portfolio is currently in development phase<br/>Projects,Education Sections and Blogs page <br/>and many more features are coming soon</div>
           </div>
+          <Footer/>
+
+          <div className="bg-[#3b82f6] w-[100%] text-center">Portfolio is currently in development phase<br/>Projects,Education Sections and Blogs page <br/>and many more features are coming soon</div>
+
         </main>
       )}
     </>
