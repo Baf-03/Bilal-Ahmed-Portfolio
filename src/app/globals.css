@@ -112,19 +112,18 @@ body{
     border-radius: 6px; /* roundness of the thumb */
 }
 
-.typereff {
-  animation: typing 2s linear forwards;
-}
+
 
 .backgroundcard{
   background-image: url("https://static.vecteezy.com/system/resources/thumbnails/000/598/557/small/polymesh10-08-01.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
-@keyframes typing {
-  from { width: 0; }
-}
 
+.smooth{
+  white-space: nowrap;
+  transition: all 0.5s ease;
+}
 /* .icons{
   animation: pulse 2s infinite;
 } */

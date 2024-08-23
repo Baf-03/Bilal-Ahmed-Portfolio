@@ -1,37 +1,47 @@
 import React from "react";
 import Image from "next/image";
+import design from "../../../../public/design.png"
+import prototype from "../../../../public/prototype.png"
+import planning from "../../../../public/planning.png"
+import development from "../../../../public/development.png"
+import seo from "../../../../public/seo.png"
+import deploy from "../../../../public/deploy.png"
+
+
+
+
 
 const CreativeProcess = () => {
   const process = [
     {
       name: "01. Planning",
       para: "We study your idea to outline the best strategy and choose the most appropriate digital solutions.",
-      img: "https://eiharold.com/wp-content/uploads/2022/02/icon-planejamento.png",
+      img: planning,
     },
     {
       name: "02. Prototyping",
       para: "We study your idea to outline the best strategy and choose the most appropriate digital solutions.",
-      img: "https://eiharold.com/wp-content/uploads/2022/02/icon-prototipagem.png",
+      img: prototype,
     },
     {
       name: "03. Design",
       para: "We study your idea to outline the best strategy and choose the most appropriate digital solutions.",
-      img: "https://eiharold.com/wp-content/uploads/2022/02/icone-design-2.png",
+      img: design,
     },
     {
       name: "04. Development",
       para: "We study your idea to outline the best strategy and choose the most appropriate digital solutions.",
-      img: "https://eiharold.com/wp-content/uploads/2022/02/icone-desenvolvimento-2.png",
+      img: development,
     },
     {
       name: "05. SEO and Metrics",
       para: "We study your idea to outline the best strategy and choose the most appropriate digital solutions.",
-      img: "https://eiharold.com/wp-content/uploads/2022/02/icon-seo.png",
+      img: seo,
     },
     {
       name: "06. Launch",
       para: "We study your idea to outline the best strategy and choose the most appropriate digital solutions.",
-      img: "https://eiharold.com/wp-content/uploads/2022/02/icon-lancamento-2.png",
+      img:deploy,
     },
   ];
   return (
@@ -68,6 +78,7 @@ const CreativeProcess = () => {
                     layout="responsive"
                     width={0}
                     height={0}
+                    className="hover:-translate-y-2 transition-transform duration-200"
                   />
                 </div>
                 <h2 className="font-bold">{element.name}</h2>
