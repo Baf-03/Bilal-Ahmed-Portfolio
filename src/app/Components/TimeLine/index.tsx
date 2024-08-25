@@ -13,6 +13,7 @@ interface expInt {
 }
 
 export default function ActivitiesTimeline() {
+
   const experience = [
     {
       comp_name: "Solar Citizen",
@@ -92,7 +93,7 @@ export default function ActivitiesTimeline() {
       if (document.hidden) {
         document.title = "Come back! We miss you!";
       } else {
-        document.title = "Hey,Bilal! - Mern Stack Developer";
+        document.title = "Hey,Bilal! - Software Engineer - Mern Stack -FrontEnd Developer-Backend Developer";
       }
     };
 
@@ -108,9 +109,9 @@ export default function ActivitiesTimeline() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          document.title = "Experience Timeline - Web Developer | Bilal Ahmed";
+          document.title = "Experience Timeline - Web Developer-Software Engineer | Bilal Ahmed";
         } else {
-          document.title = "Hey,Bilal! - Mern Stack Developer";
+          document.title = "Bilal Ahmed - Software Engineer -Mern Stack Developer - Karachi, PK"
         }
       },
       {
@@ -143,6 +144,8 @@ export default function ActivitiesTimeline() {
           name="keywords"
           content="experience timeline, professional experience, web developer, React, Next.js, Tailwind CSS, MUI, Express.js, MongoDB"
         />
+        <link rel="icon" type="image/png" href="/public/favicon.png" />
+
       </Head>
       <h1 ref={titleRef} className="text-center backgroundimage text-[2rem] md:text-[3rem] font-bold mb-5"> Experience </h1>      <div className="flex flex-col items-center gap-10 text-black">
         {experience.map((exp: expInt, index) => (

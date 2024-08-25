@@ -12,15 +12,17 @@ function LandingPage() {
   return (
     <>
       <Head>
-        <title>Bilal Ahmed - Web Developer | Karachi, PK</title>
+        <title>Bilal Ahmed - Software Engineer | Karachi, PK</title>
         <meta
           name="description"
-          content="Bilal Ahmed is a skilled web developer based in Karachi, Pakistan. Explore his portfolio and services. Available for jobs."
+          content="Bilal Ahmed is a skilled Software Engineer based in Karachi, Pakistan. Explore his portfolio and services. Available for jobs."
         />
         <meta
           name="keywords"
           content="Bilal Ahmed, web developer, Karachi, Pakistan, portfolio, services, jobs"
         />
+      <link rel="icon" type="image/png" href="/public/favicon.png" />
+
       </Head>
 
       <div

@@ -82,7 +82,7 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
             }}
           >
             <span className="absolute text-[0.8rem]">
-              &lt; <strong>Mern Stack developer</strong> /&gt;
+              &lt; <strong>Software Engineer</strong> /&gt;
             </span>
           </Typography>
           <Box

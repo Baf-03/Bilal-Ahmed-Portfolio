@@ -1,4 +1,5 @@
-"use client";import { useEffect, useState } from "react";
+"use client";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import Script from "next/script";
 import ResponsiveAppBar from "./Components/Navbar";
@@ -23,7 +24,7 @@ export default function RootLayout({
     setLoading(false);
 
     // Function to update cursor position state
-    const handleMouseMove = (event:any) => {
+    const handleMouseMove = (event: any) => {
       setCursorPos({ x: event.clientX, y: event.clientY });
     };
 
@@ -39,12 +40,27 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
-        <title>Bilal Ahmed - Web Developer | Karachi, PK</title>
-        <meta name="description" content="Explore Bilal Ahmed's portfolio and services. Available for jobs in Karachi, Pakistan." />
-        <meta name="keywords" content="Bilal Ahmed, web developer, Karachi, Pakistan, portfolio, services, jobs" />
-      <meta name="google-site-verification" content="zRMU4cUsJk5Ltp6zoO6Ms3VngYPKOr1Tf0LZzYL5JSY" />
+        <title>
+          Bilal Ahmed - Software Engineer -Mern Stack Developer - Karachi, PK
+        </title>
+        <meta
+          name="keywords"
+          content="Bilal Ahmed, software engineer, web developer, Karachi, Pakistan, portfolio, services, jobs"
+        />
+        <meta
+          name="description"
+          content="Bilal Ahmed, a certified MERN Stack Developer based in Karachi, PK. Experienced in full-stack development and web applications."
+        />
+        <meta
+          name="google-site-verification"
+          content="zRMU4cUsJk5Ltp6zoO6Ms3VngYPKOr1Tf0LZzYL5JSY"
+        />
+        <link rel="icon" type="image/png" href="/public/favicon.png" />
       </Head>
-      <Script src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_G_TAG}`} strategy="afterInteractive" />
+      <Script
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_G_TAG}`}
+        strategy="afterInteractive"
+      />
       <Script
         id="google-analytics"
         strategy="afterInteractive"
@@ -59,7 +75,11 @@ export default function RootLayout({
           `,
         }}
       />
-      <body className={`transition-colors duration-500 ${darkmode ? "bg-[#1c1e21] text-white" : "bg-[#e7e5e4]"}`}>
+      <body
+        className={`transition-colors duration-500 ${
+          darkmode ? "bg-[#1c1e21] text-white" : "bg-[#e7e5e4]"
+        }`}
+      >
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           {loading ? (
             <div className="w-100 h-[100vh] bg-gray-800 flex justify-center items-center">
@@ -71,16 +91,15 @@ export default function RootLayout({
               {children}
               <div
                 style={{
-                  position: 'fixed',
-                  left: cursorPos.x + 'px',
-                  top: cursorPos.y + 'px',
-                  width: '20px',
-                  height: '20px',
-                  borderRadius: '50%',
+                  position: "fixed",
+                  left: cursorPos.x + "px",
+                  top: cursorPos.y + "px",
+                  width: "20px",
+                  height: "20px",
+                  borderRadius: "50%",
                   // backgroundColor: 'rgba(255, 255, 255, 0.7)',
-                  pointerEvents: 'none',
-                  transform: 'translate(-50%, -50%)',
-                  
+                  pointerEvents: "none",
+                  transform: "translate(-50%, -50%)",
                 }}
                 className="bg-[#3b82f6] opacity-[0.8]  hidden md:block"
               />

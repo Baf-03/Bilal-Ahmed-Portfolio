@@ -42,9 +42,9 @@ const TechUsed = () => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          document.title = "Technologies Used - Web Developer | Bilal Ahmed";
+          document.title = "Technologies Used - Engineer | Bilal Ahmed | Mern Stack";
         } else {
-          document.title = "Hey,Bilal! - Mern Stack Developer";
+          document.title = "Hey,Bilal! - Software Engineer - Mern Stack Developer";
         }
       },
       {
