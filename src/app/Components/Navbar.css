@@ -455,6 +455,29 @@
     color: #fff;
 }
 
+.text { 
+    text-transform: uppercase; 
+    background-image: linear-gradient(to right, white,  #3b82f6, rgb(86, 84, 238), white); 
+    -webkit-background-clip: text; 
+    background-clip: text; 
+    font-size: 20px; 
+    padding-left: 15px; 
+    color: rgba(0,0,0,0); 
+    background-size: 300%; 
+    background-position: -100%; 
+    animation: animatedText 5s infinite alternate-reverse; 
+    position: relative;
+} 
+
+
+@keyframes animatedText{ 
+	100% {  
+		background-position: 100%; 
+		background-position-x: 100%; 
+		background-position-y: center; 
+	}  
+  
+  } 
   
   @media screen and (max-width: 580px) {
 	:root {

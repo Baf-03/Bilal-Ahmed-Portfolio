@@ -81,7 +81,7 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
               textDecoration: "none",
             }}
           >
-            <span className="absolute text-[0.8rem]">
+            <span className="absolute text-[1rem] text">
               &lt; <strong>Software Engineer</strong> /&gt;
             </span>
           </Typography>
@@ -153,8 +153,8 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
               textDecoration: "none",
             }}
           >
-            <span className="text-[0.8rem] text-center m-auto">
-              &lt; <strong>Mern Stack dev</strong> /&gt;
+            <span className="text-[0.9rem] text-center m-auto text">
+              &lt; <strong>Software Engineer</strong> /&gt;
             </span>
           </Typography>
           <Box sx={{ display: { xs: "block", md: "none" } }}>
