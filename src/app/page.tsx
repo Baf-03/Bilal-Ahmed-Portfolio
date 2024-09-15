@@ -46,7 +46,7 @@ export default function Home() {
       ) : (
         <main className={`transition-colors duration-500 }`}>
           {/* <ResponsiveAppBar s_dm={setDarkMode} dm={darkmode} /> */}
-          <div className="w-[98%] lg:w-[94%] xl:w-[85%] m-auto flex flex-col gap-12 justify-center items-center  mt-2 ">
+          <div className="w-[98%] lg:w-[94%] xl:w-[90vw] m-auto flex flex-col gap-12 justify-center items-center  mt-2 ">
             <Introduction />
             <CreativeProcess />
             <NeedofSp />

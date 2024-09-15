@@ -3,8 +3,8 @@ import React from "react";
 import rocket from "../../../../public/rocket.png"
 const NeedofSp = () => {
   return (
-    <div className="text-black w-[95vw] p-4 sm:p-8 sm:w-[80vw] md:w-[65vw] flex flex-wrap justify-center gap-[3%] items-center bg-gradient-to-r from-[#a0bff1] to-[#4b92f6] mb-12 rounded-2xl shadow-lg">
-      <div className="w-[45%] sm:w-[40%] md:w-[30%] lg:w-[25%] xl:w-[15%] mt-4 sm:mt-0">
+    <div className="text-black w-[95vw] p-4 sm:p-8 sm:w-[80vw] md:w-[70vw]  flex flex-wrap xl:flex-nowrap justify-center gap-[3%] lg:gap-0 items-center bg-gradient-to-r from-[#a0bff1] to-[#4b92f6] mb-12 rounded-2xl shadow-lg">
+      <div className="w-[45%] sm:w-[40%] md:w-[30%] lg:w-[25%] xl:w-[15%] mt-4 sm:mt-0 ">
         <Image
           src={rocket}
           alt="bilal portfolio"

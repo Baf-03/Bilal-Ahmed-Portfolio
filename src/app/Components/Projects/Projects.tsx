@@ -174,7 +174,7 @@ const Projects: React.FC = () => {
             backgroundImage: `url(${"https://muhammad-ausaf-jamal.vercel.app/assets/h2_project_shape-RQDOSgKC.png"})`,
           }}
         >
-          <div className="projects flex flex-col w-[90%] lg:gap-5 flex-wrap items-center lg:p-8 m-auto">
+          <div className="projects  flex flex-col w-[90%] lg:gap-5 flex-wrap items-center lg:p-8 m-auto">
             <div className="text-center">
               <h2 className="backgroundimage text-[2rem] text-center md:text-[3rem] font-bold">
                 Development Showcase
@@ -184,7 +184,7 @@ const Projects: React.FC = () => {
               {projectLimit.map((product: Project, index: number) => (
                 <div
                   key={index}
-                  className="w-[350px] md:w-[300px] lg:w-[300px] xl:w-[400px] rounded-lg transform hover:scale-105 transition-transform duration-300"
+                  className="w-[350px] md:w-[300px] lg:w-[300px] xl:w-[23vw] rounded-lg transform hover:scale-105 transition-transform duration-300"
                 >
                   <div className="relative rounded-2xl overflow-hidden shadow-lg">
                   <Image
