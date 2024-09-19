@@ -40,7 +40,7 @@ const TyperEffect = () => {
     }, [wordIndex, letterIndex, isRemoving, typingSpeed]);
 
     return (
-        <div className='text-[1.8rem] lg:text-[2.5rem] xl:text-[3rem] h-[5rem] lg:h-[7rem] xl:h-[9rem]'>
+        <div className='text-[1.8rem] lg:text-[2.5rem] xl:text-[3rem] h-[5rem] lg:h-[7rem] xl:h-[9rem] 3xl:text-[4.2rem] 3xl:mb-9'>
             I like creating
             <span className="text-[#3b82f6] flex smooth w-[200px]">{word}| websites</span>
            

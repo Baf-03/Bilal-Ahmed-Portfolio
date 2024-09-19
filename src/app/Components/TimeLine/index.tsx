@@ -149,9 +149,9 @@ export default function ActivitiesTimeline() {
       </Head>
       <h1 ref={titleRef} className="text-center backgroundimage text-[2rem] md:text-[3rem] font-bold mb-5"> Experience </h1>      <div className="flex flex-col items-center gap-10 text-black">
         {experience.map((exp: expInt, index) => (
-          <div key={index} className="h-[100%] w-[100%]">
-            <div className=" w-[90%] flex flex-col md:flex-row gap-5 md:items-center  px-3 py-10 sm:p-10 md:p-[30px] lg:p-[50px] rounded-xl border border-blue-gray-50 bg-[#dcdada] mx-auto">
-              <div className="w-[35%] sm:w-[25%] md:w-[20%] lg:w-[15%] xl:w-[8%] mx-auto">
+          <div key={index} className="h-[100%] w-[100%] 3xl:w-[70%] 3xl:text-[1.5rem]">
+            <div className=" w-[90%] flex flex-col md:flex-row gap-5 md:items-center  px-3 py-10 sm:p-10 md:p-[30px] lg:p-[50px] rounded-xl border border-blue-gray-50 bg-[#dcdada]  mx-auto">
+              <div className="w-[35%] sm:w-[25%] md:w-[20%] lg:w-[15%] xl:w-[8%]  mx-auto">
                 <Image
                   src={exp.imgurl}
                   alt="bilal portfolio"

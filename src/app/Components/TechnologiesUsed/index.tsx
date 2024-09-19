@@ -104,8 +104,8 @@ const TechUsed = () => {
         />
       </Head>
 
-      <div className="flex flex-col justify-center w-[96%] lg:w-full m-auto mb-9 gap-5">
-        <h2 className="backgroundimage text-[2rem] text-center md:text-[3rem] font-bold">
+      <div className="flex flex-col justify-center w-[96%] lg:w-full m-auto mb-9 gap-5 3xl:text-[1.5rem] ">
+        <h2 className="backgroundimage text-[2rem] text-center md:text-[3rem] 3xl:text-[4.5rem] font-bold">
           Technologies Used
         </h2>
         <p className="m-auto text-center border-l border-dotted border-[#3b82f6] pl-2 xl:w-[70%]">
@@ -126,16 +126,16 @@ const TechUsed = () => {
               className="Card w-[95%] sm:w-[60%] md:w-[45%] lg:w-[30%] p-4 shadow-lg rounded-2xl flex flex-col"
             >
               <div className="flex flex-col items-center w-full py-5">
-                <h2 className="font-bold text-[1.5rem] text-[#3b82f6]">
+                <h2 className="font-bold text-[1.5rem] 3xl:text-[2.4rem] text-[#3b82f6]">
                   {element.name}
                 </h2>
-                <p className="w-[85%] mx-auto text-center">{element.para}</p>
+                <p className="w-[85%] mx-auto text-center 3xl:text-[1.5rem]">{element.para}</p>
               </div>
-              <div className="p-2 text-[0.9rem] flex flex-wrap gap-2 font-bold mt-2">
+              <div className="p-2 text-[0.9rem] 3xl:text-[1.5rem] 3xl:p-4 flex flex-wrap gap-2 font-bold mt-2">
                 {element.option.map((feature, idx) => (
                   <span
                     key={idx}
-                    className="bg-blue-100 text-blue-800 px-3 py-1 rounded-full"
+                    className="bg-blue-100 text-blue-800 px-3 3xl:px-5 py-1 3xl:py-3 rounded-full"
                   >
                     {feature}
                   </span>

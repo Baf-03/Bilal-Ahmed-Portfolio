@@ -176,15 +176,15 @@ const Projects: React.FC = () => {
         >
           <div className="projects  flex flex-col w-[90%] lg:gap-5 flex-wrap items-center lg:p-8 m-auto">
             <div className="text-center">
-              <h2 className="backgroundimage text-[2rem] text-center md:text-[3rem] font-bold">
+              <h2 className="backgroundimage text-[2rem] text-center md:text-[3rem] 3xl:text-[4.2rem] font-bold">
                 Development Showcase
               </h2>
             </div>
-            <div className="flex w-[100%] gap-5 lg:gap-[3rem] flex-wrap justify-center bg-fixed p-5 mt-5">
+            <div className="flex w-[100%] gap-5 lg:gap-[3rem] 3xl:gap-[4rem] flex-wrap justify-center bg-fixed p-5 3xl:text-[p-7] mt-5">
               {projectLimit.map((product: Project, index: number) => (
                 <div
                   key={index}
-                  className="w-[350px] md:w-[300px] lg:w-[300px] xl:w-[23vw] rounded-lg transform hover:scale-105 transition-transform duration-300"
+                  className="w-[350px] md:w-[300px] lg:w-[300px] xl:w-[23vw] 3xl:w-[24vw] rounded-lg transform hover:scale-105 transition-transform duration-300"
                 >
                   <div className="relative rounded-2xl overflow-hidden shadow-lg">
                   <Image
@@ -198,17 +198,17 @@ const Projects: React.FC = () => {
                       <Image
                         alt={product.img}
                         src={product.img}
-                        className="h-[15rem] rounded-lg object-cover hover:opacity-[0.6]"
+                        className="h-[15rem] 3xl:h-[25rem] rounded-lg object-cover hover:opacity-[0.6]"
                         width={200}
                         height={200}
                         objectFit="cover"
                         objectPosition="center"
                       />
-                    <div className="glass-effect cardprojects absolute bottom-0 bg-[#3b82f6] bg-opacity-80 p-4 w-[100%] text-center text-white font-bold capitalize text-[1.5rem]">
+                    <div className="glass-effect cardprojects absolute bottom-0 bg-[#3b82f6] bg-opacity-80 p-4 w-[100%] text-center text-white font-bold capitalize text-[1.5rem] 3xl:text-[3rem]">
                       {product.ProjectName}
                     </div>
                   </div>
-                  <div className="md:min-h-[12vh] m-2 text-[0.9rem] text-center">
+                  <div className="md:min-h-[12vh] m-2 text-[0.9rem] 3xl:text-[1.5rem] text-center">
                     {product.Description}
                   </div>
                   <div className="flex gap-2 justify-center pb-3">
@@ -216,7 +216,7 @@ const Projects: React.FC = () => {
                       <a href={product.linkCode} target="_blank">
                         <Button
                           variant="contained"
-                          className="bg-[#3b82f6] p-3 rounded-2xl hover:bg-[#285fbf] transition-colors duration-300"
+                          className="bg-[#3b82f6] p-3 rounded-2xl 3xl:text-[1.5rem] hover:bg-[#285fbf] transition-colors duration-300"
                         >
                           View Code
                         </Button>
@@ -226,7 +226,7 @@ const Projects: React.FC = () => {
                       <a href={product.linkSite} target="_blank">
                         <Button
                           variant="contained"
-                          className="bg-[#3b82f6] p-3 rounded-2xl hover:bg-[#285fbf] transition-colors duration-300"
+                          className="bg-[#3b82f6] 3xl:text-[1.5rem] p-3 rounded-2xl hover:bg-[#285fbf] transition-colors duration-300"
                         >
                           View Site
                         </Button>
@@ -234,7 +234,7 @@ const Projects: React.FC = () => {
                     ) : (
                       <Button
                         variant="contained"
-                        className="bg-gray-300 p-3 cursor-not-allowed rounded-2xl"
+                        className="bg-gray-300  3xl:text-[1.5rem] p-3 cursor-not-allowed rounded-2xl"
                         disabled
                       >
                         Site Not Available

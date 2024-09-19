@@ -13,8 +13,8 @@ const NeedofSp = () => {
           height={200}
         />
       </div>
-      <div className="w-[100%] lg:w-[80%] xl:w-[60%] p-2 sm:p-7 flex flex-col gap-1 text-center lg:text-left">
-        <h2 className="font-bold text-[1.5rem] mt-3 sm:mt-0 sm:text-[2rem] text-gray-800">
+      <div className="w-[100%] lg:w-[80%] xl:w-[60%] p-2 sm:p-7 flex flex-col gap-1 text-center lg:text-left 3xl:text-[1.5rem]">
+        <h2 className="font-bold text-[1.5rem] mt-3 sm:mt-0 sm:text-[2rem] text-gray-800 3xl:text-[3.4rem] ">
           Are you in need of a <span className="text-white">sales page</span>{" "}
           ?
         </h2>

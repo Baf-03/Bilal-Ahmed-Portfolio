@@ -45,11 +45,11 @@ const CreativeProcess = () => {
     },
   ];
   return (
-    <div className=" relative p-2 w-[100%] md:w-[85%] mx-auto">
-      <h2 className="backgroundimage text-[2rem] text-center md:text-[3rem] font-bold">
+    <div className=" relative p-2 w-[100%] md:w-[85%] mx-auto ">
+      <h2 className="backgroundimage text-[2rem] text-center md:text-[3rem] 3xl:text-[4.2rem] font-bold">
         Creative Process
       </h2>
-      <p className="w-[90%] md:w-[85%] mt-9 md:border-l md:border-dotted md:border-[#3b82f6] ps-2">
+      <p className="w-[90%] md:w-[85%] 3xl:text-[1.5rem] mt-9 md:border-l md:border-dotted md:border-[#3b82f6] ps-2">
         Creating a digital solution{" "}
         <span className="text-[#3b82f6] font-bold">
           is not as simple as it seems
@@ -66,7 +66,7 @@ const CreativeProcess = () => {
           return (
             <div
               key={index}
-              className={`relative flex items-center text-center p-4 md:border-dotted md:border-[#3b82f6] ${
+              className={`relative flex 3xl:text-[1.5rem] items-center text-center p-4 md:border-dotted md:border-[#3b82f6] ${
                 !isLastRow ? "md:border-b" : ""
               } ${!isLastCol ? "md:border-r" : ""}`}
             >

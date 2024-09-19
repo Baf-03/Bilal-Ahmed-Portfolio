@@ -39,20 +39,20 @@ function LandingPage() {
           data-aos-offset="300"
           data-aos-easing="ease-in-sine"
         >
-          <h3 className="text-highlight">WELCOME TO MY WORLD</h3>
+          <h3 className="text-highlight 3xl:text-[1.2rem]">WELCOME TO MY WORLD</h3>
           <h1 className="font-bold mt-3 text-[1.8rem] lg:text-[2.5rem] xl:text-[3rem] text-highlight">
-            <div className="flex text-[1.8rem] md:text-[2.5rem] lg:text-[2rem] xl:text-[2.5rem]">
+            <div className="flex text-[1.8rem] md:text-[2.5rem] lg:text-[2rem] xl:text-[2.5rem] 3xl:text-[4.2rem]">
               Hi,
             </div>{" "}
-            <span className="imintro">I&#39;m </span>
-            <span className="backgroundimage">
+            <span className="imintro 3xl:text-[4rem]">I&#39;m </span>
+            <span className="backgroundimage 3xl:text-[4.2rem]">
               <strong className="font-bold">Bilal Ahmed</strong>
             </span>
           </h1>
-          <div className="flex font-bold text-[3rem] text-highlight">
+          <div className="flex font-bold text-[3rem] 3xl:text-[4.2rem] text-highlight">
             <TyperEffect />
           </div>
-          <div className="w-[90%] text-[0.85rem] font-[20] pt-5 text-start md:pe-5 md:m-0 md:break-normal xl:text-[0.9rem] md:w-[90%] leading-6 text-highlight">
+          <div className="w-[90%] text-[0.85rem] font-[20] pt-5 text-start md:pe-5 md:m-0 md:break-normal xl:text-[0.9rem] 3xl:text-[1.5rem] md:w-[90%] leading-6 3xl:leading-10 text-highlight 3xl:mt-3">
             Hello! I&#39;m <strong className="font-bold text-primary">Bilal</strong>
             , a certified{" "}
             <strong className="font-bold text-primary">Web Developer</strong>{" "}
@@ -70,7 +70,7 @@ function LandingPage() {
             <strong className="font-bold text-primary">
               cutting-edge solutions.
             </strong>
-            <div className="mt-5 flex gap-5">
+            <div className="mt-5 flex gap-5 ">
               <div className="flex gap-2 items-center text-primary">
                 <FaLocationDot />
                 <strong className="font-bold text-highlight">Karachi, PK</strong>
@@ -81,14 +81,14 @@ function LandingPage() {
               </div>
             </div>
 
-            <div className="flex gap-6 mt-[15%] items-center text-[2rem] md:text-[3rem] lg:gap-11">
+            <div className="flex gap-6 mt-[15%] items-center text-[2rem] md:text-[3rem] 3xl:text-[4.2rem]  lg:gap-11">
               <SocialLinks />
             </div>
           </div>
         </div>
 
-        <div className="imageside mt-10 w-[70%]  flex justify-center relative rounded-lg ml-[5%] lg:mt-0 sm:w-[50%] md:w-[40%] lg:w-[45%] xl:w-[35%] lg:min-h-[25rem]">
-          <div className="w-full h-[16rem]  rounded-lg overflow-hidden">
+        <div className="imageside mt-10 w-[70%]  flex justify-center relative rounded-lg ml-[5%] lg:mt-0 sm:w-[50%] md:w-[40%] lg:w-[45%] xl:w-[35%] lg:min-h-[25rem] 3xl:min-h-[45rem]">
+          <div className="w-full h-[16rem] 3xl:h-[30rem]  rounded-lg overflow-hidden">
             <Image
               src={coverimg}
               alt="bilal portfolio"
@@ -97,7 +97,7 @@ function LandingPage() {
               className="dark-theme-img"
             />
           </div>
-          <div className="floating-icons">
+          <div className="floating-icons ">
             <div className="icon icon1"></div>
             <div className="icon icon2"></div>
             <div className="icon icon3"></div>

@@ -469,6 +469,60 @@
     position: relative;
 } 
 
+@media (min-height: 1358px) {
+	strong{
+		font-size: 2rem;
+	}
+	.text { 
+		text-transform: uppercase; 
+		background-image: linear-gradient(to right, white,  #3b82f6, rgb(86, 84, 238), white); 
+		-webkit-background-clip: text; 
+		background-clip: text; 
+		font-size: 20px; 
+		padding-left: 15px; 
+		color: rgba(0,0,0,0); 
+		background-size: 300%; 
+		background-position: -100%; 
+		animation: animatedText 5s infinite alternate-reverse; 
+		position: relative;
+		padding: 0;
+		margin: 0;
+		left: -500px;
+	} 
+	.navbar__link{
+		font-size: 1.6rem;
+		width: 15rem;
+	}
+	.mui-19r6kue-MuiContainer-root {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		gap: 20rem;
+		width: 80vw;
+	}
+	
+	.header {
+		position: sticky;
+		top: 0;
+		left: 0;
+		right: 0;
+		padding: 0 1rem;
+		box-shadow: 0 0 40px rgba(0, 0, 0, 0.03);
+		height: 5rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap:10rem;
+   }
+	.navbar {
+		display: flex;
+		align-items: center;
+		height: 100%;
+		margin: 0 auto;
+		overflow: hidden;
+		justify-content: space-between;
+   }
+  }
 
 @keyframes animatedText{ 
 	100% {  

@@ -55,10 +55,10 @@ const ContactForm = () => {
 
   return (
     <div id="connect" className="z-[2]">
-      <h2 className="backgroundimage text-[2rem] text-center  md:text-[3rem] font-bold">
+      <h2 className="backgroundimage text-[2rem] text-center  md:text-[3rem] 3xl:text-[4.2rem]  font-bold">
         Contact Us
       </h2>
-      <div className="w-[90%] md:w-[80%] flex flex-col sm:flex-row gap-3 text-black mb-[50px] border border-dotted border-[#3b82f6] p-8 m-auto mt-3 rounded-lg shadow-lg ">
+      <div className="w-[90%] md:w-[80%] flex flex-col sm:flex-row gap-3  mb-[50px] border border-dotted border-[#3b82f6] p-8 m-auto mt-3 rounded-lg shadow-lg ">
         <section className="flex flex-col items-center w-[100%] sm:w-[50%] gap-5">
           <div className="w-[20%] animate-pulse">
             <Image
@@ -69,10 +69,10 @@ const ContactForm = () => {
               height={200}
             />
           </div>
-          <h2 className="text-[1.5rem] font-bold text-white">
+          <h2 className="text-[1.5rem] 3xl:text-[2.5rem]  font-bold ">
             Let <span className="text-[#3b82f6]">{"'s chat "}</span>?
           </h2>
-          <p className="text-center text-gray-300 sm:w-[80%]">
+          <p className="text-center text-gray-300 sm:w-[80%] 3xl:text-[1.5rem] ">
             Did you like my work? Do you want to hire a service, make a proposal
             or send me feedback? Contact! You can use the form or speak via
             WhatsApp.
@@ -80,16 +80,16 @@ const ContactForm = () => {
           <a
             href="https://wa.link/zlze49"
             target="_blank"
-            className="w-[200px] border border-[#3b82f6] bg-[#3b82f6] hover:bg-[#2563eb] flex justify-center items-center text-white p-3 rounded-lg cursor-pointer lg:text-[1rem] shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out"
+            className="w-[200px] border border-[#3b82f6] bg-[#3b82f6] hover:bg-[#2563eb] flex justify-center items-center  p-3 rounded-lg cursor-pointer lg:text-[1rem] shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out 3xl:text-[1.5rem] text-center"
           >
             Discuss on Whatsapp
           </a>
         </section>
         <section className="flex gap-3 flex-col w-[100%] sm:w-[50%] p-3 items-center justify-center">
-          <h2 className="text-[1.5rem] font-bold text-center sm:text-start text-white">
+          <h2 className="text-[1.5rem] font-bold text-center sm:text-start 3xl:text-[2.5rem]  ">
             Contact Form
           </h2>
-          <div className="w-[100%]">
+          <div className="w-[100%] 3xl:text-[1.5rem] ">
             <input
               onChange={(e) => setName(e.target.value)}
               type="text"
@@ -99,7 +99,7 @@ const ContactForm = () => {
                 loading === "Loading" ||
                 loading === "You submitted your record successfully"
               }
-              className="block bg-gray-800 w-full px-3 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-[#3b82f6] text-white"
+              className="block bg-gray-800 w-full px-3 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-[#3b82f6] "
             />
           </div>
 
@@ -113,7 +113,7 @@ const ContactForm = () => {
                 loading === "Loading" ||
                 loading === "You submitted your record successfully"
               }
-              className="block bg-gray-800 w-full px-3 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-[#3b82f6] text-white"
+              className="block bg-gray-800 w-full px-3 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-[#3b82f6] "
             />
           </div>
 
@@ -122,7 +122,7 @@ const ContactForm = () => {
               onChange={(e) => setTextarea(e.target.value)}
               name="message"
               placeholder="Enter text..."
-              className="w-full h-24 px-3 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-[#3b82f6] bg-gray-800 text-white resize-none"
+              className="w-full h-24 px-3 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-[#3b82f6] bg-gray-800  resize-none"
               required
               disabled={
                 loading === "Loading" ||
@@ -133,7 +133,7 @@ const ContactForm = () => {
           {emailError && <div className="text-[#f87171]">{emailError}</div>}
           <button
             onClick={submitHandler}
-            className="w-[200px] border bg-[#3b82f6] hover:bg-[#2563eb] border-[#3b82f6] flex justify-center items-center text-white p-3 rounded-lg cursor-pointer lg:text-[1rem] shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out"
+            className="w-[200px] border bg-[#3b82f6] hover:bg-[#2563eb] border-[#3b82f6] flex justify-center items-center  p-3 rounded-lg cursor-pointer lg:text-[1rem] 3xl:text-[1.5rem] shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out"
             disabled={
               loading === "Loading" ||
               loading === "You submitted your record successfully"

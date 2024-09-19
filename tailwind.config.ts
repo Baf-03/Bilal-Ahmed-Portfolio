@@ -13,6 +13,9 @@ const config: Config = withMT({
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      screens: {
+        '3xl': '2020px',  // You can set this to any pixel value
+      },
     },
   },
   plugins: [

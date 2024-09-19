@@ -202,13 +202,13 @@ const Skills = () => {
         <div className="hidden lg:flex flex-wrap justify-center gap-10 sm:w-[85%] lg:w-[85%] xl:w-[85%] p-5">
           {skills.map((element, index) => (
             <div
-              className={`flex flex-wrap flex-col gap-3 items-center bg-gray-900 p-10 sm:p-9 md:p-8 lg:p-7 xl:p-5 rounded-md w-[12rem] sm:w-[11rem] md:w-[20vw] lg:w-[15vw] m-auto justify-center ${element.color} hover:text-[#3b82f6]`}
+              className={`flex flex-wrap flex-col gap-3 items-center bg-gray-900 p-10 sm:p-9 md:p-8 lg:p-7 xl:p-5 rounded-md w-[12rem] sm:w-[11rem] md:w-[20vw] lg:w-[15vw] m-auto justify-center ${element.color} hover:text-[#3b82f6] `}
               key={index}
             >
-              <div className="hover:-translate-y-2 transition-transform duration-200 text-[2.2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[4rem]">
+              <div className="hover:-translate-y-2 transition-transform duration-200 text-[2.2rem] sm:text-[2.5rem] md:text-[3rem] lg:text-[4rem] 3xl:text-[6rem]">
                 <element.icon />
               </div>
-              <div className="text-center">{element.name}</div>
+              <div className="text-center 3xl:text-[1.5rem]">{element.name}</div>
             </div>
           ))}
         </div>
