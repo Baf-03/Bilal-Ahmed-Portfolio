@@ -470,7 +470,7 @@
 } 
 
 @media (min-height: 1358px) {
-	strong{
+	.text strong{
 		font-size: 2rem;
 	}
 	.text { 
@@ -488,6 +488,7 @@
 		padding: 0;
 		margin: 0;
 		left: -500px;
+		bottom:10px
 	} 
 	.navbar__link{
 		font-size: 1.6rem;
