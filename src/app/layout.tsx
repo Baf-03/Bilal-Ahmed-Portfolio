@@ -43,6 +43,10 @@ export default function RootLayout({
         <title>
           Bilal Ahmed - Software Engineer -Mern Stack Developer - Karachi, PK
         </title>
+
+        {/* Viewport meta tag */}
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <meta
           name="keywords"
           content="Bilal Ahmed, software engineer, web developer, Karachi, Pakistan, portfolio, services, jobs"
@@ -97,7 +101,6 @@ export default function RootLayout({
                   width: "20px",
                   height: "20px",
                   borderRadius: "50%",
-                  // backgroundColor: 'rgba(255, 255, 255, 0.7)',
                   pointerEvents: "none",
                   transform: "translate(-50%, -50%)",
                 }}
