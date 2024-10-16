@@ -58,6 +58,7 @@ const Footer: React.FC = () => {
         <p className="text-gray-500">
           &copy; {new Date().getFullYear()} Bilal Ahmed Baf-03. All rights reserved.
         </p>
+        <p>Happy coding, and may your APIs always respond with 200 OK! 💻🔥🚀</p>
       </div>
     </footer>
   );
