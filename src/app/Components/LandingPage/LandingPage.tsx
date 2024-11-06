@@ -56,7 +56,7 @@ function LandingPage() {
             Hello! I&#39;m <strong className="font-bold text-primary">Bilal</strong>
             , a certified{" "}
             <strong className="font-bold text-primary">Web Developer</strong>{" "}
-            with over a year of experience and currently enhancing my skills at
+            with over 2 years of experience and currently enhancing my skills at
             UBIT, Karachi University. My expertise includes{" "}
             <strong className="font-bold text-primary">
               ReactJS, Next.js, SQL, MongoDB, Expressjs, Nodejs, and many more
