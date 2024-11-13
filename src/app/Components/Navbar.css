@@ -456,7 +456,6 @@
 }
 
 .text { 
-    text-transform: uppercase; 
     background-image: linear-gradient(to right, white,  #3b82f6, rgb(86, 84, 238), white); 
     -webkit-background-clip: text; 
     background-clip: text; 
@@ -530,7 +529,6 @@
 		font-size: 2rem;
 	}
 	.text { 
-		text-transform: uppercase; 
 		background-image: linear-gradient(to right, white,  #3b82f6, rgb(86, 84, 238), white); 
 		-webkit-background-clip: text; 
 		background-clip: text; 
