@@ -17,6 +17,33 @@ interface Project {
 const Projects: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([
     {
+      ProjectName: "AxisLang",
+      Description: `AxisLang: Simplified Programming Language with Live Compiler`,
+      img: "/project.png",
+      linkCode: "",
+      linkSite: "https://axis-lang-uqc4.vercel.app/",
+      id: "1",
+      isshow: "false",
+    },
+    {
+      ProjectName: "Landing Pages using Gsap",
+      Description: `GSAP REACT HTML CSS`,
+      img: "/gsap.png",
+      linkCode: "",
+      linkSite: "",
+      id: "1",
+      isshow: "false",
+    },
+    {
+      ProjectName: "Full Stack Ecommerece App",
+      Description: `Shop.co is mady by using Reactjs ,Nestjs Postgres Sql`,
+      img: "/shopCo.png",
+      linkCode: "",
+      linkSite: "https://shop-co-iiyx.vercel.app/",
+      id: "1",
+      isshow: "false",
+    },
+    {
       ProjectName: "Food Recipe Sharing App",
       Description: `This project harmonizes React/Redux with Express.js/MongoDB, following MVC
         architecture on the backend. It integrates JWT for authentication, Cloudinary for
@@ -180,7 +207,7 @@ const Projects: React.FC = () => {
                 Development Showcase
               </h2>
             </div>
-            <div className="flex w-[100%] gap-5 lg:gap-[3rem] 3xl:gap-[4rem] flex-wrap justify-center bg-fixed p-5 3xl:text-[p-7] mt-5">
+            <div className="flex w-[100%] gap-5 lg:gap-[2rem] 3xl:gap-[4rem] flex-wrap justify-center bg-fixed p-5 3xl:text-[p-7] mt-5">
               {projectLimit.map((product: Project, index: number) => (
                 <div
                   key={index}
@@ -208,7 +235,7 @@ const Projects: React.FC = () => {
                       {product.ProjectName}
                     </div>
                   </div>
-                  <div className="md:min-h-[12vh] m-2 text-[0.9rem] 3xl:text-[1.5rem] text-center">
+                  <div className="md:min-h-[6vh] m-2 text-[0.9rem] 3xl:text-[1.5rem] text-center">
                     {product.Description}
                   </div>
                   <div className="flex gap-2 justify-center pb-3">
