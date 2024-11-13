@@ -1,21 +1,15 @@
-"use client";
-import * as React from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
-import Brightness4Icon from "@mui/icons-material/Brightness4";
-import { Link as ScrollLink } from "react-scroll";
+import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
-
+import { Link as ScrollLink } from "react-scroll";
+import { FaMoon, FaSun } from "react-icons/fa";
 import "./Navbar.css";
-import Link from "next/link";
 
 const pages = [
   { name: "About me", nav_id: "about" },
@@ -25,29 +19,19 @@ const pages = [
 ];
 
 interface Props {
-  s_dm: Function;
+  s_dm: (value: boolean) => void;
   dm: boolean;
 }
 
-function ResponsiveAppBar({ dm, s_dm }: Props) {
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-  const [darkMode, setDarkMode] = React.useState(dm);
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [darkMode, setDarkMode] = useState(dm);
 
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-    setIsMenuOpen(true);
+  const handleMenuToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleCloseNavMenu = (page?: string) => {
-    setAnchorElNav(null);
-    if (page) {
-      const targetId = page.replace(/\s+/g, "");
-      const targetElement = document.getElementById(targetId);
-      if (targetElement) {
-        targetElement.scrollIntoView({ behavior: "smooth" });
-      }
-    }
+  const closeMenu = () => {
     setIsMenuOpen(false);
   };
 
@@ -59,166 +43,120 @@ function ResponsiveAppBar({ dm, s_dm }: Props) {
 
   return (
     <AppBar
+      position="sticky"
+      sx={{ background: "transparent", color: darkMode ? "#fff" : "black" }}
       className={`transition-colors duration-500 sticky top-0 ${
         darkMode ? "bg-gray-800" : "bg-[#e7e5e4]"
       }`}
-      position="sticky"
-      sx={{ background: "transparent", color: darkMode ? "#fff" : "black" }}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".0rem",
-              color: darkMode ? "#fff" : "inherit",
-              textDecoration: "none",
-            }}
-          >
-            <span className="absolute text-[1rem] text">
-              &lt; <strong>Software Engineer</strong> /&gt;
-            </span>
-          </Typography>
-          <Box
-            sx={{
-              flexGrow: 1,
-              display: {
-                xs: "none",
-                md: "flex",
-                justifyContent: "center",
-              },
-            }}
-          >
-            <div className="header">
-              <nav className="navbar">
-                <ul
-                  className="navbar__menu"
-                  style={{ color: darkMode ? "#fff" : "inherit" }}
-                >
-                  {pages.map((page, index) => (
-                    <li key={index} className="navbar__item">
-                      <ScrollLink
-                        activeClass="active"
-                        to={page.nav_id}
-                        spy={true}
-                        smooth={true}
-                        offset={-70}
-                        duration={500}
-                      >
-                        <div
-                          className={`linktag navbar__link ${
-                            darkMode ? "text-white" : "text-black"
-                          }`}
-                        >
-                          {page?.name}
-                        </div>
-                      </ScrollLink>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            </div>
-          </Box>
-
-          <div className="toggle">
-            <input
-              type="checkbox"
-              id="btn"
-              checked={darkMode}
-              onChange={toggleDarkMode}
-            />
-            <label htmlFor="btn">
-              <span className="thumb"></span>
-            </label>
-            <div className="light"></div>
-          </div>
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".0rem",
-              color: darkMode ? "#fff" : "inherit",
-              textDecoration: "none",
-            }}
-          >
-            <span className="text-[0.9rem] text-center m-auto text">
-              &lt; <strong>Software Engineer</strong> /&gt;
-            </span>
-          </Typography>
-          <Box sx={{ display: { xs: "block", md: "none" } }}>
+          {/* Mobile Menu Icon */}
+          <Box sx={{ display: { xs: "flex", md: "none" }, position: "absolute", left: 0 }}>
             <IconButton
               size="large"
               aria-label="menu"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-              className="menu-icon"
+              onClick={handleMenuToggle}
+              className={`menu-icon ${isMenuOpen ? "open" : ""}`}
             >
-              <MenuIcon style={{ color: darkMode ? "#fff" : "#3b82f6" }} />
+              {isMenuOpen ? <CloseIcon /> : <MenuIcon style={{ color: darkMode ? "#fff" : "#3b82f6" }} />}
             </IconButton>
+          </Box>
 
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={() => handleCloseNavMenu()}
-              className={`${isMenuOpen ? "transparent-menu" : "opacity-0"} `}
-            >
+          {/* Title */}
+          <Typography
+            component="div"
+            className=" text-center w-[90vw] lg:w-fit ms-0 2xl:ms-[-3vw] 3xl:ms-[-8vw]"
+          >
+            <span className="text text-[1rem] ">
+              &lt; <strong>Software Engineer</strong> /&gt;
+            </span>
+          </Typography>
+
+          {/* Desktop Links */}
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: "center",
+              margin: "auto",
+            }}
+          >
+            <nav className="header navbar">
+              <ul className="navbar__menu" style={{ color: darkMode ? "#fff" : "black" }}>
+                {pages.map((page, index) => (
+                  <li key={index} className="navbar__item">
+                    <ScrollLink
+                      activeClass="active"
+                      to={page.nav_id}
+                      spy
+                      smooth
+                      offset={-70}
+                      duration={500}
+                      className={`linktag navbar__link ${darkMode ? "text-white" : "text-black"}`}
+                    >
+                      {page.name}
+                    </ScrollLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </Box>
+
+          {/* Dark Mode Toggle */}
+          <Box sx={{ display: "flex", alignItems: "center", justifyContent: { xs: "center", md: "flex-end" } }}>
+            <div className="toggle">
+              <input
+                type="checkbox"
+                className="checkbox"
+                id="checkbox"
+                checked={darkMode}
+                onChange={toggleDarkMode}
+              />
+              <label htmlFor="checkbox" className="checkbox-label">
+                <FaMoon color="#f1c40f" />
+                <FaSun color="#f39c12" />
+                <span className="ball"></span>
+              </label>
+            </div>
+          </Box>
+
+          {/* Mobile Drawer */}
+          <Box
+            className={`navbar-drawer ${isMenuOpen ? "open" : ""}`}
+            onClick={closeMenu}
+          >
+            <Box className="navbar-drawer-content" onClick={(e) => e.stopPropagation()}>
               <IconButton
-                onClick={() => handleCloseNavMenu()}
-                className="absolute top-3 right-3 text-white"
+                onClick={closeMenu}
+                className="drawer-close-button"
               >
                 <CloseIcon />
               </IconButton>
-              <div className="bg-transperent border mt-3 w-[80vw]">
+              <ul>
                 {pages.map((page, index) => (
-                  <MenuItem
-                    key={index}
-                    className={` ${isMenuOpen ? "my_element" : ""}`}
-                  >
+                  <li key={index}>
                     <ScrollLink
                       activeClass="active"
-                      to={page?.nav_id}
-                      spy={true}
-                      smooth={true}
+                      to={page.nav_id}
+                      spy
+                      smooth
                       offset={-70}
                       duration={500}
-                      onClick={() => handleCloseNavMenu(page?.name)}
-                      className="w-[100%] flex items-center justify-center gap-2"
+                      onClick={closeMenu}
+                      style={{ color: "", fontSize: "1.5rem", textAlign: "center", display: "block", margin: "20px 0" }}
                     >
-                      {page?.name}
+                      {page.name}
                     </ScrollLink>
-                  </MenuItem>
+                  </li>
                 ))}
-              </div>
-            </Menu>
+              </ul>
+            </Box>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
-}
+};
 
 export default ResponsiveAppBar;

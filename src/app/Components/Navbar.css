@@ -460,7 +460,7 @@
     background-image: linear-gradient(to right, white,  #3b82f6, rgb(86, 84, 238), white); 
     -webkit-background-clip: text; 
     background-clip: text; 
-    font-size: 20px; 
+    font-size: 1.2rem; 
     padding-left: 15px; 
     color: rgba(0,0,0,0); 
     background-size: 300%; 
@@ -468,7 +468,59 @@
     animation: animatedText 5s infinite alternate-reverse; 
     position: relative;
 } 
+.toggle-container {
+	display: flex;
+	align-items: center;
+	position: relative;
+	border:1px solid white
+  }
+  
+  .checkbox {
+	opacity: 0;
+	position: absolute;
+  }
+  
+  .checkbox-label {
+	background-color: #111;
+	width: 50px;
+	height: 26px;
+	border-radius: 50px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 5px;
+	cursor: pointer;
+	position: relative;
+  }
+  
+  .icon-moon {
+	color: #f1c40f;
+	font-size: 14px;
+  }
+  
+  .icon-sun {
+	color: #f39c12;
+	font-size: 14px;
+  }
+  
+  .ball {
+	background-color: #fff;
+	width: 22px;
+	height: 22px;
+	position: absolute;
+	top: 2px;
+	left: 2px;
+	border-radius: 50%;
+	transition: transform 0.2s linear;
+  }
+  
+  .checkbox:checked + .checkbox-label .ball {
+	transform: translateX(24px);
+  }
+ 
 
+  
+  
 @media (min-height: 1358px) {
 	.text strong{
 		font-size: 2rem;
@@ -492,7 +544,7 @@
 	} 
 	.navbar__link{
 		font-size: 1.6rem;
-		width: 15rem;
+		/* width: 1rem; */
 	}
 	.mui-19r6kue-MuiContainer-root {
 		display: flex;
@@ -515,6 +567,7 @@
 		justify-content: space-between;
 		gap:10rem;
    }
+
 	.navbar {
 		display: flex;
 		align-items: center;
@@ -523,7 +576,76 @@
 		overflow: hidden;
 		justify-content: space-between;
    }
+   .MuiBox-root mui-bbib1c{
+	margin:start;
+   }
   }
+/* Navbar.css */
+
+/* Mobile Drawer */
+.navbar-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80vw; /* Adjust width as desired */
+    max-width: 300px;
+    height: 100vh;
+    background-color: #100f18;
+    color: #fff;
+    transform: translateX(-100%); /* Start off-screen to the left */
+    transition: transform 0.3s ease-in-out; /* Smooth transition */
+    z-index: 1300;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.5rem;
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.navbar-drawer.open {
+    transform: translateX(0); /* Slide into view */
+}
+
+.drawer-close-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: #fff;
+}
+
+.navbar-drawer ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 3rem;
+    width: 100%;
+}
+
+.navbar-drawer li {
+    width: 100%;
+    margin: 20px 0;
+}
+
+.navbar-drawer li a {
+    font-size: 1.5rem;
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-drawer li a:hover {
+    background-color: rgba(59, 130, 246, 0.2); /* Add hover effect */
+}
+
+@media (min-width: 768px) {
+    .navbar-drawer {
+        display: none; /* Hide the drawer on larger screens */
+    }
+}
+
 
 @keyframes animatedText{ 
 	100% {  
