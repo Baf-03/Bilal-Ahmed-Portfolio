@@ -474,6 +474,10 @@
 	position: relative;
 	border:1px solid white
   }
+
+  .navbar-drawer {
+	display: none; /* Hide the drawer on larger screens */
+}
   
   .checkbox {
 	opacity: 0;
@@ -663,11 +667,9 @@
 	  }
 
   }
-
+  
   @media (max-width: 768px) {
-    .navbar-drawer {
-        display: none; /* Hide the drawer on larger screens */
-    }
+   
 	
 	.checkbox:checked + .checkbox-label .ball {
 		transform: translateX(20px);

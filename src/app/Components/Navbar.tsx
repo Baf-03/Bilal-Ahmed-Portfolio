@@ -121,7 +121,6 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
             </div>
           </Box>
 
-          {/* Mobile Drawer */}
           <Box
             className={`navbar-drawer ${isMenuOpen ? "open" : ""}`}
             onClick={closeMenu}
