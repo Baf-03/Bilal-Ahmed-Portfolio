@@ -82,7 +82,7 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
               margin: "auto",
             }}
           >
-            <nav className="header navbar">
+            <nav className="header navbar py-6">
               <ul className="navbar__menu" style={{ color: darkMode ? "#fff" : "black" }}>
                 {pages.map((page, index) => (
                   <li key={index} className="navbar__item">
