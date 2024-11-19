@@ -1,5 +1,4 @@
 
-  
 
   
   .text-primary {
@@ -101,4 +100,8 @@
   .dark-theme-img {
     filter: brightness(0.85) contrast(1.1);
   }
-  
+  @media (max-width: 640px) {
+    .imageside {
+      margin-left: 0; /* Remove left margin for smaller screens */
+    }
+  }

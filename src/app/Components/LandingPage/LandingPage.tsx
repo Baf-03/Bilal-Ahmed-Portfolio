@@ -6,7 +6,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa6";
 import SocialLinks from "./SocialLinks";
 import Head from "next/head";
-import coverimg from "../../../../public/cov.png";
+import coverimg from "../../../../public/coverImgSvg.svg";
 
 function LandingPage() {
   return (
@@ -27,7 +27,7 @@ function LandingPage() {
 
       <div
         id="about"
-        className=" flex flex-wrap justify-center mt-[15%] sm:mt-[8%] md:mt-[5%] items-center border-gray-900 border-b-[1px] pb-[100px] min-h-[80vh] relative dark-theme-bg "
+        className="flex flex-wrap overflow-x-hidden  lg:overflow-x-visible justify-center mt-[15%] sm:mt-[8%] md:mt-[5%] items-center border-gray-900 border-b-[1px] pb-[100px] min-h-[80vh] relative dark-theme-bg "
       >
         <div className="userSelect text-[10rem] fixed opacity-[0.1] text-gray-500 z-0">
           &#60;/&#62;
@@ -87,23 +87,25 @@ function LandingPage() {
           </div>
         </div>
 
-        <div className="imageside mt-10 w-[70%]  flex justify-center relative rounded-lg ml-[5%] lg:mt-0 sm:w-[50%] md:w-[40%] lg:w-[45%] xl:w-[35%] lg:min-h-[25rem] 3xl:min-h-[45rem]">
-          <div className="w-full h-[16rem] 3xl:h-[30rem]  rounded-lg overflow-hidden">
-            <Image
-              src={coverimg}
-              alt="bilal portfolio"
-              layout="fill"
-              objectFit="cover"
-              className="dark-theme-img"
-            />
-          </div>
-          <div className="floating-icons ">
-            <div className="icon icon1"></div>
-            <div className="icon icon2"></div>
-            <div className="icon icon3"></div>
-            <div className="icon icon4"></div>
-          </div>
-        </div>
+        <div className="imageside mt-10 w-full sm:w-[70%] flex justify-center relative rounded-lg ml-0 lg:mt-0 lg:ml-[5%] md:w-[50%] lg:w-[45%] xl:w-[35%]">
+  <div className="relative w-full h-0 pb-[56.25%]"> {/* Maintain aspect ratio */}
+    <Image
+      src={coverimg}
+      alt="Bilal portfolio"
+      layout="fill"
+      objectFit="contain"
+      className="dark-theme-img"
+      priority // Ensures the image is preloaded for faster rendering
+    />
+  </div>
+  <div className="floating-icons">
+    <div className="icon icon1"></div>
+    <div className="icon icon2"></div>
+    <div className="icon icon3"></div>
+    <div className="icon icon4"></div>
+  </div>
+</div>
+
       </div>
     </>
   );
