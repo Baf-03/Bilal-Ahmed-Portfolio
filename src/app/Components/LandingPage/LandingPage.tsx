@@ -6,7 +6,7 @@ import { FaLocationDot } from "react-icons/fa6";
 import { FaCheck } from "react-icons/fa6";
 import SocialLinks from "./SocialLinks";
 import Head from "next/head";
-import coverimg from "../../../../public/coverimg.png";
+import coverimg from "../../../../public/cov.png";
 
 function LandingPage() {
   return (

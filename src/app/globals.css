@@ -5,7 +5,7 @@
 /* Global body styling */
 body {
   background-color: rgb(243, 244, 246);
-  overflow: hidden; /* Prevents native scrolling on larger screens */
+  /* overflow: hidden; Prevents native scrolling on larger screens */
 }
 
 /* Smooth scrolling for anchor link jumps */
@@ -17,7 +17,7 @@ html {
 [data-scroll-container] {
   margin: 0;
   padding-bottom: 0;
-  overflow: hidden; /* Prevents double scrolling */
+  /* overflow: hidden; Prevents double scrolling */
   position: relative;
   will-change: transform;
   min-height: 100vh; /* Ensures container covers full viewport height */
