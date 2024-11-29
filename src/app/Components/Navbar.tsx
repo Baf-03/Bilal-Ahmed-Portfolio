@@ -69,7 +69,7 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
             className=" text-center w-[90vw] lg:w-fit ms-0 2xl:ms-[-3vw] 3xl:ms-[-8vw]"
           >
             <span className="text text-[1rem] ">
-              &lt; <strong>Developer --code .</strong> /&gt;
+              &lt; <strong></strong> /&gt;
             </span>
           </Typography>
 
