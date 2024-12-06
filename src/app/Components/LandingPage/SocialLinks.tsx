@@ -13,9 +13,7 @@ const SocialLinks = () => {
       <a href="https://github.com/Baf-03" target="_blank" rel="noopener noreferrer" className="icons">
         <DiGithubFull />
       </a>
-      <a href="https://www.upwork.com/freelancers/~01b5faeb46f8bcee0a?viewMode=1" target="_blank" rel="noopener noreferrer" className="icons">
-        <BiLogoUpwork />
-      </a>
+     
     </>
   );
 };
