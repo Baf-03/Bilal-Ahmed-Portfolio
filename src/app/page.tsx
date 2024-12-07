@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import "locomotive-scroll/dist/locomotive-scroll.css";
+import { useRouter } from "next/router";
 import Introduction from "@/app/Components/LandingPage/LandingPage";
 import CreativeProcess from "./Components/CreativeProcess/CreativeProcess";
 import NeedofSp from "./Components/NeedOfSalesPage.tsx/NeedofSp";
@@ -19,9 +20,11 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const searchParams = useSearchParams();
+  const router = useRouter();
   const search = searchParams.get("element");
 
   useEffect(() => {
+    // Initialize dark mode from local storage
     const storedDarkMode = localStorage.getItem("darkmode");
     if (storedDarkMode !== null) {
       setDarkMode(JSON.parse(storedDarkMode));
@@ -44,29 +47,31 @@ export default function Home() {
         });
 
         setTimeout(() => {
-          scroll?.update();
+          scroll?.update(); // Ensure scroll instance is updated
         }, 1000);
       }
     };
 
+    const handleRouteChange = () => {
+      if (scroll) {
+        scroll.destroy(); // Destroy instance on route changes
+      }
+    };
+
+    router.events.on("routeChangeStart", handleRouteChange);
     initializeLocomotiveScroll();
 
-    const handleResize = () => {
-      if (scroll) {
-        scroll.destroy();
-      }
-      initializeLocomotiveScroll();
-    };
-
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize", initializeLocomotiveScroll);
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      router.events.off("routeChangeStart", handleRouteChange);
+      window.removeEventListener("resize", initializeLocomotiveScroll);
       if (scroll) scroll.destroy();
     };
-  }, [loading]);
+  }, [router.events, loading]);
 
   useEffect(() => {
+    // Scroll to specific element if "element" query param exists
     if (search) {
       const targetElement = document.getElementById(search);
       if (targetElement) {
