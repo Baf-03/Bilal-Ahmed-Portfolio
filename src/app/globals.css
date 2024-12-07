@@ -2,38 +2,37 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Global body styling */
-body {
-  background-color: rgb(243, 244, 246);
-  /* overflow: hidden; Prevents native scrolling on larger screens */
-}
-
-/* Smooth scrolling for anchor link jumps */
-html {
-  scroll-behavior: smooth;
-}
-
-/* Locomotive Scroll container styling */
-[data-scroll-container] {
+/* Global styling */
+html, body {
   margin: 0;
-  padding-bottom: 0;
-  /* overflow: hidden; Prevents double scrolling */
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* Prevent native scrolling */
+  background-color: rgb(243, 244, 246); /* Light gray background */
+  scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+/* Locomotive Scroll container */
+[data-scroll-container] {
   position: relative;
+  overflow: hidden;
   will-change: transform;
   min-height: 100vh; /* Ensures container covers full viewport height */
+  margin: 0;
+  padding: 0;
 }
 
 /* Enable native scrolling on smaller screens */
 @media (max-width: 767px) {
-  body {
-    overflow: auto; /* Allows native scrolling on small screens */
+  html, body {
+    overflow: auto; /* Allows native scrolling */
   }
   [data-scroll-container] {
-    overflow: auto;
+    overflow: auto; /* Enable native scrolling for small screens */
   }
 }
 
-/* List styling with custom bullet color */
+/* Custom list styling */
 .list-disc-red::before {
   content: '•';
   color: #3b82f6; /* Blue color for bullet points */
@@ -41,6 +40,14 @@ html {
 }
 
 /* Loader styling */
+.loader-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5); /* Dim background for loader */
+}
+
 .loader {
   position: relative;
   font-size: 16px;
@@ -68,20 +75,19 @@ html {
   height: 1em;
   background-color: #3b82f6;
   border-radius: 15%;
-  animation: rollingRock 2.5s cubic-bezier(.79, 0, .47, .97) infinite;
+  animation: rollingRock 2.5s cubic-bezier(0.79, 0, 0.47, 0.97) infinite;
 }
-
 
 /* Glass effect for components */
 .glass-effect {
-  background: rgba(156, 152, 152, 0.7); /* Semi-transparent background */
+  background: rgba(156, 152, 152, 0.7); /* Semi-transparent */
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
 /* Custom scrollbar styling */
 ::-webkit-scrollbar {
-  width: 5px; /* Width of the scrollbar */
+  width: 5px;
   background: transparent;
 }
 
@@ -90,8 +96,8 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #3b82f6; /* Scroll thumb color */
-  border-radius: 6px; /* Roundness of the thumb */
+  background-color: #3b82f6;
+  border-radius: 6px;
 }
 
 /* Background card styling */
@@ -109,11 +115,11 @@ html {
 
 /* WhatsApp Button Styling */
 .whatsapp-button {
-  position: fixed; /* Keeps button fixed at bottom-right */
+  position: fixed;
   bottom: 1rem;
   right: 1rem;
   padding: 0.5rem;
-  background-color: #25D366; /* WhatsApp brand color */
+  background-color: #25D366; /* WhatsApp green */
   color: white;
   font-size: 2rem;
   border-radius: 50%;
@@ -131,16 +137,8 @@ html {
     padding: 0.8rem;
   }
 }
-/* Pulsing animation for WhatsApp button */
 
-@keyframes rollingRock {
-  0% {
-    transform: translate(0, -1em) rotate(-45deg);
-  }
-  100% {
-    transform: translate(0, -1em) rotate(-225deg);
-  }
-}
+/* Pulsing animation for WhatsApp button */
 @keyframes pulse {
   0% {
     transform: scale(1);
@@ -156,7 +154,17 @@ html {
   }
 }
 
-/* Adjustments for background images */
+/* Rolling loader animation */
+@keyframes rollingRock {
+  0% {
+    transform: translate(0, -1em) rotate(-45deg);
+  }
+  100% {
+    transform: translate(0, -1em) rotate(-225deg);
+  }
+}
+
+/* Background image styling */
 .bgimg {
   background-repeat: no-repeat;
   background-size: contain;
