@@ -1,187 +1,120 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+"use client";
+import { useEffect, useRef, useState } from "react";
+import "locomotive-scroll/dist/locomotive-scroll.css";
+import { useRouter } from "next/router";
+import Introduction from "@/app/Components/LandingPage/LandingPage";
+import CreativeProcess from "./Components/CreativeProcess/CreativeProcess";
+import NeedofSp from "./Components/NeedOfSalesPage.tsx/NeedofSp";
+import TechUsed from "./Components/TechnologiesUsed";
+import Education from "./Components/Education";
+import Skills from "./Components/Skills/Skills";
+import ActivitiesTimeline from "./Components/TimeLine";
+import ContactForm from "./Components/ContactForm";
+import Projects from "./Components/Projects/Projects";
+import Footer from "./Components/Footer/Footer";
+import WhatsAppButton from "./Components/WhatsAppbtn";
+import { useSearchParams } from "next/navigation";
 
-/* Global body styling */
-body {
-  background-color: rgb(243, 244, 246);
-  /* overflow: hidden; Prevents native scrolling on larger screens */
-}
+export default function Home() {
+  const [darkmode, setDarkMode] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const search = searchParams.get("element");
 
-/* Smooth scrolling for anchor link jumps */
-html {
-  scroll-behavior: smooth;
-}
+  useEffect(() => {
+    // Initialize dark mode from local storage
+    const storedDarkMode = localStorage.getItem("darkmode");
+    if (storedDarkMode !== null) {
+      setDarkMode(JSON.parse(storedDarkMode));
+    }
+    setLoading(false); // Turn off loading after initial setup
+  }, []);
 
-/* Locomotive Scroll container styling */
-[data-scroll-container] {
-  margin: 0;
-  padding-bottom: 0;
-  /* overflow: hidden; Prevents double scrolling */
-  position: relative;
-  will-change: transform;
-  min-height: 100vh; /* Ensures container covers full viewport height */
-}
+  useEffect(() => {
+    let scroll: any = null;
 
-/* Enable native scrolling on smaller screens */
-@media (max-width: 767px) {
-  body {
-    overflow: auto; /* Allows native scrolling on small screens */
-  }
-  [data-scroll-container] {
-    overflow: auto;
-  }
-}
+    const initializeLocomotiveScroll = async () => {
+      if (typeof window !== "undefined" && window.innerWidth >= 768 && scrollContainerRef.current) {
+        const LocomotiveScrollModule = await import("locomotive-scroll");
+        scroll = new LocomotiveScrollModule.default({
+          el: scrollContainerRef.current,
+          smooth: true,
+          multiplier: 0.8,
+          getDirection: true,
+          reloadOnContextChange: true,
+        });
 
-/* List styling with custom bullet color */
-.list-disc-red::before {
-  content: '•';
-  color: #3b82f6; /* Blue color for bullet points */
-  margin-right: 0.5em;
-}
+        setTimeout(() => {
+          scroll?.update(); // Ensure scroll instance is updated
+        }, 1000);
+      }
+    };
 
-/* Loader styling */
-.loader {
-  position: relative;
-  font-size: 16px;
-  width: 5.5em;
-  height: 5.5em;
-}
+    const handleRouteChange = () => {
+      if (scroll) {
+        scroll.destroy(); // Destroy instance on route changes
+      }
+    };
 
-.loader:before {
-  content: '';
-  position: absolute;
-  transform: translate(-50%, -50%) rotate(45deg);
-  height: 100%;
-  width: 4px;
-  background: white;
-  left: 50%;
-  top: 50%;
-}
+    router.events.on("routeChangeStart", handleRouteChange);
+    initializeLocomotiveScroll();
 
-.loader:after {
-  content: '';
-  position: absolute;
-  left: 0.2em;
-  bottom: 0.18em;
-  width: 1em;
-  height: 1em;
-  background-color: #3b82f6;
-  border-radius: 15%;
-  animation: rollingRock 2.5s cubic-bezier(.79, 0, .47, .97) infinite;
-}
+    window.addEventListener("resize", initializeLocomotiveScroll);
 
+    return () => {
+      router.events.off("routeChangeStart", handleRouteChange);
+      window.removeEventListener("resize", initializeLocomotiveScroll);
+      if (scroll) scroll.destroy();
+    };
+  }, [router.events, loading]);
 
-/* Glass effect for components */
-.glass-effect {
-  background: rgba(156, 152, 152, 0.7); /* Semi-transparent background */
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
+  useEffect(() => {
+    // Scroll to specific element if "element" query param exists
+    if (search) {
+      const targetElement = document.getElementById(search);
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, [search]);
 
-/* Custom scrollbar styling */
-::-webkit-scrollbar {
-  width: 5px; /* Width of the scrollbar */
-  background: transparent;
-}
-
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #3b82f6; /* Scroll thumb color */
-  border-radius: 6px; /* Roundness of the thumb */
-}
-
-/* Background card styling */
-.backgroundcard {
-  background-image: url("https://static.vecteezy.com/system/resources/thumbnails/000/598/557/small/polymesh10-08-01.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-/* Smooth transition effect for elements */
-.smooth {
-  white-space: nowrap;
-  transition: all 0.5s ease;
-}
-
-/* WhatsApp Button Styling */
-.whatsapp-button {
-  position: fixed; /* Keeps button fixed at bottom-right */
-  bottom: 1rem;
-  right: 1rem;
-  padding: 0.5rem;
-  background-color: #25D366; /* WhatsApp brand color */
-  color: white;
-  font-size: 2rem;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  animation: pulse 2s infinite;
-}
-
-@media (min-width: 768px) {
-  .whatsapp-button {
-    font-size: 3rem;
-    right: 2rem;
-    padding: 0.8rem;
-  }
-}
-/* Pulsing animation for WhatsApp button */
-
-@keyframes rollingRock {
-  0% {
-    transform: translate(0, -1em) rotate(-45deg);
-  }
-  100% {
-    transform: translate(0, -1em) rotate(-225deg);
-  }
-}
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-  }
-  70% {
-    transform: scale(1.05);
-    box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-  }
-}
-
-/* Adjustments for background images */
-.bgimg {
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: right;
-  background-size: 15%;
-}
-
-/* Footer link hover effect */
-footer a {
-  transition: color 0.3s ease;
-}
-
-footer a:hover {
-  color: #ffffff;
-}
-
-footer .fab {
-  font-size: 1.25rem;
-}
-
-/* Responsive adjustments for larger screens */
-@media (min-width: 768px) {
-  .whatsapp-button {
-    font-size: 3rem;
-    right: 2rem;
-    padding: 0.8rem;
-  }
+  return (
+    <>
+      {loading ? (
+        <div className="loader-wrapper">
+          <div className="loader"></div>
+        </div>
+      ) : (
+        <>
+          <main
+            className="transition-colors duration-500"
+            ref={scrollContainerRef}
+            data-scroll-container
+          >
+            <div className="w-[98%] lg:w-[94%] xl:w-[90vw] m-auto flex flex-col gap-12 justify-center items-center mt-2">
+              <Introduction />
+              <CreativeProcess />
+              <NeedofSp />
+              <TechUsed />
+              <Skills />
+              <Projects />
+              <ActivitiesTimeline />
+              <Education />
+              <ContactForm />
+            </div>
+            <Footer />
+            <div className="bg-[#3b82f6] w-[100%] text-center">
+              Portfolio is currently in development phase
+              <br />
+              Projects, Education Sections and Blogs page <br />
+              and many more features are coming soon
+            </div>
+          </main>
+          <WhatsAppButton />
+        </>
+      )}
+    </>
+  );
 }
