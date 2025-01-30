@@ -1,290 +1,218 @@
-"use client";
-import React, { useEffect, useState } from "react";
-import { Link as ScrollLink, Element } from "react-scroll";
-import { Button, ButtonBase, CircularProgress } from "@mui/material";
-import Image from "next/image";
+"use client"
+
+import { useState, useEffect } from "react"
+import Image from "next/image"
+import { motion, AnimatePresence } from "framer-motion"
+import { Button } from "../ui/button"
+import { Tabs, TabsList, TabsTrigger } from "../ui/tabs"
+import { Skeleton } from "../ui/skeleton"
+import { ExternalLink, Github } from "lucide-react"
 
 interface Project {
-  ProjectName: string;
-  Description: string;
-  img: any;
-  linkCode: string;
-  linkSite: string;
-  id: string;
-  isshow: string;
+  ProjectName: string
+  Description: string
+  img: string
+  linkCode?: string
+  linkSite?: string
+  id: string
+  category: string
 }
 
-const Projects: React.FC = () => {
-  const [projects, setProjects] = useState<Project[]>([
+export default function FilteredProjects() {
+  const [selectedCategory, setSelectedCategory] = useState<string>("all")
+  const [filteredProjects, setFilteredProjects] = useState<Project[]>([])
+  const [viewMore, setViewMore] = useState(false)
+  const [isLoading, setIsLoading] = useState(true)
+
+  const projects: Project[] = [
     {
       ProjectName: "AxisLang",
-      Description: `AxisLang: Simplified Programming Language with Live Compiler`,
+      Description: "Simplified Programming Language with Live Compiler",
       img: "/project.png",
-      linkCode: "",
       linkSite: "https://axis-lang-uqc4.vercel.app/",
       id: "1",
-      isshow: "false",
+      category: "software",
     },
     {
       ProjectName: "Landing Pages using Gsap",
-      Description: `GSAP REACT HTML CSS`,
+      Description: "GSAP REACT HTML CSS",
       img: "/gsap.png",
-      linkCode: "",
-      linkSite: "",
-      id: "1",
-      isshow: "false",
+      id: "2",
+      category: "marketing",
     },
     {
-      ProjectName: "Full Stack Ecommerece App",
-      Description: `Shop.co is mady by using Reactjs ,Nestjs Postgres Sql`,
+      ProjectName: "Full Stack Ecommerce App",
+      Description: "Built using React.js, Nest.js & Postgres SQL",
       img: "/shopCo.png",
-      linkCode: "",
       linkSite: "https://shop-co-iiyx.vercel.app/",
-      id: "1",
-      isshow: "false",
+      id: "3",
+      category: "software",
     },
     {
       ProjectName: "Food Recipe Sharing App",
-      Description: `This project harmonizes React/Redux with Express.js/MongoDB, following MVC
-        architecture on the backend. It integrates JWT for authentication, Cloudinary for
-        image uploads, and MongoDB for data storage, including a search query`,
+      Description: "MERN stack app with JWT auth & Cloudinary storage",
       img: "/recipe-sharing.png",
       linkCode: "https://github.com/Baf-03/FrontEnd-FoodRecipe",
       linkSite: "https://foodrecipesharing.netlify.app/login",
-      id: "1",
-      isshow: "false",
+      id: "4",
+      category: "software",
     },
     {
       ProjectName: "Memory Game",
-      Description: "This project is made by using Reactjs and TailwindCss.",
+      Description: "Made with React.js & TailwindCSS",
       img: "/MemoryGame.png",
       linkCode: "https://github.com/Baf-03/Memory-Game",
       linkSite: "https://memory-game-baf.netlify.app/",
-      id: "1",
-      isshow: "false",
+      id: "5",
+      category: "games",
     },
     {
       ProjectName: "My Course Hero WebApp",
-      Description: `This project, developed using the MERN stack, features comprehensive CRUD operations, robust user authentication with JWT tokens, and well-defined public and private routing.`,
+      Description: "MERN stack project with JWT authentication & CRUD",
       img: "/mycoursehero.png",
       linkCode: "https://github.com/Baf-03/MyCourses-clientSide",
       linkSite: "https://mycoursehero.netlify.app/auth/login",
-      id: "1",
-      isshow: "false",
+      id: "6",
+      category: "software",
     },
     {
       ProjectName: "Encrypted Todo",
-      Description: `This project is built on the MERN stack, featuring secure user authentication with JWT tokens and encrypted storage of todos to ensure data privacy.`,
+      Description: "MERN app with encrypted storage for enhanced security",
       img: "/encryptodo.png",
-      linkCode: "",
       linkSite: "https://encryptodo.netlify.app/auth/login",
-      id: "1",
-      isshow: "false",
+      id: "7",
+      category: "software",
     },
     {
       ProjectName: "Attendance App",
-      Description: `This Project is made by using MERN STACK`,
+      Description: "Attendance tracking system built with MERN stack",
       img: "/attendanceapp.png",
-      linkCode: "",
-      linkSite: "",
-      id: "1",
-      isshow: "false",
+      id: "8",
+      category: "software",
     },
     {
       ProjectName: "Github User Finder",
-      Description:
-        "This project is made by using Reactjs,MaterialUi and TailwindCss. ",
+      Description: "Built with React.js, Material-UI, and TailwindCSS",
       img: "/githubuserfinder.png",
       linkCode: "https://github.com/Baf-03/Github-User-Finder",
       linkSite: "https://github-user-finder-baf.netlify.app/",
-      id: "2",
-      isshow: "false",
+      id: "9",
+      category: "software",
     },
     {
       ProjectName: "Weather App",
-      Description:
-        "this project is made by using Reactjs,Axios,Mui and TailwindCSS",
+      Description: "React.js weather app using Axios & TailwindCSS",
       img: "/weatherappreact.png",
       linkCode: "https://github.com/Baf-03/weather-app-in-reactjs",
       linkSite: "https://weather-app-reactjs-baf.netlify.app/",
-      id: "1",
-      isshow: "false",
-    },
-    {
-      ProjectName: "Todo List ",
-      Description:
-        "This Project is made by using Reactjs ,Material Ui and TailwindCSS",
-      img: "/todoreact.png",
-      linkCode: "https://github.com/Baf-03/Todolist",
-      linkSite: "https://todo-baf.netlify.app/",
-      id: "2",
-      isshow: "false",
-    },
-    {
-      ProjectName: "Facebook Clone",
-      Description: "This project is made by using Reactjs and Bootstrap",
-      img: "/facebook.png",
-      linkCode: "https://github.com/Baf-03/Facebook-Clone",
-      linkSite: "",
-      id: "1",
-      isshow: "hidden",
+      id: "10",
+      category: "software",
     },
     {
       ProjectName: "Tic Tac Toe",
-      Description: "it is what is ",
+      Description: "Classic Tic Tac Toe game built using HTML, CSS & JS",
       img: "/tictactoe.png",
       linkCode: "https://github.com/Baf-03/tic-tac-toe-using-html-css-js",
       linkSite: "https://baf-03.github.io/tic-tac-toe-using-html-css-js/",
-      id: "2",
-      isshow: "",
+      id: "11",
+      category: "games",
     },
-    {
-      ProjectName: "Olx Clone",
-      Description: "This project is made by using Reactjs and Bootstrap",
-      img: "/olxclone.png",
-      linkCode: "https://github.com/Baf-03/OLX-Clone-using-reactjs",
-      linkSite: "https://olx-clone-baf03.netlify.app/",
-      id: "2",
-      isshow: "",
-    },
-    {
-      ProjectName: "Ecommerce Website",
-      Description: "it is what is Ecommerce Website",
-      img: "/ecom.png",
-      linkCode: "https://github.com/Baf-03/-Ecommerce-Website",
-      linkSite: "https://baf-03.github.io/-Ecommerce-Website/",
-      id: "1",
-      isshow: "",
-    },
-    {
-      ProjectName: "Upwork Clone",
-      Description: "it is what is....Upwork Clone ",
-      img: "/upwork-clone.png",
-      linkCode: "https://github.com/Baf-03/upwork-clone",
-      linkSite: "",
-      id: "1",
-      isshow: "",
-    },
-  ]);
-
-  const [projectLimit, setProjectLimit] = useState<Project[]>([]);
-  const [viewMore, setViewMore] = useState(false);
-
-  const handleViewMore = () => {
-    setViewMore(!viewMore);
-  };
+  ]
 
   useEffect(() => {
-    if (viewMore) {
-      setProjectLimit(projects.slice());
-      return;
-    }
-    setProjectLimit(projects.slice(0, 5));
-  }, [viewMore, projects]);
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 1000)
+  }, [])
 
-  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    const filtered =
+      selectedCategory === "all"
+        ? projects
+        : projects.filter((project) => project.category === selectedCategory)
+
+    setFilteredProjects(viewMore ? filtered : filtered.slice(0, 6))
+  }, [selectedCategory, viewMore])
+
+  const categories = [
+    { id: "all", label: "All Projects" },
+    { id: "software", label: "Software" },
+    { id: "games", label: "Games" },
+    { id: "marketing", label: "Marketing" },
+  ]
+
+  if (isLoading) {
+    return (
+      <div className="container mx-auto px-4 py-16">
+        <div className="space-y-8">
+          <Skeleton className="h-12 w-[300px] mx-auto" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <Skeleton key={i} className="h-[400px] rounded-lg" />
+            ))}
+          </div>
+        </div>
+      </div>
+    )
+  }
 
   return (
-    <>
-      {loading ? (
-        <div className="border w-[100%] flex justify-center items-center h-[80vh] text-[3rem] font-bold">
-          Loading
-          <div className="w-[5vw] ">
-            <CircularProgress color="inherit" />
-          </div>
+    <section className="container mx-auto px-4 py-16 z-50" id="Projects">
+      <div className="space-y-8">
+        <div className="text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Development Showcase</h2>
+          <p className="text-muted-foreground">Browse through our latest projects and innovations</p>
         </div>
-      ) : (
-        <div
-          id="Projects"
-          className="w-[98vw] bgimg bg-fixed"
-          style={{
-            backgroundImage: `url(${"https://muhammad-ausaf-jamal.vercel.app/assets/h2_project_shape-RQDOSgKC.png"})`,
-          }}
-        >
-          <div className="projects  flex flex-col w-[100%] lg:gap-5 flex-wrap items-center lg:p-8 m-auto">
-            <div className="text-center">
-              <h2 className="backgroundimage text-[2rem] text-center md:text-[3rem] 3xl:text-[4.2rem] font-bold">
-                Development Showcase
-              </h2>
-            </div>
-            <div className="flex w-[100%] gap-5 lg:gap-[2rem] 3xl:gap-[4rem] flex-wrap justify-center bg-fixed p-5 3xl:text-[p-7] mt-5">
-              {projectLimit.map((product: Project, index: number) => (
-                <div
-                  key={index}
-                  className="w-[100%] md:w-[300px] lg:w-[300px] xl:w-[23vw] 3xl:w-[24vw] rounded-lg transform hover:scale-105 transition-transform duration-300"
-                >
-                  <div className="relative rounded-2xl overflow-hidden shadow-lg">
-                  <Image
-                        src={product.img}
-                        alt={product.img}
-                        layout="fill"
-                        objectFit="cover"
-                        objectPosition="center"
-                        // This is optional, used for preloading the image if it's important for the initial loading
-                      />
-                      <Image
-                        alt={product.img}
-                        src={product.img}
-                        className="h-[15rem] 3xl:h-[25rem] rounded-lg object-cover hover:opacity-[0.6]"
-                        width={200}
-                        height={200}
-                        objectFit="cover"
-                        objectPosition="center"
-                      />
-                    <div className="glass-effect cardprojects absolute bottom-0 bg-[#3b82f6] bg-opacity-80 p-4 w-[100%] text-center text-white font-bold capitalize text-[1.5rem] 3xl:text-[3rem]">
-                      {product.ProjectName}
-                    </div>
-                  </div>
-                  <div className="md:min-h-[6vh] m-2 text-[0.9rem] 3xl:text-[1.5rem] text-center">
-                    {product.Description}
-                  </div>
-                  <div className="flex gap-2 justify-center pb-3">
-                    {product.linkCode && (
-                      <a href={product.linkCode} target="_blank">
-                        <Button
-                          variant="contained"
-                          className="bg-[#3b82f6] p-3 rounded-2xl 3xl:text-[1.5rem] hover:bg-[#285fbf] transition-colors duration-300"
-                        >
-                          View Code
-                        </Button>
-                      </a>
-                    )}
-                    {product.linkSite ? (
-                      <a href={product.linkSite} target="_blank">
-                        <Button
-                          variant="contained"
-                          className="bg-[#3b82f6] 3xl:text-[1.5rem] p-3 rounded-2xl hover:bg-[#285fbf] transition-colors duration-300"
-                        >
-                          View Site
-                        </Button>
-                      </a>
-                    ) : (
-                      <Button
-                        variant="contained"
-                        className="bg-gray-300  3xl:text-[1.5rem] p-3 cursor-not-allowed rounded-2xl"
-                        disabled
-                      >
-                        Site Not Available
-                      </Button>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div onClick={handleViewMore}>
-              <ButtonBase>
-                {viewMore ? (
-                  <div>View less</div>
-                ) : (
-                  <div>View more projects</div>
-                )}
-              </ButtonBase>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
-  );
-};
 
-export default Projects;
+        <Tabs defaultValue="all" value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
+          <TabsList className="flex flex-wrap justify-center gap-2">
+            {categories.map((category) => (
+              <TabsTrigger
+                key={category.id}
+                value={category.id}
+                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+              >
+                {category.label}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+        </Tabs>
+
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project) => (
+              <motion.div
+                key={project.id}
+                layout
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.2 }}
+                className="group relative bg-card rounded-lg overflow-hidden shadow-lg"
+              >
+                <div className="aspect-video relative overflow-hidden">
+                  <Image
+                    src={project.img}
+                    alt={project.ProjectName}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-semibold mb-2">{project.ProjectName}</h3>
+                  <p className="text-muted-foreground">{project.Description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
+
+        <div className="text-center">
+          <Button variant="outline" onClick={() => setViewMore(!viewMore)} className="min-w-[200px]">
+            {viewMore ? "View Less" : "View More"}
+          </Button>
+        </div>
+      </div>
+    </section>
+  )
+}

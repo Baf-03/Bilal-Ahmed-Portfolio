@@ -58,9 +58,9 @@ const ContactForm = () => {
       <h2 className="backgroundimage text-[2rem] text-center  md:text-[3rem] 3xl:text-[4.2rem]  font-bold">
         Contact Us
       </h2>
-      <div className="w-[90%] md:w-[80%] flex flex-col sm:flex-row gap-3  mb-[50px] border border-dotted border-[#3b82f6] p-8 m-auto mt-3 rounded-lg shadow-lg ">
+      <div className="w-[90%] md:w-[80%] flex flex-col sm:flex-row gap-3  mb-[50px] bg-gray-800 p-8 m-auto mt-3 rounded-lg shadow-lg ">
         <section className="flex flex-col items-center w-[100%] sm:w-[50%] gap-5">
-          <div className="w-[20%] animate-pulse">
+          <div className="w-[20%] ">
             <Image
               src="https://eiharold.com/wp-content/uploads/2022/02/icon-chat.png"
               alt="bilal portfolio"
@@ -99,7 +99,7 @@ const ContactForm = () => {
                 loading === "Loading" ||
                 loading === "You submitted your record successfully"
               }
-              className="block bg-gray-800 w-full px-3 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-[#3b82f6] "
+              className="block bg-transparent w-full px-3 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-[#3b82f6] "
             />
           </div>
 
@@ -113,7 +113,7 @@ const ContactForm = () => {
                 loading === "Loading" ||
                 loading === "You submitted your record successfully"
               }
-              className="block bg-gray-800 w-full px-3 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-[#3b82f6] "
+              className="block bg-transparent w-full px-3 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-[#3b82f6] "
             />
           </div>
 
@@ -122,7 +122,7 @@ const ContactForm = () => {
               onChange={(e) => setTextarea(e.target.value)}
               name="message"
               placeholder="Enter text..."
-              className="w-full h-24 px-3 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-[#3b82f6] bg-gray-800  resize-none"
+              className="w-full h-24 px-3 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-[#3b82f6] bg-transparent  resize-none"
               required
               disabled={
                 loading === "Loading" ||

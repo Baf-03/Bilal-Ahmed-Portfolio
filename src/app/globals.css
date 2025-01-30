@@ -1,42 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 
 /* Global styling */
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden; /* Prevent native scrolling */
+  overflow: auto; /* Enables normal scrolling */
   background-color: rgb(243, 244, 246); /* Light gray background */
   scroll-behavior: smooth; /* Smooth scrolling for anchor links */
-}
-
-/* Locomotive Scroll container */
-[data-scroll-container] {
-  position: relative;
-  overflow: hidden;
-  will-change: transform;
-  min-height: 100vh; /* Ensures container covers full viewport height */
-  margin: 0;
-  padding: 0;
-}
-
-/* Enable native scrolling on smaller screens */
-@media (max-width: 767px) {
-  html, body {
-    overflow: auto; /* Allows native scrolling */
-  }
-  [data-scroll-container] {
-    overflow: auto; /* Enable native scrolling for small screens */
-  }
-}
-
-/* Custom list styling */
-.list-disc-red::before {
-  content: '•';
-  color: #3b82f6; /* Blue color for bullet points */
-  margin-right: 0.5em;
+  font-family: 'Poppins', sans-serif; 
 }
 
 /* Loader styling */
@@ -78,13 +54,6 @@ html, body {
   animation: rollingRock 2.5s cubic-bezier(0.79, 0, 0.47, 0.97) infinite;
 }
 
-/* Glass effect for components */
-.glass-effect {
-  background: rgba(156, 152, 152, 0.7); /* Semi-transparent */
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-}
-
 /* Custom scrollbar styling */
 ::-webkit-scrollbar {
   width: 5px;
@@ -98,19 +67,6 @@ html, body {
 ::-webkit-scrollbar-thumb {
   background-color: #3b82f6;
   border-radius: 6px;
-}
-
-/* Background card styling */
-.backgroundcard {
-  background-image: url("https://static.vecteezy.com/system/resources/thumbnails/000/598/557/small/polymesh10-08-01.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-/* Smooth transition effect for elements */
-.smooth {
-  white-space: nowrap;
-  transition: all 0.5s ease;
 }
 
 /* WhatsApp Button Styling */
@@ -154,42 +110,30 @@ html, body {
   }
 }
 
-/* Rolling loader animation */
-@keyframes rollingRock {
-  0% {
-    transform: translate(0, -1em) rotate(-45deg);
-  }
-  100% {
-    transform: translate(0, -1em) rotate(-225deg);
-  }
+
+
+
+
+
+
+/* Rest of your CSS remains the same */
+
+/* Add this new class for smooth scrolling container */
+.smooth-scroll {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Background image styling */
-.bgimg {
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: right;
-  background-size: 15%;
+
+/* Add some padding to the bottom of the content to ensure scrollability */
+.content-wrapper {
+  padding-bottom: 100px;
 }
 
-/* Footer link hover effect */
-footer a {
-  transition: color 0.3s ease;
-}
 
-footer a:hover {
-  color: #ffffff;
-}
-
-footer .fab {
-  font-size: 1.25rem;
-}
-
-/* Responsive adjustments for larger screens */
-@media (min-width: 768px) {
-  .whatsapp-button {
-    font-size: 3rem;
-    right: 2rem;
-    padding: 0.8rem;
-  }
-}
