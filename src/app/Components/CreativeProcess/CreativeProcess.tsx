@@ -1,12 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import design from "../../../../public/design.png"
+import design from "../../../../public/design3.png"
 import prototype from "../../../../public/prototype.png"
-import planning from "../../../../public/planning.png"
+import planning from "../../../../public/planning2.png"
 import development from "../../../../public/development.png"
-import seo from "../../../../public/seo.png"
+import seo from "../../../../public/seo2.png"
 import deploy from "../../../../public/deploy.png"
-
+import coverimg from "../../../../public/coverImgSvg.svg";
+import design2 from "../../../../public/svgnew.svg";
 
 
 
@@ -31,7 +32,7 @@ const CreativeProcess = () => {
     {
       name: "04. Development",
       para: "We study your idea to outline the best strategy and choose the most appropriate digital solutions.",
-      img: development,
+      img: coverimg,
     },
     {
       name: "05. SEO and Metrics",

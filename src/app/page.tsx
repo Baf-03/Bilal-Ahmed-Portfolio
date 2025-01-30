@@ -1,6 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import "locomotive-scroll/dist/locomotive-scroll.css";
+import { useEffect, useState } from "react";
 import Introduction from "@/app/Components/LandingPage/LandingPage";
 import CreativeProcess from "./Components/CreativeProcess/CreativeProcess";
 import NeedofSp from "./Components/NeedOfSalesPage.tsx/NeedofSp";
@@ -17,7 +16,6 @@ import { useSearchParams } from "next/navigation";
 export default function Home() {
   const [darkmode, setDarkMode] = useState(false);
   const [loading, setLoading] = useState(true);
-  const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const searchParams = useSearchParams();
   const search = searchParams.get("element");
 
@@ -29,43 +27,7 @@ export default function Home() {
     setLoading(false); // Turn off loading after initial setup
   }, []);
 
-  useEffect(() => {
-    let scroll: any = null;
-
-    const initializeLocomotiveScroll = async () => {
-      if (typeof window !== "undefined" && window.innerWidth >= 768 && scrollContainerRef.current) {
-        const LocomotiveScrollModule = await import("locomotive-scroll");
-        scroll = new LocomotiveScrollModule.default({
-          el: scrollContainerRef.current,
-          smooth: true,
-          multiplier: 0.8,
-          getDirection: true,
-          reloadOnContextChange: true,
-        });
-
-        setTimeout(() => {
-          scroll?.update();
-        }, 1000);
-      }
-    };
-
-    initializeLocomotiveScroll();
-
-    const handleResize = () => {
-      if (scroll) {
-        scroll.destroy();
-      }
-      initializeLocomotiveScroll();
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      if (scroll) scroll.destroy();
-    };
-  }, [loading]);
-
+  
   useEffect(() => {
     if (search) {
       const targetElement = document.getElementById(search);
@@ -83,11 +45,7 @@ export default function Home() {
         </div>
       ) : (
         <>
-          <main
-            className="transition-colors duration-500"
-            ref={scrollContainerRef}
-            data-scroll-container
-          >
+          <main className="transition-colors duration-500">
             <div className="w-[98%] lg:w-[94%] xl:w-[90vw] m-auto flex flex-col gap-12 justify-center items-center mt-2">
               <Introduction />
               <CreativeProcess />
@@ -110,6 +68,6 @@ export default function Home() {
           <WhatsAppButton />
         </>
       )}
-    </>
-  );
+    </>
+  );
 }
