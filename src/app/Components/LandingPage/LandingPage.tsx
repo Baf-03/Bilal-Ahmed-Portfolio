@@ -51,7 +51,7 @@ function LandingPage() {
           <div className="flex font-bold text-[3rem] 3xl:text-[4.2rem] text-highlight">
             <TyperEffect />
           </div>
-          <div className="w-[90%] text-[0.85rem] font-[40]  md:font-[20] pt-5 text-start md:pe-5 md:m-0 md:break-normal xl:text-[0.9rem] 3xl:text-[1.5rem] md:w-[90%] leading-6 3xl:leading-10 text-highlight 3xl:mt-3">
+          <div className="w-[90%] text-[0.85rem] font-[400]  md:font-[20] pt-5 text-start md:pe-5 md:m-0 md:break-normal xl:text-[0.9rem] 3xl:text-[1.5rem] md:w-[90%] leading-6 3xl:leading-10 text-highlight 3xl:mt-3">
             Hello! I&#39;m <strong className="font-bold text-primary">Bilal</strong>
             , a certified{" "}
             <strong className="font-bold text-primary">Web Developer</strong>{" "}
