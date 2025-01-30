@@ -29,15 +29,14 @@ function LandingPage() {
         id="about"
         className="flex flex-wrap overflow-x-hidden  lg:overflow-x-visible justify-center mt-[15%] sm:mt-[8%] md:mt-[5%] items-center border-gray-900 border-b-[1px] pb-[100px] min-h-[80vh] relative dark-theme-bg "
       >
-        <div className="userSelect text-[10rem] fixed opacity-[0.1] text-gray-500 z-0">
-          &#60;/&#62;
-        </div>
+        
 
         <div
-          className="ps-2 textside w-[100%] md:text-start md:w-[100vw] lg:w-[50%] xl:w-[60%] "
+          className="ps-2 textside w-[100%] md:text-start md:w-[100vw] lg:w-[50%] xl:w-[60%] z-30"
           data-aos="fade-right"
           data-aos-offset="300"
           data-aos-easing="ease-in-sine"
+          
         >
           <h3 className="text-highlight 3xl:text-[1.2rem]">WELCOME TO MY WORLD</h3>
           <h1 className="font-bold mt-3 text-[1.8rem] lg:text-[2.5rem] xl:text-[3rem] text-highlight">
