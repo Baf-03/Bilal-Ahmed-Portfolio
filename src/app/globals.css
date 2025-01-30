@@ -1,18 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 /* Global styling */
 html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: auto; /* Enables normal scrolling */
+  overflow-x: hidden;
   background-color: rgb(243, 244, 246); /* Light gray background */
-  scroll-behavior: smooth; /* Smooth scrolling for anchor links */
   font-family: 'Poppins', sans-serif; 
+  scroll-behavior: smooth;
 }
 
 /* Loader styling */
@@ -24,35 +21,81 @@ html, body {
   background-color: rgba(0, 0, 0, 0.5); /* Dim background for loader */
 }
 
-.loader {
-  position: relative;
-  font-size: 16px;
-  width: 5.5em;
-  height: 5.5em;
-}
+ .loader {
+    position: relative;
+    font-size: 16px;
+    width: 5.5em;
+    height: 5.5em;
+  }
+  
+  .loader:before {
+    content: '';
+    position: absolute;
+    transform: translate(-50%, -50%) rotate(45deg);
+    height: 100%;
+    width: 4px;
+    background: white;
+    left: 50%;
+    top: 50%;
+  }
+  
+  .loader:after {
+    content: '';
+    position: absolute;
+    left: 0.2em;
+    bottom: 0.18em;
+    width: 1em;
+    height: 1em;
+    background-color: #3b82f6;
+    border-radius: 15%;
+    animation: rollingRock 2.5s cubic-bezier(.79, 0, .47, .97) infinite;
+  }
 
-.loader:before {
-  content: '';
-  position: absolute;
-  transform: translate(-50%, -50%) rotate(45deg);
-  height: 100%;
-  width: 4px;
-  background: white;
-  left: 50%;
-  top: 50%;
-}
-
-.loader:after {
-  content: '';
-  position: absolute;
-  left: 0.2em;
-  bottom: 0.18em;
-  width: 1em;
-  height: 1em;
-  background-color: #3b82f6;
-  border-radius: 15%;
-  animation: rollingRock 2.5s cubic-bezier(0.79, 0, 0.47, 0.97) infinite;
-}
+  @keyframes rollingRock {
+    0% {
+      transform: translate(0, -1em) rotate(-45deg)
+    }
+  
+    5% {
+      transform: translate(0, -1em) rotate(-50deg)
+    }
+  
+    20% {
+      transform: translate(1em, -2em) rotate(47deg)
+    }
+  
+    25% {
+      transform: translate(1em, -2em) rotate(45deg)
+    }
+  
+    30% {
+      transform: translate(1em, -2em) rotate(40deg)
+    }
+  
+    45% {
+      transform: translate(2em, -3em) rotate(137deg)
+    }
+  
+    50% {
+      transform: translate(2em, -3em) rotate(135deg)
+    }
+  
+    55% {
+      transform: translate(2em, -3em) rotate(130deg)
+    }
+  
+    70% {
+      transform: translate(3em, -4em) rotate(217deg)
+    }
+  
+    75% {
+      transform: translate(3em, -4em) rotate(220deg)
+    }
+  
+    100% {
+      transform: translate(0, -1em) rotate(-225deg)
+    }
+  }
 
 /* Custom scrollbar styling */
 ::-webkit-scrollbar {
@@ -110,28 +153,14 @@ html, body {
   }
 }
 
-
-
-
-
-
-
-/* Rest of your CSS remains the same */
-
-/* Add this new class for smooth scrolling container */
+/* Smooth Scrolling Fix */
 .smooth-scroll {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   overflow-y: auto;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
 
-
-/* Add some padding to the bottom of the content to ensure scrollability */
+/* Padding to prevent content cutoff */
 .content-wrapper {
   padding-bottom: 100px;
 }

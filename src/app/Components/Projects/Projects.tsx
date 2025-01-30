@@ -26,19 +26,37 @@ export default function FilteredProjects() {
 
   const projects: Project[] = [
     {
-      ProjectName: "AxisLang",
-      Description: "Simplified Programming Language with Live Compiler",
-      img: "/project.png",
-      linkSite: "https://axis-lang-uqc4.vercel.app/",
+      ProjectName: "Round Robin Scheduling Algorithm Simulator",
+      Description: "Simulation of how round robin algorithm works!",
+      img: "/round_robin.png",
+      linkSite: "https://os-round-robin-scheduling-algorithm.vercel.app/",
+      id: "1a",
+      category: "software",
+    },
+    {
+      ProjectName: "Scheduling Simulator ",
+      Description: "Simulate priority-based scheduling for efficient process handling",
+      img: "/simulator.png",
+      linkSite: "",
       id: "1",
       category: "software",
     },
     {
-      ProjectName: "Landing Pages using Gsap",
-      Description: "GSAP REACT HTML CSS",
-      img: "/gsap.png",
+      ProjectName: "AxisLang",
+      Description: "Simplified Programming Language with Live Compiler",
+      img: "/project.png",
+      linkSite: "https://axis-lang-uqc4.vercel.app/",
       id: "2",
-      category: "marketing",
+      category: "software",
+    },
+    
+    {
+      ProjectName: "flappyBird",
+      Description: "using Reactjs",
+      img: "/flappy_bird.png",
+      linkSite: "https://flappybird-baf03.vercel.app/",
+      id: "2a",
+      category: "games",
     },
     {
       ProjectName: "Full Stack Ecommerce App",
@@ -165,12 +183,12 @@ export default function FilteredProjects() {
         </div>
 
         <Tabs defaultValue="all" value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
-          <TabsList className="flex flex-wrap justify-center gap-2">
+          <TabsList className="flex flex-wrap justify-center gap-2 h-full">
             {categories.map((category) => (
               <TabsTrigger
                 key={category.id}
                 value={category.id}
-                className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                className="data-[state=active]:bg-gray-600 text-white  bg-gray-800"
               >
                 {category.label}
               </TabsTrigger>
@@ -190,14 +208,41 @@ export default function FilteredProjects() {
                 transition={{ duration: 0.2 }}
                 className="group relative bg-card rounded-lg overflow-hidden shadow-lg"
               >
-                <div className="aspect-video relative overflow-hidden">
+                <div className="relative overflow-hidden">
                   <Image
                     src={project.img}
                     alt={project.ProjectName}
-                    fill
+                    width={500}
+                    height={300}
                     className="object-cover transition-transform duration-300 group-hover:scale-110"
                   />
+                  
+                  {/* Project Links (Top Right) */}
+                  <div className="absolute top-2 right-2 flex gap-2">
+                    {project.linkCode && (
+                      <a
+                        href={project.linkCode}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white p-2 rounded-full shadow-md hover:bg-gray-200"
+                      >
+                        <Github size={20} className="text-black" />
+                      </a>
+                    )}
+                    {project.linkSite && (
+                      <a
+                        href={project.linkSite}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white p-2 rounded-full shadow-md hover:bg-gray-200"
+                      >
+                        <ExternalLink size={20} className="text-black" />
+                      </a>
+                    )}
+                  </div>
                 </div>
+
+                {/* Project Details */}
                 <div className="p-6">
                   <h3 className="text-xl font-semibold mb-2">{project.ProjectName}</h3>
                   <p className="text-muted-foreground">{project.Description}</p>
