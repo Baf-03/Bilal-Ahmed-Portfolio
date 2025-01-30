@@ -40,7 +40,7 @@ const Footer: React.FC = () => {
           <h3 className="text-white text-xl font-bold">About Me</h3>
           <p className="text-gray-400 leading-relaxed">
             I am a passionate developer with expertise in creating modern web applications using cutting-edge
-            technologies. Let's connect and build something amazing together!
+            technologies.Let&apos;s connect and build something amazing together!
           </p>
         </motion.div>
 
