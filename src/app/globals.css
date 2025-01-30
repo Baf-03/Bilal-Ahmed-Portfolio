@@ -127,6 +127,7 @@ html, body {
   justify-content: center;
   align-items: center;
   animation: pulse 2s infinite;
+  z-index: 99999999;
 }
 
 @media (min-width: 768px) {
