@@ -178,8 +178,8 @@ export default function FilteredProjects() {
     <section className="container mx-auto px-4 py-16 z-50" id="Projects">
       <div className="space-y-8">
         <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Development Showcase</h2>
-          <p className="text-muted-foreground">Browse through our latest projects and innovations</p>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Portfolio</h2>
+          <p className="text-muted-foreground">{"Here are some of the projects I've developed over the last few years. There were sales pages, capture pages, eCommerces, institutional sites, portfolios, blogs, WebApps and others."}</p>
         </div>
 
         <Tabs defaultValue="all" value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">

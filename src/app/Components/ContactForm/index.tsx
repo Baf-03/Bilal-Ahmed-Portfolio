@@ -55,9 +55,9 @@ const ContactForm = () => {
 
   return (
     <div id="connect" className="z-[2]">
-      <h2 className="backgroundimage text-[2rem] text-center  md:text-[3rem] 3xl:text-[4.2rem]  font-bold">
+      <h1 className="backgroundimage text-center text-2xl md:text-3xl font-bold pt-9">
         Contact Us
-      </h2>
+      </h1>
       <div className="w-[90%] md:w-[80%] flex flex-col sm:flex-row gap-3  mb-[50px] bg-gray-800 p-8 m-auto mt-3 rounded-lg shadow-lg ">
         <section className="flex flex-col items-center w-[100%] sm:w-[50%] gap-5">
           <div className="w-[20%] ">
@@ -86,9 +86,9 @@ const ContactForm = () => {
           </a>
         </section>
         <section className="flex gap-3 flex-col w-[100%] sm:w-[50%] p-3 items-center justify-center">
-          <h2 className="text-[1.5rem] font-bold text-center sm:text-start 3xl:text-[2.5rem]  ">
+        <h1 className="backgroundimage text-center text-xl md:text-2xl font-bold pt-9">
             Contact Form
-          </h2>
+          </h1>
           <div className="w-[100%] 3xl:text-[1.5rem] ">
             <input
               onChange={(e) => setName(e.target.value)}

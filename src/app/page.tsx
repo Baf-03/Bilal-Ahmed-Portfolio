@@ -12,6 +12,7 @@ import Projects from "./Components/Projects/Projects";
 import Footer from "./Components/Footer/Footer";
 import WhatsAppButton from "./Components/WhatsAppbtn";
 import { useSearchParams } from "next/navigation";
+import TestimonialSlider from "./Components/TestimonialSlider";
 
 export default function Home() {
   const [darkmode, setDarkMode] = useState(false);
@@ -48,14 +49,19 @@ export default function Home() {
           <main className="transition-colors duration-500">
             <div className="w-[98%] lg:w-[94%] xl:w-[90vw] m-auto flex flex-col gap-12 justify-center items-center mt-2">
               <Introduction />
+              <Projects />
               <CreativeProcess />
               <NeedofSp />
               <TechUsed />
               <Skills />
-              <Projects />
               <ActivitiesTimeline />
-              <Education />
+              {/* <div className="w-full">
+              <TestimonialSlider/>
+              </div> */}
+              {/* <Education /> */}
               <ContactForm />
+              
+              
             </div>
             <Footer />
             <div className="bg-[#3b82f6] w-[100%] text-center">

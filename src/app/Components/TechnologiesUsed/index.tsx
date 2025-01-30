@@ -24,7 +24,12 @@ const TechUsed = () => {
         "Particlejs",
         "AOS animation",
         "Material UI",
+        "ChakraUi",
+        "shadcn",
         "Bootstrap",
+        "styled-components",
+        "framer-motion",
+        "gsap"
       ],
     },
     {
@@ -34,12 +39,15 @@ const TechUsed = () => {
         "Node.js",
         "Express.js",
         "Nestjs",
+        "typeorm",
         "MongoDB",
+        "postgresql",
         "Sessions",
         "Passportjs",
         "OAuth2",
         "MySQL",
         "JWT",
+        "rbac",
         "Cloudinary",
         "AWS S3",
         "Firebase",
@@ -105,7 +113,7 @@ const TechUsed = () => {
       </Head>
 
       <div className="flex flex-col justify-center w-[96%] lg:w-full m-auto mb-9 gap-5 3xl:text-[1.5rem] ">
-        <h2 className="backgroundimage text-[2rem] text-center md:text-[3rem] 3xl:text-[4.5rem] font-bold">
+      <h2 className="backgroundimage text-center text-2xl md:text-3xl font-bold pt-9">
           Technologies Used
         </h2>
         <p className="m-auto text-center border-l border-dotted border-[#3b82f6] pl-2 xl:w-[70%]">

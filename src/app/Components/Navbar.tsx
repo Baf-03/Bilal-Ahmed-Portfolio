@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -28,6 +28,28 @@ interface Props {
 const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(dm);
+  const [showNavbar, setShowNavbar] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  // Scroll event listener to show/hide navbar
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY) {
+        // Scrolling down
+        setShowNavbar(false);
+      } else {
+        // Scrolling up
+        setShowNavbar(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [lastScrollY]);
 
   const handleMenuToggle = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -45,11 +67,14 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
 
   return (
     <AppBar
-      position="sticky"
-      sx={{ background: "transparent", color: darkMode ? "#fff" : "black" }}
-      className={`transition-colors duration-500 sticky top-0 ${
-        darkMode ? "bg-gray-800" : "bg-[#e7e5e4]"
-      }`}
+      position="fixed"
+      sx={{
+        top: showNavbar ? 0 : "-80px", // Moves navbar out of view when scrolling down
+        transition: "top 0.3s ease-in-out",
+        background: "transparent",
+        color: darkMode ? "#fff" : "black",
+      }}
+      className={`transition-colors duration-500 ${darkMode ? "bg-gray-800" : "bg-[#e7e5e4]"}`}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
@@ -65,13 +90,8 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
           </Box>
 
           {/* Title */}
-          <Typography
-            component="div"
-            className=" text-center w-[90vw] lg:w-fit ms-0 2xl:ms-[-3vw] 3xl:ms-[-8vw]"
-          >
-            <span className="text text-[1rem] ">
-              &lt; <strong>Dev</strong> /&gt;
-            </span>
+          <Typography component="div" className="text-center w-[90vw] lg:w-fit">
+            <span className="text text-[1rem] ">&lt; <strong>Dev</strong> /&gt;</span>
           </Typography>
 
           {/* Desktop Links */}
@@ -122,15 +142,10 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
             </div>
           </Box>
 
-          <Box
-            className={`navbar-drawer ${isMenuOpen ? "open" : ""}`}
-            onClick={closeMenu}
-          >
+          {/* Mobile Menu Drawer */}
+          <Box className={`navbar-drawer ${isMenuOpen ? "open" : ""}`} onClick={closeMenu}>
             <Box className="navbar-drawer-content" onClick={(e) => e.stopPropagation()}>
-              <IconButton
-                onClick={closeMenu}
-                className="drawer-close-button"
-              >
+              <IconButton onClick={closeMenu} className="drawer-close-button">
                 <CloseIcon />
               </IconButton>
               <ul>
@@ -144,7 +159,7 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
                       offset={-70}
                       duration={500}
                       onClick={closeMenu}
-                      style={{ color: "", fontSize: "1.5rem", textAlign: "center", display: "block", margin: "20px 0" }}
+                      style={{ fontSize: "1.5rem", textAlign: "center", display: "block", margin: "20px 0" }}
                     >
                       {page.name}
                     </ScrollLink>

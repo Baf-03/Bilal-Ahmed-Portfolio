@@ -47,9 +47,9 @@ const CreativeProcess = () => {
   ];
   return (
     <div className=" relative p-2 w-[100%] md:w-[85%] mx-auto ">
-      <h2 className="backgroundimage text-[2rem] text-center md:text-[3rem] 3xl:text-[4.2rem] font-bold">
+      <h1 className="backgroundimage text-center text-2xl md:text-3xl font-bold pt-9">
         Creative Process
-      </h2>
+      </h1>
       <p className="w-[90%] md:w-[85%] 3xl:text-[1.5rem] mt-9 md:border-l md:border-dotted md:border-[#3b82f6] ps-2">
         Creating a digital solution{" "}
         <span className="text-[#3b82f6] font-bold">
