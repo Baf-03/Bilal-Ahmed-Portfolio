@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
+import {motion} from "framer-motion"
 import { TextField } from "@mui/material";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -55,10 +56,22 @@ const ContactForm = () => {
 
   return (
     <div id="connect" className="z-[2]">
-      <h1 className="backgroundimage text-center text-2xl md:text-3xl font-bold pt-9">
-        Contact Us
-      </h1>
-      <div className="w-[90%] md:w-[80%] flex flex-col sm:flex-row gap-3  mb-[50px] bg-gray-800 p-8 m-auto mt-3 rounded-lg shadow-lg ">
+      <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="text-center"
+        >
+          <h2 className="text-4xl md:text-4xl font-bold mb-4 text-gradient mt-5">Get In Touch</h2>
+          {/* <p className="text-lg md:text-xl max-w-3xl mx-auto">
+          Each project has its needs, and{" "}
+          <span className="text-[#3b82f6]">choosing the right tools</span> makes
+          all the difference. As a communicator, web developer, and designer, I
+          have listed below the main stacks that I usually use in each type of
+          project.
+          </p> */}
+        </motion.div>
+      <div className="w-[90%] md:w-[80%] flex flex-col sm:flex-row gap-3  mb-[50px]  p-8 m-auto mt-3 rounded-lg shadow-lg ">
         <section className="flex flex-col items-center w-[100%] sm:w-[50%] gap-5">
           <div className="w-[20%] ">
             <Image
@@ -72,7 +85,7 @@ const ContactForm = () => {
           <h2 className="text-[1.5rem] 3xl:text-[2.5rem]  font-bold ">
             Let <span className="text-[#3b82f6]">{"'s chat "}</span>?
           </h2>
-          <p className="text-center text-gray-300 sm:w-[80%] 3xl:text-[1.5rem] ">
+          <p className="text-center  sm:w-[80%] 3xl:text-[1.5rem] ">
             Did you like my work? Do you want to hire a service, make a proposal
             or send me feedback? Contact! You can use the form or speak via
             WhatsApp.

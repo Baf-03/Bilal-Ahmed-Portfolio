@@ -7,6 +7,7 @@ import { FaCheck } from "react-icons/fa6";
 import SocialLinks from "./SocialLinks";
 import Head from "next/head";
 import coverimg from "../../../../public/coverImgSvg.svg";
+import { FaCode, FaLightbulb, FaRocket } from "react-icons/fa";
 
 function LandingPage() {
   return (
@@ -27,7 +28,7 @@ function LandingPage() {
 
       <div
         id="about"
-        className="flex flex-wrap overflow-x-hidden  lg:overflow-x-visible justify-center mt-[15%] sm:mt-[8%] md:mt-[5%] items-center border-gray-900 border-b-[1px] pb-[100px] min-h-[80vh] relative dark-theme-bg "
+        className= {`w-full flex flex-wrap overflow-x-hidden  lg:overflow-x-visible justify-center mt-[15%] sm:mt-[8%] md:mt-[5%] items-center border-gray-900 border-b-[1px] pb-[100px] min-h-[80vh] relative dark-theme-bg `}
       >
         
 
@@ -38,7 +39,7 @@ function LandingPage() {
           data-aos-easing="ease-in-sine"
           
         >
-          <h3 className="text-highlight 3xl:text-[1.2rem] mt-12">WELCOME TO MY WORLD</h3>
+          <h3 className="text-blue-400 text-lg md:text-xl lg:text-2xl mb-4 font-semibold mt-12">WELCOME TO MY WORLD</h3>
           <h1 className="font-bold mt-3 text-[1.8rem] lg:text-[2.5rem] xl:text-[3rem] text-highlight">
             <div className="flex text-[1.8rem] md:text-[2.5rem] lg:text-[2rem] xl:text-[2.5rem] 3xl:text-[4.2rem]">
               Hi,
@@ -51,33 +52,41 @@ function LandingPage() {
           <div className="flex font-bold text-[3rem] 3xl:text-[4.2rem] text-highlight">
             <TyperEffect />
           </div>
-          <div className="w-[90%] text-[0.85rem] font-[400]  md:font-[20] pt-5 text-start md:pe-5 md:m-0 md:break-normal xl:text-[0.9rem] 3xl:text-[1.5rem] md:w-[90%] leading-6 3xl:leading-10 text-highlight 3xl:mt-3">
-            Hello! I&#39;m <strong className="font-bold text-primary">Bilal</strong>
-            , a certified{" "}
-            <strong className="font-bold text-primary">Web Developer</strong>{" "}
-            with over 2 years of experience and currently enhancing my skills at
-            UBIT, Karachi University. My expertise includes{" "}
-            <strong className="font-bold text-primary">
-              ReactJS, Next.js, SQL, MongoDB, Expressjs, Nodejs, and many more
-            </strong>{" "}
-            enabling me to build responsive and efficient web applications. With
-            a passion for coding and excellence, I&#39;m committed to surpassing
-            client expectations. Whether it&#39;s creating interactive sites with
-            ReactJS, server-rendered pages with Next.js, managing data with SQL,
-            or utilizing MongoDB for flexible databases, I&#39;m ready to turn your
-            web development visions into reality with{" "}
-            <strong className="font-bold text-primary">
-              cutting-edge solutions.
-            </strong>
-            <div className="mt-5 flex gap-5 ">
-              <div className="flex gap-2 items-center text-primary">
-                <FaLocationDot />
-                <strong className="font-bold text-highlight">Karachi, PK</strong>
-              </div>
-              <div className="flex gap-2 items-center text-primary">
-                <FaCheck />
-                <strong className="font-bold text-highlight">Available for jobs</strong>
-              </div>
+          <div className="w-[90%] text-[0.85rem] font-[400]  md:font-[20] pt-5 text-start md:pe-5 md:m-0 md:break-normal xl:text-[1.2rem] 3xl:text-[1.5rem] md:w-[90%] leading-6 3xl:leading-10 text-highlight 3xl:mt-3 ">
+            
+          <ul className="space-y-4">
+              <li className="flex items-start">
+                <FaLightbulb className="text-blue-400 mt-1 mr-2 flex-shrink-0" />
+                <span>
+                   <strong className="text-primary">2+ years</strong> of experience crafting
+                  innovative digital solutions
+                </span>
+              </li>
+              <li className="flex items-start">
+                <FaCode className="text-blue-400 mt-1 mr-2 flex-shrink-0" />
+                <span>
+                  Expertise in <strong className="text-primary">clean code</strong> and building{" "}
+                  <strong className="text-primary">user-friendly experiences</strong>
+                </span>
+              </li>
+              <li className="flex items-start">
+                <FaRocket className="text-blue-400 mt-1 mr-2 flex-shrink-0" />
+                <span>
+                  Passionate about <strong className="text-primary">problem-solving</strong>,{" "}
+                  <strong className="text-primary">leadership</strong>, and leveraging{" "}
+                  <strong className="text-primary">cutting-edge technologies</strong>
+                </span>
+              </li>
+            </ul>
+            <div className="mt-5 flex gap-5  md:mt-12">
+            <div className="flex items-center gap-2 text-blue-400 bg-blue-500/10 px-4 py-2 rounded-full">
+            <FaLocationDot />
+            <span className="font-bold text-sm md:text-base">Karachi, PK</span>
+          </div>
+          <div className="flex items-center gap-2 text-blue-400 bg-blue-500/10 px-4 py-2 rounded-full">
+            <FaCheck />
+            <span className="font-bold text-sm md:text-base">Available for jobs</span>
+          </div>
             </div>
 
             <div className="flex gap-6 mt-[15%] items-center text-[2rem] md:text-[3rem] 3xl:text-[4.2rem]  lg:gap-11">

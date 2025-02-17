@@ -80,7 +80,7 @@ const Footer: React.FC = () => {
 
         {/* Column 3: Contact */}
         <motion.div className="flex flex-col space-y-4" variants={itemVariants}>
-          <h3 className="text-white text-xl font-bold">Contact</h3>
+          <h3 className="text-xl font-bold">Contact</h3>
           <a
             href="mailto:bilalahmedfarooqi03@gmail.com"
             className="hover:text-white transition-colors duration-300 flex items-center space-x-2"

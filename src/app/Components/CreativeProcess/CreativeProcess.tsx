@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import design from "../../../../public/design3.png"
+import { motion, AnimatePresence } from "framer-motion"
 import prototype from "../../../../public/prototype.png"
 import planning from "../../../../public/planning2.png"
 import development from "../../../../public/development.png"
@@ -47,18 +48,19 @@ const CreativeProcess = () => {
   ];
   return (
     <div className=" relative p-2 w-[100%] md:w-[85%] mx-auto ">
-      <h1 className="backgroundimage text-center text-2xl md:text-3xl font-bold pt-9">
-        Creative Process
-      </h1>
-      <p className="w-[90%] md:w-[85%] 3xl:text-[1.5rem] mt-9 md:border-l md:border-dotted md:border-[#3b82f6] ps-2">
-        Creating a digital solution{" "}
-        <span className="text-[#3b82f6] font-bold">
-          is not as simple as it seems
-        </span>
-        . There are several steps, from conception to product launch. Below I
-        highlight some of these steps in summary so that you can visualize the
-        process.
-      </p>
+         <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="text-center"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">Creative Process</h2>
+          <p className="text-lg md:text-xl max-w-3xl mx-auto">
+            {
+              "Creating a digital solution is not as simple as it seems. There are several steps, from conception to product launch. Below I highlight some of these steps in summary so that you can visualize the process."
+            }
+          </p>
+        </motion.div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  mt-9">
         {process.map((element, index) => {
           const isLastRow = index >= process.length - 3;

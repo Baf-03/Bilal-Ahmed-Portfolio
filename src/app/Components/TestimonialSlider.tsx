@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import Image from "next/image"
+import {motion} from "framer-motion"
 import { Quote } from "lucide-react"
 import coverAvatar from "../../../public/profile.png"
 interface Testimonial {
@@ -59,10 +60,20 @@ export default function TestimonialSlider() {
   }, [])
 
   return (
-    <div className="relative min-h-[600px]  flex flex-col items-center justify-center overflow-hidden px-4">
-         <h2 className="backgroundimage text-center text-2xl md:text-3xl font-bold pt-9">
-         Testimonials 
-        </h2>
+    <div className="relative min-h-[600px]  flex flex-col items-center justify-center overflow-hidden px-4 w-full">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="text-center"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">Testimonials</h2>
+          {/* <p className="text-lg md:text-xl max-w-3xl mx-auto">
+            {
+              "Creating a digital solution is not as simple as it seems. There are several steps, from conception to product launch. Below I highlight some of these steps in summary so that you can visualize the process."
+            }
+          </p> */}
+        </motion.div>
       <div className="relative w-full max-w-7xl">
         <div className="relative h-[400px]">
           {" "}
@@ -106,7 +117,7 @@ export default function TestimonialSlider() {
                 }}
               >
                 <div className="bg-white rounded-lg p-8 shadow-xl">
-                  <Quote className="w-12 h-12 text-gray-200 mb-6" />
+                <Quote className="w-12 h-12 text-blue-500 dark:text-blue-400 mb-6" />
                   <p className="text-gray-600 mb-6 leading-relaxed line-clamp-4">{testimonial.content}</p>
                   <div className="flex items-center gap-4">
                     <Image
@@ -114,7 +125,7 @@ export default function TestimonialSlider() {
                       alt={testimonial.name}
                       width={60}
                       height={60}
-                      className="rounded-full"
+                      className="rounded-full border-2 border-blue-500 dark:border-blue-400"
                     />
                     <div>
                       <h3 className="font-semibold text-blue-500">{testimonial.name}</h3>
@@ -129,13 +140,15 @@ export default function TestimonialSlider() {
       </div>
 
       {/* Navigation dots */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-2">
+      <div className="mt-8 flex gap-2">
         {testimonials.map((_, index) => (
           <button
             key={index}
             onClick={() => setActiveIndex(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === activeIndex ? "bg-white w-6" : "bg-white/50"
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
+              index === activeIndex
+                ? "bg-blue-600 dark:bg-blue-400 w-6"
+                : "bg-gray-300 dark:bg-gray-600 hover:bg-blue-400 dark:hover:bg-blue-600"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

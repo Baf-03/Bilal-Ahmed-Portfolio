@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion"
 import Head from "next/head";
 import "./tech.css";
 
@@ -112,17 +113,24 @@ const TechUsed = () => {
         />
       </Head>
 
+      
+
       <div className="flex flex-col justify-center w-[96%] lg:w-full m-auto mb-9 gap-5 3xl:text-[1.5rem] ">
-      <h2 className="backgroundimage text-center text-2xl md:text-3xl font-bold pt-9">
-          Technologies Used
-        </h2>
-        <p className="m-auto text-center border-l border-dotted border-[#3b82f6] pl-2 xl:w-[70%]">
+      <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="text-center"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">Technologies Used</h2>
+          <p className="text-lg md:text-xl max-w-3xl mx-auto">
           Each project has its needs, and{" "}
           <span className="text-[#3b82f6]">choosing the right tools</span> makes
           all the difference. As a communicator, web developer, and designer, I
           have listed below the main stacks that I usually use in each type of
           project.
-        </p>
+          </p>
+        </motion.div>
 
         <div
           ref={titleRef}

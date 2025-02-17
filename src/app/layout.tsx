@@ -81,7 +81,7 @@ export default function RootLayout({
       />
       <body
         className={`transition-colors duration-500 ${
-          darkmode ? "bg-[#1c1e21] text-white" : "bg-[#e7e5e4] text-gray-900"
+          darkmode ? "bg-[#1c1e21] text-gray-300" : "bg-[#e7e5e4] text-gray-900"
         }`}
       >
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
