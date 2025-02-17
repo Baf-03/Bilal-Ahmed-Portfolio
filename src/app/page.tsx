@@ -13,6 +13,7 @@ import Footer from "./Components/Footer/Footer";
 import WhatsAppButton from "./Components/WhatsAppbtn";
 import { useSearchParams } from "next/navigation";
 import TestimonialSlider from "./Components/TestimonialSlider";
+import FeatureCarousel from "./Components/Chooseus";
 
 export default function Home() {
   const [darkmode, setDarkMode] = useState(false);
@@ -49,18 +50,19 @@ export default function Home() {
           <main className="transition-colors duration-500">
             <div className="w-[98%] lg:w-[94%] xl:w-[90vw] m-auto flex flex-col gap-12 justify-center items-center mt-2">
               <Introduction />
+              <FeatureCarousel/>
               <Projects />
+              <ActivitiesTimeline />
               <CreativeProcess />
               <NeedofSp />
               <TechUsed />
               <Skills />
-              <ActivitiesTimeline />
-              {/* <div className="w-full">
               <TestimonialSlider/>
+
+              {/* <div className="w-full">
               </div> */}
               {/* <Education /> */}
               <ContactForm />
-              
               
             </div>
             <Footer />

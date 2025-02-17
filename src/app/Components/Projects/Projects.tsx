@@ -177,10 +177,17 @@ export default function FilteredProjects() {
   return (
     <section className="container mx-auto px-4 py-16 z-50" id="Projects">
       <div className="space-y-8">
-        <div className="text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Portfolio</h2>
-          <p className="text-muted-foreground">{"Here are some of the projects I've developed over the last few years. There were sales pages, capture pages, eCommerces, institutional sites, portfolios, blogs, WebApps and others."}</p>
-        </div>
+      <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="text-center"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">Portfolio</h2>
+          <p className=" text-lg md:text-xl max-w-3xl mx-auto">
+            {"Explore a diverse collection of projects I've developed, showcasing my skills in web development, game design, and digital marketing solutions."}
+          </p>
+        </motion.div>
 
         <Tabs defaultValue="all" value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
           <TabsList className="flex flex-wrap justify-center gap-2 h-full">

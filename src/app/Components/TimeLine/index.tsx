@@ -1,9 +1,9 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
-import { motion } from "framer-motion"
-import { Calendar, Clock } from "lucide-react"
+import { motion, AnimatePresence } from "framer-motion"
+import { Calendar, Clock, ChevronDown, ChevronUp } from "lucide-react"
 
 interface ExpInt {
   comp_name: string
@@ -12,9 +12,13 @@ interface ExpInt {
   present?: boolean
   imgurl: string
   skills: string[]
+  description?: string
 }
 
 export default function ActivitiesTimeline() {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
+  const [isDarkMode, setIsDarkMode] = useState(false)
+
   const experience: ExpInt[] = [
     {
       comp_name: "Solar Citizen",
@@ -24,6 +28,7 @@ export default function ActivitiesTimeline() {
       imgurl:
         "https://media.licdn.com/dms/image/C4E0BAQGwp-6SYqgdmQ/company-logo_200_200/0/1676910205768/jarvis_tech_global_logo?e=2147483647&v=beta&t=9hfUf8yhUyoVVs1yrxojd-uaWU7Gw3bENdyDXVIegWY",
       skills: ["Reactjs", "TypeScript", "styled-components", "Tailwind CSS", "Amazon S3", "Express.js", "SQL"],
+      description: "Developing and maintaining full-stack web applications for renewable energy solutions.",
     },
     {
       comp_name: "Rawts",
@@ -32,6 +37,7 @@ export default function ActivitiesTimeline() {
       present: false,
       imgurl: "https://www.rawts.com.pk/static/RAWTS-LOGO-2242aab9f87e5e3e8e46cb0666e0ae17.svg",
       skills: ["Reactjs", "Gatsby", "TypeScript", "styled-components", "Amazon S3", "Express.js", "MongoDb"],
+      description: "Built scalable web applications using the MERN stack and implemented cloud-based solutions.",
     },
     {
       comp_name: "CodSoft",
@@ -41,6 +47,7 @@ export default function ActivitiesTimeline() {
       imgurl:
         "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=608,fit=crop,q=95/Aq20eV79zLfpXV6b/logo-png-mnl7npnlXjHPl9KV.png",
       skills: ["Reactjs", "TailwindCSS", "MUI"],
+      description: "Developed responsive and user-friendly interfaces using modern front-end technologies.",
     },
   ]
 
@@ -75,7 +82,7 @@ export default function ActivitiesTimeline() {
       if (document.hidden) {
         document.title = "Come back! We miss you!"
       } else {
-        document.title = "Hey,Bilal! - Software Engineer - Mern Stack -FrontEnd Developer-Backend Developer"
+        document.title = "Hey, Bilal! - Software Engineer - Mern Stack - Full Stack Developer"
       }
     }
 
@@ -92,9 +99,9 @@ export default function ActivitiesTimeline() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          document.title = "Experience Timeline - Web Developer-Software Engineer | Bilal Ahmed"
+          document.title = "Experience Timeline - Web Developer - Software Engineer | Bilal Ahmed"
         } else {
-          document.title = "Bilal Ahmed - Software Engineer -Mern Stack Developer - Karachi, PK"
+          document.title = "Bilal Ahmed - Software Engineer - Mern Stack Developer - Karachi, PK"
         }
       },
       {
@@ -115,88 +122,107 @@ export default function ActivitiesTimeline() {
     }
   }, [])
 
+  useEffect(() => {
+    const darkModePreference = localStorage.getItem("darkMode")
+    setIsDarkMode(darkModePreference === "true")
+  }, [])
+
+  useEffect(() => {
+    const root = window.document.documentElement
+    root.classList.toggle("dark", isDarkMode)
+  }, [isDarkMode])
+
   return (
-    <div className="w-full my-16 px-4 md:px-6 lg:px-8 ">
+    <div className={`w-full my-16 px-4 md:px-6 lg:px-8`}>
       <motion.h1
         ref={titleRef}
-       className="backgroundimage text-center text-2xl md:text-3xl font-bold pt-9 mb-6"
+        className="text-center text-3xl md:text-4xl font-bold mb-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
         Professional Experience
       </motion.h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl mx-auto">
-  {experience.map((exp: ExpInt, index: number) => (
-    <motion.div
-    key={index}
-    className="w-full h-full flex flex-col rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl md:max-w-[800px] mx-auto"
-    initial={{ opacity: 0, x: index % 2 === 0 ? -100 : 100 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 0.5, delay: index * 0.2 }}
-  >
-      <div className="p-6 md:p-8 lg:p-10 flex flex-col h-full  bg-gray-800 z-50">
-        <div className="flex flex-col items-center ">
-          {/* Logo Image */}
-          <div className="w-28 h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 flex items-center justify-center">
-            <Image
-              src={exp.imgurl || "/placeholder.svg"}
-              alt={`${exp.comp_name} logo`}
-              width={100}
-              height={100}
-              className="object-contain rounded-full"
-            />
-          </div>
-          {/* Title & Company */}
-          <h2 className="text-2xl md:text-3xl font-bold text-center mt-4">{exp.designation}</h2>
-          <h3 className="text-xl text-blue-600 dark:text-blue-400 text-center font-bold">{exp.comp_name}</h3>
-        </div>
-
-        {/* Dates & Duration */}
-        <div className="flex flex-col items-center text-white dark:text-gray-300 mt-4 ">
-          <div className="flex items-center">
-            <Calendar className="w-5 h-5 mr-2" />
-            <span>
-              {exp.present
-                ? `${new Date(exp.startDate).toLocaleString("default", {
-                    month: "short",
-                    year: "numeric",
-                  })} - Present`
-                : typeof exp.startDate === "string"
-                ? exp.startDate
-                : exp.startDate.toLocaleString("default", {
-                    month: "short",
-                    year: "numeric",
-                  })}
-            </span>
-          </div>
-          {exp.present && (
-            <div className="flex items-center mt-2">
-              <Clock className="w-5 h-5 mr-2" />
-              <span>{calculateDuration(exp.startDate)}</span>
+      <div className="grid grid-cols-1 gap-8 w-full max-w-4xl mx-auto">
+        {experience.map((exp: ExpInt, index: number) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.2 }}
+          >
+            <div className=" rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg">
+              <div className="p-6 flex items-center gap-4">
+                <div className="w-16 h-16 relative flex-shrink-0">
+                  <Image
+                    src={exp.imgurl || "/placeholder.svg"}
+                    alt={`${exp.comp_name} logo`}
+                    layout="fill"
+                    objectFit="contain"
+                    className="rounded-full"
+                  />
+                </div>
+                <div className="flex-1">
+                  <h2 className="text-xl font-bold dark:text-white">{exp.designation}</h2>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{exp.comp_name}</p>
+                </div>
+                <button
+                  className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
+                  onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                >
+                  {expandedIndex === index ? <ChevronUp className="h-5 w-5" /> : <ChevronDown className="h-5 w-5" />}
+                </button>
+              </div>
+              <AnimatePresence>
+                {expandedIndex === index && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="px-6 pb-6">
+                      <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-4">
+                        <Calendar className="h-4 w-4" />
+                        <span>
+                          {exp.present
+                            ? `${new Date(exp.startDate).toLocaleString("default", {
+                                month: "short",
+                                year: "numeric",
+                              })} - Present`
+                            : typeof exp.startDate === "string"
+                              ? exp.startDate
+                              : exp.startDate.toLocaleString("default", {
+                                  month: "short",
+                                  year: "numeric",
+                                })}
+                        </span>
+                        {exp.present && (
+                          <>
+                            <Clock className="h-4 w-4 ml-2" />
+                            <span>{calculateDuration(exp.startDate)}</span>
+                          </>
+                        )}
+                      </div>
+                      <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">{exp.description}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {exp.skills.map((skill, skillIndex) => (
+                          <span
+                            key={skillIndex}
+                            className="px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 rounded-full"
+                          >
+                            {skill}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </div>
-          )}
-        </div>
-
-        {/* Skills */}
-        <div className="mt-auto">
-          <h4 className="text-lg font-semibold text-center mt-6">Skills & Technologies:</h4>
-          <div className="flex flex-wrap justify-center gap-2 mt-2">
-            {exp.skills.map((skill, skillIndex) => (
-              <span
-                key={skillIndex}
-                className="px-3 py-1 bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 rounded-full text-sm"
-              >
-                {skill}
-              </span>
-            ))}
-          </div>
-        </div>
+          </motion.div>
+        ))}
       </div>
-    </motion.div>
-  ))}
-</div>
-
     </div>
   )
 }
