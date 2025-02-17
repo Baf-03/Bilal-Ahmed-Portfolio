@@ -53,7 +53,7 @@ export default function Home() {
               <FeatureCarousel/>
               <Projects />
               <ActivitiesTimeline />
-              <CreativeProcess />
+              {/* <CreativeProcess /> */}
               <NeedofSp />
               <TechUsed />
               <Skills />
