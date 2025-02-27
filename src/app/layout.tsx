@@ -92,7 +92,7 @@ export default function RootLayout({
           ) : (
             <>
               <ResponsiveAppBar s_dm={setDarkMode} dm={darkmode} />
-              <div className="userSelect w-0 h-0 text-[10rem] fixed top-[50%] left-[23%] sm:left-[35%] md:left-[45%] opacity-[0.1] text-gray-500 z-0">
+              <div className="hidden sm:flex userSelect w-0 h-0 text-[10rem] fixed top-[50%] left-[23%] sm:left-[35%] md:left-[45%] opacity-[0.1] text-gray-500 z-0">
           &#60;/&#62;
         </div>
               {children}
