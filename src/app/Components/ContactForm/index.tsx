@@ -62,7 +62,7 @@ const ContactForm = () => {
           transition={{ delay: 0.2, duration: 0.5 }}
           className="text-center"
         >
-          <h2 className="text-4xl md:text-4xl font-bold mb-4 text-gradient mt-5">Get In Touch</h2>
+          <h2 className="text-4xl md:text-4xl font-bold mb-4 text-gradient mt-5 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">Get In Touch</h2>
           {/* <p className="text-lg md:text-xl max-w-3xl mx-auto">
           Each project has its needs, and{" "}
           <span className="text-[#3b82f6]">choosing the right tools</span> makes

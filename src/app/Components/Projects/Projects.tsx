@@ -183,7 +183,7 @@ export default function FilteredProjects() {
           transition={{ delay: 0.2, duration: 0.5 }}
           className="text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">Portfolio</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">Portfolio</h2>
           <p className=" text-lg md:text-xl max-w-3xl mx-auto">
             {"Explore a diverse collection of projects I've developed, showcasing my skills in web development, game design, and digital marketing solutions."}
           </p>

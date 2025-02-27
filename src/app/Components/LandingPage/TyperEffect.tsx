@@ -42,7 +42,7 @@ const TyperEffect = () => {
     return (
         <div className='text-[1.8rem] lg:text-[2.5rem] xl:text-[3rem] h-[5rem] lg:h-[7rem] xl:h-[9rem] 3xl:text-[4.2rem] 3xl:mb-9'>
             I like creating
-            <span className="text-[#3b82f6] flex smooth  flex">{word}| websites</span>
+            <span className="text-gradient !bg-clip-text !text-transparent !bg-gradient-to-r !from-blue-500 !to-teal-400 smooth flex">{word}| websites</span>
            
         </div>
     )
