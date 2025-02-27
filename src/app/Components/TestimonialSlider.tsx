@@ -67,7 +67,7 @@ export default function TestimonialSlider() {
           transition={{ delay: 0.2, duration: 0.5 }}
           className="text-center"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">Testimonials</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">Testimonials</h2>
           {/* <p className="text-lg md:text-xl max-w-3xl mx-auto">
             {
               "Creating a digital solution is not as simple as it seems. There are several steps, from conception to product launch. Below I highlight some of these steps in summary so that you can visualize the process."

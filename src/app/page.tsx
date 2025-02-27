@@ -51,13 +51,13 @@ export default function Home() {
             <div className="w-[98%] lg:w-[94%] xl:w-[90vw] m-auto flex flex-col gap-12 justify-center items-center mt-2">
               <Introduction />
               <FeatureCarousel/>
-              <Projects />
-              <ActivitiesTimeline />
-              {/* <CreativeProcess /> */}
               <NeedofSp />
+              <ActivitiesTimeline />
+              <TestimonialSlider/>
+              <Projects />
+              {/* <CreativeProcess /> */}
               <TechUsed />
               <Skills />
-              <TestimonialSlider/>
 
               {/* <div className="w-full">
               </div> */}

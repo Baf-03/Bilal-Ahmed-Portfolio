@@ -1,47 +1,62 @@
 import Image from "next/image";
 import React from "react";
-import rocket from "../../../../public/rocket.png"
+import rocket from "../../../../public/rocket.png";
+
 const NeedofSp = () => {
   return (
-    <div className="text-black w-[95vw] p-4 sm:p-8 sm:w-[80vw] md:w-[70vw]  flex flex-wrap xl:flex-nowrap justify-center gap-[3%] lg:gap-0 items-center bg-gradient-to-r from-[#a0bff1] to-[#4b92f6] mb-12 rounded-2xl shadow-lg">
-      <div className="w-[45%] sm:w-[40%] md:w-[30%] lg:w-[25%] xl:w-[15%] mt-4 sm:mt-0 ">
+    <div className="w-full max-w-[1400px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 py-6 sm:py-10 md:py-12 flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 bg-gradient-to-r from-[#4b92f6] via-[#7ba9f9] to-[#a0bff1] rounded-3xl shadow-xl my-8 sm:my-12 lg:my-16 transition-all duration-500 hover:shadow-2xl">
+      {/* Image Section */}
+      <div className="w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 relative z-50 transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
         <Image
           src={rocket}
-          alt="bilal portfolio"
-          layout="responsive"
-          width={500}
-          height={200}
+          alt="Rocket illustration for landing page"
+          layout="fill"
+          objectFit="cover"
+          className="border-white border-[8px] sm:border-[10px] rounded-lg shadow-lg shadow-black"
         />
       </div>
-      <div className="w-[100%] lg:w-[80%] xl:w-[60%] p-2 sm:p-7 flex flex-col gap-1 text-center lg:text-left 3xl:text-[1.5rem]">
-        <h2 className="font-bold text-[1.5rem] mt-3 sm:mt-0 sm:text-[2rem] text-gray-800 3xl:text-[3.4rem] ">
-          Are you in need of a <span className="text-white">landing page</span>{" "}
-          ?
+
+      {/* Text Section */}
+      <div className="flex-1 text-center lg:text-left space-y-4 sm:space-y-5 lg:space-y-6 max-w-full lg:max-w-[60%]">
+        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-extrabold text-white leading-tight">
+          Need a <span className="bg-white text-[#4b92f6] px-2 py-1 rounded-md">Stunning</span> Landing Page?
         </h2>
-        <p className="italic text-white">
-          Are you going to launch a product? Do you want to promote an online
-          course or event?
+        <p className="text-white/90 text-base sm:text-lg md:text-xl lg:text-2xl italic font-light tracking-wide">
+          Launching a product, course, or event? Let’s make it unforgettable!
         </p>
-        <p className="mt-4 text-white">
-          You’re in the right place! My{" "}
-          <span className="font-bold">specialty</span> is creating{" "}
-          <span className="text-white font-bold">attractive</span> landing
-          pages with{" "}
-          <span className="text-white font-bold">
-            a high conversion rate{" "}
-          </span>
-          , using the main and most current technologies on the market.
+        <p className="text-white text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed">
+          I specialize in crafting{" "}
+          <span className="font-semibold text-[#dbeafe]">high-converting</span>, visually striking landing pages using cutting-edge technologies.
         </p>
       </div>
 
-      <a
-        href="https://wa.link/zlze49"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-[200px] bg-white flex justify-center items-center text-[#3b82f6] p-3 rounded-2xl cursor-pointer lg:text-[1.5rem] my-5 sm:my-0 hover:bg-[#3b82f6] hover:text-white transition-colors duration-300 ease-in-out shadow-md transform hover:scale-105"
-      >
-        Let’s talk
-      </a>
+      {/* CTA Button */}
+      <div className="flex justify-center lg:justify-end mt-6 lg:mt-0">
+        <a
+          href="https://wa.link/zlze49"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group relative inline-flex items-center justify-center px-6 py-3 sm:px-8 sm:py-4 bg-white text-[#4b92f6] rounded-xl text-base sm:text-lg md:text-xl font-semibold overflow-hidden transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+        >
+          <span className="absolute inset-0 w-full h-full bg-[#4b92f6] translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></span>
+          <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+            Let’s Talk
+          </span>
+          <svg
+            className="ml-2 w-4 h-4 sm:w-5 sm:h-5 relative z-10 group-hover:text-white transition-colors duration-300"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </a>
+      </div>
     </div>
   );
 };

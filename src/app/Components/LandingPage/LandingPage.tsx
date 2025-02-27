@@ -39,7 +39,7 @@ function LandingPage() {
           data-aos-easing="ease-in-sine"
           
         >
-          <h3 className="text-blue-400 text-lg md:text-xl lg:text-2xl mb-4 font-semibold mt-12">WELCOME TO MY WORLD</h3>
+          <h3 className="text-lg md:text-xl lg:text-2xl mb-4 font-semibold mt-12 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">WELCOME TO MY WORLD</h3>
           <h1 className="font-bold mt-3 text-[1.8rem] lg:text-[2.5rem] xl:text-[3rem] text-highlight">
             <div className="flex text-[1.8rem] md:text-[2.5rem] lg:text-[2rem] xl:text-[2.5rem] 3xl:text-[4.2rem]">
               Hi,

@@ -1,8 +1,49 @@
 .Card {
-    transition: box-shadow 2s ease-in;  /* Apply transition to box-shadow */
-    border-radius: 20px;  /* Uncommented and will apply a rounded border */
+    border-radius: 1.5rem;
+    transition: all 0.3s ease-in-out;
+    position: relative;
+    overflow: hidden;
 }
 
 .Card:hover {
-    box-shadow: 0px 10px 20px #3b82f6;
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(59, 130, 246, 0.2);
+}
+
+.Card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(20, 184, 166, 0.1));
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    z-index: 0;
+}
+
+.Card:hover::before {
+    opacity: 1;
+}
+
+.tech-item {
+    transition: all 0.2s ease-in-out;
+    position: relative;
+    z-index: 1;
+}
+
+.tech-item:hover {
+    transform: scale(1.05);
+    background: #3b82f6;
+    color: white;
+}
+
+.tech-icon {
+    font-size: 1.2em;
+    transition: transform 0.2s ease-in-out;
+}
+
+.tech-item:hover .tech-icon {
+    transform: rotate(360deg);
 }
