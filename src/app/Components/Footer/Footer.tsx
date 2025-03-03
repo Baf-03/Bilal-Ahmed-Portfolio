@@ -1,8 +1,8 @@
-import { Facebook, Instagram, Twitter } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
+import { Facebook, Instagram, Twitter } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
-export default function Footer() {
+export default function Footer({ language }:any) {
   return (
     <div className="w-full mb-8">
       <div className="w-full  rounded-3xl overflow-hidden !shadow-2xl border-y-2 border-blue-800">
@@ -11,28 +11,21 @@ export default function Footer() {
             {/* Logo and Subscribe Section */}
             <div className="sm:col-span-2 lg:col-span-1">
               <div className="flex flex-col gap-6">
-                {/* <div className="flex items-center">
-                  <Image src="/favicon.ico" alt="baf-logo" width={50} height={20} className="h-auto" />
-                </div> */}
-
                 <div className="mt-2 sm:mt-4">
-                  <h3 className="text-xl font-semibold mb-2">Subscribe For Insights</h3>
-                  <p className="text-sm mb-4">Get The Latest Dev Insights & AI Updates!</p>
+                  <h3 className="text-xl font-semibold mb-2">{language["subscribe_for_insights"]}</h3>
+                  <p className="text-sm mb-4">{language["subscribe_description"]}</p>
 
                   <div className="flex flex-col sm:flex-row gap-2">
-                  <div className="w-[100%] 3xl:text-[1.5rem] ">
-            <input
-              type="text"
-              name="name"
-              placeholder="Enter Email"
-              // disabled={
-              //   loading === "Loading" ||
-              // }
-              className="block bg-transparent w-full px-3 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-[#3b82f6] "
-            />
-          </div>
+                    <div className="w-[100%] 3xl:text-[1.5rem] ">
+                      <input
+                        type="text"
+                        name="name"
+                        placeholder={language["enter_email"]}
+                        className="block bg-transparent w-full px-3 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-[#3b82f6] "
+                      />
+                    </div>
                     <button className="bg-[#1e5aed] text-white px-5 py-2 rounded-lg text-sm font-medium whitespace-nowrap">
-                      Subscribe
+                      {language["subscribe_button"]}
                     </button>
                   </div>
                 </div>
@@ -41,31 +34,31 @@ export default function Footer() {
 
             {/* Quick Links */}
             <div className="sm:col-span-1">
-              <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
+              <h3 className="text-lg font-semibold mb-4">{language["quick_links"]}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link href="#" className="text-gray-600 hover:text-gray-900 text-sm">
-                    Home
+                    {language["home"]}
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="text-gray-600 hover:text-gray-900 text-sm">
-                    Features
+                    {language["features"]}
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="text-gray-600 hover:text-gray-900 text-sm">
-                    Pricing
+                    {language["pricing"]}
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="text-gray-600 hover:text-gray-900 text-sm">
-                    Blog
+                    {language["blog"]}
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="text-gray-600 hover:text-gray-900 text-sm">
-                    Contact
+                    {language["contact"]}
                   </Link>
                 </li>
               </ul>
@@ -73,26 +66,26 @@ export default function Footer() {
 
             {/* Explore */}
             <div className="sm:col-span-1">
-              <h3 className="text-lg font-semibold mb-4">Explore</h3>
+              <h3 className="text-lg font-semibold mb-4">{language["explore"]}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link href="#" className="text-gray-600 hover:text-gray-900 text-sm">
-                    Dev Ideas
+                    {language["dev_ideas"]}
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="text-gray-600 hover:text-gray-900 text-sm">
-                    AI blogs
+                    {language["ai_blogs"]}
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="text-gray-600 hover:text-gray-900 text-sm">
-                    Successful Products
+                    {language["successful_products"]}
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="text-gray-600 hover:text-gray-900 text-sm">
-                    FAQs
+                    {language["faqs"]}
                   </Link>
                 </li>
               </ul>
@@ -100,24 +93,23 @@ export default function Footer() {
 
             {/* Support */}
             <div className="sm:col-span-1">
-              <h3 className="text-lg font-semibold mb-4">Support</h3>
+              <h3 className="text-lg font-semibold mb-4">{language["support"]}</h3>
               <ul className="space-y-2">
                 <li>
                   <Link href="" className="text-gray-600 hover:text-gray-900 text-sm">
-                    Help Center
+                    {language["help_center"]}
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="text-gray-600 hover:text-gray-900 text-sm">
-                    Terms Of Service
+                    {language["terms_of_service"]}
                   </Link>
                 </li>
                 <li>
                   <Link href="#" className="text-gray-600 hover:text-gray-900 text-sm">
-                    Privacy Policy
+                    {language["privacy_policy"]}
                   </Link>
                 </li>
-                
               </ul>
             </div>
           </div>
@@ -125,7 +117,7 @@ export default function Footer() {
 
         {/* Footer Bar */}
         <div className="bg-[#0a1a33] text-white mt-8 sm:mt-12 p-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-center sm:text-left">Designed By baf-03 - All Rights Reserved</p>
+          <p className="text-xs text-center sm:text-left">{language["footer_text"]}</p>
           <div className="flex gap-4">
             <Link href="#" className="text-white hover:text-gray-300">
               <Facebook size={18} />
@@ -143,6 +135,5 @@ export default function Footer() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

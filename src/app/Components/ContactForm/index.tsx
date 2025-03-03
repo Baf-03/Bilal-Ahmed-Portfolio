@@ -1,12 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import Image from "next/image";
-import {motion} from "framer-motion"
+import { motion } from "framer-motion";
 import { TextField } from "@mui/material";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-const ContactForm = () => {
+const ContactForm = ({ language }:any) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [textarea, setTextarea] = useState("");
@@ -18,14 +18,14 @@ const ContactForm = () => {
       setEmailError('');
       return true;
     } else {
-      setEmailError('Please enter a valid email address.');
+      setEmailError(language["email_error"]);
       return false;
     }
   };
 
   const submitHandler = async (e: any) => {
     if (!name || !email || !textarea) {
-      alert("Please enter all fields");
+      alert(language["fill_all_fields"]);
       return;
     }
     e.preventDefault();
@@ -33,7 +33,7 @@ const ContactForm = () => {
     if (!validateEmail(email)) {
       return;
     }
-    setLoading("Loading");
+    setLoading(language["loading"]);
     
     await fetch(`https://formsubmit.co/ajax/bilalahmedfarooqi03@gmail.com`, {
       method: "POST",
@@ -49,7 +49,7 @@ const ContactForm = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        setLoading("You submitted your record successfully");
+        setLoading(language["submitted_successfully"]);
       })
       .catch((error) => console.log(error.message));
   };
@@ -57,20 +57,15 @@ const ContactForm = () => {
   return (
     <div id="connect" className="z-[2]">
       <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="text-center"
-        >
-          <h2 className="text-4xl md:text-4xl font-bold mb-4 text-gradient mt-5 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">Get In Touch</h2>
-          {/* <p className="text-lg md:text-xl max-w-3xl mx-auto">
-          Each project has its needs, and{" "}
-          <span className="text-[#3b82f6]">choosing the right tools</span> makes
-          all the difference. As a communicator, web developer, and designer, I
-          have listed below the main stacks that I usually use in each type of
-          project.
-          </p> */}
-        </motion.div>
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2, duration: 0.5 }}
+        className="text-center"
+      >
+        <h2 className="text-4xl md:text-4xl font-bold mb-4 text-gradient mt-5 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
+          {language["get_in_touch"]}
+        </h2>
+      </motion.div>
       <div className="w-[90%] md:w-[80%] flex flex-col sm:flex-row gap-3  mb-[50px]  p-8 m-auto mt-3 rounded-lg shadow-lg ">
         <section className="flex flex-col items-center w-[100%] sm:w-[50%] gap-5">
           <div className="w-[20%] ">
@@ -83,34 +78,32 @@ const ContactForm = () => {
             />
           </div>
           <h2 className="text-[1.5rem] 3xl:text-[2.5rem]  font-bold ">
-            Let <span className="text-[#3b82f6]">{"'s chat "}</span>?
+            {language["lets_chat"]}
           </h2>
           <p className="text-center  sm:w-[80%] 3xl:text-[1.5rem] ">
-            Did you like my work? Do you want to hire a service, make a proposal
-            or send me feedback? Contact! You can use the form or speak via
-            WhatsApp.
+            {language["contact_description"]}
           </p>
           <a
             href="https://wa.link/zlze49"
             target="_blank"
             className="w-[200px] border border-[#3b82f6] bg-[#3b82f6] hover:bg-[#2563eb] flex justify-center items-center  p-3 rounded-lg cursor-pointer lg:text-[1rem] shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out 3xl:text-[1.5rem] text-center"
           >
-            Discuss on Whatsapp
+            {language["discuss_on_whatsapp"]}
           </a>
         </section>
         <section className="flex gap-3 flex-col w-[100%] sm:w-[50%] p-3 items-center justify-center">
-        <h1 className="backgroundimage text-center text-xl md:text-2xl font-bold pt-9">
-            Contact Form
+          <h1 className="backgroundimage text-center text-xl md:text-2xl font-bold pt-9">
+            {language["contact_form"]}
           </h1>
           <div className="w-[100%] 3xl:text-[1.5rem] ">
             <input
               onChange={(e) => setName(e.target.value)}
               type="text"
               name="name"
-              placeholder="Enter Name"
+              placeholder={language["enter_name"]}
               disabled={
-                loading === "Loading" ||
-                loading === "You submitted your record successfully"
+                loading === language["loading"] ||
+                loading === language["submitted_successfully"]
               }
               className="block bg-transparent w-full px-3 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-[#3b82f6] "
             />
@@ -121,10 +114,10 @@ const ContactForm = () => {
               onChange={(e) => setEmail(e.target.value)}
               type="email"
               name="email"
-              placeholder="Enter Email"
+              placeholder={language["enter_email"]}
               disabled={
-                loading === "Loading" ||
-                loading === "You submitted your record successfully"
+                loading === language["loading"] ||
+                loading === language["submitted_successfully"]
               }
               className="block bg-transparent w-full px-3 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-[#3b82f6] "
             />
@@ -134,12 +127,12 @@ const ContactForm = () => {
             <textarea
               onChange={(e) => setTextarea(e.target.value)}
               name="message"
-              placeholder="Enter text..."
+              placeholder={language["enter_message"]}
               className="w-full h-24 px-3 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-[#3b82f6] bg-transparent  resize-none"
               required
               disabled={
-                loading === "Loading" ||
-                loading === "You submitted your record successfully"
+                loading === language["loading"] ||
+                loading === language["submitted_successfully"]
               }
             ></textarea>
           </div>
@@ -148,8 +141,8 @@ const ContactForm = () => {
             onClick={submitHandler}
             className="w-[200px] border bg-[#3b82f6] hover:bg-[#2563eb] border-[#3b82f6] flex justify-center items-center  p-3 rounded-lg cursor-pointer lg:text-[1rem] 3xl:text-[1.5rem] shadow-md transform hover:scale-105 transition-transform duration-300 ease-in-out"
             disabled={
-              loading === "Loading" ||
-              loading === "You submitted your record successfully"
+              loading === language["loading"] ||
+              loading === language["submitted_successfully"]
             }
           >
             {loading}

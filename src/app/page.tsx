@@ -14,22 +14,37 @@ import WhatsAppButton from "./Components/WhatsAppbtn";
 import { useSearchParams } from "next/navigation";
 import TestimonialSlider from "./Components/TestimonialSlider";
 import FeatureCarousel from "./Components/Chooseus";
+import en from './locales/en.json';
+import es from "./locales/es.json";
+import de from "./locales/de.json";
 
 export default function Home() {
   const [darkmode, setDarkMode] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [language, setLanguage] = useState<any>(en);
   const searchParams = useSearchParams();
   const search = searchParams.get("element");
 
   useEffect(() => {
     const storedDarkMode = localStorage.getItem("darkmode");
+    const storedLanguage = localStorage.getItem("language");
+
     if (storedDarkMode !== null) {
       setDarkMode(JSON.parse(storedDarkMode));
     }
-    setLoading(false); // Turn off loading after initial setup
+
+    if (storedLanguage === 'es') {
+      setLanguage(es);
+    } else if (storedLanguage === 'de') {
+      setLanguage(de);
+    } else {
+      setLanguage(en);
+      localStorage.setItem("language", "en");
+    }
+
+    setLoading(false);
   }, []);
 
-  
   useEffect(() => {
     if (search) {
       const targetElement = document.getElementById(search);
@@ -49,28 +64,18 @@ export default function Home() {
         <>
           <main className="transition-colors duration-500">
             <div className="w-[98%] lg:w-[94%] xl:w-[90vw] m-auto flex flex-col gap-12 justify-center items-center mt-2">
-              <Introduction />
-              <FeatureCarousel/>
-              <NeedofSp />
-              <ActivitiesTimeline />
-              <TestimonialSlider/>
-              <Projects />
-              {/* <CreativeProcess /> */}
+              <Introduction language={language} />
+              <FeatureCarousel language={language} />
+              <NeedofSp language={language} />
+              <ActivitiesTimeline language={language} />
+              <TestimonialSlider />
+              <Projects language={language} />
               <TechUsed />
-              <Skills />
-
-              {/* <div className="w-full">
-              </div> */}
-              {/* <Education /> */}
-              <ContactForm />
-              
+              <ContactForm language={language} />
             </div>
-            <Footer />
+            <Footer language={language} />
             <div className="bg-[#3b82f6] w-[100%] text-center">
-              Portfolio is currently in development phase
-              <br />
-              Projects, Education Sections and Blogs page <br />
-              and many more features are coming soon
+              {language["portfolio_message"]}
             </div>
           </main>
           <WhatsAppButton />
