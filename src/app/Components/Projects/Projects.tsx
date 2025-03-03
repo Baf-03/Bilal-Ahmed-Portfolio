@@ -249,7 +249,7 @@ export default function FilteredProjects({ language }: any) {
         </motion.div>
 
         <Tabs defaultValue="all" value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
-          <TabsList className="flex flex-wrap justify-center gap-3 bg-transparent p-2 max-w-3xl mx-auto">
+          <TabsList className="flex flex-wrap justify-center gap-3 bg-transparent p-2 max-w-3xl mx-auto  h-full">
             {categories.map((category) => (
               <TabsTrigger
                 key={category.id}
