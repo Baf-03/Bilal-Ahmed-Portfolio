@@ -6,33 +6,33 @@ import { ChevronLeft, ChevronRight } from "lucide-react"; // For arrow icons
 
 const features = [
   {
-    title: "Minimal Design",
-    description: "Clean aesthetics that put your content in the spotlight.",
+    title: "feature_minimal_design", // Key for the title
+    description: "feature_minimal_design_description", // Key for the description
     icon: "✨",
   },
   {
-    title: "Responsive",
-    description: "Flawless experiences across all devices and screen sizes.",
+    title: "feature_responsive",
+    description: "feature_responsive_description",
     icon: "📱",
   },
   {
-    title: "Fast Performance",
-    description: "Lightning-quick load times for smooth user interactions.",
+    title: "feature_fast_performance",
+    description: "feature_fast_performance_description",
     icon: "⚡",
   },
   {
-    title: "Accessibility",
-    description: "Inclusive design practices for all users.",
+    title: "feature_accessibility",
+    description: "feature_accessibility_description",
     icon: "🌈",
   },
   {
-    title: "SEO Optimized",
-    description: "Built to help your site rank higher in search results.",
+    title: "feature_seo_optimized",
+    description: "feature_seo_optimized_description",
     icon: "🔍",
   },
 ];
 
-const FeatureCarousel: React.FC = () => {
+const FeatureCarousel= ({ language }:any) => {
   const [width, setWidth] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const carousel = useRef<HTMLDivElement>(null);
@@ -105,7 +105,7 @@ const FeatureCarousel: React.FC = () => {
       <div className="w-full sm:max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
-          Why Choose Me as Your Developer
+          {language["why_choose_me"]} {/* This will be fetched from the language JSON */}
         </h2>
 
         {/* Carousel Container */}
@@ -146,23 +146,12 @@ const FeatureCarousel: React.FC = () => {
                   <div>
                     <div className="text-4xl mb-4">{feature.icon}</div>
                     <h3 className="text-xl font-semibold mb-2  dark:text-gray-100">
-                      {feature.title}
+                      {language[feature.title]} {/* Fetching title from language JSON */}
                     </h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400">
-                      {feature.description}
+                      {language[feature.description]} {/* Fetching description from language JSON */}
                     </p>
                   </div>
-                  {/* Uncomment if you want the "Learn more" link */}
-                  {/* <div className="mt-4">
-                    <a
-                      href="https://www.flowersandsaints.com.au"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-blue-500 hover:underline text-sm font-medium"
-                    >
-                      Learn more →
-                    </a>
-                  </div> */}
                 </motion.div>
               ))}
             </motion.div>

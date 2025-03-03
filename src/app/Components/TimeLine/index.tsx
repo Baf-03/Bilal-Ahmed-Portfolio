@@ -1,9 +1,8 @@
 "use client";
-
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect } from "react";
 import { Calendar, Clock, ChevronDown, ChevronUp } from "lucide-react";
+import Image from "next/image";
+import {motion,AnimatePresence} from "framer-motion";
 
 interface ExpInt {
   comp_name: string;
@@ -21,8 +20,7 @@ const experience: ExpInt[] = [
     designation: "Full Stack Developer",
     startDate: new Date("March 2024"),
     present: true,
-    imgurl:
-      "https://media.licdn.com/dms/image/C4E0BAQGwp-6SYqgdmQ/company-logo_200_200/0/1676910205768/jarvis_tech_global_logo?e=2147483647&v=beta&t=9hfUf8yhUyoVVs1yrxojd-uaWU7Gw3bENdyDXVIegWY",
+    imgurl:"/solarCitizen.png",
     skills: ["Reactjs", "TypeScript", "styled-components", "Tailwind CSS", "Amazon S3", "Express.js", "SQL"],
     description: "Developing and maintaining full-stack web applications for renewable energy solutions.",
   },
@@ -47,10 +45,9 @@ const experience: ExpInt[] = [
   },
 ];
 
-const ActivitiesTimeline: React.FC = () => {
+const ActivitiesTimeline= ({ language }:any) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const titleRef = useRef<HTMLHeadingElement>(null);
 
   const calculateDuration = (startDate: Date | string) => {
     if (typeof startDate === "string") {
@@ -66,16 +63,16 @@ const ActivitiesTimeline: React.FC = () => {
 
     let durationString = "";
     if (years > 0) {
-      durationString += `${years} ${years === 1 ? "year" : "years"}`;
+      durationString += `${years} ${years === 1 ? language["year"] : language["years"]}`;
     }
     if (remainingMonths > 0) {
-      if (years > 0) durationString += " and ";
-      durationString += `${remainingMonths} ${remainingMonths === 1 ? "month" : "months"}`;
+      if (years > 0) durationString += " " + language["and"] + " ";
+      durationString += `${remainingMonths} ${remainingMonths === 1 ? language["month"] : language["months"]}`;
     }
     return durationString;
   };
 
-  // Handle document visibility for title change
+
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.hidden) {
@@ -88,45 +85,15 @@ const ActivitiesTimeline: React.FC = () => {
     return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
   }, []);
 
-  // Intersection Observer for title update
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          document.title = "Experience Timeline - Web Developer - Software Engineer | Bilal Ahmed";
-        } else {
-          document.title = "Bilal Ahmed - Software Engineer - Mern Stack Developer - Karachi, PK";
-        }
-      },
-      { root: null, rootMargin: "0px", threshold: 0.2 }
-    );
-    if (titleRef.current) observer.observe(titleRef.current);
-    return () => {
-      if (titleRef.current) observer.unobserve(titleRef.current);
-    };
-  }, []);
-
-  // Dark mode handling
-  useEffect(() => {
-    const darkModePreference = localStorage.getItem("darkMode");
-    setIsDarkMode(darkModePreference === "true");
-  }, []);
-
-  useEffect(() => {
-    const root = window.document.documentElement;
-    root.classList.toggle("dark", isDarkMode);
-  }, [isDarkMode]);
-
   return (
     <div className="w-full my-16 px-4 sm:px-6 lg:px-8 ">
       <motion.h1
-        ref={titleRef}
         className="text-center text-3xl sm:text-4xl md:text-5xl font-bold mb-16 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: "easeOut" }}
       >
-        Professional Experience
+        {language["professional_experience"]}
       </motion.h1>
 
       <div className="relative max-w-4xl mx-auto">
@@ -144,7 +111,7 @@ const ActivitiesTimeline: React.FC = () => {
             transition={{ duration: 0.5, delay: index * 0.2 }}
           >
             {/* Timeline Dot */}
-            <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 md:-translate-x-5 w-6 h-6 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800 z-10 transition-all duration-300 group-hover:scale-125"></div>
+            <div className="absolute left-4 md:left-[51%] transform -translate-x-1/2 md:-translate-x-5 w-6 h-6 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800 z-10 transition-all duration-300 group-hover:scale-125"></div>
 
             {/* Timeline Card */}
             <div
@@ -177,7 +144,7 @@ const ActivitiesTimeline: React.FC = () => {
                         ? `${new Date(exp.startDate).toLocaleString("default", {
                             month: "short",
                             year: "numeric",
-                          })} - Present`
+                          })} - ${language["present"]}`
                         : typeof exp.startDate === "string"
                         ? exp.startDate.split(" - ").slice(0, 2).join(" - ")
                         : exp.startDate.toLocaleString("default", {
@@ -198,7 +165,7 @@ const ActivitiesTimeline: React.FC = () => {
                 <button
                   className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
                   onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-                  aria-label={expandedIndex === index ? "Collapse details" : "Expand details"}
+                  aria-label={expandedIndex === index ? language["collapse_details"] : language["expand_details"]}
                 >
                   {expandedIndex === index ? (
                     <ChevronUp className="h-5 w-5" />

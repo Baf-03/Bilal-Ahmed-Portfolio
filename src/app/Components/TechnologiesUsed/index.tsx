@@ -11,9 +11,11 @@ import {
   SiMysql, SiExpress, SiNestjs, SiChakraui, SiVisualstudiocode,
   SiPostman, SiRedux, SiFirebase, SiStyledcomponents, SiGreensock,
   SiPrisma,
-  SiOpenai
+  SiOpenai,
+  SiGraphql
 } from 'react-icons/si';
 import { DiMaterializecss } from "react-icons/di";
+import { GrGatsbyjs } from "react-icons/gr";
 
 const TechUsed = () => {
   const cardsData = [
@@ -36,16 +38,17 @@ const TechUsed = () => {
         { name: "JavaScript ES6", icon: <FaJs /> },
         { name: "TypeScript", icon: <SiTypescript /> },
         { name: "React", icon: <FaReact /> },
-        { name: "Redux Toolkit", icon: <SiRedux /> },
         { name: "Next.js", icon: <SiNextdotjs /> },
+        { name: "GatsBy", icon: <GrGatsbyjs /> },
+        { name: "Redux Toolkit", icon: <SiRedux /> },
         { name: "Tailwind CSS", icon: <SiTailwindcss /> },
-        { name: "Particlejs", icon: <FaJs /> },
-        { name: "AOS animation", icon: <FaCss3Alt /> },
-        { name: "Material UI", icon: <DiMaterializecss /> },
-        { name: "ChakraUi", icon: <SiChakraui /> },
-        { name: "shadcn", icon: <FaReact /> },
         { name: "Bootstrap", icon: <FaBootstrap /> },
         { name: "styled-components", icon: <SiStyledcomponents /> },
+        { name: "Material UI", icon: <DiMaterializecss /> },
+        { name: "shadcn", icon: <FaReact /> },
+        { name: "ChakraUi", icon: <SiChakraui /> },
+        { name: "Particlejs", icon: <FaJs /> },
+        { name: "AOS animation", icon: <FaCss3Alt /> },
         { name: "framer-motion", icon: <FaReact /> },
         { name: "gsap", icon: <SiGreensock /> },
       ],
@@ -58,14 +61,15 @@ const TechUsed = () => {
         { name: "Express.js", icon: <SiExpress /> },
         { name: "Nestjs", icon: <SiNestjs /> },
         { name: "typeorm", icon: <FaDatabase /> },
+        { name: "Prisma", icon: <SiPrisma /> },
         { name: "MongoDB", icon: <SiMongodb /> },
         { name: "postgresql", icon: <SiPostgresql /> },
+        { name: "MySQL", icon: <SiMysql /> },
         { name: "Sessions", icon: <FaLock /> },
-        { name: "Prisma", icon: <SiPrisma /> },
+        { name: "JWT", icon: <FaLock /> },
         { name: "Passportjs", icon: <FaLock /> },
         { name: "OAuth2", icon: <FaLock /> },
-        { name: "MySQL", icon: <SiMysql /> },
-        { name: "JWT", icon: <FaLock /> },
+        { name: "GraphQl", icon: <SiGraphql /> },
         { name: "rbac", icon: <FaLock /> },
         { name: "Cloudinary", icon: <FaCloud /> },
         { name: "AWS S3", icon: <FaCloud /> },

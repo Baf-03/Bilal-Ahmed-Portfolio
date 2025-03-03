@@ -30,20 +30,17 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
   const [darkMode, setDarkMode] = useState(dm);
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [currentLang, setCurrentLang] = useState<string>(localStorage.getItem("language") || "en");
 
-  // Scroll event listener to show/hide navbar
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-
       if (currentScrollY > lastScrollY) {
-        // Scrolling down
         setShowNavbar(false);
       } else {
-        // Scrolling up
         setShowNavbar(true);
       }
-
       setLastScrollY(currentScrollY);
     };
 
@@ -65,11 +62,18 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
     localStorage.setItem("darkmode", JSON.stringify(!dm));
   };
 
+  const handleLanguageChange = (lang: 'en' | 'es' | 'de') => {
+    localStorage.setItem("language", lang);
+    setCurrentLang(lang);
+    setIsDropdownOpen(false);
+    window.location.reload(); // Hard refresh
+  };
+
   return (
     <AppBar
       position="fixed"
       sx={{
-        top: showNavbar ? 0 : "-80px", // Moves navbar out of view when scrolling down
+        top: showNavbar ? 0 : "-80px",
         transition: "top 0.3s ease-in-out",
         background: "transparent",
         color: darkMode ? "#fff" : "black",
@@ -89,12 +93,10 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
             </IconButton>
           </Box>
 
-          {/* Title */}
           <Typography component="div" className="text-center w-[90vw] lg:w-fit">
             <span className="text text-[1rem] ">&lt; <strong>Dev</strong> /&gt;</span>
           </Typography>
 
-          {/* Desktop Links */}
           <Box
             sx={{
               flexGrow: 1,
@@ -124,8 +126,7 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
             </nav>
           </Box>
 
-          {/* Dark Mode Toggle */}
-          <Box sx={{ display: "flex", alignItems: "center", justifyContent: { xs: "center", md: "flex-end" } }}>
+          <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
             <div className="toggle">
               <input
                 type="checkbox"
@@ -140,9 +141,49 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
                 <span className="ball"></span>
               </label>
             </div>
+
+            {/* Enhanced Language Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                className={`flex items-center gap-2 px-3 py-2 rounded-full border ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-100 text-black border-gray-300'} hover:shadow-md transition-all duration-200 focus:outline-none`}
+              >
+                <span className="uppercase font-medium">{currentLang}</span>
+                <svg
+                  className={`w-4 h-4 transform transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
+                </svg>
+              </button>
+              {isDropdownOpen && (
+                <div className={`absolute right-0 mt-2 w-24 rounded-lg shadow-xl ${darkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-200'} overflow-hidden z-10`}>
+                  <button
+                    onClick={() => handleLanguageChange('en')}
+                    className={`w-full text-left px-4 py-2 text-sm uppercase font-medium ${darkMode ? 'text-gray-200 hover:bg-gray-700' : 'text-gray-800 hover:bg-gray-100'} transition-colors duration-150 ${currentLang === 'en' ? 'bg-opacity-20 bg-gray-500' : ''}`}
+                  >
+                    en
+                  </button>
+                  <button
+                    onClick={() => handleLanguageChange('es')}
+                    className={`w-full text-left px-4 py-2 text-sm uppercase font-medium ${darkMode ? 'text-gray-200 hover:bg-gray-700' : 'text-gray-800 hover:bg-gray-100'} transition-colors duration-150 ${currentLang === 'es' ? 'bg-opacity-20 bg-gray-500' : ''}`}
+                  >
+                    es
+                  </button>
+                  <button
+                    onClick={() => handleLanguageChange('de')}
+                    className={`w-full text-left px-4 py-2 text-sm uppercase font-medium ${darkMode ? 'text-gray-200 hover:bg-gray-700' : 'text-gray-800 hover:bg-gray-100'} transition-colors duration-150 ${currentLang === 'de' ? 'bg-opacity-20 bg-gray-500' : ''}`}
+                  >
+                    de
+                  </button>
+                </div>
+              )}
+            </div>
           </Box>
 
-          {/* Mobile Menu Drawer */}
           <Box className={`navbar-drawer ${isMenuOpen ? "open" : ""}`} onClick={closeMenu}>
             <Box className="navbar-drawer-content" onClick={(e) => e.stopPropagation()}>
               <IconButton onClick={closeMenu} className="drawer-close-button">
