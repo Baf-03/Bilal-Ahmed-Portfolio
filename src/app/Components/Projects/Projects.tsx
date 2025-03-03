@@ -249,12 +249,12 @@ export default function FilteredProjects({ language }: any) {
         </motion.div>
 
         <Tabs defaultValue="all" value={selectedCategory} onValueChange={setSelectedCategory} className="w-full">
-          <TabsList className="flex flex-wrap justify-center gap-3 bg-transparent p-2 max-w-3xl mx-auto  h-full">
+          <TabsList className="flex flex-wrap justify-center gap-3 bg-transparent p-2 max-w-3xl mx-auto h-full">
             {categories.map((category) => (
               <TabsTrigger
                 key={category.id}
                 value={category.id}
-                className="relative px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 
+                className="relative sm:px-6 sm:py-3 rounded-full text-sm font-medium transition-all duration-300 
                   text-gray-300 hover:text-white 
                   data-[state=active]:text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-teal-500
                   hover:bg-gray-800/50
