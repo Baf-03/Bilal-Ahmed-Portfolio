@@ -65,7 +65,7 @@ const FloatingButtons: React.FC = () => {
           className="bg-blue-500 flex-col hover:bg-blue-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 ease-in-out"
           aria-label="Open chatbot"
         >
-          <BotIcon size={24} /> AI-Bot
+          <BotIcon size={24} />
         </button>
       </div>
 
