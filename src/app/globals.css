@@ -114,21 +114,22 @@ html, body {
 
 /* WhatsApp Button Styling */
 .whatsapp-button {
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  padding: 0.5rem;
-  background-color: #25D366; /* WhatsApp green */
-  color: white;
-  font-size: 2rem;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   animation: pulse 2s infinite;
   z-index: 99999999;
 }
+
+/* Prevent autofilled input fields from having a white background */
+input:-webkit-autofill {
+  background-color: transparent !important;
+  -webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+  box-shadow: 0 0 0px 1000px transparent inset !important;
+}
+
+/* Firefox */
+input:-moz-placeholder {
+  background-color: transparent !important;
+}
+
 
 @media (min-width: 768px) {
   .whatsapp-button {

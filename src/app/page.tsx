@@ -17,6 +17,8 @@ import FeatureCarousel from "./Components/Chooseus";
 import en from './locales/en.json';
 import es from "./locales/es.json";
 import de from "./locales/de.json";
+import ZapierChatbot from "./Components/Chatbox";
+import FloatingButtons from "./Components/FloatingButton";
 
 export default function Home() {
   const [darkmode, setDarkMode] = useState(false);
@@ -78,7 +80,8 @@ export default function Home() {
               {language["portfolio_message"]}
             </div>
           </main>
-          <WhatsAppButton />
+          <FloatingButtons/>
+          
         </>
       )}
     </>
