@@ -4,7 +4,6 @@ import Introduction from "@/app/Components/LandingPage/LandingPage";
 import CreativeProcess from "./Components/CreativeProcess/CreativeProcess";
 import NeedofSp from "./Components/NeedOfSalesPage.tsx/NeedofSp";
 import TechUsed from "./Components/TechnologiesUsed";
-import Education from "./Components/Education";
 import Skills from "./Components/Skills/Skills";
 import ActivitiesTimeline from "./Components/TimeLine";
 import ContactForm from "./Components/ContactForm";
@@ -18,6 +17,7 @@ import en from './locales/en.json';
 import es from "./locales/es.json";
 import de from "./locales/de.json";
 import FloatingButtons from "./Components/FloatingButton";
+import Education from "./Components/Education";
 
 export default function Home() {
   const [darkmode, setDarkMode] = useState(false);
@@ -72,6 +72,7 @@ export default function Home() {
               <TestimonialSlider />
               <Projects language={language} />
               <TechUsed />
+              <Education/>
               <ContactForm language={language} />
             </div>
             <Footer language={language} />
