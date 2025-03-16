@@ -23,9 +23,9 @@ export default function FilteredProjects({ language }: any) {
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
   const [viewMore, setViewMore] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const sectionRef = useRef<HTMLDivElement>(null); // Ref for the whole section
-  const lastProjectRef = useRef<HTMLDivElement>(null); // Ref for last visible project
-  const containerRef = useRef<HTMLDivElement>(null); // Ref for the container
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const lastProjectRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const projects: Project[] = [
     {
@@ -41,6 +41,14 @@ export default function FilteredProjects({ language }: any) {
       Description: "(Client's Project)",
       img: "/vero.png",
       id: "1b",
+      category: "clients",
+    },
+    {
+      ProjectName: "Hv Technologies",
+      Description: "(Client's Project)",
+      img: "/hvTech.png",
+      linkSite: "https://hvtechnologies.app/",
+      id: "1e",
       category: "clients",
     },
     {
@@ -82,7 +90,6 @@ export default function FilteredProjects({ language }: any) {
       id: "3",
       category: "software",
     },
-    
     {
       ProjectName: "flappyBird",
       Description: "using Reactjs",
@@ -90,7 +97,6 @@ export default function FilteredProjects({ language }: any) {
       linkSite: "https://flappybird-baf03.vercel.app/",
       id: "6",
       category: "games",
-      
     },
     {
       ProjectName: "Memory Game",
@@ -110,7 +116,7 @@ export default function FilteredProjects({ language }: any) {
       id: "7",
       category: "software",
     },
-   
+    // Learning projects are now separated:
     {
       ProjectName: "My Course Hero WebApp",
       Description: "MERN stack project with JWT authentication & CRUD",
@@ -118,7 +124,7 @@ export default function FilteredProjects({ language }: any) {
       // linkCode: "https://github.com/Baf-03/MyCourses-clientSide",
       // linkSite: "https://mycoursehero.netlify.app/auth/login",
       id: "9",
-      category: "software",
+      category: "learning",
     },
     {
       ProjectName: "Encrypted Todo",
@@ -126,42 +132,43 @@ export default function FilteredProjects({ language }: any) {
       img: "/encryptodo.png",
       linkSite: "https://encryptodo.netlify.app/auth/login",
       id: "10",
-      category: "software",
+      category: "learning",
     },
-    // {
-    //   ProjectName: "Attendance App",
-    //   Description: "Attendance tracking system built with MERN stack",
-    //   img: "/attendanceapp.png",
-    //   id: "11",
-    //   category: "software",
-    // },
-    // {
-    //   ProjectName: "Github User Finder",
-    //   Description: "Built with React.js, Material-UI, and TailwindCSS",
-    //   img: "/githubuserfinder.png",
-    //   linkCode: "https://github.com/Baf-03/Github-User-Finder",
-    //   linkSite: "https://github-user-finder-baf.netlify.app/",
-    //   id: "12",
-    //   category: "software",
-    // },
-    // {
-    //   ProjectName: "Weather App",
-    //   Description: "React.js weather app using Axios & TailwindCSS",
-    //   img: "/weatherappreact.png",
-    //   linkCode: "https://github.com/Baf-03/weather-app-in-reactjs",
-    //   linkSite: "https://weather-app-reactjs-baf.netlify.app/",
-    //   id: "13",
-    //   category: "software",
-    // },
-    // {
-    //   ProjectName: "Tic Tac Toe",
-    //   Description: "Classic Tic Tac Toe game built using HTML, CSS & JS",
-    //   img: "/tictactoe.png",
-    //   linkCode: "https://github.com/Baf-03/tic-tac-toe-using-html-css-js",
-    //   linkSite: "https://baf-03.github.io/tic-tac-toe-using-html-css-js/",
-    //   id: "14",
-    //   category: "games",
-    // },
+    // The following commented out projects are omitted from all and learning:
+    {
+      ProjectName: "Attendance App",
+      Description: "Attendance tracking system built with MERN stack",
+      img: "/attendanceapp.png",
+      id: "11",
+      category: "learning",
+    },
+    {
+      ProjectName: "Github User Finder",
+      Description: "Built with React.js, Material-UI, and TailwindCSS",
+      img: "/githubuserfinder.png",
+      linkCode: "https://github.com/Baf-03/Github-User-Finder",
+      linkSite: "https://github-user-finder-baf.netlify.app/",
+      id: "12",
+      category: "learning",
+    },
+    {
+      ProjectName: "Weather App",
+      Description: "React.js weather app using Axios & TailwindCSS",
+      img: "/weatherappreact.png",
+      linkCode: "https://github.com/Baf-03/weather-app-in-reactjs",
+      linkSite: "https://weather-app-reactjs-baf.netlify.app/",
+      id: "13",
+      category: "learning",
+    },
+    {
+      ProjectName: "Tic Tac Toe",
+      Description: "Classic Tic Tac Toe game built using HTML, CSS & JS",
+      img: "/tictactoe.png",
+      linkCode: "https://github.com/Baf-03/tic-tac-toe-using-html-css-js",
+      linkSite: "https://baf-03.github.io/tic-tac-toe-using-html-css-js/",
+      id: "14",
+      category: "learning",
+    },
   ];
 
   // Simulate loading
@@ -173,11 +180,13 @@ export default function FilteredProjects({ language }: any) {
 
   // Filter projects when category or viewMore changes
   useEffect(() => {
-    // Reset filtered projects to avoid any stale data
-    let newFilteredProjects =
-      selectedCategory === "all"
-        ? projects
-        : projects.filter((project) => project.category === selectedCategory);
+    let newFilteredProjects;
+    if (selectedCategory === "all") {
+      // "All" should show every project except learning ones.
+      newFilteredProjects = projects.filter((project) => project.category !== "learning");
+    } else {
+      newFilteredProjects = projects.filter((project) => project.category === selectedCategory);
+    }
 
     // Apply view more logic
     newFilteredProjects = viewMore ? newFilteredProjects : newFilteredProjects.slice(0, 6);
@@ -187,7 +196,6 @@ export default function FilteredProjects({ language }: any) {
   // Handle scrolling for "View Less"
   useEffect(() => {
     if (!viewMore && filteredProjects.length > 0) {
-      // Scroll to the top of the component when "View Less" is clicked
       if (containerRef.current) {
         const offsetTop = containerRef.current.getBoundingClientRect().top + window.scrollY;
         window.scrollTo({
@@ -195,14 +203,13 @@ export default function FilteredProjects({ language }: any) {
           behavior: "smooth",
         });
       }
-      // Scroll to the last visible project after collapsing
       if (lastProjectRef.current) {
         setTimeout(() => {
           lastProjectRef.current?.scrollIntoView({
             behavior: "smooth",
             block: "start",
           });
-        }, 100); // Delay to allow animation to complete
+        }, 100);
       }
     }
   }, [viewMore, filteredProjects]);
@@ -212,11 +219,12 @@ export default function FilteredProjects({ language }: any) {
     { id: "software", label: language["software"] },
     { id: "games", label: language["games"] },
     { id: "clients", label: language["client_projects"] },
+    { id: "learning", label: language["learning"] },
   ];
 
   const totalProjectsInCategory =
     selectedCategory === "all"
-      ? projects.length
+      ? projects.filter((project) => project.category !== "learning").length
       : projects.filter((project) => project.category === selectedCategory).length;
 
   if (isLoading) {
@@ -278,7 +286,7 @@ export default function FilteredProjects({ language }: any) {
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
               <motion.div
-                key={project.id} // Unique key for each project
+                key={project.id}
                 ref={(!viewMore && index === 5) || (viewMore && index === filteredProjects.length - 1) ? lastProjectRef : null}
                 layout
                 initial={{ opacity: 0, scale: 0.9 }}
