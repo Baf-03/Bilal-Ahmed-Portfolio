@@ -15,11 +15,20 @@ interface ExpInt {
 }
 
 const experience: ExpInt[] = [
+ {
+    comp_name: "Progziel Technologies",
+    designation: "Backend Developer",
+    startDate: new Date("March 2025"),
+    present: true,
+    imgurl:"/progziel.png",
+    skills: ["Express.js","Nest.js","TypeScript", "Javascript", "Node.js", "MongoDb", "PostgreSql", "Prisma ORM","TypeOrm","GraphQl","socket.io","Amazon Web Services(AWS)","Rest Apis","Google Maps APIs","fe-dev-for-testing"],
+    description: "At Progziel Technologies, I build and maintain the backbone of our applications. I use Node.js, Express.js, and Nest.js to create reliable systems, work with databases like MongoDB and PostgreSQL, and integrate essential third-party tools. I enjoy solving challenges and ensuring our products run smoothly.",
+  },
   {
     comp_name: "Solar Citizen",
     designation: "Full Stack Developer",
-    startDate: new Date("March 2024"),
-    present: true,
+    startDate: "March 2024 - March 2025 1-year & 1-month",
+    present: false,
     imgurl:"/solarCitizen.png",
     skills: ["Reactjs", "TypeScript", "styled-components", "Tailwind CSS", "Amazon S3", "Express.js", "SQL"],
     description: "Developing and maintaining full-stack web applications for renewable energy solutions.",

@@ -5,6 +5,7 @@ import Script from "next/script";
 import ResponsiveAppBar from "./Components/Navbar";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import "./globals.css";
+import { usePathname } from "next/navigation"; // Add usePathname
 
 export default function RootLayout({
   children,
@@ -14,6 +15,7 @@ export default function RootLayout({
   const [darkmode, setDarkMode] = useState(false);
   const [loading, setLoading] = useState(true);
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
+  const pathname = usePathname(); // Get current pathname
 
   useEffect(() => {
     // Retrieve the stored dark mode preference from local storage
@@ -41,12 +43,9 @@ export default function RootLayout({
     <html lang="en">
       <Head>
         <title>
-          Bilal Ahmed - Software Engineer -Mern Stack Developer - Karachi, PK
+          Bilal Ahmed - Software Engineer - Mern Stack Developer - Karachi, PK
         </title>
-
-        {/* Viewport meta tag */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
         <meta
           name="keywords"
           content="Bilal Ahmed, software engineer, web developer, Karachi, Pakistan, portfolio, services, jobs"
@@ -91,10 +90,11 @@ export default function RootLayout({
             </div>
           ) : (
             <>
-              <ResponsiveAppBar s_dm={setDarkMode} dm={darkmode} />
+              {/* Conditionally render navbar only on "/" route */}
+              {pathname === "/" && <ResponsiveAppBar s_dm={setDarkMode} dm={darkmode} />}
               <div className="hidden sm:flex userSelect w-0 h-0 text-[10rem] fixed top-[50%] left-[23%] sm:left-[35%] md:left-[45%] opacity-[0.1] text-gray-500 z-0">
-          &#60;/&#62;
-        </div>
+                {/* This div seems incomplete - assuming it’s a placeholder */}
+              </div>
               {children}
               <div
                 style={{
@@ -107,7 +107,7 @@ export default function RootLayout({
                   pointerEvents: "none",
                   transform: "translate(-50%, -50%)",
                 }}
-                className="bg-[#3b82f6] opacity-[0.8]  hidden md:block"
+                className="bg-[#3b82f6] opacity-[0.8] hidden md:block"
               />
             </>
           )}
