@@ -19,7 +19,7 @@ export default async function BlogsPage() {
         My Blog
       </motion.h1>
       <p className="text-gray-600 mb-12 text-center max-w-2xl mx-auto">
-        Thoughts, ideas, and insights about web development, design, and technology.
+        Thoughts ideas and insights about web development design and technology.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-gray-700">
