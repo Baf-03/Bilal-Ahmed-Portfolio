@@ -16,7 +16,7 @@ import "./Navbar.css";
 const pages = [
   { name: "About me", nav_id: "about" },
   { name: "Projects", nav_id: "Projects" },
-  { name: "My Skills", nav_id: "skills" },
+  // { name: "My Skills", nav_id: "skills" },
   { name: "Let's Connect", nav_id: "connect" },
 ];
 
@@ -184,35 +184,88 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
             </div>
           </Box>
 
-          <Box className={`navbar-drawer ${isMenuOpen ? "open" : ""}`} onClick={closeMenu}>
-            <Box className="navbar-drawer-content" onClick={(e) => e.stopPropagation()}>
-              <IconButton onClick={closeMenu} className="drawer-close-button">
-                <CloseIcon />
-              </IconButton>
-              <ul>
-                {pages.map((page, index) => (
-                  <li key={index}>
-                    <ScrollLink
-                      activeClass="active"
-                      to={page.nav_id}
-                      spy
-                      smooth
-                      offset={-70}
-                      duration={500}
-                      onClick={closeMenu}
-                      style={{ fontSize: "1.5rem", textAlign: "center", display: "block", margin: "20px 0" }}
-                    >
-                      {page.name}
-                    </ScrollLink>
-                  </li>
-                ))}
-              </ul>
-            </Box>
-          </Box>
-        </Toolbar>
-      </Container>
-    </AppBar>
-  );
-};
+          <div className={`drawer-overlay ${isMenuOpen ? "open" : ""}`} onClick={closeMenu}></div>
 
-export default ResponsiveAppBar;
+{/* Mobile Drawer */}
+<div className={`navbar-drawer ${isMenuOpen ? "open" : ""} ${darkMode ? "bg-gray-800 text-white" : "bg-[#e7e5e4] text-black"}`}>
+  <button onClick={closeMenu} className="drawer-close-button">
+    <CloseIcon />
+  </button>
+
+  <div className="drawer-header">
+    <div className="text-2xl font-bold">
+      <span>
+        &lt; <strong className="text-blue-500">Dev</strong> /&gt;
+      </span>
+    </div>
+  </div>
+
+  <ul>
+    {pages.map((page, index) => (
+      <li key={index} style={{ "--item-index": index } as React.CSSProperties}>
+        <ScrollLink
+          activeClass="active"
+          to={page.nav_id}
+          spy
+          smooth
+          offset={-70}
+          duration={500}
+          onClick={closeMenu}
+        >
+          {page.name}
+        </ScrollLink>
+      </li>
+    ))}
+  </ul>
+
+  <div className="drawer-footer">
+    <div className="flex items-center justify-between">
+      <div className="text-sm opacity-70">Switch Theme</div>
+      <div className="toggle">
+        <input
+          type="checkbox"
+          className="checkbox"
+          id="checkbox-mobile"
+          checked={darkMode}
+          onChange={toggleDarkMode}
+        />
+        <label htmlFor="checkbox-mobile" className="checkbox-label">
+          <FaMoon color="#f1c40f" />
+          <FaSun color="#f39c12" />
+          <span className="ball"></span>
+        </label>
+      </div>
+    </div>
+
+    <div className="mt-4">
+      <div className="text-sm opacity-70 mb-2">Language</div>
+      <div className="flex gap-2">
+        <button
+          onClick={() => handleLanguageChange("en")}
+          className={`px-3 py-1 rounded-md text-sm uppercase ${currentLang === "en" ? "bg-blue-600" : "bg-gray-700"}`}
+        >
+          EN
+        </button>
+        <button
+          onClick={() => handleLanguageChange("es")}
+          className={`px-3 py-1 rounded-md text-sm uppercase ${currentLang === "es" ? "bg-blue-600" : "bg-gray-700"}`}
+        >
+          ES
+        </button>
+        <button
+          onClick={() => handleLanguageChange("de")}
+          className={`px-3 py-1 rounded-md text-sm uppercase ${currentLang === "de" ? "bg-blue-600" : "bg-gray-700"}`}
+        >
+          DE
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+</Toolbar>
+</Container>
+</AppBar>
+)
+}
+
+export default ResponsiveAppBar
