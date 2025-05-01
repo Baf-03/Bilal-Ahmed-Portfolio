@@ -10,6 +10,7 @@ import "./LandingPage.css"
 import Head from "next/head";
 import coverimg from "../../../../public/coverImgSvg.svg";
 import { FaCode, FaLightbulb, FaRocket } from "react-icons/fa";
+import { Code, Lightbulb, Rocket } from "lucide-react";
 
 function LandingPage({ language }:any) {
   return (
@@ -54,26 +55,32 @@ function LandingPage({ language }:any) {
           </div>
           <div className="w-[90%] text-[0.85rem] font-[400]  md:font-[20] pt-5 text-start md:pe-5 md:m-0 md:break-normal xl:text-[1.2rem] 3xl:text-[1.5rem] md:w-[90%] leading-6 3xl:leading-10 text-highlight 3xl:mt-3 ">
             <ul className="space-y-4">
-              <li className="flex items-start">
-                <FaLightbulb className="text-blue-400 mt-1 mr-2 flex-shrink-0" />
+            <li className="flex items-center">
+                <span className="bg-blue-500/10 p-2 rounded-full mr-3 flex-shrink-0 ">
+                  <Lightbulb className="text-blue-500 w-5 h-5" />
+                </span>
                 <span>
-                  <strong className="text-primary">{language["years_of_experience"]}</strong>{" "}
+                  <strong className="text-blue-500 font-medium">{language["years_of_experience"]}</strong>{" "}
                   {language["experience_description"]}
                 </span>
               </li>
-              <li className="flex items-start">
-                <FaCode className="text-blue-400 mt-1 mr-2 flex-shrink-0" />
+              <li className="flex items-center">
+                <span className="bg-blue-500/10 p-2 rounded-full mr-3 flex-shrink-0">
+                  <Code className="text-blue-500 w-5 h-5" />
+                </span>
                 <span>
                   {language["expertise_in_clean_code"]}{" "}
-                  <strong className="text-primary">{language["user_friendly_experiences"]}</strong>
+                  <strong className="text-blue-500 font-medium">{language["user_friendly_experiences"]}</strong>
                 </span>
               </li>
-              <li className="flex items-start">
-                <FaRocket className="text-blue-400 mt-1 mr-2 flex-shrink-0" />
+              <li className="flex items-center">
+                <span className="bg-blue-500/10 p-2 rounded-full mr-3 flex-shrink-0">
+                  <Rocket className="text-blue-500 w-5 h-5" />
+                </span>
                 <span>
                   {language["passionate_about_problem_solving"]},{" "}
-                  <strong className="text-primary">{language["leadership"]}</strong>, and leveraging{" "}
-                  <strong className="text-primary">{language["cutting_edge_technologies"]}</strong>
+                  <strong className="text-blue-500 font-medium">{language["leadership"]}</strong>, and leveraging{" "}
+                  <strong className="text-blue-500 font-medium">{language["cutting_edge_technologies"]}</strong>
                 </span>
               </li>
             </ul>
@@ -95,16 +102,17 @@ function LandingPage({ language }:any) {
         </div>
 
         <div className="imageside mt-10 w-full sm:w-[70%] flex justify-center relative rounded-lg ml-0 lg:mt-0 lg:ml-[5%] md:w-[50%] lg:w-[45%] xl:w-[35%]">
-  <div className="relative w-full h-0 pb-[56.25%]"> {/* Maintain aspect ratio */}
-    <Image
-      src={coverimg}
-      alt="Bilal portfolio"
-      layout="fill"
-      objectFit="contain"
-      className="dark-theme-img"
-      priority // Ensures the image is preloaded for faster rendering
-    />
-  </div>
+        <div className="relative w-full aspect-square max-w-md">
+            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-teal-400/20 rounded-full blur-3xl opacity-50 animate-pulse"></div>
+            <Image
+              src={coverimg}
+              alt="Bilal portfolio"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-contain relative z-10"
+              priority
+            />
+          </div>
   <div className="floating-icons z-99">
     <div className="icon icon1"></div>
     <div className="icon icon2"></div>
