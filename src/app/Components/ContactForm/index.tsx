@@ -255,7 +255,7 @@ const ContactForm = ({ language }: any) => {
         </p>
       </motion.div>
 
-      <div className="w-[90%] md:w-[80%] mx-auto rounded-2xl shadow-xl overflow-hidden bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-sm border border-gray-700/50">
+      <div className="w-[90%] md:w-[80%] mx-auto rounded-2xl shadow-xl overflow-hidden shadow-2xl">
         <div className="flex flex-col sm:flex-row">
           {/* Left section */}
           <motion.section
@@ -276,7 +276,7 @@ const ContactForm = ({ language }: any) => {
 
             <h2 className="text-2xl font-bold mb-4 text-center">{language["lets_chat"] || "Let's Chat"}</h2>
 
-            <p className="text-center text-gray-300 mb-6">
+            <p className="text-center mb-6">
               {language["contact_description"] ||
                 "I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision."}
             </p>
