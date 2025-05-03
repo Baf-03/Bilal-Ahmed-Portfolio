@@ -38,7 +38,7 @@ export default async function BlogPost({
   const hdrs = headers()
   const proto = hdrs.get('x-forwarded-proto') || 'https'
   const host = hdrs.get('x-forwarded-host') || hdrs.get('host')
-  const url = `${proto}://${host}/blog/${post.slug}`
+  const url = `${proto}://${host}/blogs/${post.slug}`
 
   const encodedURL = encodeURIComponent(url)
   const encodedTitle = encodeURIComponent(post.title)
