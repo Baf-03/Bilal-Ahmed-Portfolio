@@ -5,6 +5,7 @@ import ResponsiveAppBar from "./Components/Navbar";
 import "./globals.css";
 import { usePathname } from "next/navigation";
 import AnimatedBackground from "./Components/ui/AnimatedBackground";
+import { PerformanceProvider } from "@/contexts/PerformanceContext";
 
 export default function RootLayout({
   children,
@@ -48,15 +49,16 @@ export default function RootLayout({
         className={`transition-colors duration-500 ${darkmode ? "bg-[#1c1e21] text-gray-300" : "bg-[#e7e5e4] text-gray-900"
           }`}
       >
-        <AnimatedBackground />
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_G_TAG}`}
-          strategy="afterInteractive"
-        />
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
+        <PerformanceProvider>
+          <AnimatedBackground />
+          <Script
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_G_TAG}`}
+            strategy="afterInteractive"
+          />
+          <Script
+            id="google-analytics"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
             __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -79,6 +81,7 @@ export default function RootLayout({
             {children}
           </>
         )}
+        </PerformanceProvider>
       </body>
     </html>
   );

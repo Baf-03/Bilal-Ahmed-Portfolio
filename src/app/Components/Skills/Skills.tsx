@@ -22,9 +22,11 @@ import { SiAmazons3 } from "react-icons/si";
 import { GrMysql } from "react-icons/gr";
 import { SiTypescript } from "react-icons/si";
 import { SiJsonwebtokens } from "react-icons/si";
+import { usePerformance } from "@/contexts/PerformanceContext";
 
 const Skills = () => {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const { isLowPerformance } = usePerformance();
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -58,6 +60,8 @@ const Skills = () => {
     { icon: SiAmazons3, name: "Amazon S3", color: "text-white" },
     { icon: SiJsonwebtokens, name: "Json Web Token", color: "text-red-400" },
   ];
+
+  const displayedSkills = isLowPerformance ? skills.slice(0, 10) : skills;
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const scrollAnimationRef = useRef<number | null>(null);
@@ -223,7 +227,7 @@ const Skills = () => {
         </div>
 
         <div className="hidden lg:flex flex-wrap justify-center gap-10 sm:w-[85%] lg:w-[85%] xl:w-[85%] p-5">
-          {skills.map((element, index) => (
+          {displayedSkills.map((element, index) => (
             <div
               className={`flex flex-wrap flex-col gap-3 items-center bg-gray-900 p-10 sm:p-9 md:p-8 lg:p-7 xl:p-5 rounded-md w-[12rem] sm:w-[11rem] md:w-[20vw] lg:w-[15vw] m-auto justify-center ${element.color} hover:text-[#3b82f6] `}
               key={index}

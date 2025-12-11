@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Smartphone, Zap, Palette, Search, Code, Shield, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import AnimatedBackground from "../ui/AnimatedBackground";
+import { usePerformance } from "@/contexts/PerformanceContext";
 
 const features = [
   {
@@ -71,6 +72,7 @@ const FeatureCarousel = React.memo(({ language }: any) => {
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
+  const { isLowPerformance } = usePerformance();
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -81,6 +83,9 @@ const FeatureCarousel = React.memo(({ language }: any) => {
     window.addEventListener('resize', checkScreenSize);
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
+
+  const displayedFeatures = isLowPerformance ? features.slice(0, 5) : features;
+  const duplicatedFeatures = [...displayedFeatures, displayedFeatures[0]];
 
   useEffect(() => {
     if (isPaused || !isLargeScreen) return;
