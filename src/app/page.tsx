@@ -20,6 +20,8 @@ const FeatureCarousel = dynamic(() => import("./Components/Chooseus"), {
   loading: () => <div className="py-24 text-center">Loading features...</div>,
   ssr: false,
 });
+import { usePerformanceMonitor } from "@/hooks/usePerformanceMonitor";
+import PerformancePopup from "./Components/PerformancePopup";
 import ContactForm from "./Components/ContactForm";
 import ActivitiesTimeline from "./Components/TimeLine";
 import Education from "./Components/Education";
@@ -46,6 +48,7 @@ function HomeContent() {
   const [loading, setLoading] = useState(true);
   const [language, setLanguage] = useState<LanguageData>(en);
   const searchParams = useSearchParams();
+  const { showPopup, setShowPopup } = usePerformanceMonitor();
   const router = useRouter();
   const search = searchParams.get("element");
 
@@ -95,6 +98,7 @@ function HomeContent() {
 
   return (
     <>
+      <PerformancePopup show={showPopup} onClose={() => setShowPopup(false)} />
       <AnimatedBackground />
       <main className="transition-colors duration-500 ">
         <div className="w-[98%] lg:w-[94%] xl:w-[90vw] m-auto flex flex-col gap-12 justify-center items-center mt-2">
