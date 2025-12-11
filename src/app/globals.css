@@ -5,11 +5,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 /* Global styling */
-html, body {
+html,
+body {
   overflow-x: hidden;
-  background-color: rgb(243, 244, 246); /* Light gray background */
-  font-family: 'Poppins', sans-serif; 
+  background-color: rgb(243, 244, 246);
+  font-family: 'Poppins', sans-serif;
   scroll-behavior: smooth;
+  /* Removed: cursor: none; */
 }
 
 /* Loader styling */
@@ -18,86 +20,92 @@ html, body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5); /* Dim background for loader */
+  width: 100vw;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Revert to dim background or keep nice dark? User said "original". Original was rgba(0,0,0,0.5) */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
 }
 
- .loader {
-    position: relative;
-    font-size: 16px;
-    width: 5.5em;
-    height: 5.5em;
-  }
-  
-  .loader:before {
-    content: '';
-    position: absolute;
-    transform: translate(-50%, -50%) rotate(45deg);
-    height: 100%;
-    width: 4px;
-    background: white;
-    left: 50%;
-    top: 50%;
-  }
-  
-  .loader:after {
-    content: '';
-    position: absolute;
-    left: 0.2em;
-    bottom: 0.18em;
-    width: 1em;
-    height: 1em;
-    background-color: #3b82f6;
-    border-radius: 15%;
-    animation: rollingRock 2.5s cubic-bezier(.79, 0, .47, .97) infinite;
+.loader {
+  position: relative;
+  font-size: 16px;
+  width: 5.5em;
+  height: 5.5em;
+}
+
+.loader:before {
+  content: '';
+  position: absolute;
+  transform: translate(-50%, -50%) rotate(45deg);
+  height: 100%;
+  width: 4px;
+  background: white;
+  left: 50%;
+  top: 50%;
+}
+
+.loader:after {
+  content: '';
+  position: absolute;
+  left: 0.2em;
+  bottom: 0.18em;
+  width: 1em;
+  height: 1em;
+  background-color: #3b82f6;
+  border-radius: 15%;
+  animation: rollingRock 2.5s cubic-bezier(.79, 0, .47, .97) infinite;
+}
+
+@keyframes rollingRock {
+  0% {
+    transform: translate(0, -1em) rotate(-45deg)
   }
 
-  @keyframes rollingRock {
-    0% {
-      transform: translate(0, -1em) rotate(-45deg)
-    }
-  
-    5% {
-      transform: translate(0, -1em) rotate(-50deg)
-    }
-  
-    20% {
-      transform: translate(1em, -2em) rotate(47deg)
-    }
-  
-    25% {
-      transform: translate(1em, -2em) rotate(45deg)
-    }
-  
-    30% {
-      transform: translate(1em, -2em) rotate(40deg)
-    }
-  
-    45% {
-      transform: translate(2em, -3em) rotate(137deg)
-    }
-  
-    50% {
-      transform: translate(2em, -3em) rotate(135deg)
-    }
-  
-    55% {
-      transform: translate(2em, -3em) rotate(130deg)
-    }
-  
-    70% {
-      transform: translate(3em, -4em) rotate(217deg)
-    }
-  
-    75% {
-      transform: translate(3em, -4em) rotate(220deg)
-    }
-  
-    100% {
-      transform: translate(0, -1em) rotate(-225deg)
-    }
+  5% {
+    transform: translate(0, -1em) rotate(-50deg)
   }
 
-/* Custom scrollbar styling */
+  20% {
+    transform: translate(1em, -2em) rotate(47deg)
+  }
+
+  25% {
+    transform: translate(1em, -2em) rotate(45deg)
+  }
+
+  30% {
+    transform: translate(1em, -2em) rotate(40deg)
+  }
+
+  45% {
+    transform: translate(2em, -3em) rotate(137deg)
+  }
+
+  50% {
+    transform: translate(2em, -3em) rotate(135deg)
+  }
+
+  55% {
+    transform: translate(2em, -3em) rotate(130deg)
+  }
+
+  70% {
+    transform: translate(3em, -4em) rotate(217deg)
+  }
+
+  75% {
+    transform: translate(3em, -4em) rotate(220deg)
+  }
+
+  100% {
+    transform: translate(0, -1em) rotate(-225deg)
+  }
+}
+
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 5px;
   background: transparent;
@@ -116,6 +124,13 @@ html, body {
 .whatsapp-button {
   animation: pulse 2s infinite;
   z-index: 99999999;
+}
+
+/* Remove cursor hiding on elements */
+
+/* Custom Cursor Interaction State */
+body.cursor-clicked .custom-cursor {
+  transform: scale(0.9);
 }
 
 /* Prevent autofilled input fields from having a white background */
@@ -145,14 +160,27 @@ input:-moz-placeholder {
     transform: scale(1);
     box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
   }
+
   70% {
     transform: scale(1.05);
     box-shadow: 0 0 0 10px rgba(37, 211, 102, 0);
   }
+
   100% {
     transform: scale(1);
     box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
   }
+}
+
+input:-webkit-autofill {
+  background-color: transparent !important;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Utility to hide text selection color if needed, or keeping default blue */
+::selection {
+  background: #3b82f6;
+  color: white;
 }
 
 /* Smooth Scrolling Fix */
@@ -166,5 +194,3 @@ input:-moz-placeholder {
 .content-wrapper {
   padding-bottom: 100px;
 }
-
-

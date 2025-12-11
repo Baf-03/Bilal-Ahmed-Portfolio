@@ -115,24 +115,62 @@ export default function Footer({ language }:any) {
           </div>
         </div>
 
-        {/* Footer Bar */}
-        <div className="bg-[#0a1a33] text-white mt-8 sm:mt-12 p-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-center sm:text-left">{language["footer_text"]}</p>
-          <div className="flex gap-4">
-            <Link href="#" className="text-white hover:text-gray-300">
-              <Facebook size={18} />
-              <span className="sr-only">Facebook</span>
-            </Link>
-            <Link href="#" className="text-white hover:text-gray-300">
-              <Twitter size={18} />
-              <span className="sr-only">Twitter</span>
-            </Link>
-            <Link href="#" className="text-white hover:text-gray-300">
-              <Instagram size={18} />
-              <span className="sr-only">Instagram</span>
-            </Link>
+        {/* Footer Bar - elegant, modern design with smooth animations and enhanced UX */}
+        <footer role="contentinfo" aria-label="Site footer" className="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 text-white mt-10 sm:mt-16 py-8 px-6 rounded-b-3xl border-t border-slate-700 shadow-2xl relative overflow-hidden">
+          {/* Subtle background pattern */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 to-purple-900/10"></div>
+
+          <div className="max-w-7xl mx-auto relative z-10">
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
+              {/* Copyright and branding section */}
+              <div className="flex flex-col lg:flex-row items-center gap-3 text-center lg:text-left">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold text-sm">BA</span>
+                  </div>
+                  <p className="text-sm font-medium text-gray-200">
+                    © {new Date().getFullYear()} Bilal Ahmed
+                  </p>
+                </div>
+                <span className="hidden lg:block text-slate-400">•</span>
+                <p className="text-xs text-slate-300 italic">
+                  Crafting digital experiences with passion
+                </p>
+              </div>
+
+              {/* Social media links with enhanced interactions */}
+              <nav aria-label="Social media links" className="flex items-center gap-4">
+                <Link
+                  href="#"
+                  className="group relative p-3 bg-slate-800/50 hover:bg-blue-600 rounded-xl transition-all duration-300 ease-out hover:scale-110 hover:shadow-lg hover:shadow-blue-500/25"
+                  aria-label="Visit Facebook"
+                >
+                  <Facebook size={18} className="text-slate-300 group-hover:text-white transition-colors duration-200" />
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-blue-600/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </Link>
+                <Link
+                  href="#"
+                  className="group relative p-3 bg-slate-800/50 hover:bg-sky-500 rounded-xl transition-all duration-300 ease-out hover:scale-110 hover:shadow-lg hover:shadow-sky-500/25"
+                  aria-label="Visit Twitter"
+                >
+                  <Twitter size={18} className="text-slate-300 group-hover:text-white transition-colors duration-200" />
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-sky-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </Link>
+                <Link
+                  href="#"
+                  className="group relative p-3 bg-slate-800/50 hover:bg-pink-500 rounded-xl transition-all duration-300 ease-out hover:scale-110 hover:shadow-lg hover:shadow-pink-500/25"
+                  aria-label="Visit Instagram"
+                >
+                  <Instagram size={18} className="text-slate-300 group-hover:text-white transition-colors duration-200" />
+                  <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-pink-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </Link>
+              </nav>
+            </div>
+
+            {/* Bottom accent line */}
+            <div className="mt-6 w-full h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
           </div>
-        </div>
+        </footer>
       </div>
     </div>
   );

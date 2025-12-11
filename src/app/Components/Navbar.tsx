@@ -75,10 +75,10 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
       sx={{
         top: showNavbar ? 0 : "-80px",
         transition: "top 0.3s ease-in-out",
-        background: "transparent",
+        background: darkMode ? "#1c1e21" : "#e7e5e4",
         color: darkMode ? "#fff" : "black",
       }}
-      className={`transition-colors duration-500 ${darkMode ? "bg-gray-800" : "bg-[#e7e5e4]"}`}
+      className={`transition-colors duration-500`}
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>

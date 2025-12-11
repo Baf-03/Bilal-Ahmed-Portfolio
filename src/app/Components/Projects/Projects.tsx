@@ -18,158 +18,144 @@ interface Project {
   category: string;
 }
 
+const projects: Project[] = [
+  {
+    ProjectName: "Hubsite Social",
+    Description: "Social media platform (Client's Project)",
+    img: "/hubsite.png",
+    linkSite: "https://hubsite-iteration3.vercel.app/",
+    id: "1a",
+    category: "clients",
+  },
+  {
+    ProjectName: "Vero Specialize Service",
+    Description: "(Client's Project)",
+    img: "/vero.png",
+    id: "1b",
+    category: "clients",
+  },
+  {
+    ProjectName: "Hv Technologies",
+    Description: "(Client's Project)",
+    img: "/hvTech.png",
+    linkSite: "https://hvtechnologies.app/",
+    id: "1e",
+    category: "clients",
+  },
+  {
+    ProjectName: "Virtual Care",
+    Description: "client's project",
+    img: "/vc.png",
+    id: "1c",
+    category: "clients",
+  },
+  {
+    ProjectName: "Scheduling Simulator",
+    Description: "Simulate priority-based scheduling for efficient process handling",
+    img: "/simulator2.png",
+    linkSite: "https://simulatorabcd.vercel.app/",
+    id: "5",
+    category: "software",
+  },
+  {
+    ProjectName: "Full Stack Ecommerce App",
+    Description: "Built using React.js, Nest.js & Postgres SQL",
+    img: "/shopCo.png",
+    // linkSite: "https://shop-co-iiyx.vercel.app/",
+    id: "4",
+    category: "software",
+  },
+  {
+    ProjectName: "AxisLang",
+    Description: "Simplified Programming Language with Live Compiler",
+    img: "/project.png",
+    linkSite: "https://axis-lang-uqc4.vercel.app/",
+    id: "2",
+    category: "software",
+  },
+  {
+    ProjectName: "Round Robin Scheduling Algorithm Simulator",
+    Description: "Simulation of how round robin algorithm works!",
+    img: "/round_robin.png",
+    linkSite: "https://os-round-robin-scheduling-algorithm.vercel.app/",
+    id: "3",
+    category: "software",
+  },
+  {
+    ProjectName: "flappyBird",
+    Description: "using Reactjs",
+    img: "/flappy_bird.png",
+    linkSite: "https://flappybird-baf03.vercel.app/",
+    id: "6",
+    category: "games",
+  },
+  {
+    ProjectName: "Memory Game",
+    Description: "Made with React.js & TailwindCSS",
+    img: "/MemoryGame.png",
+    linkCode: "https://github.com/Baf-03/Memory-Game",
+    linkSite: "https://memory-game-baf.netlify.app/",
+    id: "8",
+    category: "games",
+  },
+  {
+    ProjectName: "Food Recipe Sharing App",
+    Description: "MERN stack app with JWT auth & Cloudinary storage",
+    img: "/recipe-sharing.png",
+    linkCode: "https://github.com/Baf-03/FrontEnd-FoodRecipe",
+    // linkSite: "https://foodrecipesharing.netlify.app/login",
+    id: "7",
+    category: "software",
+  },
+  // Learning projects are now separated:
+  {
+    ProjectName: "My Course Hero WebApp",
+    Description: "MERN stack project with JWT authentication & CRUD",
+    img: "/mycoursehero.png",
+    // linkCode: "https://github.com/Baf-03/MyCourses-clientSide",
+    // linkSite: "https://mycoursehero.netlify.app/auth/login",
+    id: "9",
+    category: "learning",
+  },
+  {
+    ProjectName: "Encrypted Todo",
+    Description: "saving all user todos in DB in encrypted form",
+    img: "/encryptodo.png",
+    linkSite: "https://encryptodo.netlify.app/auth/login",
+    id: "10",
+    category: "learning",
+  },
+  {
+    ProjectName: "Attendance App",
+    Description: "Attendance tracking system built with MERN stack",
+    img: "/attendanceapp.png",
+    id: "11",
+    category: "learning",
+  },
+
+  {
+    ProjectName: "Tic Tac Toe",
+    Description: "Classic Tic Tac Toe game built using HTML, CSS & JS",
+    img: "/tictactoe.png",
+    linkCode: "https://github.com/Baf-03/tic-tac-toe-using-html-css-js",
+    linkSite: "https://baf-03.github.io/tic-tac-toe-using-html-css-js/",
+    id: "14",
+    category: "learning",
+
+  },
+];
+
 export default function FilteredProjects({ language }: any) {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
   const [viewMore, setViewMore] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const sectionRef = useRef<HTMLDivElement>(null);
   const lastProjectRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const projects: Project[] = [
-    {
-      ProjectName: "Hubsite Social",
-      Description: "Social media platform (Client's Project)",
-      img: "/hubsite.png",
-      linkSite: "https://hubsite-iteration3.vercel.app/",
-      id: "1a",
-      category: "clients",
-    },
-    {
-      ProjectName: "Vero Specialize Service",
-      Description: "(Client's Project)",
-      img: "/vero.png",
-      id: "1b",
-      category: "clients",
-    },
-    {
-      ProjectName: "Hv Technologies",
-      Description: "(Client's Project)",
-      img: "/hvTech.png",
-      linkSite: "https://hvtechnologies.app/",
-      id: "1e",
-      category: "clients",
-    },
-    {
-      ProjectName: "Virtual Care",
-      Description: "client's project",
-      img: "/vc.png",
-      id: "1c",
-      category: "clients",
-    },
-    {
-      ProjectName: "Scheduling Simulator",
-      Description: "Simulate priority-based scheduling for efficient process handling",
-      img: "/simulator2.png",
-      linkSite: "https://simulatorabcd.vercel.app/",
-      id: "5",
-      category: "software",
-    },
-    {
-      ProjectName: "Full Stack Ecommerce App",
-      Description: "Built using React.js, Nest.js & Postgres SQL",
-      img: "/shopCo.png",
-      // linkSite: "https://shop-co-iiyx.vercel.app/",
-      id: "4",
-      category: "software",
-    },
-    {
-      ProjectName: "AxisLang",
-      Description: "Simplified Programming Language with Live Compiler",
-      img: "/project.png",
-      linkSite: "https://axis-lang-uqc4.vercel.app/",
-      id: "2",
-      category: "software",
-    },
-    {
-      ProjectName: "Round Robin Scheduling Algorithm Simulator",
-      Description: "Simulation of how round robin algorithm works!",
-      img: "/round_robin.png",
-      linkSite: "https://os-round-robin-scheduling-algorithm.vercel.app/",
-      id: "3",
-      category: "software",
-    },
-    {
-      ProjectName: "flappyBird",
-      Description: "using Reactjs",
-      img: "/flappy_bird.png",
-      linkSite: "https://flappybird-baf03.vercel.app/",
-      id: "6",
-      category: "games",
-    },
-    {
-      ProjectName: "Memory Game",
-      Description: "Made with React.js & TailwindCSS",
-      img: "/MemoryGame.png",
-      linkCode: "https://github.com/Baf-03/Memory-Game",
-      linkSite: "https://memory-game-baf.netlify.app/",
-      id: "8",
-      category: "games",
-    },
-    {
-      ProjectName: "Food Recipe Sharing App",
-      Description: "MERN stack app with JWT auth & Cloudinary storage",
-      img: "/recipe-sharing.png",
-      linkCode: "https://github.com/Baf-03/FrontEnd-FoodRecipe",
-      // linkSite: "https://foodrecipesharing.netlify.app/login",
-      id: "7",
-      category: "software",
-    },
-    // Learning projects are now separated:
-    {
-      ProjectName: "My Course Hero WebApp",
-      Description: "MERN stack project with JWT authentication & CRUD",
-      img: "/mycoursehero.png",
-      // linkCode: "https://github.com/Baf-03/MyCourses-clientSide",
-      // linkSite: "https://mycoursehero.netlify.app/auth/login",
-      id: "9",
-      category: "learning",
-    },
-    {
-      ProjectName: "Encrypted Todo",
-      Description: "saving all user todos in DB in encrypted form",
-      img: "/encryptodo.png",
-      linkSite: "https://encryptodo.netlify.app/auth/login",
-      id: "10",
-      category: "learning",
-    },
-    // The following commented out projects are omitted from all and learning:
-    {
-      ProjectName: "Attendance App",
-      Description: "Attendance tracking system built with MERN stack",
-      img: "/attendanceapp.png",
-      id: "11",
-      category: "learning",
-    },
-    {
-      ProjectName: "Github User Finder",
-      Description: "Built with React.js, Material-UI, and TailwindCSS",
-      img: "/githubuserfinder.png",
-      linkCode: "https://github.com/Baf-03/Github-User-Finder",
-      linkSite: "https://github-user-finder-baf.netlify.app/",
-      id: "12",
-      category: "learning",
-    },
-    {
-      ProjectName: "Weather App",
-      Description: "React.js weather app using Axios & TailwindCSS",
-      img: "/weatherappreact.png",
-      linkCode: "https://github.com/Baf-03/weather-app-in-reactjs",
-      linkSite: "https://weather-app-reactjs-baf.netlify.app/",
-      id: "13",
-      category: "learning",
-    },
-    {
-      ProjectName: "Tic Tac Toe",
-      Description: "Classic Tic Tac Toe game built using HTML, CSS & JS",
-      img: "/tictactoe.png",
-      linkCode: "https://github.com/Baf-03/tic-tac-toe-using-html-css-js",
-      linkSite: "https://baf-03.github.io/tic-tac-toe-using-html-css-js/",
-      id: "14",
-      category: "learning",
-    },
-  ];
+
 
   // Simulate loading
   useEffect(() => {
@@ -243,18 +229,35 @@ export default function FilteredProjects({ language }: any) {
   }
 
   return (
-    <section ref={containerRef} className="container mx-auto px-4 py-16 z-50" id="Projects">
-      <div className="space-y-12">
+    <section ref={containerRef} className="container mx-auto px-4 py-16 z-50 relative overflow-hidden" id="Projects">
+
+      <div className="space-y-12 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
-            {language["portfolio"]}
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-teal-500/10 to-blue-500/10 border border-teal-500/20 mb-6"
+          >
+            <div className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
+            <span className="text-sm font-medium text-teal-600 dark:text-teal-400">
+              {language["portfolio_badge"] || "Featured Work"}
+            </span>
+          </motion.div>
+
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-500 to-teal-400">
+              {language["portfolio"]}
+            </span>
           </h2>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-400 leading-relaxed">
             {language["explore_projects_description"]}
           </p>
         </motion.div>

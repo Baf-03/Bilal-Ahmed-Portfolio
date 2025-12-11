@@ -4,6 +4,7 @@ import { BotIcon } from "lucide-react"
 import type React from "react"
 import { useEffect, useRef, useState } from "react"
 import { FaWhatsapp } from "react-icons/fa"
+import Script from "next/script"
 
 declare global {
   namespace JSX {
@@ -19,7 +20,7 @@ declare global {
 const FloatingButtons: React.FC = () => {
   /* UI state */
   const [isChatbotOpen, setIsChatbotOpen] = useState(false)
-  const [ready, setReady] = useState(false)          // <—  NEW: true only when element is defined
+  const [ready, setReady] = useState(false)          // <—  true only when element is defined
 
   /* ref to the web-component element */
   const chatbotRef = useRef<HTMLElement | null>(null)
@@ -32,23 +33,10 @@ const FloatingButtons: React.FC = () => {
       return
     }
 
-    /* inject script */
-    const script = document.createElement("script")
-    script.src =
-      "https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js"
-    script.type = "module"
-    script.async = true
-    document.body.appendChild(script)
-
     /* wait until the element class is registered */
     customElements
       .whenDefined("zapier-interfaces-chatbot-embed")
       .then(() => setReady(true))
-
-    /* cleanup (should run only on unmount) */
-    return () => {
-      document.body.removeChild(script)
-    }
   }, [])
 
   /* ───────────────────────────── open the popup once ready ──────────────────────────── */
@@ -60,7 +48,7 @@ const FloatingButtons: React.FC = () => {
       const chatButton =
         chatbotRef.current!.shadowRoot?.querySelector("button")
       chatButton?.click()
-    }, 50)
+    }, 100) // increased timeout
 
     return () => clearTimeout(id)
   }, [isChatbotOpen, ready])
@@ -72,6 +60,13 @@ const FloatingButtons: React.FC = () => {
   /* ───────────────────────────────── UI ───────────────────────────────── */
   return (
     <>
+      <Script
+        src="https://interfaces.zapier.com/assets/web-components/zapier-interfaces/zapier-interfaces.esm.js"
+        strategy="afterInteractive"
+        type="module"
+        onLoad={() => setReady(true)}
+      />
+
       {/* floating action buttons */}
       <div className="fixed right-5 bottom-5 flex flex-row items-center gap-4 z-[1000]">
         {/* WhatsApp */}
@@ -98,15 +93,12 @@ const FloatingButtons: React.FC = () => {
 
       {/* Zapier web component */}
       <zapier-interfaces-chatbot-embed
-        ref={chatbotRef}
         is-popup="true"
+        show-button="false"
+        is-open={isChatbotOpen ? "true" : "false"}
         chatbot-id="cm7y6akoc00123zmo5n2x95m9"
         style={
           {
-            position: "fixed",
-            bottom: "80px",
-            right: "20px",
-            zIndex: 1001,
             "--zi-chat-button-color": "#3b82f6",
             "--zi-chat-button-color-hover": "#2563eb",
             "--zi-chat-button-shadow":
@@ -120,7 +112,6 @@ const FloatingButtons: React.FC = () => {
             "--zi-chat-bubble-user-bg-color": "#dbeafe",
             "--zi-chat-bubble-bot-text-color": "#1f2937",
             "--zi-chat-bubble-user-text-color": "#1f2937",
-            display: isChatbotOpen ? "block" : "none",
           } as React.CSSProperties
         }
       />

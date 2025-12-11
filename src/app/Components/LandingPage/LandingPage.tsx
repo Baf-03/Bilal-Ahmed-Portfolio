@@ -12,7 +12,7 @@ import coverimg from "../../../../public/coverImgSvg.svg";
 import { FaCode, FaLightbulb, FaRocket } from "react-icons/fa";
 import { Code, Lightbulb, Rocket } from "lucide-react";
 
-function LandingPage({ language }:any) {
+function LandingPage({ language }: any) {
   return (
     <>
       <Head>
@@ -55,7 +55,7 @@ function LandingPage({ language }:any) {
           </div>
           <div className="w-[90%] text-[0.85rem] font-[400]  md:font-[20] pt-5 text-start md:pe-5 md:m-0 md:break-normal xl:text-[1.2rem] 3xl:text-[1.5rem] md:w-[90%] leading-6 3xl:leading-10 text-highlight 3xl:mt-3 ">
             <ul className="space-y-4">
-            <li className="flex items-center">
+              <li className="flex items-center">
                 <span className="bg-blue-500/10 p-2 rounded-full mr-3 flex-shrink-0 ">
                   <Lightbulb className="text-blue-500 w-5 h-5" />
                 </span>
@@ -102,7 +102,7 @@ function LandingPage({ language }:any) {
         </div>
 
         <div className="imageside mt-10 w-full sm:w-[70%] flex justify-center relative rounded-lg ml-0 lg:mt-0 lg:ml-[5%] md:w-[50%] lg:w-[45%] xl:w-[35%]">
-        <div className="relative w-full aspect-square max-w-md">
+          <div className="relative w-full aspect-square max-w-md">
             <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-teal-400/20 rounded-full blur-3xl opacity-50 animate-pulse"></div>
             <Image
               src={coverimg}
@@ -113,13 +113,14 @@ function LandingPage({ language }:any) {
               priority
             />
           </div>
-  <div className="floating-icons z-99">
-    <div className="icon icon1"></div>
-    <div className="icon icon2"></div>
-    <div className="icon icon3"></div>
-    <div className="icon icon4"></div>
-  </div>
-</div>
+          <div className="floating-icons z-99">
+            <div className="icon icon1"></div>
+            <div className="icon icon2"></div>
+            <div className="icon icon3"></div>
+            <div className="icon icon4"></div>
+          </div>
+
+        </div>
       </div>
     </>
   );

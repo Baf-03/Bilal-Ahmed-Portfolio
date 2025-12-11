@@ -2,12 +2,12 @@ import React, { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Head from "next/head";
 import "./tech.css";
-import { 
+import {
   FaPython, FaJava, FaJs, FaReact, FaNodeJs, FaGitAlt, FaHtml5, FaCss3Alt,
   FaBootstrap, FaDatabase, FaCloud, FaLock, FaGoogle
 } from 'react-icons/fa';
-import { 
-  SiTypescript, SiNextdotjs, SiTailwindcss, SiMongodb, SiPostgresql, 
+import {
+  SiTypescript, SiNextdotjs, SiTailwindcss, SiMongodb, SiPostgresql,
   SiMysql, SiExpress, SiNestjs, SiChakraui, SiVisualstudiocode,
   SiPostman, SiRedux, SiFirebase, SiStyledcomponents, SiGreensock,
   SiPrisma,
@@ -17,10 +17,10 @@ import {
 import { DiMaterializecss } from "react-icons/di";
 import { GrGatsbyjs } from "react-icons/gr";
 
-const TechUsed = () => {
+const TechUsed = ({ language }: { language: any }) => {
   const cardsData = [
     {
-      name: "Programming Languages",
+      name: language["programming_languages"] || "Programming Languages",
       para: "code .",
       option: [
         { name: "Python", icon: <FaPython /> },
@@ -30,8 +30,8 @@ const TechUsed = () => {
       ],
     },
     {
-      name: "Front-End",
-      para: "WebApps, specific features, maintenance and more.",
+      name: language["frontend"] || "Front-End",
+      para: language["frontend_description"] || "WebApps, specific features, maintenance and more.",
       option: [
         { name: "HTML5", icon: <FaHtml5 /> },
         { name: "CSS3", icon: <FaCss3Alt /> },
@@ -54,8 +54,8 @@ const TechUsed = () => {
       ],
     },
     {
-      name: "Back-End",
-      para: "Server-side development and database management.",
+      name: language["backend"] || "Back-End",
+      para: language["backend_description"] || "Server-side development and database management.",
       option: [
         { name: "Node.js", icon: <FaNodeJs /> },
         { name: "Express.js", icon: <SiExpress /> },
@@ -77,8 +77,8 @@ const TechUsed = () => {
       ],
     },
     {
-      name: "Tools",
-      para: "Essential tools for development and collaboration.",
+      name: language["tools"] || "Tools",
+      para: language["tools_description"] || "Essential tools for development and collaboration.",
       option: [
         { name: "Git & GitHub", icon: <FaGitAlt /> },
         { name: "Google Analytics", icon: <FaGoogle /> },
@@ -135,22 +135,35 @@ const TechUsed = () => {
         />
       </Head>
 
-      <div className="flex flex-col justify-center w-[96%] lg:w-full m-auto mb-9 gap-5 3xl:text-[1.5rem] ">
+      <div className="flex flex-col justify-center w-[96%] lg:w-full m-auto mb-9 gap-5 3xl:text-[1.5rem] relative">
+
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.5 }}
-          className="text-center"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-10"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient !bg-clip-text !text-transparent !bg-gradient-to-r !from-blue-500 !to-teal-400">
-            Technologies Used
+          {/* Badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 mb-6"
+          >
+            <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+            <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
+              {language["tech_stack_badge"] || "My Technical Arsenal"}
+            </span>
+          </motion.div>
+
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-500 to-teal-400">
+              {language["technologies_used"] || "Technologies Used"}
+            </span>
           </h2>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto">
-            Each project has its needs, and{" "}
-            <span className="text-[#3b82f6]">choosing the right tools</span> makes
-            all the difference. As a communicator, web developer, and designer, I
-            have listed below the main stacks that I usually use in each type of
-            project.
+          <p className="text-lg md:text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-400 leading-relaxed">
+            {language["tech_description"] || "Each project has its needs, and choosing the right tools makes all the difference. As a communicator, web developer, and designer, I have listed below the main stacks that I usually use in each type of project."}
           </p>
         </motion.div>
 

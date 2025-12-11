@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Calendar, Clock, ChevronDown, ChevronUp } from "lucide-react";
 import Image from "next/image";
-import {motion,AnimatePresence} from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface ExpInt {
   comp_name: string;
@@ -15,13 +15,13 @@ interface ExpInt {
 }
 
 const experience: ExpInt[] = [
- {
+  {
     comp_name: "Progziel Technologies",
     designation: "Backend Developer",
     startDate: new Date("March 2025"),
     present: true,
-    imgurl:"/progziel.png",
-    skills: ["Express.js","Nest.js","TypeScript", "Javascript", "Node.js", "MongoDb", "PostgreSql", "Prisma ORM","TypeOrm","GraphQl","socket.io","Amazon Web Services(AWS)","Rest Apis","Google Maps APIs","fe-dev-for-testing"],
+    imgurl: "/progziel.png",
+    skills: ["Express.js", "Nest.js", "TypeScript", "Javascript", "Node.js", "MongoDb", "PostgreSql", "Prisma ORM", "TypeOrm", "GraphQl", "socket.io", "Amazon Web Services(AWS)", "Rest Apis", "Google Maps APIs", "fe-dev-for-testing"],
     description: "At Progziel Technologies, I build and maintain the backbone of our applications. I use Node.js, Express.js, and Nest.js to create reliable systems, work with databases like MongoDB and PostgreSQL, and integrate essential third-party tools. I enjoy solving challenges and ensuring our products run smoothly.",
   },
   {
@@ -29,7 +29,7 @@ const experience: ExpInt[] = [
     designation: "Full Stack Developer",
     startDate: "March 2024 - March 2025 1-year & 1-month",
     present: false,
-    imgurl:"/solarCitizen.png",
+    imgurl: "/solarCitizen.png",
     skills: ["Reactjs", "TypeScript", "styled-components", "Tailwind CSS", "Amazon S3", "Express.js", "SQL"],
     description: "Developing and maintaining full-stack web applications for renewable energy solutions.",
   },
@@ -54,7 +54,7 @@ const experience: ExpInt[] = [
   },
 ];
 
-const ActivitiesTimeline= ({ language }:any) => {
+const ActivitiesTimeline = ({ language }: any) => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
@@ -96,14 +96,11 @@ const ActivitiesTimeline= ({ language }:any) => {
 
   return (
     <div className="w-full my-16 px-4 sm:px-6 lg:px-8 ">
-      <motion.h1
-        className="text-center text-3xl sm:text-4xl md:text-5xl font-bold mb-16 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
+      <h2
+        className="text-center text-3xl md:text-4xl lg:text-5xl font-bold mb-16 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400"
       >
         {language["professional_experience"]}
-      </motion.h1>
+      </h2>
 
       <div className="relative max-w-4xl mx-auto">
         {/* Timeline Vertical Line */}
@@ -112,9 +109,8 @@ const ActivitiesTimeline= ({ language }:any) => {
         {experience.map((exp, index) => (
           <motion.div
             key={index}
-            className={`relative mb-12 flex items-start w-full group ${
-              index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
-            }`}
+            className={`relative mb-12 flex items-start w-full group ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"
+              }`}
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -124,9 +120,8 @@ const ActivitiesTimeline= ({ language }:any) => {
 
             {/* Timeline Card */}
             <div
-              className={`relative w-full md:w-[45%] p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${
-                index % 2 === 0 ? "md:mr-auto" : "md:ml-auto"
-              }`}
+              className={`relative w-full md:w-[45%] p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${index % 2 === 0 ? "md:mr-auto" : "md:ml-auto"
+                }`}
             >
               <div className="flex items-start gap-4">
                 {/* Company Logo */}
@@ -151,12 +146,12 @@ const ActivitiesTimeline= ({ language }:any) => {
                     <span>
                       {exp.present
                         ? `${new Date(exp.startDate).toLocaleString("default", {
-                            month: "short",
-                            year: "numeric",
-                          })} - ${language["present"]}`
+                          month: "short",
+                          year: "numeric",
+                        })} - ${language["present"]}`
                         : typeof exp.startDate === "string"
-                        ? exp.startDate.split(" - ").slice(0, 2).join(" - ")
-                        : exp.startDate.toLocaleString("default", {
+                          ? exp.startDate.split(" - ").slice(0, 2).join(" - ")
+                          : exp.startDate.toLocaleString("default", {
                             month: "short",
                             year: "numeric",
                           })}
