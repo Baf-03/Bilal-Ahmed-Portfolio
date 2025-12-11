@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import {motion} from "framer-motion"
 import { RiReactjsLine } from "react-icons/ri";
@@ -24,6 +24,17 @@ import { SiTypescript } from "react-icons/si";
 import { SiJsonwebtokens } from "react-icons/si";
 
 const Skills = () => {
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
   const skills = [
     { icon: TbBrandNextjs, name: "Next.js", color: "text-cyan-400" },
     { icon: RiReactjsLine, name: "React.js", color: "text-cyan-400" },
@@ -180,21 +191,20 @@ const Skills = () => {
       </Head>
 
       <div id="skills" className="flex flex-col items-center w-full gap-9 z-10">
-      <motion.div
+      {isLargeScreen ? (
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.5 }}
           className="text-center"
         >
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">Skills</h2>
-          {/* <p className="text-lg md:text-xl max-w-3xl mx-auto">
-          Each project has its needs, and{" "}
-          <span className="text-[#3b82f6]">choosing the right tools</span> makes
-          all the difference. As a communicator, web developer, and designer, I
-          have listed below the main stacks that I usually use in each type of
-          project.
-          </p> */}
         </motion.div>
+      ) : (
+        <div className="text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gradient bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">Skills</h2>
+        </div>
+      )}
 
         <div className="block lg:hidden overflow-hidden whitespace-nowrap w-full" ref={scrollContainerRef}>
           <div className="flex gap-10 w-max">

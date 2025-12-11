@@ -203,7 +203,7 @@ const FeatureCarousel = React.memo(({ language }: any) => {
             >
             {duplicatedFeatures.map((feature, index) => {
               const Icon = feature.icon;
-              return (
+              return isLargeScreen ? (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, y: 20 }}
@@ -225,6 +225,24 @@ const FeatureCarousel = React.memo(({ language }: any) => {
                     {feature.description}
                   </p>
                 </motion.div>
+              ) : (
+                <div
+                  key={index}
+                  className="flex-shrink-0 w-80 snap-center bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-md border border-gray-200 dark:border-gray-700"
+                >
+                  {/* Icon */}
+                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-r ${feature.color} flex items-center justify-center mb-5 shadow-lg`}>
+                    <Icon className="w-7 h-7 text-white" />
+                  </div>
+
+                  {/* Content */}
+                  <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">
+                    {feature.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
               );
             })}
           </div>
