@@ -8,7 +8,7 @@ export default function CustomCursor() {
     const cursorX = useMotionValue(-100);
     const cursorY = useMotionValue(-100);
 
-    const springConfig = { damping: 50, stiffness: 1000 };
+    const springConfig = { damping: 25, stiffness: 700 };
     const cursorXSpring = useSpring(cursorX, springConfig);
     const cursorYSpring = useSpring(cursorY, springConfig);
 
@@ -38,7 +38,7 @@ export default function CustomCursor() {
 
     return (
         <motion.div
-            className="fixed hidden md:block top-0 left-0 w-[20px] h-[20px] bg-[#3b82f6] opacity-[0.8] rounded-full pointer-events-none z-[9999]"
+            className="fixed hidden md:block top-0 left-0 w-[20px] h-[20px] bg-[#3b82f6] opacity-[0.8] rounded-full pointer-events-none z-[9999] will-change-[transform]"
             style={{
                 translateX: cursorXSpring,
                 translateY: cursorYSpring,

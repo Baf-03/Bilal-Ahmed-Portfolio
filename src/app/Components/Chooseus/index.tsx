@@ -64,7 +64,7 @@ const features = [
 
 const duplicatedFeatures = [...features, features[0]];
 
-const FeatureCarousel = ({ language }: any) => {
+const FeatureCarousel = React.memo(({ language }: any) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -76,7 +76,7 @@ const FeatureCarousel = ({ language }: any) => {
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % duplicatedFeatures.length);
-    }, 3000); // Auto scroll every 3 seconds
+    }, 5000); // Auto scroll every 5 seconds
 
     return () => clearInterval(interval);
   }, [isPaused]);
@@ -84,10 +84,7 @@ const FeatureCarousel = ({ language }: any) => {
   useEffect(() => {
     if (carouselRef.current) {
       const cardWidth = 320 + 24; // w-80 + gap-6
-      carouselRef.current.scrollTo({
-        left: currentIndex * cardWidth,
-        behavior: 'smooth'
-      });
+      carouselRef.current.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
     }
   }, [currentIndex]);
 
@@ -185,19 +182,14 @@ const FeatureCarousel = ({ language }: any) => {
             <ChevronRight className="w-6 h-6 text-gray-600 dark:text-gray-300" />
           </button>
 
-          <div
-            ref={carouselRef}
-            className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-4 scrollbar-hide"
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-          >
-            <style jsx>{`
-              .scrollbar-hide::-webkit-scrollbar {
-                display: none;
-              }
-            `}</style>
+          <div className="overflow-hidden">
+            <div
+              ref={carouselRef}
+              className="flex gap-6 transition-transform duration-500 ease-in-out"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
             {duplicatedFeatures.map((feature, index) => {
               const Icon = feature.icon;
               return (
@@ -207,7 +199,6 @@ const FeatureCarousel = ({ language }: any) => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  whileHover={{ y: -5 }}
                   className="flex-shrink-0 w-80 snap-center bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-200 dark:border-gray-700"
                 >
                   {/* Icon */}
@@ -226,11 +217,12 @@ const FeatureCarousel = ({ language }: any) => {
               );
             })}
           </div>
+          </div>
         </div>
       </div>
     </section>
   );
-};
+});
 
 export default FeatureCarousel;
 

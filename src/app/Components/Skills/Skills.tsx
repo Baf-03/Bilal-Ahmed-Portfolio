@@ -58,7 +58,7 @@ const Skills = () => {
       }
   
       const scrollContainer = scrollContainerRef.current;
-      const scrollIncrement = 1; // Set a constant increment
+      const scrollIncrement = 0.5; // Set a constant increment
   
       scrollContainer.scrollLeft += scrollIncrement;
   
