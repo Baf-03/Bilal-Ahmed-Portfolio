@@ -27,7 +27,7 @@ export const usePerformanceMonitor = () => {
           frameCountRef.current = 0;
           lastTimeRef.current = now;
 
-          if (fpsRef.current < 30) {
+          if (fpsRef.current < 25) {
             setLowPerformance(true);
             setShowPopup(true);
             // Hide popup after 5 seconds
