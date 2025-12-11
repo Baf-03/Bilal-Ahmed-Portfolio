@@ -16,6 +16,10 @@ const TestimonialSlider = dynamic(() => import("./Components/TestimonialSlider")
   loading: () => <div className="py-24 text-center">Loading testimonials...</div>,
   ssr: false,
 });
+const Blogs = dynamic(() => import("./Components/Blogs"), {
+  loading: () => <div className="py-24 text-center">Loading blogs...</div>,
+  ssr: false,
+});
 const FeatureCarousel = dynamic(() => import("./Components/Chooseus"), {
   loading: () => <div className="py-24 text-center">Loading features...</div>,
   ssr: false,
@@ -110,6 +114,7 @@ function HomeContent() {
           <TechUsed language={language} />
           <Education language={language} />
           <TestimonialSlider language={language} />
+          <Blogs language={language} />
           <ContactForm language={language} />
         </div>
         <Footer language={language} />

@@ -54,7 +54,7 @@ export default function TestimonialSlider({ language }: { language: any }) {
   const scrollRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
-  const cardWidth = 416 // Card width + gap
+  const cardWidth = 432 // Card width + gap
 
   // Scroll to specific index
   const scrollToIndex = useCallback((index: number) => {
@@ -151,7 +151,7 @@ export default function TestimonialSlider({ language }: { language: any }) {
         </motion.div>
 
         {/* Carousel Container */}
-        <div className="relative px-16">
+        <div className="relative px-4 md:px-16">
           {/* Left Arrow - Fixed Position */}
           <button
             onClick={() => navigate("left")}
@@ -184,7 +184,7 @@ export default function TestimonialSlider({ language }: { language: any }) {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.15 }}
                 whileHover={{ y: -8, transition: { duration: 0.3 } }}
-                className="flex-shrink-0 w-[340px] md:w-[400px] snap-start"
+                className="flex-shrink-0 w-[400px] snap-start"
               >
                 {/* Card with Glassmorphism */}
                 <div className="relative group h-full">

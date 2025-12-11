@@ -8,6 +8,7 @@ export const usePerformanceMonitor = () => {
   const lastTimeRef = useRef(performance.now());
   const fpsRef = useRef(60);
   const monitoringStartedRef = useRef(false);
+  const lowCountRef = useRef(0);
 
   useEffect(() => {
     // Only monitor on small screens
@@ -28,10 +29,15 @@ export const usePerformanceMonitor = () => {
           lastTimeRef.current = now;
 
           if (fpsRef.current < 25) {
-            setLowPerformance(true);
-            setShowPopup(true);
-            // Hide popup after 5 seconds
-            setTimeout(() => setShowPopup(false), 5000);
+            lowCountRef.current++;
+            if (lowCountRef.current >= 3) {
+              setLowPerformance(true);
+              setShowPopup(true);
+              // Hide popup after 5 seconds
+              setTimeout(() => setShowPopup(false), 5000);
+            }
+          } else {
+            lowCountRef.current = 0;
           }
         }
 
