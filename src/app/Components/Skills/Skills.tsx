@@ -80,85 +80,85 @@ const Skills = () => {
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 640) {
-        stopScrolling(); // Stop any existing scrolling
-        startScrolling(); // Start scrolling with the correct speed
-  
-        const scrollContainer = scrollContainerRef.current;
-        if (scrollContainer) {
-          let isDown = false;
-          let startX: number;
-          let scrollLeft: number;
-  
-          const handleMouseDown = (e: MouseEvent) => {
-            isDown = true;
-            isInteractingRef.current = true;
-            stopScrolling();
-            startX = e.pageX - scrollContainer.offsetLeft;
-            scrollLeft = scrollContainer.scrollLeft;
-          };
-  
-          const handleMouseMove = (e: MouseEvent) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - scrollContainer.offsetLeft;
-            const walk = (x - startX) * 1; // Scroll-fast
-            scrollContainer.scrollLeft = scrollLeft - walk;
-          };
-  
-          const handleMouseUp = () => {
-            isDown = false;
-            isInteractingRef.current = false;
-            startScrolling();
-          };
-  
-          const handleTouchStart = (e: TouchEvent) => {
-            isDown = true;
-            isInteractingRef.current = true;
-            stopScrolling();
-            startX = e.touches[0].pageX - scrollContainer.offsetLeft;
-            scrollLeft = scrollContainer.scrollLeft;
-          };
-  
-          const handleTouchMove = (e: TouchEvent) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.touches[0].pageX - scrollContainer.offsetLeft;
-            const walk = (x - startX) * 1; // Scroll-fast
-            scrollContainer.scrollLeft = scrollLeft - walk;
-          };
-  
-          const handleTouchEnd = () => {
-            isDown = false;
-            isInteractingRef.current = false;
-            startScrolling();
-          };
-  
-          scrollContainer.addEventListener("mousedown", handleMouseDown);
-          scrollContainer.addEventListener("mousemove", handleMouseMove);
-          scrollContainer.addEventListener("mouseup", handleMouseUp);
-          scrollContainer.addEventListener("mouseleave", handleMouseUp);
-          scrollContainer.addEventListener("touchstart", handleTouchStart);
-          scrollContainer.addEventListener("touchmove", handleTouchMove);
-          scrollContainer.addEventListener("touchend", handleTouchEnd);
-  
-          return () => {
-            scrollContainer.removeEventListener("mousedown", handleMouseDown);
-            scrollContainer.removeEventListener("mousemove", handleMouseMove);
-            scrollContainer.removeEventListener("mouseup", handleMouseUp);
-            scrollContainer.removeEventListener("mouseleave", handleMouseUp);
-            scrollContainer.removeEventListener("touchstart", handleTouchStart);
-            scrollContainer.removeEventListener("touchmove", handleTouchMove);
-            scrollContainer.removeEventListener("touchend", handleTouchEnd);
-          };
-        }
+        stopScrolling(); // Stop scrolling on small screens
       } else {
-        stopScrolling(); // Stop scrolling on larger screens
+        stopScrolling(); // Stop any existing scrolling
+        startScrolling(); // Start scrolling on larger screens
       }
     };
-  
+
+    const scrollContainer = scrollContainerRef.current;
+    if (scrollContainer) {
+      let isDown = false;
+      let startX: number;
+      let scrollLeft: number;
+
+      const handleMouseDown = (e: MouseEvent) => {
+        isDown = true;
+        isInteractingRef.current = true;
+        stopScrolling();
+        startX = e.pageX - scrollContainer.offsetLeft;
+        scrollLeft = scrollContainer.scrollLeft;
+      };
+
+      const handleMouseMove = (e: MouseEvent) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - scrollContainer.offsetLeft;
+        const walk = (x - startX) * 1; // Scroll-fast
+        scrollContainer.scrollLeft = scrollLeft - walk;
+      };
+
+      const handleMouseUp = () => {
+        isDown = false;
+        isInteractingRef.current = false;
+        startScrolling();
+      };
+
+      const handleTouchStart = (e: TouchEvent) => {
+        isDown = true;
+        isInteractingRef.current = true;
+        stopScrolling();
+        startX = e.touches[0].pageX - scrollContainer.offsetLeft;
+        scrollLeft = scrollContainer.scrollLeft;
+      };
+
+      const handleTouchMove = (e: TouchEvent) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.touches[0].pageX - scrollContainer.offsetLeft;
+        const walk = (x - startX) * 1; // Scroll-fast
+        scrollContainer.scrollLeft = scrollLeft - walk;
+      };
+
+      const handleTouchEnd = () => {
+        isDown = false;
+        isInteractingRef.current = false;
+        startScrolling();
+      };
+
+      scrollContainer.addEventListener("mousedown", handleMouseDown);
+      scrollContainer.addEventListener("mousemove", handleMouseMove);
+      scrollContainer.addEventListener("mouseup", handleMouseUp);
+      scrollContainer.addEventListener("mouseleave", handleMouseUp);
+      scrollContainer.addEventListener("touchstart", handleTouchStart);
+      scrollContainer.addEventListener("touchmove", handleTouchMove);
+      scrollContainer.addEventListener("touchend", handleTouchEnd);
+
+      return () => {
+        scrollContainer.removeEventListener("mousedown", handleMouseDown);
+        scrollContainer.removeEventListener("mousemove", handleMouseMove);
+        scrollContainer.removeEventListener("mouseup", handleMouseUp);
+        scrollContainer.removeEventListener("mouseleave", handleMouseUp);
+        scrollContainer.removeEventListener("touchstart", handleTouchStart);
+        scrollContainer.removeEventListener("touchmove", handleTouchMove);
+        scrollContainer.removeEventListener("touchend", handleTouchEnd);
+      };
+    }
+
     window.addEventListener("resize", handleResize);
     handleResize(); // Call once on mount
-  
+
     return () => {
       window.removeEventListener("resize", handleResize);
       stopScrolling();

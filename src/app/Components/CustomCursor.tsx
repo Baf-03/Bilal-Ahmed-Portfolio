@@ -13,10 +13,16 @@ export default function CustomCursor() {
     const cursorYSpring = useSpring(cursorY, springConfig);
 
     useEffect(() => {
+        let throttled = false;
         const moveCursor = (e: MouseEvent) => {
-            cursorX.set(e.clientX - 10);
-            cursorY.set(e.clientY - 10);
-            if (!isVisible) setIsVisible(true);
+            if (throttled) return;
+            throttled = true;
+            requestAnimationFrame(() => {
+                cursorX.set(e.clientX - 10);
+                cursorY.set(e.clientY - 10);
+                if (!isVisible) setIsVisible(true);
+                throttled = false;
+            });
         };
 
         const handleMouseDown = () => document.body.classList.add("cursor-clicked");

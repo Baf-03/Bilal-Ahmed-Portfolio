@@ -61,15 +61,7 @@ const AnimatedRocket: React.FC = React.memo(() => {
             <circle cx="53" cy="52" r="1" fill="#f59e0b" className="spark2" />
             <circle cx="50" cy="58" r="0.5" fill="#dc2626" className="spark3" />
           </g>
-        ) : (
-          <g>
-            {/* Static flame for small devices */}
-            <path
-              d="M45 50 Q50 45 55 50 Q52 60 50 70 Q48 60 45 50"
-              fill="url(#fireGradient)"
-            />
-          </g>
-        )}
+        ) : null}
 
         {/* Gradient for fire */}
         <defs>

@@ -70,16 +70,27 @@ const FeatureCarousel = React.memo(({ language }: any) => {
   const carouselRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   useEffect(() => {
-    if (isPaused) return;
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 768);
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  useEffect(() => {
+    if (isPaused || !isLargeScreen) return;
 
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % duplicatedFeatures.length);
     }, 5000); // Auto scroll every 5 seconds
 
     return () => clearInterval(interval);
-  }, [isPaused]);
+  }, [isPaused, isLargeScreen]);
 
   useEffect(() => {
     if (carouselRef.current) {

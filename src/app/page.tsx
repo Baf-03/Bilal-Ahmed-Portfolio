@@ -4,10 +4,22 @@ import { useSearchParams, useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import Introduction from "@/app/Components/LandingPage/LandingPage";
 import TechUsed from "./Components/TechnologiesUsed";
-import Projects from "./Components/Projects/Projects";
-import Footer from "./Components/Footer/Footer";
-import TestimonialSlider from "./Components/TestimonialSlider";
-import FeatureCarousel from "./Components/Chooseus";
+const Projects = dynamic(() => import("./Components/Projects/Projects"), {
+  loading: () => <div className="py-24 text-center">Loading projects...</div>,
+  ssr: false,
+});
+const Footer = dynamic(() => import("./Components/Footer/Footer"), {
+  loading: () => <div className="py-12 text-center">Loading footer...</div>,
+  ssr: false,
+});
+const TestimonialSlider = dynamic(() => import("./Components/TestimonialSlider"), {
+  loading: () => <div className="py-24 text-center">Loading testimonials...</div>,
+  ssr: false,
+});
+const FeatureCarousel = dynamic(() => import("./Components/Chooseus"), {
+  loading: () => <div className="py-24 text-center">Loading features...</div>,
+  ssr: false,
+});
 import ContactForm from "./Components/ContactForm";
 import ActivitiesTimeline from "./Components/TimeLine";
 import Education from "./Components/Education";
