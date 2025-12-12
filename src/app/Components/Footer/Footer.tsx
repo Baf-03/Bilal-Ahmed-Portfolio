@@ -1,8 +1,63 @@
-import { Facebook, Instagram, Twitter } from "lucide-react";
+"use client";
+
+import { Facebook, Instagram, Twitter, CheckCircle, Loader2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
-export default function Footer({ language }:any) {
+// Google Apps Script Web App URL - Replace with your deployed script URL
+const GOOGLE_SCRIPT_URL = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL || "";
+
+export default function Footer({ language }: any) {
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Basic email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      setError(language["invalid_email"] || "Please enter a valid email address");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setError("");
+
+    try {
+      // Send to Google Apps Script
+      const response = await fetch(GOOGLE_SCRIPT_URL, {
+        method: "POST",
+        mode: "no-cors", // Required for Google Apps Script
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          timestamp: new Date().toISOString(),
+          source: "portfolio-website"
+        }),
+      });
+
+      // With no-cors mode, we can't read the response, but if no error thrown, assume success
+      setIsSuccess(true);
+      setEmail("");
+
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        setIsSuccess(false);
+      }, 5000);
+    } catch (err) {
+      console.error("Subscription error:", err);
+      setError(language["subscription_error"] || "Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className="w-full mb-2">
       <div className="w-full  rounded-3xl overflow-hidden !shadow-2xl border-y-2 border-blue-800">
@@ -15,19 +70,55 @@ export default function Footer({ language }:any) {
                   <h3 className="text-xl font-semibold mb-2">{language["subscribe_for_insights"]}</h3>
                   <p className="text-sm mb-4">{language["subscribe_description"]}</p>
 
-                  <div className="flex flex-col sm:flex-row gap-2">
-                    <div className="w-[100%] 3xl:text-[1.5rem] ">
-                      <input
-                        type="text"
-                        name="name"
-                        placeholder={language["enter_email"]}
-                        className="block bg-transparent w-full px-3 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-[#3b82f6] "
-                      />
+                  <form onSubmit={handleSubscribe} className="flex flex-col gap-2">
+                    <div className="flex flex-col sm:flex-row gap-2">
+                      <div className="w-[100%] 3xl:text-[1.5rem] ">
+                        <input
+                          type="email"
+                          name="email"
+                          value={email}
+                          onChange={(e) => {
+                            setEmail(e.target.value);
+                            setError("");
+                          }}
+                          placeholder={language["enter_email"]}
+                          disabled={isSubmitting || isSuccess}
+                          className="block bg-transparent w-full px-3 py-2 rounded-md border border-gray-600 focus:outline-none focus:border-[#3b82f6] disabled:opacity-50"
+                        />
+                      </div>
+                      <button
+                        type="submit"
+                        disabled={isSubmitting || isSuccess}
+                        className="bg-[#1e5aed] hover:bg-[#1e4ed8] text-white px-5 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all duration-200 disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                            <span>{language["subscribing"] || "Subscribing..."}</span>
+                          </>
+                        ) : isSuccess ? (
+                          <>
+                            <CheckCircle className="w-4 h-4" />
+                            <span>{language["subscribed"] || "Subscribed!"}</span>
+                          </>
+                        ) : (
+                          language["subscribe_button"]
+                        )}
+                      </button>
                     </div>
-                    <button className="bg-[#1e5aed] text-white px-5 py-2 rounded-lg text-sm font-medium whitespace-nowrap">
-                      {language["subscribe_button"]}
-                    </button>
-                  </div>
+
+                    {/* Error Message */}
+                    {error && (
+                      <p className="text-red-500 text-xs mt-1">{error}</p>
+                    )}
+
+                    {/* Success Message */}
+                    {isSuccess && (
+                      <p className="text-green-500 text-xs mt-1">
+                        {language["subscription_success"] || "Thank you for subscribing! 🎉"}
+                      </p>
+                    )}
+                  </form>
                 </div>
               </div>
             </div>

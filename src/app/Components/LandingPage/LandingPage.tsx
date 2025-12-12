@@ -79,7 +79,7 @@ function LandingPage({ language }: any) {
                 </span>
                 <span>
                   {language["passionate_about_problem_solving"]},{" "}
-                  <strong className="text-blue-500 font-medium">{language["leadership"]}</strong>, and leveraging{" "}
+                  <strong className="text-blue-500 font-medium">{language["leadership"]}</strong>, {language["and_leveraging"] || "and leveraging"}{" "}
                   <strong className="text-blue-500 font-medium">{language["cutting_edge_technologies"]}</strong>
                 </span>
               </li>
@@ -95,8 +95,13 @@ function LandingPage({ language }: any) {
               </div>
             </div>
 
-            <div className="flex gap-6 mt-[15%] items-center text-[2rem] md:text-[3rem] 3xl:text-[4.2rem]  lg:gap-11">
-              <SocialLinks />
+            <div className="mt-[15%]">
+              <p className="text-sm md:text-base text-gray-500 dark:text-gray-400 mb-3">
+                {language["check_my_work"] || "Check out my work & connect with me"}
+              </p>
+              <div className="flex gap-6 items-center text-[2rem] md:text-[3rem] 3xl:text-[4.2rem] lg:gap-11">
+                <SocialLinks />
+              </div>
             </div>
           </div>
         </div>

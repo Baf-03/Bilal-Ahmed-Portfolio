@@ -1,91 +1,145 @@
+"use client";
+
 import React, { useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import Head from "next/head";
-import "./tech.css";
 import {
   FaPython, FaJava, FaJs, FaReact, FaNodeJs, FaGitAlt, FaHtml5, FaCss3Alt,
-  FaBootstrap, FaDatabase, FaCloud, FaLock, FaGoogle
+  FaBootstrap, FaDatabase, FaCloud, FaLock, FaGoogle, FaUbuntu, FaServer, FaDocker
 } from 'react-icons/fa';
 import {
   SiTypescript, SiNextdotjs, SiTailwindcss, SiMongodb, SiPostgresql,
   SiMysql, SiExpress, SiNestjs, SiChakraui, SiVisualstudiocode,
   SiPostman, SiRedux, SiFirebase, SiStyledcomponents, SiGreensock,
-  SiPrisma,
-  SiOpenai,
-  SiGraphql
+  SiPrisma, SiOpenai, SiGraphql, SiNginx, SiPm2, SiAmazonaws, SiGithubactions, SiRedis
 } from 'react-icons/si';
 import { DiMaterializecss } from "react-icons/di";
 import { GrGatsbyjs } from "react-icons/gr";
+import { TbBrandReactNative } from "react-icons/tb";
+import { Code, Database, Wrench, Globe, Sparkles, Terminal, Brain, BotMessageSquare } from "lucide-react";
+import { VscAzure } from "react-icons/vsc";
+
+interface TechCategory {
+  name: string;
+  description: string;
+  icon: React.ReactNode;
+  color: string;
+  technologies: { name: string; icon: React.ReactNode }[];
+}
 
 const TechUsed = ({ language }: { language: any }) => {
-  const cardsData = [
+  const cardsData: TechCategory[] = [
     {
       name: language["programming_languages"] || "Programming Languages",
-      para: "code .",
-      option: [
+      description: "Core languages I use to build software",
+      icon: <Code className="w-6 h-6" />,
+      color: "from-purple-500 to-pink-500",
+      technologies: [
         { name: "Python", icon: <FaPython /> },
         { name: "Java", icon: <FaJava /> },
-        { name: "Javascript", icon: <FaJs /> },
-        { name: "typescript", icon: <SiTypescript /> },
+        { name: "JavaScript", icon: <FaJs /> },
+        { name: "TypeScript", icon: <SiTypescript /> },
       ],
     },
     {
       name: language["frontend"] || "Front-End",
-      para: language["frontend_description"] || "WebApps, specific features, maintenance and more.",
-      option: [
+      description: language["frontend_description"] || "Building beautiful user interfaces",
+      icon: <Globe className="w-6 h-6" />,
+      color: "from-blue-500 to-cyan-500",
+      technologies: [
         { name: "HTML5", icon: <FaHtml5 /> },
         { name: "CSS3", icon: <FaCss3Alt /> },
-        { name: "JavaScript ES6", icon: <FaJs /> },
-        { name: "TypeScript", icon: <SiTypescript /> },
         { name: "React", icon: <FaReact /> },
+        { name: "React Native", icon: <TbBrandReactNative /> },
         { name: "Next.js", icon: <SiNextdotjs /> },
         { name: "GatsBy", icon: <GrGatsbyjs /> },
         { name: "Redux Toolkit", icon: <SiRedux /> },
         { name: "Tailwind CSS", icon: <SiTailwindcss /> },
+        { name: "NativeWind", icon: <SiTailwindcss /> },
         { name: "Bootstrap", icon: <FaBootstrap /> },
         { name: "styled-components", icon: <SiStyledcomponents /> },
         { name: "Material UI", icon: <DiMaterializecss /> },
-        { name: "shadcn", icon: <FaReact /> },
-        { name: "ChakraUi", icon: <SiChakraui /> },
-        { name: "Particlejs", icon: <FaJs /> },
-        { name: "AOS animation", icon: <FaCss3Alt /> },
-        { name: "framer-motion", icon: <FaReact /> },
-        { name: "gsap", icon: <SiGreensock /> },
+        { name: "shadcn/ui", icon: <FaReact /> },
+        { name: "Chakra UI", icon: <SiChakraui /> },
+        { name: "Framer Motion", icon: <FaReact /> },
+        { name: "GSAP", icon: <SiGreensock /> },
       ],
     },
     {
       name: language["backend"] || "Back-End",
-      para: language["backend_description"] || "Server-side development and database management.",
-      option: [
+      description: language["backend_description"] || "Server-side development & APIs",
+      icon: <Database className="w-6 h-6" />,
+      color: "from-green-500 to-teal-500",
+      technologies: [
         { name: "Node.js", icon: <FaNodeJs /> },
         { name: "Express.js", icon: <SiExpress /> },
-        { name: "Nestjs", icon: <SiNestjs /> },
-        { name: "typeorm", icon: <FaDatabase /> },
+        { name: "Nest.js", icon: <SiNestjs /> },
+        { name: "TypeORM", icon: <FaDatabase /> },
         { name: "Prisma", icon: <SiPrisma /> },
         { name: "MongoDB", icon: <SiMongodb /> },
-        { name: "postgresql", icon: <SiPostgresql /> },
+        { name: "PostgreSQL", icon: <SiPostgresql /> },
         { name: "MySQL", icon: <SiMysql /> },
-        { name: "Sessions", icon: <FaLock /> },
+        { name: "GraphQL", icon: <SiGraphql /> },
         { name: "JWT", icon: <FaLock /> },
-        { name: "Passportjs", icon: <FaLock /> },
+        { name: "Passport.js", icon: <FaLock /> },
         { name: "OAuth2", icon: <FaLock /> },
-        { name: "GraphQl", icon: <SiGraphql /> },
-        { name: "rbac", icon: <FaLock /> },
-        { name: "Cloudinary", icon: <FaCloud /> },
-        { name: "AWS S3", icon: <FaCloud /> },
+        { name: "RBAC", icon: <FaLock /> },
         { name: "Firebase", icon: <SiFirebase /> },
+        { name: "Redis", icon: <SiRedis /> },
+      ],
+    },
+    {
+      name: "DevOps & Cloud",
+      description: "Infrastructure, deployment & scaling",
+      icon: <Terminal className="w-6 h-6" />,
+      color: "from-orange-500 to-red-500",
+      technologies: [
+        { name: "AWS EC2", icon: <SiAmazonaws /> },
+        { name: "AWS RDS", icon: <SiAmazonaws /> },
+        { name: "AWS ECS", icon: <SiAmazonaws /> },
+        { name: "AWS S3", icon: <FaCloud /> },
+        { name: "IAM", icon: <SiAmazonaws /> },
+        { name: "Ubuntu", icon: <FaUbuntu /> },
+        { name: "Nginx", icon: <SiNginx /> },
+        { name: "PM2", icon: <SiPm2 /> },
+        { name: "CI/CD", icon: <SiGithubactions /> },
+        { name: "Docker", icon: <FaDocker /> },
+        { name: "AWS CloudFront", icon: <SiAmazonaws /> },
+        { name: "Azure", icon: <VscAzure /> },
+        { name: "Hostinger", icon: <FaServer /> },
+        { name: "Cloudinary", icon: <FaCloud /> },
+      ],
+    },
+    {
+      name: "AI & Machine Learning",
+      description: "Building intelligent systems & data pipelines",
+      icon: <Brain className="w-6 h-6" />,
+      color: "from-pink-500 to-rose-500",
+      technologies: [
+        { name: "Fine Tuning", icon: <SiOpenai /> },
+        { name: "ResNet-18", icon: <Brain className="w-4 h-4" /> },
+        { name: "RAG Pipelines", icon: <BotMessageSquare className="w-4 h-4" /> },
+        { name: "Similarity Search", icon: <FaDatabase /> },
+        { name: "Selenium", icon: <FaPython /> },
+        { name: "Beautiful Soup", icon: <FaPython /> },
+        { name: "Data Cleaning", icon: <FaDatabase /> },
+        { name: "LangChain", icon: <SiOpenai /> },
+        { name: "Pinecone", icon: <FaDatabase /> },
+        { name: "FAISS", icon: <FaDatabase /> },
       ],
     },
     {
       name: language["tools"] || "Tools",
-      para: language["tools_description"] || "Essential tools for development and collaboration.",
-      option: [
+      description: language["tools_description"] || "Essential tools for productivity",
+      icon: <Wrench className="w-6 h-6" />,
+      color: "from-indigo-500 to-purple-500",
+      technologies: [
         { name: "Git & GitHub", icon: <FaGitAlt /> },
+        { name: "VS Code", icon: <SiVisualstudiocode /> },
+        { name: "Postman", icon: <SiPostman /> },
+        { name: "ChatGPT", icon: <SiOpenai /> },
         { name: "Google Analytics", icon: <FaGoogle /> },
         { name: "Google Tag Manager", icon: <FaGoogle /> },
-        { name: "Postman", icon: <SiPostman /> },
-        { name: "VSCode", icon: <SiVisualstudiocode /> },
-        { name: "ChatGPT", icon: <SiOpenai /> },
+        { name: "Bitbucket", icon: <FaGitAlt /> },
       ],
     },
   ];
@@ -96,18 +150,12 @@ const TechUsed = ({ language }: { language: any }) => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          document.title =
-            "Technologies Used - Engineer | Bilal Ahmed | MERN Stack";
+          document.title = "Technologies Used - Bilal Ahmed | Software Engineer";
         } else {
-          document.title =
-            "Hey, Bilal! - Software Engineer - MERN Stack Developer";
+          document.title = "Bilal Ahmed - Software Engineer";
         }
       },
-      {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0,
-      }
+      { root: null, rootMargin: "0px", threshold: 0 }
     );
 
     if (titleRef.current) {
@@ -124,81 +172,85 @@ const TechUsed = ({ language }: { language: any }) => {
   return (
     <>
       <Head>
-        <title>Technologies Used - Web Developer | Bilal Ahmed</title>
+        <title>Technologies Used - Software Engineer | Bilal Ahmed</title>
         <meta
           name="description"
-          content="Explore the technologies used by Bilal Ahmed, a skilled web developer. Learn about UI/UX design, front-end development, and back-end technologies."
-        />
-        <meta
-          name="keywords"
-          content="technologies used, web development technologies, UI/UX design, front-end development, back-end development, Figma, HTML5, CSS3, JavaScript, TypeScript, React, Redux Toolkit, Next.js, Express.js, MongoDB"
+          content="Explore the technologies used by Bilal Ahmed, including React, Node.js, AWS, and more."
         />
       </Head>
 
-      <div className="flex flex-col justify-center w-[96%] lg:w-full m-auto mb-9 gap-5 3xl:text-[1.5rem] relative">
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-10"
-        >
-          {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 mb-6"
-          >
-            <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
-            <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
-              {language["tech_stack_badge"] || "My Technical Arsenal"}
-            </span>
-          </motion.div>
-
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-500 to-teal-400">
-              {language["technologies_used"] || "Technologies Used"}
-            </span>
-          </h2>
-          <p className="text-lg md:text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-400 leading-relaxed">
-            {language["tech_description"] || "Each project has its needs, and choosing the right tools makes all the difference. As a communicator, web developer, and designer, I have listed below the main stacks that I usually use in each type of project."}
-          </p>
-        </motion.div>
-
-        <div
-          ref={titleRef}
-          className="mt-9 flex flex-wrap gap-12 justify-center"
-        >
-          {cardsData.map((element, index) => (
-            <div
-              key={index}
-              className="Card w-[95%] sm:w-[60%] md:w-[45%] lg:w-[30%] p-4 shadow-lg rounded-2xl flex flex-col"
-            >
-              <div className="flex flex-col items-center w-full py-5">
-                <h2 className="font-bold text-[1.5rem] 3xl:text-[2.4rem] text-[#3b82f6]">
-                  {element.name}
-                </h2>
-                <p className="w-[85%] mx-auto text-center 3xl:text-[1.5rem]">
-                  {element.para}
-                </p>
-              </div>
-              <div className="p-2 text-[0.9rem] 3xl:text-[1.5rem] 3xl:p-4 flex flex-wrap gap-2 font-bold mt-2">
-                {element.option.map((feature, idx) => (
-                  <span
-                    key={idx}
-                    className="bg-blue-100 text-blue-800 px-3 3xl:px-5 py-1 3xl:py-3 rounded-full flex items-center gap-2 tech-item"
-                  >
-                    <span className="tech-icon">{feature.icon}</span>
-                    {feature.name}
-                  </span>
-                ))}
-              </div>
+      <section className="py-12 md:py-24 px-4 w-full relative" id="technologies">
+        <div className="max-w-7xl mx-auto">
+          {/* Header */}
+          <div className="text-center mb-12 md:mb-16">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-3 md:px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-500/20 mb-4 md:mb-6">
+              <Sparkles className="w-4 h-4 text-blue-500" />
+              <span className="text-xs md:text-sm font-medium text-blue-600 dark:text-blue-400">
+                {language["tech_stack_badge"] || "My Technical Arsenal"}
+              </span>
             </div>
-          ))}
+
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-500 to-teal-400">
+                {language["technologies_used"] || "Technologies Used"}
+              </span>
+            </h2>
+            <p className="text-base md:text-lg lg:text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-400 leading-relaxed">
+              {language["tech_description"] || "Each project has its needs, and choosing the right tools makes all the difference."}
+            </p>
+          </div>
+
+          {/* Cards Grid */}
+          <div
+            ref={titleRef}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          >
+            {cardsData.map((category, index) => (
+              <div
+                key={index}
+                className="relative group"
+              >
+                {/* Gradient Border Effect on hover */}
+                <div className={`absolute -inset-0.5 bg-gradient-to-r ${category.color} rounded-3xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-500`} />
+
+                <div className="relative bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl rounded-3xl p-6 md:p-8 h-full border border-gray-200/50 dark:border-gray-700/50 shadow-xl shadow-gray-200/40 dark:shadow-black/20">
+                  {/* Decorative Corner Gradient */}
+                  <div className={`absolute top-0 right-0 w-24 h-24 bg-gradient-to-br ${category.color} opacity-10 rounded-tr-3xl rounded-bl-full`} />
+
+                  {/* Category Header */}
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className={`w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br ${category.color} rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-transform duration-300`}>
+                      <span className="text-white">{category.icon}</span>
+                    </div>
+                    <div>
+                      <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">
+                        {category.name}
+                      </h3>
+                      <p className="text-sm text-gray-500 dark:text-gray-400">
+                        {category.description}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Technologies */}
+                  <div className="flex flex-wrap gap-2">
+                    {category.technologies.map((tech, idx) => (
+                      <span
+                        key={idx}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-xs md:text-sm font-medium hover:bg-blue-100 dark:hover:bg-blue-900/30 hover:text-blue-700 dark:hover:text-blue-300 transition-colors duration-200"
+                      >
+                        <span className="text-base">{tech.icon}</span>
+                        {tech.name}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
     </>
   );
 };

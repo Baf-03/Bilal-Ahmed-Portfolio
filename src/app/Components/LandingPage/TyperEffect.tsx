@@ -8,7 +8,7 @@ const TyperEffect = () => {
     const [isRemoving, setIsRemoving] = useState(false);
     const [typingSpeed, setTypingSpeed] = useState(150); // Adjust typing speed for smoother effect
 
-    const qualities = ["beautiful", "Optimized", "efficient"];
+    const qualities = ["powerful", "reliable", "elegant"];
 
     useEffect(() => {
         const handleTyping = () => {
@@ -41,9 +41,9 @@ const TyperEffect = () => {
 
     return (
         <div className='text-[1.8rem] lg:text-[2.5rem] xl:text-[3rem] h-[5rem] lg:h-[7rem] xl:h-[9rem] 3xl:text-[4.2rem] 3xl:mb-9'>
-            I like creating
-            <span className="text-gradient !bg-clip-text !text-transparent !bg-gradient-to-r !from-blue-500 !to-teal-400 smooth flex">{word}| websites</span>
-           
+            I build
+            <span className="text-gradient !bg-clip-text !text-transparent !bg-gradient-to-r !from-blue-500 !to-teal-400 smooth flex">{word}| software</span>
+
         </div>
     )
 }

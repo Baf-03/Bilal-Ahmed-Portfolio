@@ -83,14 +83,17 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ display: { xs: "flex", md: "none" }, position: "absolute", left: 0 }}>
-            <IconButton
-              size="large"
+            <button
               aria-label="menu"
               onClick={handleMenuToggle}
-              className={`menu-icon ${isMenuOpen ? "open" : ""}`}
+              className={`hamburger-btn ${isMenuOpen ? "open" : ""}`}
             >
-              {isMenuOpen ? <CloseIcon /> : <MenuIcon style={{ color: darkMode ? "#fff" : "#3b82f6" }} />}
-            </IconButton>
+              {isMenuOpen ? (
+                <CloseIcon className="hamburger-icon" />
+              ) : (
+                <MenuIcon className="hamburger-icon" />
+              )}
+            </button>
           </Box>
 
           <Typography component="div" className="text-center w-[90vw] lg:w-fit">
@@ -186,86 +189,89 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
 
           <div className={`drawer-overlay ${isMenuOpen ? "open" : ""}`} onClick={closeMenu}></div>
 
-{/* Mobile Drawer */}
-<div className={`navbar-drawer ${isMenuOpen ? "open" : ""} ${darkMode ? "bg-gray-800 text-white" : "bg-[#e7e5e4] text-black"}`}>
-  <button onClick={closeMenu} className="drawer-close-button">
-    <CloseIcon />
-  </button>
+          {/* Mobile Drawer - Redesigned */}
+          <div className={`mobile-drawer ${isMenuOpen ? "open" : ""}`}>
+            {/* Drawer Header */}
+            <div className="mobile-drawer-header">
+              <div className="text-2xl font-bold">
+                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
+                  &lt; <strong>Dev</strong> /&gt;
+                </span>
+              </div>
+              <button
+                onClick={closeMenu}
+                className="mobile-drawer-close"
+                aria-label="Close menu"
+              >
+                <CloseIcon />
+              </button>
+            </div>
 
-  <div className="drawer-header">
-    <div className="text-2xl font-bold">
-      <span>
-        &lt; <strong className="text-blue-500">Dev</strong> /&gt;
-      </span>
-    </div>
-  </div>
+            {/* Navigation Links */}
+            <nav className="mobile-drawer-nav">
+              {pages.map((page, index) => (
+                <ScrollLink
+                  key={index}
+                  activeClass="active"
+                  to={page.nav_id}
+                  spy
+                  smooth
+                  offset={-70}
+                  duration={500}
+                  onClick={closeMenu}
+                  className="mobile-drawer-link"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <span className="mobile-drawer-link-text">{page.name}</span>
+                  <svg className="mobile-drawer-link-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M5 12h14M12 5l7 7-7 7" />
+                  </svg>
+                </ScrollLink>
+              ))}
+            </nav>
 
-  <ul>
-    {pages.map((page, index) => (
-      <li key={index} style={{ "--item-index": index } as React.CSSProperties}>
-        <ScrollLink
-          activeClass="active"
-          to={page.nav_id}
-          spy
-          smooth
-          offset={-70}
-          duration={500}
-          onClick={closeMenu}
-        >
-          {page.name}
-        </ScrollLink>
-      </li>
-    ))}
-  </ul>
+            {/* Drawer Footer */}
+            <div className="mobile-drawer-footer">
+              {/* Theme Toggle */}
+              <div className="mobile-drawer-setting">
+                <span className="mobile-drawer-setting-label">Theme</span>
+                <div className="toggle">
+                  <input
+                    type="checkbox"
+                    className="checkbox"
+                    id="checkbox-mobile"
+                    checked={darkMode}
+                    onChange={toggleDarkMode}
+                  />
+                  <label htmlFor="checkbox-mobile" className="checkbox-label">
+                    <FaMoon color="#f1c40f" />
+                    <FaSun color="#f39c12" />
+                    <span className="ball"></span>
+                  </label>
+                </div>
+              </div>
 
-  <div className="drawer-footer">
-    <div className="flex items-center justify-between">
-      <div className="text-sm opacity-70">Switch Theme</div>
-      <div className="toggle">
-        <input
-          type="checkbox"
-          className="checkbox"
-          id="checkbox-mobile"
-          checked={darkMode}
-          onChange={toggleDarkMode}
-        />
-        <label htmlFor="checkbox-mobile" className="checkbox-label">
-          <FaMoon color="#f1c40f" />
-          <FaSun color="#f39c12" />
-          <span className="ball"></span>
-        </label>
-      </div>
-    </div>
-
-    <div className="mt-4">
-      <div className="text-sm opacity-70 mb-2">Language</div>
-      <div className="flex gap-2">
-        <button
-          onClick={() => handleLanguageChange("en")}
-          className={`px-3 py-1 rounded-md text-sm uppercase ${currentLang === "en" ? "bg-blue-600" : "bg-gray-700"}`}
-        >
-          EN
-        </button>
-        <button
-          onClick={() => handleLanguageChange("es")}
-          className={`px-3 py-1 rounded-md text-sm uppercase ${currentLang === "es" ? "bg-blue-600" : "bg-gray-700"}`}
-        >
-          ES
-        </button>
-        <button
-          onClick={() => handleLanguageChange("de")}
-          className={`px-3 py-1 rounded-md text-sm uppercase ${currentLang === "de" ? "bg-blue-600" : "bg-gray-700"}`}
-        >
-          DE
-        </button>
-      </div>
-    </div>
-  </div>
-</div>
-</Toolbar>
-</Container>
-</AppBar>
-)
+              {/* Language Selector */}
+              <div className="mobile-drawer-setting">
+                <span className="mobile-drawer-setting-label">Language</span>
+                <div className="mobile-drawer-lang-buttons">
+                  {(['en', 'es', 'de'] as const).map((lang) => (
+                    <button
+                      key={lang}
+                      onClick={() => handleLanguageChange(lang)}
+                      className={`mobile-drawer-lang-btn ${currentLang === lang ? 'active' : ''}`}
+                    >
+                      {lang.toUpperCase()}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </Toolbar>
+      </Container>
+    </AppBar>
+  )
 }
 
 export default ResponsiveAppBar

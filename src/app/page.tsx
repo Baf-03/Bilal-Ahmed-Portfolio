@@ -35,6 +35,7 @@ import de from "./locales/de.json";
 import NeedofSp from "./Components/NeedOfSalesPage.tsx/NeedofSp";
 import AnimatedBackground from "./Components/ui/AnimatedBackground";
 import FloatingButtons from "./Components/FloatingButton";
+import NpmPackage from "./Components/NpmPackage";
 
 type LanguageData = {
   [key: string]: string;
@@ -112,6 +113,7 @@ function HomeContent() {
           <ActivitiesTimeline language={language} />
           <Projects language={language} />
           <TechUsed language={language} />
+          <NpmPackage language={language} />
           <Education language={language} />
           <TestimonialSlider language={language} />
           <Blogs language={language} />

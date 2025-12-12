@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Calendar, Clock, ChevronDown, ChevronUp } from "lucide-react";
+import { Calendar, Clock, ChevronDown, ChevronUp, Briefcase } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -95,12 +95,26 @@ const ActivitiesTimeline = ({ language }: any) => {
   }, []);
 
   return (
-    <div className="w-full my-16 px-4 sm:px-6 lg:px-8 ">
-      <h2
-        className="text-center text-3xl md:text-4xl lg:text-5xl font-bold mb-16 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400"
-      >
-        {language["professional_experience"]}
-      </h2>
+    <section className="w-full py-12 md:py-24 px-4 sm:px-6 lg:px-8" id="experience">
+      {/* Header */}
+      <div className="text-center mb-12 md:mb-16">
+        {/* Badge */}
+        <div className="inline-flex items-center gap-2 px-3 md:px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-teal-500/10 border border-blue-500/20 mb-4 md:mb-6">
+          <Briefcase className="w-4 h-4 text-blue-500" />
+          <span className="text-xs md:text-sm font-medium text-blue-600 dark:text-blue-400">
+            {language["experience_badge"] || "My Career Journey"}
+          </span>
+        </div>
+
+        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
+            {language["professional_experience"]}
+          </span>
+        </h2>
+        <p className="text-base md:text-lg lg:text-xl max-w-2xl mx-auto text-gray-600 dark:text-gray-400 leading-relaxed">
+          {language["experience_subtitle"] || "Building impactful solutions across various companies and industries"}
+        </p>
+      </div>
 
       <div className="relative max-w-4xl mx-auto">
         {/* Timeline Vertical Line */}
@@ -207,7 +221,7 @@ const ActivitiesTimeline = ({ language }: any) => {
           </motion.div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

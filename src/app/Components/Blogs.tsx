@@ -1,7 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { Calendar, User, BookOpen } from "lucide-react"
+import { Calendar, BookOpen, ArrowRight } from "lucide-react"
 import Link from "next/link"
 
 interface BlogPost {
@@ -62,84 +61,75 @@ const blogPosts: BlogPost[] = [
 
 export default function Blogs({ language }: { language: any }) {
   return (
-    <section className="w-full py-24 px-4" id="blogs">
+    <section className="w-full py-12 md:py-24 px-4" id="blogs">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-12 md:mb-16">
           {/* Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 mb-6"
-          >
-            <BookOpen className="w-4 h-4 text-purple-500" />
-            <span className="text-sm font-medium text-purple-600 dark:text-purple-400">
+          <div className="inline-flex items-center gap-2 px-3 md:px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-teal-500/10 border border-blue-500/20 mb-4 md:mb-6">
+            <BookOpen className="w-4 h-4 text-blue-500" />
+            <span className="text-xs md:text-sm font-medium text-blue-600 dark:text-blue-400">
               {language["my_blog"] || "My Blog"}
             </span>
-          </motion.div>
+          </div>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            <span className="bg-clip-text text-transparent bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400">
-              {language["my_blog"] || "My Blog"}
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
+              {language["blog_title"] || "Latest Insights"}
             </span>
           </h2>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto text-gray-600 dark:text-gray-400 leading-relaxed">
+          <p className="text-base md:text-lg lg:text-xl max-w-2xl mx-auto text-gray-600 dark:text-gray-400 leading-relaxed">
             {language["blog_subtitle"] || "Thoughts, ideas and insights about web development, design and technology."}
           </p>
-        </motion.div>
+        </div>
 
         {/* Blog Posts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {blogPosts.map((post, index) => (
-            <motion.article
+            <article
               key={post.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              whileHover={{ y: -8, transition: { duration: 0.3 } }}
-              className="group"
+              className="group relative"
             >
-              <div className="relative bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl rounded-3xl p-8 h-full border border-gray-200/50 dark:border-gray-700/50 shadow-2xl shadow-gray-200/40 dark:shadow-black/20 overflow-hidden">
-                {/* Gradient Border Effect */}
-                <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-pink-400 rounded-3xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-500" />
+              {/* Gradient Border Effect on hover */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-blue-500 to-teal-400 rounded-3xl opacity-0 group-hover:opacity-100 blur transition-opacity duration-500 -z-10" />
 
-                <div className="relative z-10">
-                  {/* Category and Date */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="px-3 py-1 bg-gradient-to-r from-purple-500/10 to-pink-500/10 text-purple-600 dark:text-purple-400 text-sm font-medium rounded-full border border-purple-500/20">
-                      {language[post.categoryKey] || post.categoryKey}
-                    </span>
-                    <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
-                      <Calendar className="w-4 h-4" />
-                      {language[post.dateKey] || post.dateKey}
-                    </div>
+              <div className="relative bg-white/70 dark:bg-gray-900/70 backdrop-blur-xl rounded-3xl p-6 md:p-8 h-full border border-gray-200/50 dark:border-gray-700/50 shadow-xl shadow-gray-200/40 dark:shadow-black/20 transition-transform duration-300 group-hover:-translate-y-2">
+                {/* Decorative Corner */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-blue-500/10 to-teal-500/10 rounded-tr-3xl rounded-bl-full" />
+
+                {/* Category and Date */}
+                <div className="flex items-center justify-between mb-4 relative z-10">
+                  <span className="px-3 py-1 bg-gradient-to-r from-blue-500/10 to-teal-500/10 text-blue-600 dark:text-blue-400 text-xs md:text-sm font-medium rounded-full border border-blue-500/20">
+                    {language[post.categoryKey] || post.categoryKey}
+                  </span>
+                  <div className="flex items-center gap-1 text-xs md:text-sm text-gray-500 dark:text-gray-400">
+                    <Calendar className="w-3 h-3 md:w-4 md:h-4" />
+                    {language[post.dateKey] || post.dateKey}
                   </div>
-
-                  {/* Title */}
-                  <Link href={`/blogs/${post.id}`}>
-                    <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors cursor-pointer">
-                      {language[post.titleKey] || post.titleKey}
-                    </h3>
-                  </Link>
-
-                  {/* Excerpt */}
-                  <p className="text-gray-600 dark:text-gray-400 mb-6 leading-relaxed">
-                    {language[post.excerptKey] || post.excerptKey}
-                  </p>
                 </div>
 
-                {/* Decorative Corner */}
-                <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-tr-3xl rounded-bl-full" />
+                {/* Title */}
+                <Link href={`/blogs/${post.id}`} className="block relative z-10">
+                  <h3 className="text-lg md:text-xl font-bold mb-3 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors cursor-pointer">
+                    {language[post.titleKey] || post.titleKey}
+                  </h3>
+                </Link>
+
+                {/* Excerpt */}
+                <p className="text-sm md:text-base text-gray-600 dark:text-gray-300 mb-6 leading-relaxed relative z-10 line-clamp-3">
+                  {language[post.excerptKey] || post.excerptKey}
+                </p>
+
+                {/* Read More Link */}
+                <Link
+                  href={`/blogs/${post.id}`}
+                  className="inline-flex items-center gap-2 text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors relative z-10 group/link"
+                >
+                  <span>{language["read_more"] || "Read More"}</span>
+                  <ArrowRight className="w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
+                </Link>
               </div>
-            </motion.article>
+            </article>
           ))}
         </div>
       </div>
