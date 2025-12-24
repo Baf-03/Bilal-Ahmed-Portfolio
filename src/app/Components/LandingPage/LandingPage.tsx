@@ -11,8 +11,10 @@ import Head from "next/head";
 import coverimg from "../../../../public/coverImgSvg.svg";
 import { FaCode, FaLightbulb, FaRocket } from "react-icons/fa";
 import { Code, Lightbulb, Rocket } from "lucide-react";
+import { usePerformance } from "@/contexts/PerformanceContext";
 
 function LandingPage({ language }: any) {
+  const { isLowPerformance } = usePerformance();
   return (
     <>
       <Head>
@@ -50,8 +52,12 @@ function LandingPage({ language }: any) {
               <strong className="font-bold">{language["bilal_ahmed"]}</strong>
             </span>
           </h1>
-          <div className="flex font-bold text-[3rem] 3xl:text-[4.2rem] text-highlight">
-            <TyperEffect />
+          <div className="flex font-bold text-[2.2rem] 3xl:text-[4.2rem] text-highlight">
+            {isLowPerformance ? (
+              <span className="text-blue-500">Software Engineer</span>
+            ) : (
+              <TyperEffect />
+            )}
           </div>
           <div className="w-[90%] text-[0.85rem] font-[400]  md:font-[20] pt-5 text-start md:pe-5 md:m-0 md:break-normal xl:text-[1.2rem] 3xl:text-[1.5rem] md:w-[90%] leading-6 3xl:leading-10 text-highlight 3xl:mt-3 ">
             <ul className="space-y-4">
@@ -108,7 +114,7 @@ function LandingPage({ language }: any) {
 
         <div className="imageside mt-10 w-full sm:w-[70%] flex justify-center relative rounded-lg ml-0 lg:mt-0 lg:ml-[5%] md:w-[50%] lg:w-[45%] xl:w-[35%]">
           <div className="relative w-full aspect-square max-w-md">
-            <div className="absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-teal-400/20 rounded-full blur-3xl opacity-50 animate-pulse"></div>
+            <div className={`absolute -inset-4 bg-gradient-to-r from-blue-500/20 to-teal-400/20 rounded-full blur-3xl opacity-50 ${!isLowPerformance && "animate-pulse"}`}></div>
             <Image
               src={coverimg}
               alt="Bilal portfolio"

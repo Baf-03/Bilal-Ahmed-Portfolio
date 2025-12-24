@@ -12,7 +12,8 @@ export const usePerformanceMonitor = () => {
 
   useEffect(() => {
     // Only monitor on small screens
-    if (typeof window === 'undefined' || window.innerWidth >= 768) return;
+    // Monitor on all devices now
+    if (typeof window === 'undefined') return;
 
     // Start monitoring after initial load (5 seconds delay)
     const startMonitoring = () => {

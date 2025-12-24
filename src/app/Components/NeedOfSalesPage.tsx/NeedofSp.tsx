@@ -5,12 +5,16 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import AnimatedRocket from "./AnimatedRocket";
 
+import { usePerformance } from "@/contexts/PerformanceContext";
+
 const NeedofSp = ({ language }: any) => {
+  const { isLowPerformance } = usePerformance();
   return (
     <section className="w-full max-w-6xl mx-auto px-4 py-16">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        whileInView={isLowPerformance ? undefined : { opacity: 1, y: 0 }}
+        animate={isLowPerformance ? { opacity: 1, y: 0 } : undefined}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
         className="bg-gradient-to-r from-blue-600 via-blue-500 to-teal-500 rounded-3xl p-8 md:p-12 relative overflow-hidden"

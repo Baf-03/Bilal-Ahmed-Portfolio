@@ -1,9 +1,77 @@
-"use client";
-
 import React from "react";
 import { motion } from "framer-motion";
+import { usePerformance } from "@/contexts/PerformanceContext";
 
 const AnimatedRocket = () => {
+    const { isLowPerformance } = usePerformance();
+
+    // If low performance, render a static version or simplified animation
+    if (isLowPerformance) {
+        return (
+            <div
+                className="relative w-40 h-40 md:w-48 md:h-48"
+                style={{ transform: "rotate(-35deg)" }}
+            >
+                <svg
+                    viewBox="0 0 100 150"
+                    className="w-full h-full relative z-10"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    {/* Simplified definitions - no filters */}
+                    <defs>
+                        <linearGradient id="rocketBody3D" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stopColor="#94a3b8" />
+                            <stop offset="20%" stopColor="#e2e8f0" />
+                            <stop offset="40%" stopColor="#ffffff" />
+                            <stop offset="60%" stopColor="#f1f5f9" />
+                            <stop offset="80%" stopColor="#cbd5e1" />
+                            <stop offset="100%" stopColor="#94a3b8" />
+                        </linearGradient>
+                        <linearGradient id="rocketNose3D" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#60a5fa" />
+                            <stop offset="30%" stopColor="#3b82f6" />
+                            <stop offset="70%" stopColor="#2563eb" />
+                            <stop offset="100%" stopColor="#1d4ed8" />
+                        </linearGradient>
+                        <linearGradient id="finGradient3D" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#60a5fa" />
+                            <stop offset="50%" stopColor="#3b82f6" />
+                            <stop offset="100%" stopColor="#1d4ed8" />
+                        </linearGradient>
+                        <radialGradient id="windowGradient3D" cx="30%" cy="30%">
+                            <stop offset="0%" stopColor="#bfdbfe" />
+                            <stop offset="30%" stopColor="#93c5fd" />
+                            <stop offset="70%" stopColor="#3b82f6" />
+                            <stop offset="100%" stopColor="#1e40af" />
+                        </radialGradient>
+                    </defs>
+
+                    {/* Static Rocket */}
+                    <g>
+                        <path d="M 28 65 Q 15 70 20 88 L 34 75 Z" fill="url(#finGradient3D)" />
+                        <path d="M 72 65 Q 85 70 80 88 L 66 75 Z" fill="url(#finGradient3D)" />
+                        <path d="M 35 78 L 35 38 Q 35 22 50 8 Q 65 22 65 38 L 65 78 Q 50 83 35 78" fill="url(#rocketBody3D)" stroke="#94a3b8" strokeWidth="0.5" />
+                        <path d="M 42 33 Q 42 20 50 8 Q 58 20 58 33 Q 50 38 42 33" fill="url(#rocketNose3D)" />
+                        <circle cx="50" cy="50" r="11" fill="url(#windowGradient3D)" stroke="#1e40af" strokeWidth="2.5" />
+                        <circle cx="50" cy="50" r="13" fill="none" stroke="#64748b" strokeWidth="1" />
+                        <rect x="38" y="63" width="24" height="4" rx="1.5" fill="#ef4444" />
+                        <rect x="38" y="70" width="24" height="2" rx="1" fill="#3b82f6" />
+                        <path d="M 38 78 L 38 86 Q 50 90 62 86 L 62 78" fill="#475569" stroke="#334155" strokeWidth="0.5" />
+                        <ellipse cx="50" cy="86" rx="10" ry="3" fill="#334155" />
+                    </g>
+
+                    {/* Simplified Flame - Static or simple opacity pulse */}
+                    <motion.path
+                        d="M 42 86 Q 32 102 36 120 Q 42 138 50 148 Q 58 138 64 120 Q 68 102 58 86 Q 50 90 42 86"
+                        fill="#f97316"
+                        animate={{ opacity: [0.8, 0.6, 0.8] }}
+                        transition={{ duration: 1, repeat: Infinity }}
+                    />
+                </svg>
+            </div>
+        );
+    }
+
     return (
         <div
             className="relative w-40 h-40 md:w-48 md:h-48"

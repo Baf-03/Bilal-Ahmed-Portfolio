@@ -6,7 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "../ui/button";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
 import { Skeleton } from "../ui/skeleton";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, Flame } from "lucide-react";
+import { usePerformance } from "@/contexts/PerformanceContext";
 
 interface Project {
   ProjectName: string;
@@ -16,9 +17,20 @@ interface Project {
   linkSite?: string;
   id: string;
   category: string;
+  isNew?: boolean;
 }
 
 const projects: Project[] = [
+  {
+    ProjectName: "DocuFlow",
+    Description: "Convert Images with Super Speed - Image to PDF, Docx & more",
+    img: "/docuflow.png",
+    linkCode: "https://github.com/Baf-03/DocuFlow",
+    linkSite: "https://docu-flow-snowy.vercel.app/",
+    id: "docuflow-1",
+    category: "software",
+    isNew: true,
+  },
   {
     ProjectName: "Hubsite Social",
     Description: "Social media platform (Client's Project)",
@@ -154,6 +166,7 @@ export default function FilteredProjects({ language }: any) {
   const sectionRef = useRef<HTMLDivElement>(null);
   const lastProjectRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const { isLowPerformance } = usePerformance();
 
 
 
@@ -233,11 +246,12 @@ export default function FilteredProjects({ language }: any) {
 
       <div className="space-y-12 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={isLowPerformance ? undefined : { opacity: 1, y: 0 }}
+          animate={isLowPerformance ? { opacity: 1, y: 0 } : undefined}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.5 }}
+          className="mb-8 md:mb-12 text-center"
         >
           {/* Badge */}
           <motion.div
@@ -306,7 +320,16 @@ export default function FilteredProjects({ language }: any) {
                     height={300}
                     className="object-cover transition-transform duration-300 group-hover:scale-110"
                   />
-                  <div className="absolute top-2 right-2 flex gap-2">
+                  {project.isNew && (
+                    <div className="absolute top-2 left-2 z-10">
+                      <div className={`relative flex items-center justify-center p-2 rounded-full bg-gradient-to-br from-orange-500 to-red-600 shadow-lg shadow-orange-500/30 overflow-hidden transform transition-all duration-300 ${!isLowPerformance && "hover:scale-110 group-hover:rotate-12"}`} title="New Project">
+                        {/* Animated background glow - disabled on low spec */}
+                        {!isLowPerformance && <div className="absolute inset-0 bg-white/20 animate-[spin_3s_linear_infinite] opacity-30" />}
+                        <Flame size={20} className="text-white relative z-10 fill-orange-100" />
+                      </div>
+                    </div>
+                  )}
+                  <div className="absolute top-2 right-2 flex gap-2 transition-all duration-300 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100">
                     {project.linkCode && (
                       <a
                         href={project.linkCode}

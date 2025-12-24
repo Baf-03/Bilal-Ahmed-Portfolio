@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect, useCallback, useMemo } from "react"
 import Image from "next/image"
 import { Quote, Star, ChevronLeft, ChevronRight, Sparkles } from "lucide-react"
+import { usePerformance } from "@/contexts/PerformanceContext";
 import coverAvatar from "../../../public/profile.png"
 
 interface Testimonial {
@@ -115,6 +116,7 @@ export default function TestimonialSlider({ language }: { language: any }) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const [cardWidth, setCardWidth] = useState(400)
+  const { isLowPerformance } = usePerformance();
   const autoScrollRef = useRef<NodeJS.Timeout | null>(null)
   const touchStartX = useRef<number>(0)
 
@@ -153,13 +155,15 @@ export default function TestimonialSlider({ language }: { language: any }) {
 
   // Start auto-scroll
   const startAutoScroll = useCallback(() => {
+    if (isLowPerformance) return; // Disable auto-scroll on low-spec devices
+
     clearAutoScroll()
     autoScrollRef.current = setInterval(() => {
       if (!isPaused) {
         setActiveIndex(prev => (prev + 1) % totalItems)
       }
     }, 5000)
-  }, [clearAutoScroll, isPaused, totalItems])
+  }, [clearAutoScroll, isPaused, totalItems, isLowPerformance])
 
   // Navigate
   const navigate = useCallback((direction: "left" | "right") => {

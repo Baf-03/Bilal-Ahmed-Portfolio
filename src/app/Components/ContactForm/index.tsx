@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FaWhatsapp } from "react-icons/fa";
 import { Send, User, Mail, MessageSquare, Phone, MapPin } from "lucide-react";
+import { usePerformance } from "@/contexts/PerformanceContext";
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -15,6 +16,7 @@ const ContactForm = ({ language }: any) => {
   const [emailError, setEmailError] = useState("");
   const [messageError, setMessageError] = useState("");
   const [formSuccess, setFormSuccess] = useState(false);
+  const { isLowPerformance } = usePerformance();
 
   const validateEmail = (email: string) =>
     emailRegex.test(email)
@@ -79,7 +81,8 @@ const ContactForm = ({ language }: any) => {
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          whileInView={isLowPerformance ? undefined : { opacity: 1, y: 0 }}
+          animate={isLowPerformance ? { opacity: 1, y: 0 } : undefined}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
@@ -87,11 +90,12 @@ const ContactForm = ({ language }: any) => {
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            whileInView={isLowPerformance ? undefined : { opacity: 1, scale: 1 }}
+            animate={isLowPerformance ? { opacity: 1, scale: 1 } : undefined}
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-blue-500/10 to-teal-500/10 border border-blue-500/20 mb-6"
           >
-            <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+            <div className={`w-2 h-2 rounded-full bg-blue-500 ${!isLowPerformance && "animate-pulse"}`} />
             <span className="text-sm font-medium text-blue-600 dark:text-blue-400">
               {language["contact_badge"] || "Let's Connect"}
             </span>
@@ -111,7 +115,8 @@ const ContactForm = ({ language }: any) => {
           {/* Contact Info Cards */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            whileInView={isLowPerformance ? undefined : { opacity: 1, x: 0 }}
+            animate={isLowPerformance ? { opacity: 1, x: 0 } : undefined}
             viewport={{ once: true }}
             className="lg:col-span-2 space-y-6"
           >
@@ -157,7 +162,8 @@ const ContactForm = ({ language }: any) => {
           {/* Form */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            whileInView={isLowPerformance ? undefined : { opacity: 1, x: 0 }}
+            animate={isLowPerformance ? { opacity: 1, x: 0 } : undefined}
             viewport={{ once: true }}
             className="lg:col-span-3"
           >

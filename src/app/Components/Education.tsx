@@ -4,6 +4,7 @@ import { useState, useRef } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import { ChevronDown, ChevronUp, MapPin, Calendar, Award, ExternalLink } from "lucide-react"
+import { usePerformance } from "@/contexts/PerformanceContext";
 
 interface EducationItem {
   institutionKey: string
@@ -326,6 +327,7 @@ const Education = ({ language }: { language: any }) => {
   const [showAll, setShowAll] = useState(false)
   const initialItemsToShow = 2
   const sectionRef = useRef<HTMLElement>(null)
+  const { isLowPerformance } = usePerformance();
 
   // Items to display based on showAll state
   const displayedItems = showAll ? educationData : educationData.slice(0, initialItemsToShow)
@@ -346,7 +348,8 @@ const Education = ({ language }: { language: any }) => {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          whileInView={isLowPerformance ? undefined : { opacity: 1, y: 0 }}
+          animate={isLowPerformance ? { opacity: 1, y: 0 } : undefined}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
@@ -354,11 +357,12 @@ const Education = ({ language }: { language: any }) => {
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            whileInView={isLowPerformance ? undefined : { opacity: 1, scale: 1 }}
+            animate={isLowPerformance ? { opacity: 1, scale: 1 } : undefined}
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-500/10 to-blue-500/10 border border-indigo-500/20 mb-6"
           >
-            <div className="w-2 h-2 rounded-full bg-indigo-500 animate-pulse" />
+            <div className={`w-2 h-2 rounded-full bg-indigo-500 ${!isLowPerformance && "animate-pulse"}`} />
             <span className="text-sm font-medium text-indigo-600 dark:text-indigo-400">
               {language["academic_journey"] || "Academic Journey"}
             </span>

@@ -141,13 +141,15 @@ const FeatureCarousel = React.memo(({ language }: any) => {
 
   // Start auto-scroll
   const startAutoScroll = useCallback(() => {
+    if (isLowPerformance) return; // Disable auto-scroll on low-spec devices
+
     clearAutoScroll();
     autoScrollRef.current = setInterval(() => {
       if (!isPaused) {
         setCurrentIndex(prev => (prev + 1) % totalItems);
       }
     }, 4000);
-  }, [clearAutoScroll, isPaused, totalItems]);
+  }, [clearAutoScroll, isPaused, totalItems, isLowPerformance]);
 
   // Handle navigation
   const goToNext = useCallback(() => {
@@ -204,7 +206,7 @@ const FeatureCarousel = React.memo(({ language }: any) => {
         <div className="text-center mb-8 md:mb-16 px-4">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-3 md:px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 mb-4 md:mb-6">
-            <div className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" />
+            <div className={`w-2 h-2 rounded-full bg-purple-500 ${!isLowPerformance && "animate-pulse"}`} />
             <span className="text-xs md:text-sm font-medium text-purple-600 dark:text-purple-400">
               {language["stats_badge"] || "Why Work With Me"}
             </span>
