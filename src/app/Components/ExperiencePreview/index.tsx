@@ -10,9 +10,9 @@ export default function ExperiencePreview({ language }: any) {
     const { isLowPerformance } = usePerformance();
 
     const highlights = [
-        { icon: <Database className="w-4 h-4" />, text: "Backend Architecture & Microservices" },
-        { icon: <Code2 className="w-4 h-4" />, text: "Full Stack & ERP Development" },
-        { icon: <Rocket className="w-4 h-4" />, text: "Performance Optimization & SEO" },
+        { icon: <Database className="w-4 h-4" />, text: language?.["exp_backend"] || "Backend Architecture & Microservices" },
+        { icon: <Code2 className="w-4 h-4" />, text: language?.["exp_fullstack"] || "Full Stack & ERP Development" },
+        { icon: <Rocket className="w-4 h-4" />, text: language?.["exp_performance"] || "Performance Optimization & SEO" },
     ];
 
     return (
@@ -40,14 +40,14 @@ export default function ExperiencePreview({ language }: any) {
                             </div>
 
                             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-gray-900 dark:text-white leading-tight">
-                                Senior Engineering <br className="hidden lg:block" />
+                                {language?.["exp_title_part1"] || "Senior Engineering"} <br className="hidden lg:block" />
                                 <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-teal-400">
-                                    Journey & Impact
+                                    {language?.["exp_title_part2"] || "Journey & Impact"}
                                 </span>
                             </h2>
 
                             <p className="text-gray-600 dark:text-gray-400 text-base lg:text-lg leading-relaxed mb-8 max-w-xl">
-                                Discover my detailed career history, from designing AI-powered microservices to optimizing high-scale ERP platforms and leading frontend architecture.
+                                {language?.["exp_description"] || "Discover my detailed career history, from designing AI-powered microservices to optimizing high-scale ERP platforms and leading frontend architecture."}
                             </p>
 
                             <div className="flex flex-col gap-4 mb-8">
@@ -98,14 +98,14 @@ export default function ExperiencePreview({ language }: any) {
                                 {/* Experience Mini-Blocks */}
                                 <div className="space-y-4 flex-1 mt-2">
                                     <div className="space-y-2">
-                                        <div className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Architecture & Scale</div>
+                                        <div className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">{language?.["exp_arch_scale"] || "Architecture & Scale"}</div>
                                         <div className="w-full h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
                                         <div className="w-5/6 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
                                         <div className="w-4/6 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
                                     </div>
 
                                     <div className="space-y-2">
-                                        <div className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Product Innovation</div>
+                                        <div className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-wider">{language?.["exp_product_innovation"] || "Product Innovation"}</div>
                                         <div className="w-full h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
                                         <div className="w-3/4 h-1.5 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
                                     </div>
