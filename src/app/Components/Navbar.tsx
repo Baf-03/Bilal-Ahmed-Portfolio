@@ -119,7 +119,7 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
                   <li key={index} className="navbar__item">
                     {page.route ? (
                       <NextLink
-                        href={page.route || ""}
+                        href={page.route as string}
                         className={`linktag navbar__link ${darkMode ? "text-white" : "text-black"}`}
                       >
                         {page.name}
@@ -127,7 +127,7 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
                     ) : pathname === "/" ? (
                       <ScrollLink
                         activeClass="active"
-                        to={page.nav_id}
+                        to={page.nav_id || ""}
                         spy
                         smooth
                         offset={-70}
@@ -138,7 +138,7 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
                       </ScrollLink>
                     ) : (
                       <NextLink
-                        href={`/#${page.nav_id}`}
+                        href={`/#${page.nav_id || ""}`}
                         className={`linktag navbar__link ${darkMode ? "text-white" : "text-black"}`}
                       >
                         {page.name}
@@ -236,7 +236,7 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
                 <div key={index} style={{ animationDelay: `${index * 0.1}s` }} className="mobile-drawer-link-container">
                   {page.route ? (
                     <NextLink
-                      href={page.route || ""}
+                      href={page.route as string}
                       onClick={closeMenu}
                       className="mobile-drawer-link"
                     >
@@ -248,7 +248,7 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
                   ) : pathname === "/" ? (
                     <ScrollLink
                       activeClass="active"
-                      to={page.nav_id}
+                      to={page.nav_id || ""}
                       spy
                       smooth
                       offset={-70}
@@ -263,7 +263,7 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
                     </ScrollLink>
                   ) : (
                     <NextLink
-                      href={`/#${page.nav_id}`}
+                      href={`/#${page.nav_id || ""}`}
                       onClick={closeMenu}
                       className="mobile-drawer-link"
                     >
