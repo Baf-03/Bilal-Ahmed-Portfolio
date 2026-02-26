@@ -97,19 +97,16 @@ function HomeContent() {
     }
   }, [search, loading, router]);
 
-  if (loading) {
-    return (
-      <div className="loader-wrapper">
-        <div className="loader"></div>
-      </div>
-    )
-  }
-
   return (
     <>
+      {loading && (
+        <div className="loader-wrapper backdrop-blur-sm">
+          <div className="loader"></div>
+        </div>
+      )}
       <PerformancePopup show={showPopup} onClose={() => setShowPopup(false)} />
       <AnimatedBackground />
-      <main className="transition-colors duration-500 ">
+      <main className={`transition-colors duration-500 ${loading ? "opacity-0" : "transition-opacity duration-700 opacity-100"}`}>
         <div className="w-[98%] lg:w-[94%] xl:w-[90vw] m-auto flex flex-col gap-12 justify-center items-center mt-2">
           <Introduction language={language} />
           <FeatureCarousel language={language} />

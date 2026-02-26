@@ -5,7 +5,7 @@ import { Calendar, MapPin, Briefcase, ChevronLeft } from "lucide-react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import NextLink from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import en from "@/app/locales/en.json";
 import es from "@/app/locales/es.json";
 import de from "@/app/locales/de.json";
@@ -73,6 +73,7 @@ const experience: ExpInt[] = [
 
 export default function ExperiencePage() {
     const [langData, setLangData] = useState<any>(en);
+    const router = useRouter();
 
     useEffect(() => {
         const savedLang = localStorage.getItem("language");
@@ -87,13 +88,13 @@ export default function ExperiencePage() {
 
                 {/* Navigation & Header */}
                 <div className="mb-12">
-                    <NextLink
-                        href="/#about"
+                    <button
+                        onClick={() => router.back()}
                         className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-gray-300 dark:border-gray-700 hover:bg-white/50 dark:hover:bg-gray-800/50 backdrop-blur-md transition-all text-sm font-medium mb-8 text-gray-700 dark:text-gray-300 group"
                     >
                         <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                         {langData["back_home"] || "Back to Home"}
-                    </NextLink>
+                    </button>
 
                     <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 tracking-tight text-gray-900 dark:text-white">
                         Professional <br />

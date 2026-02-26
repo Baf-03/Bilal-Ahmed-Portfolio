@@ -153,13 +153,13 @@ export default function BlogDetail() {
       >
         {/* Back Button */}
         <div className="mb-8">
-          <Link
-            href="/#blogs"
+          <button
+            onClick={() => router.back()}
             className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-500/30 transition-all duration-300 font-medium text-sm md:text-base"
           >
             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             {language["back_to_blogs"] || "Back to blogs"}
-          </Link>
+          </button>
         </div>
 
         {/* Article Container */}
