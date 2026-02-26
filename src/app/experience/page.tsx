@@ -9,6 +9,7 @@ import { usePathname, useRouter } from "next/navigation";
 import en from "@/app/locales/en.json";
 import es from "@/app/locales/es.json";
 import de from "@/app/locales/de.json";
+import ar from "@/app/locales/ar.json";
 
 interface ExpInt {
     comp_name: string;
@@ -29,6 +30,7 @@ export default function ExperiencePage() {
         const savedLang = localStorage.getItem("language");
         if (savedLang === "es") setLangData(es);
         else if (savedLang === "de") setLangData(de);
+        else if (savedLang === "ar") setLangData(ar);
         else setLangData(en);
     }, []);
 

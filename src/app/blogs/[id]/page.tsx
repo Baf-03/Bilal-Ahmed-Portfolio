@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 import en from "../../locales/en.json"
 import es from "../../locales/es.json"
 import de from "../../locales/de.json"
+import ar from "../../locales/ar.json"
 import { motion } from "framer-motion"
 
 type LanguageData = {
@@ -93,6 +94,8 @@ export default function BlogDetail() {
       setLanguage(es);
     } else if (storedLanguage === "de") {
       setLanguage(de);
+    } else if (storedLanguage === "ar") {
+      setLanguage(ar);
     } else {
       setLanguage(en);
     }

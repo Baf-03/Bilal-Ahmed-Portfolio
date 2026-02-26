@@ -37,6 +37,12 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
   const [currentLang, setCurrentLang] = useState<string>(localStorage.getItem("language") || "en");
 
   useEffect(() => {
+    // Set initial layout direction
+    const savedLang = localStorage.getItem("language");
+    if (savedLang === 'ar') {
+      document.documentElement.dir = 'rtl';
+    }
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       if (currentScrollY > lastScrollY) {
@@ -65,9 +71,13 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
     localStorage.setItem("darkmode", JSON.stringify(!dm));
   };
 
-  const handleLanguageChange = (lang: 'en' | 'es' | 'de') => {
+  const handleLanguageChange = (lang: 'en' | 'es' | 'de' | 'ar') => {
     localStorage.setItem("language", lang);
     setCurrentLang(lang);
+
+    // Handle RTL layout direction for Arabic
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+
     setIsDropdownOpen(false);
     window.location.reload(); // Hard refresh
   };
@@ -202,6 +212,12 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
                     className={`w-full text-left px-4 py-2 text-sm uppercase font-medium ${darkMode ? 'text-gray-200 hover:bg-gray-700' : 'text-gray-800 hover:bg-gray-100'} transition-colors duration-150 ${currentLang === 'de' ? 'bg-opacity-20 bg-gray-500' : ''}`}
                   >
                     de
+                  </button>
+                  <button
+                    onClick={() => handleLanguageChange('ar')}
+                    className={`w-full text-left px-4 py-2 text-sm uppercase font-medium ${darkMode ? 'text-gray-200 hover:bg-gray-700' : 'text-gray-800 hover:bg-gray-100'} transition-colors duration-150 ${currentLang === 'ar' ? 'bg-opacity-20 bg-gray-500' : ''}`}
+                  >
+                    ar
                   </button>
                 </div>
               )}

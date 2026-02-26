@@ -36,6 +36,7 @@ import Education from "./Components/Education";
 import en from "./locales/en.json";
 import es from "./locales/es.json";
 import de from "./locales/de.json";
+import ar from "./locales/ar.json";
 import NeedofSp from "./Components/NeedOfSalesPage.tsx/NeedofSp";
 import AnimatedBackground from "./Components/ui/AnimatedBackground";
 import FloatingButtons from "./Components/FloatingButton";
@@ -68,6 +69,8 @@ function HomeContent() {
       setLanguage(es);
     } else if (storedLanguage === "de") {
       setLanguage(de);
+    } else if (storedLanguage === "ar") {
+      setLanguage(ar);
     } else {
       setLanguage(en);
       if (storedLanguage !== "en") {
