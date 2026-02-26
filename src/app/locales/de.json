@@ -160,7 +160,7 @@
   "edu_uok_achievement_3": "Erhielt Laptop des Premierminister-Jugendprogramms aufgrund guter Noten",
   "edu_smit_institution": "Saylani Mass IT Training",
   "edu_smit_degree": "Zertifizierung in Web- und App-Entwicklung",
-  "edu_smit_period": "2023 - 2024",
+  "edu_smit_period": "2023",
   "edu_smit_location": "Karachi, PK",
   "edu_smit_description": "Professionelle Zertifizierung in Web- und Mobile-App-Entwicklung",
   "edu_smit_achievement_1": "Abschluss eines umfassenden Lehrplans mit Front-End- und Back-End-Technologien",
@@ -226,7 +226,17 @@
   "blog_3_content_2": "Der MERN Stack bietet eine einheitliche Sprache sowohl auf der Client- als auch auf der Serverseite, was die Entwicklung vereinfacht und die Code-Wartbarkeit verbessert.",
   "blog_3_image_caption": "Ein Diagramm, das die Komponenten des MERN Stacks zeigt.",
   "blog_3_quote": "Der MERN Stack ist nicht nur ein Satz von Technologien; er ist ein komplettes Ökosystem, das moderne Web-Innovation antreibt.",
-  "blog_3_content_3": "Die Nutzung des MERN Stacks kann Entwicklungszyklen erheblich beschleunigen und leistungsstarke Anwendungen liefern.",
+  "blog_3_content_3": "Der Einsatz des MERN-Stacks kann die Entwicklungszyklen erheblich beschleunigen und leistungsstarke Anwendungen liefern.",
   "blog_author_bio_ai": "Tech-Enthusiast und KI-Stratege mit Leidenschaft für Innovation",
-  "blog_author_bio_fullstack": "Full-Stack-Entwickler mit Expertise in modernen Web-Technologien"
+  "blog_author_bio_fullstack": "Full-Stack-Entwickler mit Expertise in modernen Web-Technologien",
+  "blog_4_title": "Claude Opus 4.6 vs OpenAI 5.2: Der Ultimative KI-Showdown",
+  "blog_4_excerpt": "Ein fundierter Faktenvergleich der neuesten Flaggschiff-Modelle von Anthropic und OpenAI. Welches Modell dominiert bei logischem Denken, Programmierung und Produktion?",
+  "blog_4_category": "Künstliche Intelligenz",
+  "blog_4_date": "20. Februar 2026",
+  "blog_4_content_1": "Die Landschaft der generativen KI hat Ende 2025 und 2026 einen beispiellosen Sprung erlebt. Die beiden dominierenden Kräfte der Branche, Anthropic und OpenAI, haben ihre lang erwarteten Flaggschiff-Modelle veröffentlicht: Claude Opus 4.6 und OpenAI 5.2. Da Entwickler und Unternehmen darum wetteifern, das beste Modell in ihre Produktionsabläufe zu integrieren, war die Wahl der richtigen KI noch nie so kritisch.",
+  "blog_4_heading_1": "Leistung, Logik und Codierungs-Benchmarks",
+  "blog_4_content_2": "OpenAI 5.2 bietet blitzschnelle Generierungsgeschwindigkeiten und ein erheblich verbessertes multimodales System, das sich bei Video- und Audioanalysen in Echtzeit auszeichnet. Allerdings dominiert Claude Opus 4.6 von Anthropic weiterhin bei komplexen kognitiven Aufgaben. Mit einer nahezu perfekten Erinnerung bei einem massiven 500K-Kontextfenster ist Claude Opus 4.6 nach wie vor der unangefochtene Marktführer in Softwarearchitektur-Design und beim tiefgehenden Einhalten von Leitplanken.",
+  "blog_4_image_caption": "Vergleich der Architekturen und Ausgabe-Benchmarks der wichtigsten LLMs im Jahr 2026.",
+  "blog_4_quote": "Während OpenAI 5.2 bei der reinen multimodalen Geschwindigkeit glänzt, bleibt Claude Opus 4.6 der unangefochtene König bei nuancierter, langanhaltender kognitiver Logik und Software-Engineering.",
+  "blog_4_content_3": "Für latenzempfindliche Anwendungen, die robuste multimodale Eingaben erfordern, ist OpenAI 5.2 eine hervorragende Wahl. Für rigoroses Codieren, tiefgehende Recherchen und Aufgaben, die in dichter Dokumentation absolute Genauigkeit ohne Halluzinationen erfordern, ist Claude Opus 4.6 der eindeutige Gewinner für die Produktion im Jahr 2026."
 }

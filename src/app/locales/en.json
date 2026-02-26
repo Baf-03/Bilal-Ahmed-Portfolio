@@ -160,7 +160,7 @@
   "edu_uok_achievement_3": "Received Prime-minister youth Laptop on basis of good gpa",
   "edu_smit_institution": "Saylani Mass IT Training",
   "edu_smit_degree": "Web & App Development Certification",
-  "edu_smit_period": "2023 - 2024",
+  "edu_smit_period": "2023",
   "edu_smit_location": "Karachi, PK",
   "edu_smit_description": "Professional certification in web and mobile application development",
   "edu_smit_achievement_1": "Completed comprehensive curriculum covering front-end and back-end technologies",
@@ -228,5 +228,15 @@
   "blog_3_quote": "The MERN stack is not just a set of technologies; it's a complete ecosystem that drives modern web innovation.",
   "blog_3_content_3": "Leveraging the MERN stack can significantly accelerate development cycles and deliver high-performance applications.",
   "blog_author_bio_ai": "Tech Enthusiast and AI Strategist with a passion for innovation",
-  "blog_author_bio_fullstack": "Full-Stack Developer with expertise in modern web technologies"
+  "blog_author_bio_fullstack": "Full-Stack Developer with expertise in modern web technologies",
+  "blog_4_title": "Claude Opus 4.6 vs OpenAI 5.2: The Ultimate AI Showdown",
+  "blog_4_excerpt": "An in-depth, fact-based comparison of the latest flagship models from Anthropic and OpenAI. Which model reigns supreme in reasoning, coding, and production?",
+  "blog_4_category": "Artificial Intelligence",
+  "blog_4_date": "February 20, 2026",
+  "blog_4_content_1": "The landscape of generative AI has experienced an unprecedented leap in late 2025 and 2026. The two dominant forces in the industry, Anthropic and OpenAI, have released their highly anticipated flagship models: Claude Opus 4.6 and OpenAI 5.2. As developers and enterprises scramble to integrate the best model into their production workflows, choosing the right AI has never been more critical.",
+  "blog_4_heading_1": "Performance, Reasoning, and Coding Benchmarks",
+  "blog_4_content_2": "OpenAI 5.2 brings blazing fast generation speeds and a significantly improved multimodal reasoning system, excelling at real-time video and audio analysis. However, Anthropic's Claude Opus 4.6 continues to dominate complex cognitive tasks. With a near-perfect recall on its massive 500K context window and superior logical reasoning, Claude Opus 4.6 remains the undisputed leader in software architecture design, complex multi-file refactoring, and following deep contextual guardrails.",
+  "blog_4_image_caption": "Comparing the architectures and output benchmarks of the two leading LLMs in 2026.",
+  "blog_4_quote": "While OpenAI 5.2 excels at raw multimodal speed, Claude Opus 4.6 remains the undisputed king of nuanced, long-context cognitive logic and software engineering.",
+  "blog_4_content_3": "For latency-sensitive applications requiring robust multimodal input, OpenAI 5.2 is an excellent choice. But for rigorous coding, deep research, and tasks demanding zero hallucination across dense documentation, Claude Opus 4.6 is the clear production-grade winner for 2026."
 }

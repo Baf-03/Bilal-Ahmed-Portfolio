@@ -59,7 +59,7 @@ export default function RootLayout({
             id="google-analytics"
             strategy="afterInteractive"
             dangerouslySetInnerHTML={{
-            __html: `
+              __html: `
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
@@ -67,22 +67,20 @@ export default function RootLayout({
               page_path: window.location.pathname,
             });
           `,
-          }}
-        />
-        {loading ? (
-          <div className="w-full h-screen bg-gray-800 flex justify-center items-center">
-            <div className="loader"></div>
-          </div>
-        ) : (
-          <>
-            {pathname === "/" && (
+            }}
+          />
+          {loading ? (
+            <div className="w-full h-screen bg-gray-800 flex justify-center items-center">
+              <div className="loader"></div>
+            </div>
+          ) : (
+            <>
               <ResponsiveAppBar s_dm={setDarkMode} dm={darkmode} />
-            )}
-            {children}
-          </>
-        )}
+              {children}
+            </>
+          )}
         </PerformanceProvider>
       </body>
-    </html>
+    </html >
   );
 }

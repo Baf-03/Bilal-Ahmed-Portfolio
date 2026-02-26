@@ -24,6 +24,10 @@ const FeatureCarousel = dynamic(() => import("./Components/Chooseus"), {
   loading: () => <div className="py-24 text-center">Loading features...</div>,
   ssr: false,
 });
+const ExperiencePreview = dynamic(() => import("./Components/ExperiencePreview"), {
+  loading: () => <div className="py-24 text-center">Loading experience preview...</div>,
+  ssr: false,
+});
 import { usePerformanceMonitor } from "@/hooks/usePerformanceMonitor";
 import PerformancePopup from "./Components/PerformancePopup";
 import ContactForm from "./Components/ContactForm";
@@ -110,9 +114,9 @@ function HomeContent() {
           <Introduction language={language} />
           <FeatureCarousel language={language} />
           <NeedofSp language={language} />
-          <ActivitiesTimeline language={language} />
           <Projects language={language} />
           <TechUsed language={language} />
+          <ExperiencePreview language={language} />
           <NpmPackage language={language} />
           <Education language={language} />
           <TestimonialSlider language={language} />

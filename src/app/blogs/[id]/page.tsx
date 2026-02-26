@@ -3,10 +3,12 @@
 import { useParams, useRouter } from "next/navigation"
 import { Calendar, ArrowLeft, Share2, BookOpen, Clock } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { useEffect, useState } from "react"
 import en from "../../locales/en.json"
 import es from "../../locales/es.json"
 import de from "../../locales/de.json"
+import { motion } from "framer-motion"
 
 type LanguageData = {
   [key: string]: string;
@@ -26,6 +28,7 @@ const blogPosts = [
     quoteKey: "blog_1_quote",
     content3Key: "blog_1_content_3",
     readTime: "5 min read",
+    image: "/blogs/blog1.png",
   },
   {
     id: 2,
@@ -40,6 +43,7 @@ const blogPosts = [
     quoteKey: "blog_2_quote",
     content3Key: "blog_2_content_3",
     readTime: "4 min read",
+    image: "/blogs/blog2.png",
   },
   {
     id: 3,
@@ -54,6 +58,22 @@ const blogPosts = [
     quoteKey: "blog_3_quote",
     content3Key: "blog_3_content_3",
     readTime: "6 min read",
+    image: "/blogs/blog3.png",
+  },
+  {
+    id: 4,
+    titleKey: "blog_4_title",
+    excerptKey: "blog_4_excerpt",
+    categoryKey: "blog_4_category",
+    dateKey: "blog_4_date",
+    contentKey: "blog_4_content_1",
+    headingKey: "blog_4_heading_1",
+    content2Key: "blog_4_content_2",
+    imageCaptionKey: "blog_4_image_caption",
+    quoteKey: "blog_4_quote",
+    content3Key: "blog_4_content_3",
+    readTime: "8 min read",
+    image: "/blogs/blog4.png",
   },
 ]
 
@@ -62,14 +82,12 @@ export default function BlogDetail() {
   const router = useRouter()
   const [language, setLanguage] = useState<LanguageData>(en)
   const [loading, setLoading] = useState(true)
-  const [darkMode, setDarkMode] = useState(false)
 
   const id = parseInt(params.id as string)
   const post = blogPosts.find(p => p.id === id)
 
   useEffect(() => {
     const storedLanguage = localStorage.getItem("language");
-    const storedDarkMode = localStorage.getItem("darkmode");
 
     if (storedLanguage === "es") {
       setLanguage(es);
@@ -79,16 +97,12 @@ export default function BlogDetail() {
       setLanguage(en);
     }
 
-    if (storedDarkMode) {
-      setDarkMode(JSON.parse(storedDarkMode));
-    }
-
     setLoading(false);
   }, []);
 
   if (loading) {
     return (
-      <div className={`min-h-screen flex items-center justify-center ${darkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-[#1c1e21]">
         <div className="flex flex-col items-center gap-4">
           <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
           <p className="text-gray-600 dark:text-gray-400">Loading...</p>
@@ -99,7 +113,7 @@ export default function BlogDetail() {
 
   if (!post) {
     return (
-      <div className={`min-h-screen flex items-center justify-center px-4 ${darkMode ? 'dark bg-gray-900' : 'bg-gray-50'}`}>
+      <div className="min-h-screen flex items-center justify-center px-4 bg-gray-50 dark:bg-[#1c1e21]">
         <div className="text-center">
           <h1 className="text-4xl font-bold mb-4 text-gray-900 dark:text-white">{language["blog_not_found"] || "Blog Post Not Found"}</h1>
           <p className="text-gray-600 dark:text-gray-400 mb-8">{language["blog_not_found_message"] || "The blog post you're looking for doesn't exist."}</p>
@@ -130,126 +144,177 @@ export default function BlogDetail() {
   };
 
   return (
-    <div className={`min-h-screen ${darkMode ? 'dark bg-gray-900' : 'bg-gradient-to-br from-gray-50 to-gray-100'}`}>
-      <div className="max-w-4xl mx-auto px-4 py-12 md:py-24">
+    <div className="min-h-screen pt-24 pb-12 md:pt-32 md:pb-24 bg-[#e7e5e4] dark:bg-[#1c1e21]">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="max-w-4xl mx-auto px-4"
+      >
         {/* Back Button */}
         <div className="mb-8">
           <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors font-medium"
+            href="/#blogs"
+            className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-500/30 transition-all duration-300 font-medium text-sm md:text-base"
           >
-            <ArrowLeft className="w-4 h-4" />
+            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             {language["back_to_blogs"] || "Back to blogs"}
           </Link>
         </div>
 
-        {/* Article */}
-        <article className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl rounded-3xl p-6 md:p-10 lg:p-12 shadow-xl shadow-gray-200/40 dark:shadow-black/20 border border-gray-200/50 dark:border-gray-700/50">
-          {/* Category, Date, and Read Time */}
-          <div className="flex flex-wrap items-center gap-3 md:gap-4 mb-6">
-            <span className="px-3 md:px-4 py-1.5 md:py-2 bg-gradient-to-r from-blue-500/10 to-teal-500/10 text-blue-600 dark:text-blue-400 text-xs md:text-sm font-medium rounded-full border border-blue-500/20">
-              {language[post.categoryKey] || post.categoryKey}
-            </span>
-            <div className="flex items-center gap-2 text-xs md:text-sm text-gray-500 dark:text-gray-400">
-              <Calendar className="w-4 h-4" />
-              {language[post.dateKey] || post.dateKey}
-            </div>
-            <div className="flex items-center gap-2 text-xs md:text-sm text-gray-500 dark:text-gray-400">
-              <Clock className="w-4 h-4" />
-              {post.readTime}
-            </div>
-          </div>
+        {/* Article Container */}
+        <article className="relative bg-white/80 dark:bg-gray-900/80 backdrop-blur-xl rounded-[2rem] p-6 md:p-10 lg:p-14 shadow-2xl border border-gray-200/50 dark:border-gray-800/50 overflow-hidden">
+          {/* Subtle Glow Effect */}
+          <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-teal-400"></div>
+          <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl -z-10 -translate-x-1/2 translate-y-1/2"></div>
 
-          {/* Title */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
-            {language[post.titleKey] || post.titleKey}
-          </h1>
-
-          {/* Excerpt */}
-          <p className="text-base md:text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed font-medium">
-            {language[post.excerptKey] || post.excerptKey}
-          </p>
-
-          {/* Divider */}
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent mb-8"></div>
-
-          {/* Content */}
-          <div className="prose prose-lg dark:prose-invert max-w-none">
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-8 text-base md:text-lg">
-              {language[post.contentKey] || post.contentKey}
-            </p>
-
-            <h2 className="text-xl md:text-2xl font-bold mb-4 text-gray-900 dark:text-white">
-              {language[post.headingKey] || post.headingKey}
-            </h2>
-
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed mb-8 text-base md:text-lg">
-              {language[post.content2Key] || post.content2Key}
-            </p>
-
-            {/* Image Placeholder */}
-            <div className="bg-gradient-to-r from-blue-500/10 to-teal-500/10 rounded-2xl p-6 md:p-8 mb-8 border border-blue-500/20">
-              <div className="aspect-video bg-gradient-to-br from-blue-500/20 to-teal-500/20 rounded-xl mb-4 flex items-center justify-center">
-                <BookOpen className="w-12 h-12 text-blue-500/50" />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+          >
+            {/* Meta tags */}
+            <div className="flex flex-wrap items-center gap-4 mb-8">
+              <span className="px-4 py-1.5 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs md:text-sm font-semibold tracking-wide rounded-full uppercase">
+                {language[post.categoryKey] || post.categoryKey}
+              </span>
+              <div className="flex items-center gap-2 text-xs md:text-sm text-gray-500 dark:text-gray-400 font-medium">
+                <Calendar className="w-4 h-4" />
+                {language[post.dateKey] || post.dateKey}
               </div>
-              <p className="text-center text-gray-600 dark:text-gray-400 italic text-sm md:text-base">
-                {language[post.imageCaptionKey] || post.imageCaptionKey}
-              </p>
+              <div className="flex items-center gap-2 text-xs md:text-sm text-gray-500 dark:text-gray-400 font-medium">
+                <Clock className="w-4 h-4" />
+                {post.readTime}
+              </div>
             </div>
 
-            {/* Quote */}
-            <blockquote className="border-l-4 border-blue-500 pl-4 md:pl-6 italic text-gray-700 dark:text-gray-300 mb-8 py-2 bg-blue-50/50 dark:bg-blue-900/20 rounded-r-lg">
-              <p className="text-base md:text-lg">"{language[post.quoteKey] || post.quoteKey}"</p>
-            </blockquote>
+            {/* Title */}
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 text-gray-900 dark:text-white leading-tight tracking-tight text-left">
+              {language[post.titleKey] || post.titleKey}
+            </h1>
 
-            <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-base md:text-lg">
-              {language[post.content3Key] || post.content3Key}
+            {/* Excerpt */}
+            <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 mb-10 leading-relaxed font-medium text-left border-l-4 border-blue-500 pl-4 md:pl-6 py-1">
+              {language[post.excerptKey] || post.excerptKey}
             </p>
-          </div>
 
-          {/* Share Section */}
-          <div className="mt-10 md:mt-12 pt-6 md:pt-8 border-t border-gray-200/50 dark:border-gray-700/50">
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-              <p className="text-gray-600 dark:text-gray-400 text-sm">
-                {language["enjoyed_article"] || "Enjoyed this article? Share it with others!"}
+            {/* Main Content */}
+            <div className="space-y-8 text-left">
+              <p className="text-gray-700 dark:text-gray-300 leading-loose text-base md:text-lg">
+                {language[post.contentKey] || post.contentKey}
               </p>
+
+              {/* HD Generated Image */}
+              <div className="relative w-full aspect-[21/9] rounded-2xl overflow-hidden group shadow-2xl">
+                <Image src={post.image} alt={language[post.titleKey] || post.titleKey} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-gray-900/20 to-transparent"></div>
+                <div className="absolute inset-0 flex flex-col items-center justify-end p-6 md:p-10 text-center">
+                  <p className="text-white/90 font-medium text-sm md:text-base max-w-2xl drop-shadow-md">
+                    {language[post.imageCaptionKey] || post.imageCaptionKey}
+                  </p>
+                </div>
+              </div>
+
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mt-12 mb-6">
+                {language[post.headingKey] || post.headingKey}
+              </h2>
+
+              <p className="text-gray-700 dark:text-gray-300 leading-loose text-base md:text-lg">
+                {language[post.content2Key] || post.content2Key}
+              </p>
+
+              {/* Styled Blockquote */}
+              <blockquote className="my-10 relative">
+                <div className="absolute top-0 left-0 w-8 h-8 -mt-2 -ml-2 text-blue-500/20 dark:text-blue-400/20 scale-[2]">
+                  "
+                </div>
+                <p className="relative z-10 text-xl md:text-2xl font-serif italic text-gray-800 dark:text-gray-200 leading-relaxed px-6 md:px-10 py-6 bg-gradient-to-r from-blue-50 to-transparent dark:from-blue-900/10 dark:to-transparent rounded-r-2xl border-l-4 border-blue-500">
+                  {language[post.quoteKey] || post.quoteKey}
+                </p>
+              </blockquote>
+
+              <p className="text-gray-700 dark:text-gray-300 leading-loose text-base md:text-lg">
+                {language[post.content3Key] || post.content3Key}
+              </p>
+            </div>
+          </motion.div>
+
+          {/* Share Section & Author bio */}
+          <div className="mt-16 pt-8 border-t border-gray-100 dark:border-gray-800">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+
+              {/* Author Bio */}
+              <div className="flex items-center gap-4 text-left">
+                <div className="w-14 h-14 rounded-full bg-gradient-to-tr from-blue-500 to-teal-400 flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                  BA
+                </div>
+                <div>
+                  <h4 className="font-bold text-gray-900 dark:text-white text-lg">Bilal Ahmed</h4>
+                  <p className="text-sm text-gray-500 dark:text-gray-400 max-w-[250px]">
+                    {post.categoryKey.includes("AI") || post.categoryKey.includes("Artificial")
+                      ? (language["blog_author_bio_ai"] || "Tech Enthusiast and AI Strategist")
+                      : (language["blog_author_bio_fullstack"] || "Full-Stack Developer")
+                    }
+                  </p>
+                </div>
+              </div>
+
+              {/* Share Button */}
               <button
                 onClick={handleShare}
-                className="inline-flex items-center gap-2 px-5 md:px-6 py-2.5 md:py-3 bg-gradient-to-r from-blue-500 to-teal-400 text-white font-semibold rounded-full shadow-lg shadow-blue-500/25 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 hover:scale-105 active:scale-95 text-sm md:text-base"
+                className="group relative inline-flex items-center gap-3 px-8 py-3.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 font-semibold rounded-full overflow-hidden transition-transform hover:scale-105 active:scale-95"
               >
-                <Share2 className="w-4 h-4" />
-                {language["share_article"] || "Share Article"}
+                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-600 to-teal-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <Share2 className="w-4 h-4 relative z-10" />
+                <span className="relative z-10">{language["share_article"] || "Share Article"}</span>
               </button>
             </div>
           </div>
         </article>
 
         {/* More Articles */}
-        <div className="mt-12">
-          <h3 className="text-xl md:text-2xl font-bold mb-6 text-gray-900 dark:text-white">
-            {language["more_articles"] || "More Articles"}
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {blogPosts
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.6 }}
+          className="mt-16"
+        >
+          <div className="flex items-center justify-between mb-8">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+              {language["more_articles"] || "More Articles"}
+            </h3>
+            <Link href="/#blogs" className="text-blue-600 dark:text-blue-400 hover:underline text-sm font-medium">
+              View all
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {[...blogPosts].reverse()
               .filter(p => p.id !== post.id)
               .slice(0, 2)
               .map(relatedPost => (
                 <Link
                   key={relatedPost.id}
                   href={`/blogs/${relatedPost.id}`}
-                  className="group p-4 md:p-6 bg-white/80 dark:bg-gray-800/80 rounded-2xl border border-gray-200/50 dark:border-gray-700/50 hover:border-blue-500/50 transition-all hover:-translate-y-1 shadow-md"
+                  className="group block p-0 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-200/50 dark:border-gray-700/50 hover:bg-white dark:hover:bg-gray-800 hover:border-blue-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-500/10 overflow-hidden"
                 >
-                  <span className="text-xs text-blue-600 dark:text-blue-400 font-medium">
-                    {language[relatedPost.categoryKey] || relatedPost.categoryKey}
-                  </span>
-                  <h4 className="text-base md:text-lg font-semibold mt-2 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    {language[relatedPost.titleKey] || relatedPost.titleKey}
-                  </h4>
+                  <div className="relative w-full h-40 overflow-hidden">
+                    <Image src={relatedPost.image} alt={relatedPost.titleKey} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <div className="p-6">
+                    <span className="inline-block px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs font-semibold rounded-full mb-3">
+                      {language[relatedPost.categoryKey] || relatedPost.categoryKey}
+                    </span>
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors leading-snug">
+                      {language[relatedPost.titleKey] || relatedPost.titleKey}
+                    </h4>
+                  </div>
                 </Link>
               ))}
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </div>
   )
 }

@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Calendar, Clock, ChevronDown, ChevronUp, Briefcase } from "lucide-react";
+import { Calendar, Clock, ChevronDown, ChevronUp, Briefcase, MapPin } from "lucide-react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -11,7 +11,9 @@ interface ExpInt {
   present?: boolean;
   imgurl: string;
   skills: string[];
-  description?: string;
+  location?: string;
+  descriptions?: string[];
+  description?: string; // fallback
 }
 
 const experience: ExpInt[] = [
@@ -21,36 +23,46 @@ const experience: ExpInt[] = [
     startDate: new Date("March 2025"),
     present: true,
     imgurl: "/progziel.png",
-    skills: ["Express.js", "Nest.js", "TypeScript", "Javascript", "Node.js", "MongoDb", "PostgreSql", "Prisma ORM", "TypeOrm", "GraphQl", "socket.io", "Amazon Web Services(AWS)", "Rest Apis", "Google Maps APIs", "fe-dev-for-testing"],
-    description: "At Progziel Technologies, I build and maintain the backbone of our applications. I use Node.js, Express.js, and Nest.js to create reliable systems, work with databases like MongoDB and PostgreSQL, and integrate essential third-party tools. I enjoy solving challenges and ensuring our products run smoothly.",
+    location: "Karachi, Pakistan",
+    skills: ["Node.js", "Express", "TypeScript", "JavaScript", "Prisma", "TypeORM", "MongoDB", "PostgreSQL", "Docker", "Kafka", "Flask", "Python", "Stripe", "WebSockets", "Google Maps API", "ResNet18", "CLIP", "FAISS", "Pinecone"],
+    descriptions: [
+      "Design and maintain scalable backend services using Node.js, TypeScript, Nestjs, Expressjs, Flask, MongoDB, Prisma and PostgreSQL.",
+      "Led development of an AI-powered image similarity search system using ResNet-18, CLIP, and FAISS, implementing data scraping, embedding generation, and high-speed vector retrieval.",
+      "Built a production-grade AI chatbot using RAG architecture with OpenAI, Gemini, Pinecone, and LangChain, including local model fallback for service reliability.",
+      "Implemented geospatial intelligence features including geofencing, speed monitoring, curfew enforcement, and real-time tracking using Haversine formula and Ray Casting algorithms.",
+      "Designed and enforced RBAC and fine-grained permission systems across distributed services.",
+      "Integrated microservices using Kafka and deployed containerized applications with Docker and Docker Compose.",
+      "Designed and implemented real-time communication architecture using WebSockets, enabling live tracking, event broadcasting, and instant status synchronization across clients.",
+      "Optimized database queries and ensured transactional consistency in high-critical business operations.",
+      "Collaborated with frontend engineers, designers, and stakeholders in agile sprints to align backend systems with product requirements."
+    ],
   },
   {
     comp_name: "Solar Citizen",
     designation: "Full Stack Developer",
-    startDate: "March 2024 - March 2025 1-year & 1-month",
+    startDate: "October 2024 - February 2025",
     present: false,
     imgurl: "/solarCitizen.png",
-    skills: ["Reactjs", "TypeScript", "styled-components", "Tailwind CSS", "Amazon S3", "Express.js", "SQL"],
-    description: "Developing and maintaining full-stack web applications for renewable energy solutions.",
+    location: "Karachi, Pakistan",
+    skills: ["React.js", "Node.js", "Express.js", "PostgreSQL", "Tailwind CSS"],
+    descriptions: [
+      "Designed and developed a custom ERP platform using React.js, Node.js, Express.js, and PostgreSQL.",
+      "Implemented inventory management, reporting dashboards, and workflow automation modules, improving operational efficiency by 60%.",
+      "Built secure REST APIs with RBAC-based access control.",
+      "Worked closely with business teams to translate operational requirements into scalable technical solutions."
+    ],
   },
   {
     comp_name: "Rawts",
-    designation: "Mern Stack Developer",
-    startDate: "Nov 2023 - March 2024 4mos",
+    designation: "Front-End Developer",
+    startDate: "January 2023 - September 2024",
     present: false,
     imgurl: "https://www.rawts.com.pk/static/RAWTS-LOGO-2242aab9f87e5e3e8e46cb0666e0ae17.svg",
-    skills: ["Reactjs", "Gatsby", "TypeScript", "styled-components", "Amazon S3", "Express.js", "MongoDb"],
-    description: "Built scalable web applications using the MERN stack and implemented cloud-based solutions.",
-  },
-  {
-    comp_name: "CodSoft",
-    designation: "Front End Developer",
-    startDate: "Sep 2023 - Oct 2023 2mos",
-    present: false,
-    imgurl:
-      "https://assets.zyrosite.com/cdn-cgi/image/format=auto,w=608,fit=crop,q=95/Aq20eV79zLfpXV6b/logo-png-mnl7npnlXjHPl9KV.png",
-    skills: ["Reactjs", "TailwindCSS", "MUI"],
-    description: "Developed responsive and user-friendly interfaces using modern front-end technologies.",
+    skills: ["React.js", "Gatsby", "TypeScript", "styled-components", "Amazon S3"],
+    descriptions: [
+      "Developed high-performance, SEO-optimized web applications using React and Gatsby.",
+      "Reduced page load times by 50% through performance optimization techniques."
+    ],
   },
 ];
 
@@ -129,90 +141,125 @@ const ActivitiesTimeline = ({ language }: any) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
           >
-            {/* Timeline Dot */}
-            <div className="absolute left-4 md:left-[51%] transform -translate-x-1/2 md:-translate-x-5 w-6 h-6 bg-blue-500 rounded-full border-4 border-white dark:border-gray-800 z-10 transition-all duration-300 group-hover:scale-125"></div>
+            {/* Timeline Glow Dot */}
+            <div className={`absolute left-4 md:left-[50%] transform -translate-x-[11px] md:-translate-x-[11px] w-[22px] h-[22px] bg-gradient-to-tr from-blue-600 to-teal-400 rounded-full border-4 border-white dark:border-[#0a0f18] z-10 transition-all duration-500 group-hover:scale-150 group-hover:shadow-[0_0_20px_rgba(59,130,246,0.6)]`}></div>
 
             {/* Timeline Card */}
             <div
-              className={`relative w-full md:w-[45%] p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 ${index % 2 === 0 ? "md:mr-auto" : "md:ml-auto"
+              className={`relative w-full md:w-[45%] p-6 md:p-8 bg-white/60 dark:bg-gray-800/40 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-2xl shadow-lg transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-blue-500/20 group-hover:-translate-y-2 ${index % 2 === 0 ? "md:mr-auto pl-12 md:pl-8" : "md:ml-auto pl-12 md:pl-8"
                 }`}
             >
-              <div className="flex items-start gap-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 mb-6">
                 {/* Company Logo */}
-                <div className="w-12 h-12 relative flex-shrink-0">
+                <div className="w-14 h-14 sm:w-16 sm:h-16 relative flex-shrink-0 bg-white dark:bg-gray-900 rounded-xl p-2 border border-gray-200 dark:border-gray-700 shadow-sm group-hover:shadow-md transition-shadow">
                   <Image
                     src={exp.imgurl || "/placeholder.svg"}
                     alt={`${exp.comp_name} logo`}
-                    layout="fill"
-                    objectFit="contain"
-                    className="rounded-full"
+                    fill
+                    className="object-contain p-1"
                   />
                 </div>
 
-                {/* Content */}
+                {/* Content Header */}
                 <div className="flex-1">
-                  <h2 className="text-xl font-bold text-gray-900 dark:text-white">{exp.designation}</h2>
-                  <p className="text-sm font-medium text-gray-600 dark:text-gray-400">{exp.comp_name}</p>
+                  <h3 className="text-xl sm:text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-600 dark:from-white dark:to-gray-300 group-hover:from-blue-600 group-hover:to-teal-500 dark:group-hover:from-blue-400 dark:group-hover:to-teal-300 transition-all duration-300">
+                    {exp.designation}
+                  </h3>
+                  <p className="text-base font-semibold text-blue-600 dark:text-blue-400 mt-1">{exp.comp_name}</p>
 
                   {/* Date and Duration */}
-                  <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mt-2">
-                    <Calendar className="h-4 w-4" />
-                    <span>
-                      {exp.present
-                        ? `${new Date(exp.startDate).toLocaleString("default", {
-                          month: "short",
-                          year: "numeric",
-                        })} - ${language["present"]}`
-                        : typeof exp.startDate === "string"
-                          ? exp.startDate.split(" - ").slice(0, 2).join(" - ")
-                          : exp.startDate.toLocaleString("default", {
+                  <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400 mt-3">
+                    <div className="flex items-center gap-1.5 bg-gray-100 dark:bg-gray-800/50 px-3 py-1.5 rounded-full border border-gray-200 dark:border-gray-700">
+                      <Calendar className="h-3.5 w-3.5" />
+                      <span>
+                        {exp.present
+                          ? `${new Date(exp.startDate).toLocaleString("default", {
                             month: "short",
                             year: "numeric",
-                          })}
-                    </span>
+                          })} - ${language["present"] || "Present"}`
+                          : typeof exp.startDate === "string"
+                            ? exp.startDate.split(" - ").slice(0, 2).join(" - ")
+                            : exp.startDate.toLocaleString("default", {
+                              month: "short",
+                              year: "numeric",
+                            })}
+                      </span>
+                    </div>
                     {exp.present && (
-                      <>
-                        <Clock className="h-4 w-4 ml-2" />
+                      <div className="flex items-center gap-1.5 bg-green-500/10 text-green-600 dark:text-green-400 px-3 py-1.5 rounded-full border border-green-500/20">
+                        <Clock className="h-3.5 w-3.5" />
                         <span>{calculateDuration(exp.startDate)}</span>
-                      </>
+                      </div>
                     )}
                   </div>
                 </div>
-
-                {/* Expand/Collapse Button */}
-                <button
-                  className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200"
-                  onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-                  aria-label={expandedIndex === index ? language["collapse_details"] : language["expand_details"]}
-                >
-                  {expandedIndex === index ? (
-                    <ChevronUp className="h-5 w-5" />
-                  ) : (
-                    <ChevronDown className="h-5 w-5" />
-                  )}
-                </button>
               </div>
+
+              {/* Expand/Collapse Button */}
+              <button
+                className="w-full flex items-center justify-between p-3 mt-4 rounded-xl bg-gray-50 dark:bg-gray-800/50 border border-gray-200/50 dark:border-gray-700/50 text-gray-700 dark:text-gray-300 hover:bg-blue-50 dark:hover:bg-blue-900/20 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-200 dark:hover:border-blue-800/50 transition-all duration-300"
+                onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
+                aria-label={expandedIndex === index ? language["collapse_details"] : language["expand_details"]}
+              >
+                <span className="text-sm font-semibold tracking-wide">
+                  {expandedIndex === index ? (language["hide_details"] || "Hide Details") : (language["view_details"] || "View Details")}
+                </span>
+                <motion.div
+                  animate={{ rotate: expandedIndex === index ? 180 : 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
+                >
+                  <ChevronDown className="h-5 w-5" />
+                </motion.div>
+              </button>
 
               {/* Expanded Content */}
               <AnimatePresence>
                 {expandedIndex === index && (
                   <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
+                    initial={{ height: 0, opacity: 0, marginTop: 0 }}
+                    animate={{ height: "auto", opacity: 1, marginTop: 16 }}
+                    exit={{ height: 0, opacity: 0, marginTop: 0 }}
                     transition={{ duration: 0.3, ease: "easeInOut" }}
-                    className="mt-4"
+                    className="overflow-hidden"
                   >
-                    <p className="text-sm text-gray-700 dark:text-gray-300 mb-4">{exp.description}</p>
-                    <div className="flex flex-wrap gap-2">
-                      {exp.skills.map((skill, skillIndex) => (
-                        <span
-                          key={skillIndex}
-                          className="px-3 py-1 text-xs font-medium bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 rounded-full transition-all duration-300 hover:bg-blue-200 dark:hover:bg-blue-800"
-                        >
-                          {skill}
-                        </span>
-                      ))}
+                    <div className="p-4 rounded-xl bg-white/40 dark:bg-gray-900/40 border border-gray-100 dark:border-gray-800">
+                      {/* Location Metadata */}
+                      {exp.location && (
+                        <div className="flex items-center gap-1.5 text-gray-500 dark:text-gray-400 text-sm font-medium mb-4 pb-4 border-b border-gray-200 dark:border-gray-800/60">
+                          <MapPin className="w-4 h-4 text-blue-500" />
+                          <span>{exp.location}</span>
+                        </div>
+                      )}
+
+                      {/* Descriptions List */}
+                      {exp.descriptions ? (
+                        <ul className="space-y-3 mb-6">
+                          {exp.descriptions.map((desc, i) => (
+                            <li key={i} className="flex items-start gap-3">
+                              <span className="mt-2 w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0 shadow-[0_0_8px_rgba(59,130,246,0.8)]" />
+                              <span className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-medium">{desc}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      ) : (
+                        <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed font-medium mb-6">
+                          {exp.description}
+                        </p>
+                      )}
+
+                      <div className="space-y-3">
+                        <p className="text-xs font-bold uppercase tracking-widest text-gray-400">{language["technologies_used"] || "Technologies Used"}</p>
+                        <div className="flex flex-wrap gap-2">
+                          {exp.skills.map((skill, skillIndex) => (
+                            <span
+                              key={skillIndex}
+                              className="px-3 py-1.5 text-xs font-semibold bg-blue-500/10 text-blue-700 dark:text-blue-400 border border-blue-500/20 rounded-lg shadow-sm backdrop-blur-sm transition-all duration-300 hover:bg-blue-500/20 hover:scale-105"
+                            >
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </motion.div>
                 )}

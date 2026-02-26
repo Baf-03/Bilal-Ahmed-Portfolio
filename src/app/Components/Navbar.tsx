@@ -11,12 +11,14 @@ import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link as ScrollLink } from "react-scroll";
 import { FaMoon, FaSun } from "react-icons/fa";
+import { usePathname } from "next/navigation";
+import NextLink from "next/link";
 import "./Navbar.css";
 
 const pages = [
   { name: "About me", nav_id: "about" },
   { name: "Projects", nav_id: "Projects" },
-  // { name: "My Skills", nav_id: "skills" },
+  { name: "Experience", route: "/experience" },
   { name: "Let's Connect", nav_id: "connect" },
 ];
 
@@ -31,6 +33,7 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const pathname = usePathname();
   const [currentLang, setCurrentLang] = useState<string>(localStorage.getItem("language") || "en");
 
   useEffect(() => {
@@ -96,8 +99,10 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
             </button>
           </Box>
 
-          <Typography component="div" className="text-center w-[90vw] lg:w-fit">
-            <span className="text text-[1rem] ">&lt; <strong>Dev</strong> /&gt;</span>
+          <Typography component="div" className="text-center w-[90vw] lg:w-fit cursor-pointer">
+            <NextLink href="/">
+              <span className="text text-[1rem] ">&lt; <strong>Dev</strong> /&gt;</span>
+            </NextLink>
           </Typography>
 
           <Box
@@ -112,17 +117,33 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
               <ul className="navbar__menu" style={{ color: darkMode ? "#fff" : "black" }}>
                 {pages.map((page, index) => (
                   <li key={index} className="navbar__item">
-                    <ScrollLink
-                      activeClass="active"
-                      to={page.nav_id}
-                      spy
-                      smooth
-                      offset={-70}
-                      duration={500}
-                      className={`linktag navbar__link ${darkMode ? "text-white" : "text-black"}`}
-                    >
-                      {page.name}
-                    </ScrollLink>
+                    {page.route ? (
+                      <NextLink
+                        href={page.route || ""}
+                        className={`linktag navbar__link ${darkMode ? "text-white" : "text-black"}`}
+                      >
+                        {page.name}
+                      </NextLink>
+                    ) : pathname === "/" ? (
+                      <ScrollLink
+                        activeClass="active"
+                        to={page.nav_id}
+                        spy
+                        smooth
+                        offset={-70}
+                        duration={500}
+                        className={`linktag navbar__link ${darkMode ? "text-white" : "text-black"}`}
+                      >
+                        {page.name}
+                      </ScrollLink>
+                    ) : (
+                      <NextLink
+                        href={`/#${page.nav_id}`}
+                        className={`linktag navbar__link ${darkMode ? "text-white" : "text-black"}`}
+                      >
+                        {page.name}
+                      </NextLink>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -193,10 +214,12 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
           <div className={`mobile-drawer ${isMenuOpen ? "open" : ""}`}>
             {/* Drawer Header */}
             <div className="mobile-drawer-header">
-              <div className="text-2xl font-bold">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
-                  &lt; <strong>Dev</strong> /&gt;
-                </span>
+              <div className="text-2xl font-bold cursor-pointer">
+                <NextLink href="/" onClick={closeMenu}>
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
+                    &lt; <strong>Dev</strong> /&gt;
+                  </span>
+                </NextLink>
               </div>
               <button
                 onClick={closeMenu}
@@ -210,23 +233,47 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
             {/* Navigation Links */}
             <nav className="mobile-drawer-nav">
               {pages.map((page, index) => (
-                <ScrollLink
-                  key={index}
-                  activeClass="active"
-                  to={page.nav_id}
-                  spy
-                  smooth
-                  offset={-70}
-                  duration={500}
-                  onClick={closeMenu}
-                  className="mobile-drawer-link"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <span className="mobile-drawer-link-text">{page.name}</span>
-                  <svg className="mobile-drawer-link-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
-                </ScrollLink>
+                <div key={index} style={{ animationDelay: `${index * 0.1}s` }} className="mobile-drawer-link-container">
+                  {page.route ? (
+                    <NextLink
+                      href={page.route || ""}
+                      onClick={closeMenu}
+                      className="mobile-drawer-link"
+                    >
+                      <span className="mobile-drawer-link-text">{page.name}</span>
+                      <svg className="mobile-drawer-link-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </NextLink>
+                  ) : pathname === "/" ? (
+                    <ScrollLink
+                      activeClass="active"
+                      to={page.nav_id}
+                      spy
+                      smooth
+                      offset={-70}
+                      duration={500}
+                      onClick={closeMenu}
+                      className="mobile-drawer-link"
+                    >
+                      <span className="mobile-drawer-link-text">{page.name}</span>
+                      <svg className="mobile-drawer-link-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </ScrollLink>
+                  ) : (
+                    <NextLink
+                      href={`/#${page.nav_id}`}
+                      onClick={closeMenu}
+                      className="mobile-drawer-link"
+                    >
+                      <span className="mobile-drawer-link-text">{page.name}</span>
+                      <svg className="mobile-drawer-link-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </NextLink>
+                  )}
+                </div>
               ))}
             </nav>
 

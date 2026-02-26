@@ -10,7 +10,8 @@ import {
   SiTypescript, SiNextdotjs, SiTailwindcss, SiMongodb, SiPostgresql,
   SiMysql, SiExpress, SiNestjs, SiChakraui, SiVisualstudiocode,
   SiPostman, SiRedux, SiFirebase, SiStyledcomponents, SiGreensock,
-  SiPrisma, SiOpenai, SiGraphql, SiNginx, SiPm2, SiAmazonaws, SiGithubactions, SiRedis
+  SiPrisma, SiOpenai, SiGraphql, SiNginx, SiPm2, SiAmazonaws, SiGithubactions, SiRedis,
+  SiGrafana, SiSumologic, SiFlask, SiApachekafka, SiSocketdotio, SiDigitalocean, SiSwagger
 } from 'react-icons/si';
 import { DiMaterializecss } from "react-icons/di";
 import { GrGatsbyjs } from "react-icons/gr";
@@ -62,6 +63,7 @@ const TechUsed = ({ language }: { language: any }) => {
         { name: "Chakra UI", icon: <SiChakraui /> },
         { name: "Framer Motion", icon: <FaReact /> },
         { name: "GSAP", icon: <SiGreensock /> },
+        { name: "Particle.js", icon: <Sparkles className="w-4 h-4" /> },
       ],
     },
     {
@@ -85,6 +87,11 @@ const TechUsed = ({ language }: { language: any }) => {
         { name: "RBAC", icon: <FaLock /> },
         { name: "Firebase", icon: <SiFirebase /> },
         { name: "Redis", icon: <SiRedis /> },
+        { name: "Flask", icon: <SiFlask /> },
+        { name: "SQL", icon: <FaDatabase /> },
+        { name: "Apache Kafka", icon: <SiApachekafka /> },
+        { name: "RESTful APIs", icon: <FaServer /> },
+        { name: "WebSocket (Socket.IO)", icon: <SiSocketdotio /> },
       ],
     },
     {
@@ -101,12 +108,20 @@ const TechUsed = ({ language }: { language: any }) => {
         { name: "Ubuntu", icon: <FaUbuntu /> },
         { name: "Nginx", icon: <SiNginx /> },
         { name: "PM2", icon: <SiPm2 /> },
-        { name: "CI/CD", icon: <SiGithubactions /> },
+        { name: "CI/CD & GitHub Actions", icon: <SiGithubactions /> },
         { name: "Docker", icon: <FaDocker /> },
         { name: "AWS CloudFront", icon: <SiAmazonaws /> },
         { name: "Azure", icon: <VscAzure /> },
         { name: "Hostinger", icon: <FaServer /> },
         { name: "Cloudinary", icon: <FaCloud /> },
+        { name: "Grafana", icon: <SiGrafana /> },
+        { name: "Promtail", icon: <FaServer /> },
+        { name: "Loki", icon: <FaDatabase /> },
+        { name: "SumoLogic", icon: <SiSumologic /> },
+        { name: "BlueHost", icon: <FaServer /> },
+        { name: "Docker Compose", icon: <FaDocker /> },
+        { name: "Digital Ocean", icon: <SiDigitalocean /> },
+        { name: "Railway", icon: <FaServer /> },
       ],
     },
     {
@@ -125,6 +140,14 @@ const TechUsed = ({ language }: { language: any }) => {
         { name: "LangChain", icon: <SiOpenai /> },
         { name: "Pinecone", icon: <FaDatabase /> },
         { name: "FAISS", icon: <FaDatabase /> },
+        { name: "AWS Bedrock", icon: <SiAmazonaws /> },
+        { name: "Mistral AI", icon: <BotMessageSquare className="w-4 h-4" /> },
+        { name: "CLIP", icon: <Brain className="w-4 h-4" /> },
+        { name: "Embeddings", icon: <FaDatabase /> },
+        { name: "Vector Similarity Search", icon: <FaDatabase /> },
+        { name: "Data Scraping", icon: <FaPython /> },
+        { name: "Image-to-Image Similarity", icon: <Code className="w-4 h-4" /> },
+        { name: "Text-to-Image Search", icon: <Code className="w-4 h-4" /> },
       ],
     },
     {
@@ -140,6 +163,9 @@ const TechUsed = ({ language }: { language: any }) => {
         { name: "Google Analytics", icon: <FaGoogle /> },
         { name: "Google Tag Manager", icon: <FaGoogle /> },
         { name: "Bitbucket", icon: <FaGitAlt /> },
+        { name: "Google Maps API", icon: <FaGoogle /> },
+        { name: "Firebase Analytics", icon: <SiFirebase /> },
+        { name: "Swagger", icon: <SiSwagger /> },
       ],
     },
   ];

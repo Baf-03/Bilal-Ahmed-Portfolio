@@ -5,7 +5,6 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "../ui/button";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
-import { Skeleton } from "../ui/skeleton";
 import { ExternalLink, Github, Flame } from "lucide-react";
 import { usePerformance } from "@/contexts/PerformanceContext";
 
@@ -22,13 +21,11 @@ interface Project {
 
 const projects: Project[] = [
   {
-    ProjectName: "DocuFlow",
-    Description: "Convert Images with Super Speed - Image to PDF, Docx & more",
-    img: "/docuflow.png",
-    linkCode: "https://github.com/Baf-03/DocuFlow",
-    linkSite: "https://docu-flow-snowy.vercel.app/",
-    id: "docuflow-1",
-    category: "software",
+    ProjectName: "Mahfooz Safar",
+    Description: "Built a real-time van tracking and booking app (Client's Project)",
+    img: "/mahfooz-safar.png",
+    id: "mahfooz-safar",
+    category: "clients",
     isNew: true,
   },
   {
@@ -62,6 +59,16 @@ const projects: Project[] = [
     category: "clients",
   },
   {
+    ProjectName: "DocuFlow",
+    Description: "Convert Images with Super Speed - Image to PDF, Docx & more",
+    img: "/docuflow.png",
+    linkCode: "https://github.com/Baf-03/DocuFlow",
+    linkSite: "https://docu-flow-snowy.vercel.app/",
+    id: "docuflow-1",
+    category: "software",
+    isNew: true,
+  },
+  {
     ProjectName: "Scheduling Simulator",
     Description: "Simulate priority-based scheduling for efficient process handling",
     img: "/simulator2.png",
@@ -93,6 +100,7 @@ const projects: Project[] = [
     id: "3",
     category: "software",
   },
+  /*
   {
     ProjectName: "flappyBird",
     Description: "using Reactjs",
@@ -110,6 +118,7 @@ const projects: Project[] = [
     id: "8",
     category: "games",
   },
+  */
   {
     ProjectName: "Food Recipe Sharing App",
     Description: "MERN stack app with JWT auth & Cloudinary storage",
@@ -119,7 +128,7 @@ const projects: Project[] = [
     id: "7",
     category: "software",
   },
-  // Learning projects are now separated:
+  /* Learning projects are now separated:
   {
     ProjectName: "My Course Hero WebApp",
     Description: "MERN stack project with JWT authentication & CRUD",
@@ -155,27 +164,18 @@ const projects: Project[] = [
     category: "learning",
 
   },
+  */
 ];
 
 export default function FilteredProjects({ language }: any) {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
   const [viewMore, setViewMore] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const sectionRef = useRef<HTMLDivElement>(null);
   const lastProjectRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const { isLowPerformance } = usePerformance();
-
-
-
-  // Simulate loading
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
-  }, []);
 
   // Filter projects when category or viewMore changes
   useEffect(() => {
@@ -192,54 +192,20 @@ export default function FilteredProjects({ language }: any) {
     setFilteredProjects(newFilteredProjects);
   }, [selectedCategory, viewMore]);
 
-  // Handle scrolling for "View Less"
-  useEffect(() => {
-    if (!viewMore && filteredProjects.length > 0) {
-      if (containerRef.current) {
-        const offsetTop = containerRef.current.getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({
-          top: offsetTop,
-          behavior: "smooth",
-        });
-      }
-      if (lastProjectRef.current) {
-        setTimeout(() => {
-          lastProjectRef.current?.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-        }, 100);
-      }
-    }
-  }, [viewMore, filteredProjects]);
+
 
   const categories = [
     { id: "all", label: language["all_projects"] },
     { id: "software", label: language["software"] },
-    { id: "games", label: language["games"] },
+    // { id: "games", label: language["games"] },
     { id: "clients", label: language["client_projects"] },
-    { id: "learning", label: language["learning"] },
+    // { id: "learning", label: language["learning"] },
   ];
 
   const totalProjectsInCategory =
     selectedCategory === "all"
       ? projects.filter((project) => project.category !== "learning").length
       : projects.filter((project) => project.category === selectedCategory).length;
-
-  if (isLoading) {
-    return (
-      <div className="container mx-auto px-4 py-16">
-        <div className="space-y-8">
-          <Skeleton className="h-12 w-[300px] mx-auto" />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <Skeleton key={i} className="h-[400px] rounded-lg" />
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <section ref={containerRef} className="container mx-auto px-4 py-16 z-50 relative overflow-hidden" id="Projects">
@@ -260,7 +226,7 @@ export default function FilteredProjects({ language }: any) {
             viewport={{ once: true }}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-teal-500/10 to-blue-500/10 border border-teal-500/20 mb-6"
           >
-            <div className="w-2 h-2 rounded-full bg-teal-500 animate-pulse" />
+            <div className="w-2 h-2 rounded-full bg-teal-500" />
             <span className="text-sm font-medium text-teal-600 dark:text-teal-400">
               {language["portfolio_badge"] || "Featured Work"}
             </span>
@@ -282,62 +248,69 @@ export default function FilteredProjects({ language }: any) {
               <TabsTrigger
                 key={category.id}
                 value={category.id}
-                className="relative sm:px-6 sm:py-3 rounded-full text-sm font-medium transition-all duration-300 
-                  text-gray-300 hover:text-white 
-                  data-[state=active]:text-white data-[state=active]:bg-gradient-to-r data-[state=active]:from-blue-600 data-[state=active]:to-teal-500
+                className="relative overflow-hidden sm:px-6 py-2 sm:py-3 px-4 rounded-full text-sm font-medium transition-all duration-300 
+                  text-gray-400 hover:text-white 
+                  data-[state=active]:text-white 
                   hover:bg-gray-800/50
-                  shadow-md hover:shadow-lg"
+                  shadow-sm hover:shadow-md outline-none border-none ring-0 focus:ring-0 focus-visible:ring-0"
               >
                 <span className="relative z-10">{category.label}</span>
-                <motion.span
-                  layoutId="tab-indicator"
-                  className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-teal-500 opacity-0 data-[state=active]:opacity-100"
-                  transition={{ duration: 0.3 }}
-                />
+                {selectedCategory === category.id && (
+                  <motion.span
+                    layoutId="active-category-tab"
+                    className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-600 to-teal-500 shadow-lg z-0"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
               </TabsTrigger>
             ))}
           </TabsList>
         </Tabs>
 
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <AnimatePresence mode="popLayout">
+        <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <AnimatePresence>
             {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
                 ref={(!viewMore && index === 5) || (viewMore && index === filteredProjects.length - 1) ? lastProjectRef : null}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.2 }}
-                className="group relative bg-card rounded-lg overflow-hidden shadow-lg"
+                initial={{ opacity: 0, scale: 0.95, y: 15 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9, y: 20 }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+                className="group relative bg-white/60 dark:bg-gray-800/40 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-2xl overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/20"
               >
-                <div className="relative overflow-hidden">
+                <div className="relative overflow-hidden aspect-[16/10]">
+                  {/* Overlay Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10" />
+
                   <Image
                     src={project.img}
                     alt={project.ProjectName}
-                    width={500}
-                    height={300}
-                    className="object-cover transition-transform duration-300 group-hover:scale-110"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
                   />
+
+                  {/* Refined New Badge */}
                   {project.isNew && (
-                    <div className="absolute top-2 left-2 z-10">
-                      <div className={`relative flex items-center justify-center p-2 rounded-full bg-gradient-to-br from-orange-500 to-red-600 shadow-lg shadow-orange-500/30 overflow-hidden transform transition-all duration-300 ${!isLowPerformance && "hover:scale-110 group-hover:rotate-12"}`} title="New Project">
-                        {/* Animated background glow - disabled on low spec */}
-                        {!isLowPerformance && <div className="absolute inset-0 bg-white/20 animate-[spin_3s_linear_infinite] opacity-30" />}
-                        <Flame size={20} className="text-white relative z-10 fill-orange-100" />
+                    <div className="absolute top-3 left-3 z-20">
+                      <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-orange-500/10 backdrop-blur-md border border-orange-500/30 text-orange-600 dark:text-orange-400 font-medium text-xs shadow-lg">
+                        <Flame size={14} />
+                        <span>New</span>
                       </div>
                     </div>
                   )}
-                  <div className="absolute top-2 right-2 flex gap-2 transition-all duration-300 translate-x-12 opacity-0 group-hover:translate-x-0 group-hover:opacity-100">
+
+                  {/* Frosted Action Orbs */}
+                  <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-4 z-20 transition-all duration-500 translate-y-12 opacity-0 group-hover:translate-y-0 group-hover:opacity-100">
                     {project.linkCode && (
                       <a
                         href={project.linkCode}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-2 rounded-full shadow-md hover:bg-gray-200"
+                        className="flex items-center justify-center w-10 h-10 rounded-full bg-white/20 hover:bg-blue-600 backdrop-blur-md border border-white/30 text-white shadow-xl transition-all duration-300 hover:scale-110"
+                        title="View Code"
                       >
-                        <Github size={20} className="text-black" />
+                        <Github size={18} />
                       </a>
                     )}
                     {project.linkSite && (
@@ -345,16 +318,28 @@ export default function FilteredProjects({ language }: any) {
                         href={project.linkSite}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white p-2 rounded-full shadow-md hover:bg-gray-200"
+                        className="flex items-center justify-center w-10 h-10 rounded-full bg-white/20 hover:bg-teal-500 backdrop-blur-md border border-white/30 text-white shadow-xl transition-all duration-300 hover:scale-110"
+                        title="Live Site"
                       >
-                        <ExternalLink size={20} className="text-black" />
+                        <ExternalLink size={18} />
                       </a>
                     )}
                   </div>
                 </div>
+
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">{project.ProjectName}</h3>
-                  <p className="text-muted-foreground">{project.Description}</p>
+                  {/* Category Badge */}
+                  <div className="mb-3">
+                    <span className="inline-block px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 bg-blue-500/10 rounded-md">
+                      {language[project.category] || project.category}
+                    </span>
+                  </div>
+                  <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                    {project.ProjectName}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed line-clamp-2">
+                    {project.Description}
+                  </p>
                 </div>
               </motion.div>
             ))}
