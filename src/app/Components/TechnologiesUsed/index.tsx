@@ -30,8 +30,8 @@ interface TechCategory {
 const TechUsed = ({ language }: { language: any }) => {
   const cardsData: TechCategory[] = [
     {
-      name: language["programming_languages"] || "Programming Languages",
-      description: "Core languages I use to build software",
+      name: "Programming Languages",
+      description: language["programming_languages_description"] || "Core languages I use to build software",
       icon: <Code className="w-6 h-6" />,
       color: "from-purple-500 to-pink-500",
       technologies: [
@@ -42,7 +42,7 @@ const TechUsed = ({ language }: { language: any }) => {
       ],
     },
     {
-      name: language["frontend"] || "Front-End",
+      name: "Front-End",
       description: language["frontend_description"] || "Building beautiful user interfaces",
       icon: <Globe className="w-6 h-6" />,
       color: "from-blue-500 to-cyan-500",
@@ -67,7 +67,7 @@ const TechUsed = ({ language }: { language: any }) => {
       ],
     },
     {
-      name: language["backend"] || "Back-End",
+      name: "Back-End",
       description: language["backend_description"] || "Server-side development & APIs",
       icon: <Database className="w-6 h-6" />,
       color: "from-green-500 to-teal-500",
@@ -96,7 +96,7 @@ const TechUsed = ({ language }: { language: any }) => {
     },
     {
       name: "DevOps & Cloud",
-      description: "Infrastructure, deployment & scaling",
+      description: language["devops_description"] || "Infrastructure, deployment & scaling",
       icon: <Terminal className="w-6 h-6" />,
       color: "from-orange-500 to-red-500",
       technologies: [
@@ -126,7 +126,7 @@ const TechUsed = ({ language }: { language: any }) => {
     },
     {
       name: "AI & Machine Learning",
-      description: "Building intelligent systems & data pipelines",
+      description: language["ai_description"] || "Building intelligent systems & data pipelines",
       icon: <Brain className="w-6 h-6" />,
       color: "from-pink-500 to-rose-500",
       technologies: [
@@ -151,7 +151,7 @@ const TechUsed = ({ language }: { language: any }) => {
       ],
     },
     {
-      name: language["tools"] || "Tools",
+      name: "Tools",
       description: language["tools_description"] || "Essential tools for productivity",
       icon: <Wrench className="w-6 h-6" />,
       color: "from-indigo-500 to-purple-500",

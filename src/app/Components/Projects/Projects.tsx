@@ -126,12 +126,12 @@ export default function FilteredProjects({ language }: any) {
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
   const [viewMore, setViewMore] = useState(false);
   const [isEnglish, setIsEnglish] = useState(true);
-  const [isArabic, setIsArabic] = useState(false);
+  const [isRTL, setIsRTL] = useState(false);
 
   useEffect(() => {
     const lang = localStorage.getItem("language");
     setIsEnglish(lang === "en" || !lang);
-    setIsArabic(lang === "ar");
+    setIsRTL(lang === "ar" || lang === "ur");
   }, [language]);
   const sectionRef = useRef<HTMLDivElement>(null);
   const lastProjectRef = useRef<HTMLDivElement>(null);
@@ -296,7 +296,7 @@ export default function FilteredProjects({ language }: any) {
                     </span>
                   </div>
                   <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    {isArabic && language[project.ProjectNameKey] !== project.ProjectName
+                    {isRTL && language[project.ProjectNameKey] !== project.ProjectName
                       ? `${project.ProjectName} (${language[project.ProjectNameKey]})`
                       : (language[project.ProjectNameKey] || project.ProjectName)}
                   </h3>

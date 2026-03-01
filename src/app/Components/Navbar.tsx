@@ -13,6 +13,8 @@ import { Link as ScrollLink } from "react-scroll";
 import { FaMoon, FaSun } from "react-icons/fa";
 import { usePathname } from "next/navigation";
 import NextLink from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import { Globe, ChevronDown } from "lucide-react";
 import "./Navbar.css";
 
 const pages = [
@@ -21,6 +23,16 @@ const pages = [
   { name: "Experience", route: "/experience" },
   { name: "Let's Connect", nav_id: "connect" },
 ];
+
+const languageOptions = [
+  { code: 'en', label: 'English' },
+  { code: 'es', label: 'Español' },
+  { code: 'de', label: 'Deutsch' },
+  { code: 'ar', label: 'العربية' },
+  { code: 'ur', label: 'اردو' },
+  { code: 'hi', label: 'हिन्दी' },
+  { code: 'ja', label: '日本語' },
+] as const;
 
 interface Props {
   s_dm: (value: boolean) => void;
@@ -39,7 +51,7 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
   useEffect(() => {
     // Set initial layout direction
     const savedLang = localStorage.getItem("language");
-    if (savedLang === 'ar') {
+    if (savedLang === 'ar' || savedLang === 'ur') {
       document.documentElement.dir = 'rtl';
     }
 
@@ -71,12 +83,12 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
     localStorage.setItem("darkmode", JSON.stringify(!dm));
   };
 
-  const handleLanguageChange = (lang: 'en' | 'es' | 'de' | 'ar') => {
+  const handleLanguageChange = (lang: 'en' | 'es' | 'de' | 'ar' | 'ur' | 'hi' | 'ja') => {
     localStorage.setItem("language", lang);
     setCurrentLang(lang);
 
-    // Handle RTL layout direction for Arabic
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    // Handle RTL layout direction for Arabic and Urdu
+    document.documentElement.dir = (lang === 'ar' || lang === 'ur') ? 'rtl' : 'ltr';
 
     setIsDropdownOpen(false);
     window.location.reload(); // Hard refresh
@@ -98,8 +110,8 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
           <Box sx={{
             display: { xs: "flex", md: "none" },
             position: "absolute",
-            left: currentLang === 'ar' ? 'auto' : 0,
-            right: currentLang === 'ar' ? 0 : 'auto'
+            left: (currentLang === 'ar' || currentLang === 'ur') ? 'auto' : 0,
+            right: (currentLang === 'ar' || currentLang === 'ur') ? 0 : 'auto'
           }}>
             <button
               aria-label="menu"
@@ -181,51 +193,72 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
               </label>
             </div>
 
-            {/* Enhanced Language Dropdown */}
-            <div className="relative">
-              <button
+            {/* Enhanced Premium Language Dropdown */}
+            <div className="relative lang-dropdown-container">
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className={`flex items-center gap-2 px-3 py-2 rounded-full border ${darkMode ? 'bg-gray-700 text-white border-gray-600' : 'bg-gray-100 text-black border-gray-300'} hover:shadow-md transition-all duration-200 focus:outline-none`}
+                className={`flex items-center gap-2 px-4 py-2 rounded-full border shadow-sm transition-all duration-300 focus:outline-none glass-morphism ${darkMode
+                  ? 'bg-gray-800/40 text-white border-white/10 hover:bg-gray-800/60'
+                  : 'bg-white/40 text-gray-800 border-black/5 hover:bg-white/60'
+                  }`}
               >
-                <span className="uppercase font-medium">{currentLang}</span>
-                <svg
-                  className={`w-4 h-4 transform transition-transform duration-200 ${isDropdownOpen ? 'rotate-180' : ''}`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
+                <Globe className={`w-4 h-4 ${darkMode ? 'text-blue-400' : 'text-blue-600'}`} />
+                <span className="text-sm font-semibold tracking-wide uppercase">
+                  {currentLang}
+                </span>
+                <motion.div
+                  animate={{ rotate: isDropdownOpen ? 180 : 0 }}
+                  transition={{ duration: 0.3, ease: "easeInOut" }}
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path>
-                </svg>
-              </button>
-              {isDropdownOpen && (
-                <div className={`absolute right-0 mt-2 w-24 rounded-lg shadow-xl ${darkMode ? 'bg-gray-800 border border-gray-700' : 'bg-white border border-gray-200'} overflow-hidden z-10`}>
-                  <button
-                    onClick={() => handleLanguageChange('en')}
-                    className={`w-full text-left px-4 py-2 text-sm uppercase font-medium ${darkMode ? 'text-gray-200 hover:bg-gray-700' : 'text-gray-800 hover:bg-gray-100'} transition-colors duration-150 ${currentLang === 'en' ? 'bg-opacity-20 bg-gray-500' : ''}`}
-                  >
-                    en
-                  </button>
-                  <button
-                    onClick={() => handleLanguageChange('es')}
-                    className={`w-full text-left px-4 py-2 text-sm uppercase font-medium ${darkMode ? 'text-gray-200 hover:bg-gray-700' : 'text-gray-800 hover:bg-gray-100'} transition-colors duration-150 ${currentLang === 'es' ? 'bg-opacity-20 bg-gray-500' : ''}`}
-                  >
-                    es
-                  </button>
-                  <button
-                    onClick={() => handleLanguageChange('de')}
-                    className={`w-full text-left px-4 py-2 text-sm uppercase font-medium ${darkMode ? 'text-gray-200 hover:bg-gray-700' : 'text-gray-800 hover:bg-gray-100'} transition-colors duration-150 ${currentLang === 'de' ? 'bg-opacity-20 bg-gray-500' : ''}`}
-                  >
-                    de
-                  </button>
-                  <button
-                    onClick={() => handleLanguageChange('ar')}
-                    className={`w-full text-left px-4 py-2 text-sm uppercase font-medium ${darkMode ? 'text-gray-200 hover:bg-gray-700' : 'text-gray-800 hover:bg-gray-100'} transition-colors duration-150 ${currentLang === 'ar' ? 'bg-opacity-20 bg-gray-500' : ''}`}
-                  >
-                    ar
-                  </button>
-                </div>
-              )}
+                  <ChevronDown className="w-4 h-4 opacity-60" />
+                </motion.div>
+              </motion.button>
+
+              <AnimatePresence>
+                {isDropdownOpen && (
+                  <>
+                    {/* Invisible backdrop to close dropdown when clicking outside */}
+                    <div
+                      className="fixed inset-0 z-10"
+                      onClick={() => setIsDropdownOpen(false)}
+                    />
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className={`absolute right-0 mt-3 w-48 rounded-2xl shadow-2xl border z-20 overflow-hidden glass-morphism-heavy ${darkMode
+                        ? 'bg-gray-900/90 border-white/10 text-gray-200'
+                        : 'bg-white/90 border-black/5 text-gray-800'
+                        }`}
+                    >
+                      <div className="py-2 px-1">
+                        {languageOptions.map((lang) => (
+                          <motion.button
+                            key={lang.code}
+                            whileHover={{ x: 4, backgroundColor: darkMode ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.05)" }}
+                            onClick={() => handleLanguageChange(lang.code as any)}
+                            className={`w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium rounded-xl transition-all duration-200 ${currentLang === lang.code
+                              ? (darkMode ? 'bg-blue-500/20 text-blue-400' : 'bg-blue-50 text-blue-600')
+                              : 'hover:text-blue-500'
+                              }`}
+                          >
+                            <span>{lang.label}</span>
+                            {currentLang === lang.code && (
+                              <motion.div
+                                layoutId="active-indicator"
+                                className={`w-1.5 h-1.5 rounded-full ${darkMode ? 'bg-blue-400' : 'bg-blue-600'}`}
+                              />
+                            )}
+                          </motion.button>
+                        ))}
+                      </div>
+                    </motion.div>
+                  </>
+                )}
+              </AnimatePresence>
             </div>
           </Box>
 
@@ -321,15 +354,15 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
 
               {/* Language Selector */}
               <div className="mobile-drawer-setting">
-                <span className="mobile-drawer-setting-label">Language</span>
-                <div className="mobile-drawer-lang-buttons">
-                  {(['en', 'es', 'de'] as const).map((lang) => (
+                <span className="mobile-drawer-setting-label">Select Language</span>
+                <div className="mobile-drawer-lang-grid">
+                  {languageOptions.map((lang) => (
                     <button
-                      key={lang}
-                      onClick={() => handleLanguageChange(lang)}
-                      className={`mobile-drawer-lang-btn ${currentLang === lang ? 'active' : ''}`}
+                      key={lang.code}
+                      onClick={() => handleLanguageChange(lang.code as any)}
+                      className={`mobile-drawer-lang-btn-premium ${currentLang === lang.code ? 'active' : ''}`}
                     >
-                      {lang.toUpperCase()}
+                      {lang.code.toUpperCase()}
                     </button>
                   ))}
                 </div>

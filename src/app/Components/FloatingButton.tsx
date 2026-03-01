@@ -85,7 +85,7 @@ const FloatingButtons: React.FC = () => {
           disabled={!ready}
           className={`w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all duration-300 ease-in-out
                       ${ready ? "bg-blue-500 hover:bg-blue-600 text-white"
-                              : "bg-gray-400 cursor-not-allowed text-gray-200"}`}
+              : "bg-gray-400 cursor-not-allowed text-gray-200"}`}
         >
           <BotIcon size={24} />
         </button>
@@ -96,7 +96,7 @@ const FloatingButtons: React.FC = () => {
         is-popup="true"
         show-button="false"
         is-open={isChatbotOpen ? "true" : "false"}
-        chatbot-id="cm7y6akoc00123zmo5n2x95m9"
+        chatbot-id="cmm8bwo71005zx6p3ixem8unf"
         style={
           {
             "--zi-chat-button-color": "#3b82f6",

@@ -37,6 +37,9 @@ import en from "./locales/en.json";
 import es from "./locales/es.json";
 import de from "./locales/de.json";
 import ar from "./locales/ar.json";
+import ur from "./locales/ur.json";
+import hi from "./locales/hi.json";
+import ja from "./locales/ja.json";
 import NeedofSp from "./Components/NeedOfSalesPage.tsx/NeedofSp";
 import AnimatedBackground from "./Components/ui/AnimatedBackground";
 import FloatingButtons from "./Components/FloatingButton";
@@ -71,6 +74,12 @@ function HomeContent() {
       setLanguage(de);
     } else if (storedLanguage === "ar") {
       setLanguage(ar);
+    } else if (storedLanguage === "ur") {
+      setLanguage(ur);
+    } else if (storedLanguage === "hi") {
+      setLanguage(hi);
+    } else if (storedLanguage === "ja") {
+      setLanguage(ja);
     } else {
       setLanguage(en);
       if (storedLanguage !== "en") {
