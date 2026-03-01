@@ -95,7 +95,12 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
     >
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          <Box sx={{ display: { xs: "flex", md: "none" }, position: "absolute", left: 0 }}>
+          <Box sx={{
+            display: { xs: "flex", md: "none" },
+            position: "absolute",
+            left: currentLang === 'ar' ? 'auto' : 0,
+            right: currentLang === 'ar' ? 0 : 'auto'
+          }}>
             <button
               aria-label="menu"
               onClick={handleMenuToggle}
@@ -109,7 +114,7 @@ const ResponsiveAppBar: React.FC<Props> = ({ dm, s_dm }) => {
             </button>
           </Box>
 
-          <Typography component="div" className="text-center w-[90vw] lg:w-fit cursor-pointer">
+          <Typography component="div" className="text-center w-[75vw] md:w-[60vw] lg:w-fit cursor-pointer">
             <NextLink href="/">
               <span className="text text-[1rem] ">&lt; <strong>Dev</strong> /&gt;</span>
             </NextLink>

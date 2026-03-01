@@ -116,6 +116,12 @@ export default function TestimonialSlider({ language }: { language: any }) {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isPaused, setIsPaused] = useState(false)
   const [cardWidth, setCardWidth] = useState(400)
+  const [isRTL, setIsRTL] = useState(false)
+
+  // Detect RTL on mount
+  useEffect(() => {
+    setIsRTL(document.documentElement.dir === 'rtl')
+  }, [])
   const { isLowPerformance } = usePerformance();
   const autoScrollRef = useRef<NodeJS.Timeout | null>(null)
   const touchStartX = useRef<number>(0)
@@ -167,13 +173,16 @@ export default function TestimonialSlider({ language }: { language: any }) {
 
   // Navigate
   const navigate = useCallback((direction: "left" | "right") => {
-    if (direction === "right") {
+    const isNext = direction === "right"
+    const shouldGoNext = isRTL ? !isNext : isNext
+
+    if (shouldGoNext) {
       setActiveIndex(prev => (prev + 1) % totalItems)
     } else {
       setActiveIndex(prev => (prev - 1 + totalItems) % totalItems)
     }
     startAutoScroll()
-  }, [totalItems, startAutoScroll])
+  }, [totalItems, startAutoScroll, isRTL])
 
   // Touch handlers
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
@@ -186,10 +195,14 @@ export default function TestimonialSlider({ language }: { language: any }) {
     const diff = touchStartX.current - touchEndX
 
     if (Math.abs(diff) > 50) {
-      navigate(diff > 0 ? "right" : "left")
+      if (isRTL) {
+        navigate(diff < 0 ? "right" : "left")
+      } else {
+        navigate(diff > 0 ? "right" : "left")
+      }
     }
     setIsPaused(false)
-  }, [navigate])
+  }, [navigate, isRTL])
 
   // Initialize auto-scroll
   useEffect(() => {
@@ -198,11 +211,17 @@ export default function TestimonialSlider({ language }: { language: any }) {
   }, [startAutoScroll, clearAutoScroll])
 
   // Transform style
-  const transformStyle = useMemo(() => ({
-    transform: `translateX(-${activeIndex * itemWidth}px)`,
-    transition: 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)',
-    willChange: 'transform',
-  }), [activeIndex, itemWidth])
+  const transformStyle = useMemo(() => {
+    const translateValue = isRTL
+      ? activeIndex * itemWidth
+      : -(activeIndex * itemWidth);
+
+    return {
+      transform: `translateX(${translateValue}px)`,
+      transition: 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)',
+      willChange: 'transform',
+    };
+  }, [activeIndex, itemWidth, isRTL])
 
   return (
     <section
@@ -236,20 +255,20 @@ export default function TestimonialSlider({ language }: { language: any }) {
         <div className="relative md:px-16">
           {/* Left Arrow */}
           <button
-            onClick={() => navigate("left")}
+            onClick={() => navigate(isRTL ? "right" : "left")}
             className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-blue-500 to-teal-400 rounded-full shadow-lg shadow-blue-500/25 flex items-center justify-center hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 hover:scale-110 active:scale-95"
-            aria-label={language["scroll_left"] || "Scroll left"}
+            aria-label={isRTL ? language["scroll_right"] : (language["scroll_left"] || "Scroll left")}
           >
-            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
+            {isRTL ? <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" /> : <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />}
           </button>
 
           {/* Right Arrow */}
           <button
-            onClick={() => navigate("right")}
+            onClick={() => navigate(isRTL ? "left" : "right")}
             className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-blue-500 to-teal-400 rounded-full shadow-lg shadow-blue-500/25 flex items-center justify-center hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 hover:scale-110 active:scale-95"
-            aria-label={language["scroll_right"] || "Scroll right"}
+            aria-label={isRTL ? language["scroll_left"] : (language["scroll_right"] || "Scroll right")}
           >
-            <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
+            {isRTL ? <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" /> : <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />}
           </button>
 
           {/* Cards Container */}

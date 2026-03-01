@@ -10,7 +10,8 @@ import { usePerformance } from "@/contexts/PerformanceContext";
 
 interface Project {
   ProjectName: string;
-  Description: string;
+  ProjectNameKey: string;
+  DescriptionKey: string;
   img: string;
   linkCode?: string;
   linkSite?: string;
@@ -22,7 +23,8 @@ interface Project {
 const projects: Project[] = [
   {
     ProjectName: "Mahfooz Safar",
-    Description: "Built a real-time van tracking and booking app (Client's Project)",
+    ProjectNameKey: "project_mahfooz_name",
+    DescriptionKey: "project_mahfooz_desc",
     img: "/mahfooz-safar.png",
     id: "mahfooz-safar",
     category: "clients",
@@ -30,7 +32,8 @@ const projects: Project[] = [
   },
   {
     ProjectName: "Hubsite Social",
-    Description: "Social media platform (Client's Project)",
+    ProjectNameKey: "project_hubsite_name",
+    DescriptionKey: "project_hubsite_desc",
     img: "/hubsite.png",
     linkSite: "https://hubsite-iteration3.vercel.app/",
     id: "1a",
@@ -38,14 +41,16 @@ const projects: Project[] = [
   },
   {
     ProjectName: "Vero Specialize Service",
-    Description: "(Client's Project)",
+    ProjectNameKey: "project_vero_name",
+    DescriptionKey: "project_vero_desc",
     img: "/vero.png",
     id: "1b",
     category: "clients",
   },
   {
     ProjectName: "Hv Technologies",
-    Description: "(Client's Project)",
+    ProjectNameKey: "project_hv_name",
+    DescriptionKey: "project_hv_desc",
     img: "/hvTech.png",
     linkSite: "https://hvtechnologies.app/",
     id: "1e",
@@ -53,14 +58,16 @@ const projects: Project[] = [
   },
   {
     ProjectName: "Virtual Care",
-    Description: "client's project",
+    ProjectNameKey: "project_virtual_care_name",
+    DescriptionKey: "project_virtual_care_desc",
     img: "/vc.png",
     id: "1c",
     category: "clients",
   },
   {
     ProjectName: "DocuFlow",
-    Description: "Convert Images with Super Speed - Image to PDF, Docx & more",
+    ProjectNameKey: "project_docuflow_name",
+    DescriptionKey: "project_docuflow_desc",
     img: "/docuflow.png",
     linkCode: "https://github.com/Baf-03/DocuFlow",
     linkSite: "https://docu-flow-snowy.vercel.app/",
@@ -70,7 +77,8 @@ const projects: Project[] = [
   },
   {
     ProjectName: "Scheduling Simulator",
-    Description: "Simulate priority-based scheduling for efficient process handling",
+    ProjectNameKey: "project_scheduling_name",
+    DescriptionKey: "project_scheduling_desc",
     img: "/simulator2.png",
     linkSite: "https://simulatorabcd.vercel.app/",
     id: "5",
@@ -78,15 +86,16 @@ const projects: Project[] = [
   },
   {
     ProjectName: "Full Stack Ecommerce App",
-    Description: "Built using React.js, Nest.js & Postgres SQL",
+    ProjectNameKey: "project_ecommerce_name",
+    DescriptionKey: "project_ecommerce_desc",
     img: "/shopCo.png",
-    // linkSite: "https://shop-co-iiyx.vercel.app/",
     id: "4",
     category: "software",
   },
   {
     ProjectName: "AxisLang",
-    Description: "Simplified Programming Language with Live Compiler",
+    ProjectNameKey: "project_axislang_name",
+    DescriptionKey: "project_axislang_desc",
     img: "/project.png",
     linkSite: "https://axis-lang-uqc4.vercel.app/",
     id: "2",
@@ -94,84 +103,36 @@ const projects: Project[] = [
   },
   {
     ProjectName: "Round Robin Scheduling Algorithm Simulator",
-    Description: "Simulation of how round robin algorithm works!",
+    ProjectNameKey: "project_round_robin_name",
+    DescriptionKey: "project_round_robin_desc",
     img: "/round_robin.png",
     linkSite: "https://os-round-robin-scheduling-algorithm.vercel.app/",
     id: "3",
     category: "software",
   },
-  /*
-  {
-    ProjectName: "flappyBird",
-    Description: "using Reactjs",
-    img: "/flappy_bird.png",
-    linkSite: "https://flappybird-baf03.vercel.app/",
-    id: "6",
-    category: "games",
-  },
-  {
-    ProjectName: "Memory Game",
-    Description: "Made with React.js & TailwindCSS",
-    img: "/MemoryGame.png",
-    linkCode: "https://github.com/Baf-03/Memory-Game",
-    linkSite: "https://memory-game-baf.netlify.app/",
-    id: "8",
-    category: "games",
-  },
-  */
   {
     ProjectName: "Food Recipe Sharing App",
-    Description: "MERN stack app with JWT auth & Cloudinary storage",
+    ProjectNameKey: "project_recipe_name",
+    DescriptionKey: "project_recipe_desc",
     img: "/recipe-sharing.png",
     linkCode: "https://github.com/Baf-03/FrontEnd-FoodRecipe",
-    // linkSite: "https://foodrecipesharing.netlify.app/login",
     id: "7",
     category: "software",
   },
-  /* Learning projects are now separated:
-  {
-    ProjectName: "My Course Hero WebApp",
-    Description: "MERN stack project with JWT authentication & CRUD",
-    img: "/mycoursehero.png",
-    // linkCode: "https://github.com/Baf-03/MyCourses-clientSide",
-    // linkSite: "https://mycoursehero.netlify.app/auth/login",
-    id: "9",
-    category: "learning",
-  },
-  {
-    ProjectName: "Encrypted Todo",
-    Description: "saving all user todos in DB in encrypted form",
-    img: "/encryptodo.png",
-    linkSite: "https://encryptodo.netlify.app/auth/login",
-    id: "10",
-    category: "learning",
-  },
-  {
-    ProjectName: "Attendance App",
-    Description: "Attendance tracking system built with MERN stack",
-    img: "/attendanceapp.png",
-    id: "11",
-    category: "learning",
-  },
-
-  {
-    ProjectName: "Tic Tac Toe",
-    Description: "Classic Tic Tac Toe game built using HTML, CSS & JS",
-    img: "/tictactoe.png",
-    linkCode: "https://github.com/Baf-03/tic-tac-toe-using-html-css-js",
-    linkSite: "https://baf-03.github.io/tic-tac-toe-using-html-css-js/",
-    id: "14",
-    category: "learning",
-
-  },
-  */
 ];
 
 export default function FilteredProjects({ language }: any) {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const [filteredProjects, setFilteredProjects] = useState<Project[]>([]);
   const [viewMore, setViewMore] = useState(false);
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [isEnglish, setIsEnglish] = useState(true);
+  const [isArabic, setIsArabic] = useState(false);
+
+  useEffect(() => {
+    const lang = localStorage.getItem("language");
+    setIsEnglish(lang === "en" || !lang);
+    setIsArabic(lang === "ar");
+  }, [language]);
   const sectionRef = useRef<HTMLDivElement>(null);
   const lastProjectRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -335,10 +296,12 @@ export default function FilteredProjects({ language }: any) {
                     </span>
                   </div>
                   <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                    {project.ProjectName}
+                    {isArabic && language[project.ProjectNameKey] !== project.ProjectName
+                      ? `${project.ProjectName} (${language[project.ProjectNameKey]})`
+                      : (language[project.ProjectNameKey] || project.ProjectName)}
                   </h3>
                   <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed line-clamp-2">
-                    {project.Description}
+                    {language[project.DescriptionKey] || project.DescriptionKey}
                   </p>
                 </div>
               </motion.div>

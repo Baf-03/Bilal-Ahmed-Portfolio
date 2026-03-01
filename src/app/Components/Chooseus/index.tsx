@@ -1,68 +1,61 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
-import { Sparkles, Smartphone, Zap, Palette, Search, Code, Shield, Clock, ChevronLeft, ChevronRight } from "lucide-react";
+import { Handshake, Lightbulb, BarChart, Star, Target, Code, Shield, Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import { usePerformance } from "@/contexts/PerformanceContext";
 
 const featuresData = [
   {
-    title: "Minimal Design",
-    description: "Clean, modern interfaces that prioritize user experience and aesthetics.",
-    icon: Sparkles,
-    color: "from-purple-500 to-pink-500",
+    titleKey: "feature_ontime_delivery",
+    descriptionKey: "feature_ontime_delivery_description",
+    icon: Clock,
+    color: "from-blue-500 to-indigo-500",
   },
   {
-    title: "Responsive Design",
-    description: "Mobile-first approach ensuring perfect display across all devices.",
-    icon: Smartphone,
-    color: "from-blue-500 to-cyan-500",
+    titleKey: "feature_reliable_secure",
+    descriptionKey: "feature_reliable_secure_description",
+    icon: Shield,
+    color: "from-emerald-500 to-teal-500",
   },
   {
-    title: "Fast Performance",
-    description: "Optimized code and efficient architecture for lightning-fast load times.",
-    icon: Zap,
-    color: "from-yellow-500 to-orange-500",
+    titleKey: "feature_support",
+    descriptionKey: "feature_support_description",
+    icon: Handshake,
+    color: "from-orange-500 to-amber-500",
   },
   {
-    title: "Accessibility",
-    description: "Inclusive design practices making applications usable for everyone.",
-    icon: Palette,
-    color: "from-green-500 to-teal-500",
+    titleKey: "feature_results_driven",
+    descriptionKey: "feature_results_driven_description",
+    icon: Target,
+    color: "from-rose-500 to-pink-500",
   },
   {
-    title: "SEO Optimized",
-    description: "Search engine friendly code structure for better visibility.",
-    icon: Search,
-    color: "from-red-500 to-rose-500",
+    titleKey: "feature_innovative",
+    descriptionKey: "feature_innovative_description",
+    icon: Lightbulb,
+    color: "from-purple-500 to-violet-500",
   },
   {
-    title: "Front End Development",
-    description: "Expert in creating responsive and interactive user interfaces using React, Next.js, and modern CSS frameworks.",
+    titleKey: "feature_data_strategy",
+    descriptionKey: "feature_data_strategy_description",
+    icon: BarChart,
+    color: "from-cyan-500 to-blue-500",
+  },
+  {
+    titleKey: "feature_client_satisfaction",
+    descriptionKey: "feature_client_satisfaction_description",
+    icon: Star,
+    color: "from-yellow-400 to-orange-400",
+  },
+  {
+    titleKey: "feature_tailored_solutions",
+    descriptionKey: "feature_tailored_solutions_description",
     icon: Code,
     color: "from-indigo-500 to-purple-500",
   },
-  {
-    title: "Backend Development",
-    description: "Building robust server-side applications with Node.js, Express, Nest.js, and database management.",
-    icon: Shield,
-    color: "from-teal-500 to-blue-500",
-  },
-  {
-    title: "DevOps",
-    description: "Implementing CI/CD pipelines, cloud deployments on AWS, and ensuring scalable infrastructure.",
-    icon: Clock,
-    color: "from-orange-500 to-red-500",
-  },
-  {
-    title: "AI Chat Bots",
-    description: "Developing intelligent conversational agents using modern AI technologies and integrations.",
-    icon: Sparkles,
-    color: "from-pink-500 to-rose-500",
-  },
 ];
 
-// Feature card component - styled like Client Stories
-const FeatureCard = React.memo(({ feature }: { feature: typeof featuresData[0] }) => {
+const FeatureCard = React.memo(({ feature }: { feature: any }) => {
   const Icon = feature.icon;
   return (
     <div className="relative group h-full">
@@ -96,15 +89,25 @@ const FeatureCarousel = React.memo(({ language }: any) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [cardWidth, setCardWidth] = useState(320);
+  const [isRTL, setIsRTL] = useState(false);
+
+  // Check RTL once on mount
+  useEffect(() => {
+    setIsRTL(document.documentElement.dir === 'rtl');
+  }, []);
   const autoScrollRef = useRef<NodeJS.Timeout | null>(null);
   const touchStartX = useRef<number>(0);
   const { isLowPerformance } = usePerformance();
 
-  // Memoize features list
-  const features = useMemo(() =>
-    isLowPerformance ? featuresData.slice(0, 5) : featuresData,
-    [isLowPerformance]
-  );
+  // Memoize features list with translated content
+  const features = useMemo(() => {
+    const baseFeatures = isLowPerformance ? featuresData.slice(0, 5) : featuresData;
+    return baseFeatures.map(feature => ({
+      ...feature,
+      title: language[feature.titleKey] || feature.titleKey,
+      description: language[feature.descriptionKey] || feature.descriptionKey,
+    }));
+  }, [isLowPerformance, language]);
 
   const totalItems = features.length;
   const gap = 32; // gap-8 = 32px
@@ -173,14 +176,22 @@ const FeatureCarousel = React.memo(({ language }: any) => {
     const diff = touchStartX.current - touchEndX;
 
     if (Math.abs(diff) > 50) {
-      if (diff > 0) {
-        goToNext();
+      if (isRTL) {
+        if (diff < 0) {
+          goToNext();
+        } else {
+          goToPrev();
+        }
       } else {
-        goToPrev();
+        if (diff > 0) {
+          goToNext();
+        } else {
+          goToPrev();
+        }
       }
     }
     setIsPaused(false);
-  }, [goToNext, goToPrev]);
+  }, [goToNext, goToPrev, isRTL]);
 
   // Initialize auto-scroll
   useEffect(() => {
@@ -193,11 +204,17 @@ const FeatureCarousel = React.memo(({ language }: any) => {
   const handleMouseLeave = useCallback(() => setIsPaused(false), []);
 
   // Calculate transform
-  const transformStyle = useMemo(() => ({
-    transform: `translateX(-${currentIndex * itemWidth}px)`,
-    transition: 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)',
-    willChange: 'transform',
-  }), [currentIndex, itemWidth]);
+  const transformStyle = useMemo(() => {
+    const translateValue = isRTL
+      ? currentIndex * itemWidth
+      : -(currentIndex * itemWidth);
+
+    return {
+      transform: `translateX(${translateValue}px)`,
+      transition: 'transform 0.5s cubic-bezier(0.25, 0.1, 0.25, 1)',
+      willChange: 'transform',
+    };
+  }, [currentIndex, itemWidth, isRTL]);
 
   return (
     <section className="py-12 md:py-24 px-2 md:px-4 w-full relative overflow-hidden" id="why-choose-me">
@@ -230,19 +247,19 @@ const FeatureCarousel = React.memo(({ language }: any) => {
         >
           {/* Navigation Arrows - Styled like Client Stories */}
           <button
-            onClick={goToPrev}
+            onClick={isRTL ? goToNext : goToPrev}
             className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-blue-500 to-teal-400 rounded-full shadow-lg shadow-blue-500/25 flex items-center justify-center hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 hover:scale-110 active:scale-95"
-            aria-label="Previous"
+            aria-label={isRTL ? "Next" : "Previous"}
           >
-            <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />
+            {isRTL ? <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" /> : <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" />}
           </button>
 
           <button
-            onClick={goToNext}
+            onClick={isRTL ? goToPrev : goToNext}
             className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 bg-gradient-to-r from-blue-500 to-teal-400 rounded-full shadow-lg shadow-blue-500/25 flex items-center justify-center hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300 hover:scale-110 active:scale-95"
-            aria-label="Next"
+            aria-label={isRTL ? "Previous" : "Next"}
           >
-            <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
+            {isRTL ? <ChevronLeft className="w-5 h-5 md:w-6 md:h-6 text-white" /> : <ChevronRight className="w-5 h-5 md:w-6 md:h-6 text-white" />}
           </button>
 
           {/* Carousel Container */}
